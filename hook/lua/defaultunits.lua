@@ -5,7 +5,7 @@ local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 
-local GlobalExplosionScaleValue = 1
+local GlobalExplosionScaleValue = 0.8
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
 local oldAirUnit = AirUnit
@@ -88,13 +88,9 @@ AirUnit = Class( oldAirUnit ) {
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
         local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
-		self.FxDamage1Amount = 0
-		self.FxDamage2Amount = 0
-		self.FxDamage3Amount = 0
-            ##self.FxDamage1 = { SDEffectTemplate.AddNothing }  ##Attempt to remove the damage effects when the plane gets shot down
-            ##self.FxDamage2 = { SDEffectTemplate.AddNothing }  ##since the main falling-down effect that is spawned when it gets killed
-            ##self.FxDamage3 = { SDEffectTemplate.AddNothing }  ##is much bigger and should cover up the fact that these get removed
-
+		self.FxDamage1Amount = 0  ##Attempt to remove the damage effects when the plane gets shot down
+		self.FxDamage2Amount = 0  ##since the main falling-down effect that is spawned when it gets killed
+		self.FxDamage3Amount = 0  ##is much bigger and should cover up the fact that these get removed
         #if (self:GetCurrentLayer() == 'Air' and Random() < self.DestroyNoFallRandomChance) then
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
@@ -130,7 +126,7 @@ AirUnit = Class( oldAirUnit ) {
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
         self.CreateEffects( self, SDExplosionImpact, Army, ((Number/1.75)*GlobalExplosionScaleValue) )
         ##self.CreateUnitAirDestructionEffects( self, 1.0 )		
-        ## ^ Custion explosion when unit hits the ground                                                                              
+        ## ^ Custom explosion when unit hits the ground                                                                              
         ##(scaled to be bigger than when it explodes in the air because PHYSICS YO)
 
         # Damage the area we have impacted with.
@@ -145,12 +141,11 @@ AirUnit = Class( oldAirUnit ) {
             end
         end
 
-        if with == 'Water' then  ##This will need to be played with to remove all custom effects while the unit is sinking
+        if with == 'Water' then
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
             EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.Splashy )
 			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(GetRandomInt(0.1, 1.5)) )
-			##self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number )
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
@@ -410,6 +405,101 @@ SeaUnit = Class( oldSeaUnit ) {
     end,
 }
 
+local oldSubUnit = SubUnit
+SubUnit = Class( oldSubUnit ) {
+	OnKilled = function(self, instigator, type, overkillRatio)
+        local layer = self:GetCurrentLayer()
+        self:DestroyIdleEffects()
+        local bp = self:GetBlueprint()
+        
+        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') and bp.Display.AnimationDeath then
+            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            self.SinkThread = self:ForkThread(self.SinkingThread)
+        end
+        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
+    end,
+
+    ExplosionThread = function(self)
+        local maxcount = Random(17,20) # max number of above surface explosions. timed to animation
+        local d = 0 # delay offset after surface explosions cease
+        local sx, sy, sz = self:GetUnitSizes()
+        local vol = sx * sy * sz
+
+        local volmin = 1.5
+        local volmax = 15
+        local scalemin = 1
+        local scalemax = 3
+        local t = (vol-volmin)/(volmax-volmin)
+        local rs = scalemin + (t * (scalemax-scalemin))
+        if rs < scalemin then
+            rs = scalemin
+        elseif rs > scalemax then
+            rs = scalemax
+        end
+        local army = self:GetArmy()
+
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs)
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp'):ScaleEmitter(rs)
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_surface_ripples_01_emit.bp'):ScaleEmitter(rs)
+
+        while true do
+            local rx, ry, rz = self:GetRandomOffset(1)
+            local rs = Random(vol/2, vol*2) / (vol*2)
+            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
+            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
+
+            d = d + 1 # increase delay offset
+            local rd = Random(30,70) / 10
+            WaitTicks(rd + d)
+        end
+    end,
+    
+	DeathThread = function(self, overkillRatio, instigator)
+		CreateScaledBoom(self, overkillRatio)
+		local sx, sy, sz = self:GetUnitSizes()
+		local vol = sx * sy * sz
+		local army = self:GetArmy()
+		local pos = self:GetPosition()
+		local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
+		local DaveyJones = (seafloor - pos[2])*20
+		local numBones = self:GetBoneCount()-1
+		
+
+		
+		self:ForkThread(function()
+			local i = 0
+			while true do
+			local rx, ry, rz = self:GetRandomOffset(0.25)
+			local rs = Random(vol/2, vol*2) / (vol*2)
+			local randBone = Util.GetRandomInt( 0, numBones)
+
+			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp')
+					:ScaleEmitter(sx)
+					:OffsetEmitter(rx, ry, rz)
+			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+					:ScaleEmitter(sx/2)
+					:OffsetEmitter(rx, ry, rz)
+			CreateEmitterAtBone( self, 0, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+					:ScaleEmitter(sx)
+					:OffsetEmitter(rx, ry, rz)
+					
+			local rd = Util.GetRandomFloat( 0.4+i, 1.0+i)
+			WaitSeconds(rd)
+				i = i + 0.3
+			end
+		end)
+
+		local slider = CreateSlider(self, 0)
+		slider:SetGoal(0, DaveyJones+5, 0)
+		slider:SetSpeed(8)
+		WaitFor(slider)
+		slider:Destroy()
+			
+		CreateScaledBoom(self, overkillRatio)
+		self:CreateWreckage(overkillRatio, instigator)
+		self:Destroy()
+	end,
+}
 local Unit = import('/lua/sim/Unit.lua').Unit
 StructureUnit = Class(Unit) {
     LandBuiltHiddenBones = {'Floatation'},
