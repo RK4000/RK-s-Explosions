@@ -1,0 +1,27 @@
+Audio = {
+        SubBoom1 = Sound {
+            Bank = 'UELDestroy',
+            Cue = 'UEB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	SubBoomSounduef = Sound {
+            Bank = 'UELDestroy',
+            Cue = 'UEB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	SubBoomSoundcybran = Sound {
+            Bank = 'URLDestroy',
+            Cue = 'URB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	SubBoomSoundaeon = Sound {
+            Bank = 'UALDestroy',
+            Cue = 'UAB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	SubBoomSoundseraphim = Sound {
+            Bank = 'XSL_Destroy',
+            Cue = 'XSB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+}
