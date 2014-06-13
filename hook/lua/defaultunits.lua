@@ -407,97 +407,75 @@ SeaUnit = Class( oldSeaUnit ) {
 
 local oldSubUnit = SubUnit
 SubUnit = Class( oldSubUnit ) {
+	##Get faction
+    GetFaction = function(self) 
+    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+    end,
+
+    ##Get Tech number
+    GetUnitTechLvl = function(self)
+      	local Categories = self:GetBlueprint().Categories or {}
+      	local Cats = {'TECH1', 'TECH2', 'TECH3' }
+    	local UnitTechLvl = 'TECH1'
+    	
+    	for index, Cat in Cats do
+    		if table.find(Categories, Cat) then
+    			UnitTechLvl = Cat
+    			break
+    		end
+    	end
+    	
+     	return UnitTechLvl
+
+     end,
+
+    ##Get explosion scale based off Tech number
+    GetNumberByTechLvlShip = function(self, UnitTechLvl)
+
+    	if UnitTechLvl == 'TECH1' then
+   		return 1.5665
+    	elseif UnitTechLvl == 'TECH2' then
+    		return 1.9
+    	elseif UnitTechLvl == 'TECH3' then
+    		return 2.515
+    	else
+    		return 6.0
+    	end	
+    end,
+
+    ####Needed for the custom booms####
+    CreateEffects = function( self, EffectTable, army, scale)
+        for k, v in EffectTable do
+            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
+        end
+    end,
+	
 	OnKilled = function(self, instigator, type, overkillRatio)
+		local army = self:GetArmy()
+		local bp = self:GetBlueprint()
+		local Army = self:GetArmy()
+		local Faction = self:GetFaction()
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local SDFactionalSubBoomAboveWater = SDEffectTemplate[UnitTechLvl.. Faction ..'SubExplosionAboveWater']
+		local SDFactionalSubBoomUnderWater = SDEffectTemplate[UnitTechLvl.. Faction ..'SubExplosionUnderWater']
+		
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         local bp = self:GetBlueprint()
         
-        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') and bp.Display.AnimationDeath then
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-            self.SinkThread = self:ForkThread(self.SinkingThread)
+        if (layer == 'Sub' or layer == 'Seabed') then
+		self.CreateEffects( self, [SDFactionalSubBoomUnderWater], Army, (Number*GlobalExplosionScaleValue) )
+		elseif (layer == 'Water') then
+		self.CreateEffects( self, [SDFactionalSubBoomAboveWater], Army, (Number*GlobalExplosionScaleValue) )
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     ExplosionThread = function(self)
-        local maxcount = Random(17,20) # max number of above surface explosions. timed to animation
-        local d = 0 # delay offset after surface explosions cease
-        local sx, sy, sz = self:GetUnitSizes()
-        local vol = sx * sy * sz
-
-        local volmin = 1.5
-        local volmax = 15
-        local scalemin = 1
-        local scalemax = 3
-        local t = (vol-volmin)/(volmax-volmin)
-        local rs = scalemin + (t * (scalemax-scalemin))
-        if rs < scalemin then
-            rs = scalemin
-        elseif rs > scalemax then
-            rs = scalemax
-        end
-        local army = self:GetArmy()
-
-        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs)
-        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp'):ScaleEmitter(rs)
-        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_surface_ripples_01_emit.bp'):ScaleEmitter(rs)
-
-        while true do
-            local rx, ry, rz = self:GetRandomOffset(1)
-            local rs = Random(vol/2, vol*2) / (vol*2)
-            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
-            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
-
-            d = d + 1 # increase delay offset
-            local rd = Random(30,70) / 10
-            WaitTicks(rd + d)
-        end
     end,
     
 	DeathThread = function(self, overkillRatio, instigator)
-		CreateScaledBoom(self, overkillRatio)
-		local sx, sy, sz = self:GetUnitSizes()
-		local vol = sx * sy * sz
-		local army = self:GetArmy()
-		local pos = self:GetPosition()
-		local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
-		local DaveyJones = (seafloor - pos[2])*20
-		local numBones = self:GetBoneCount()-1
-		
-
-		
-		self:ForkThread(function()
-			local i = 0
-			while true do
-			local rx, ry, rz = self:GetRandomOffset(0.25)
-			local rs = Random(vol/2, vol*2) / (vol*2)
-			local randBone = Util.GetRandomInt( 0, numBones)
-
-			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp')
-					:ScaleEmitter(sx)
-					:OffsetEmitter(rx, ry, rz)
-			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
-					:ScaleEmitter(sx/2)
-					:OffsetEmitter(rx, ry, rz)
-			CreateEmitterAtBone( self, 0, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
-					:ScaleEmitter(sx)
-					:OffsetEmitter(rx, ry, rz)
-					
-			local rd = Util.GetRandomFloat( 0.4+i, 1.0+i)
-			WaitSeconds(rd)
-				i = i + 0.3
-			end
-		end)
-
-		local slider = CreateSlider(self, 0)
-		slider:SetGoal(0, DaveyJones+5, 0)
-		slider:SetSpeed(8)
-		WaitFor(slider)
-		slider:Destroy()
-			
-		CreateScaledBoom(self, overkillRatio)
-		self:CreateWreckage(overkillRatio, instigator)
-		self:Destroy()
 	end,
 }
 local Unit = import('/lua/sim/Unit.lua').Unit
