@@ -88,13 +88,9 @@ AirUnit = Class( oldAirUnit ) {
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
         local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
-		self.FxDamage1Amount = 0  ##Attempt to remove the damage effects when the plane gets shot down
-		self.FxDamage2Amount = 0  ##since the main falling-down effect that is spawned when it gets killed
-		self.FxDamage3Amount = 0  ##is much bigger and should cover up the fact that these get removed
-        #if (self:GetCurrentLayer() == 'Air' and Random() < self.DestroyNoFallRandomChance) then
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
-			self:DestroyAllDamageEffects()			
+            self:DestroyAllDamageEffects()			
             self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
             self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
             self:DestroyTopSpeedEffects()
