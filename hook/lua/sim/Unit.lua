@@ -74,7 +74,7 @@ Unit = Class( oldUnit ) {
         if(rklog) then LOG('---------------------------------------') end
         if(rklog) then LOG('------------------') end
 
-	self.CreateEffects( self, SDExplosion, Army, Number)
+	##self.CreateEffects( self, SDExplosion, Army, Number)  ####################Removed this because the sub units were still using it, and added the code neccesary for land units to have custom explosions to defaultunits.lua
 
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
@@ -125,7 +125,7 @@ Unit = Class( oldUnit ) {
         self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )
         self:DestroyTopSpeedEffects()
-        self.CreateEffects( self, SDExplosion, Army, Number)
+        ##self.CreateEffects( self, SDExplosion, Army, Number) ####################Removed this because the sub units were still using it, and added the code neccesary for land units to have custom explosions to defaultunits.lua
 
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
             self.UnitBeingTeleported:Destroy()

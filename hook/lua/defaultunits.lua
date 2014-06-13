@@ -4,9 +4,148 @@ local EffectUtil = import('/mods/rks_explosions/hook/lua/EffectUtilities.lua')
 local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
+local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 
 local GlobalExplosionScaleValue = 0.8
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
+
+local oldLandUnit = LandUnit
+LandUnit = Class( oldLandUnit ) {
+GetFaction = function(self)
+    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+    end,
+
+    GetUnitTechLvl = function(self)
+      	local Categories = self:GetBlueprint().Categories or {}
+      	local Cats = {'TECH1', 'TECH2', 'TECH3' }
+    	local UnitTechLvl = 'TECH1'
+    	
+    	for index, Cat in Cats do
+    		if table.find(Categories, Cat) then
+    			UnitTechLvl = Cat
+    			break
+    		end
+    	end
+    	
+    	
+     	return UnitTechLvl
+     end,
+
+    GetNumberByTechLvl = function(self, UnitTechLvl)
+
+    	if UnitTechLvl == 'TECH1' then
+   		return 0.425
+    	elseif UnitTechLvl == 'TECH2' then
+    		return 0.76
+    	elseif UnitTechLvl == 'TECH3' then
+    		return 1.025
+    	else
+    		return 1
+    	end	
+    end,
+
+    CreateEffects = function( self, EffectTable, army, scale)
+        for k, v in EffectTable do
+            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
+        end
+    end,
+
+    OnKilled = function(self, instigator, type, overkillRatio)
+ 
+        self.Dead = true
+
+        local bp = self:GetBlueprint()
+
+        local Army = self:GetArmy()
+	local Faction = self:GetFaction()
+	local UnitTechLvl = self:GetUnitTechLvl()
+	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+
+        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+
+	self.CreateEffects( self, SDExplosion, Army, Number)
+
+        if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
+            self:PlayUnitSound('HoverKilledOnWater')
+        end
+        
+        if self:GetCurrentLayer() == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
+            --Handle ships that can walk on land...
+            self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
+        else
+            self:PlayUnitSound('Killed')
+        end
+        
+        if EntityCategoryContains(categories.COMMAND, self) then
+        	LOG('com is dead') 
+			# If there is a killer, and it's not me 
+        	if instigator and instigator:GetArmy() != self:GetArmy() then
+        		local instigatorBrain = ArmyBrains[instigator:GetArmy()]
+        		if instigatorBrain and not instigatorBrain:IsDefeated() then
+					instigatorBrain:AddArmyStat("FAFWin", 1)        		
+				end      		
+
+        	end
+	
+			## Score change, we send the score of all players, yes mam !
+			
+			for index, brain in ArmyBrains do
+				if brain and not brain:IsDefeated() then
+					local result = string.format("%s %i", "score", math.floor(brain:GetArmyStat("FAFWin",0.0).Value + brain:GetArmyStat("FAFLose",0.0).Value) )
+					table.insert( Sync.GameResult, { index, result } )
+				end
+
+			end
+        end
+
+
+        #If factory, destory what I'm building if I die
+        if EntityCategoryContains(categories.FACTORY, self) then
+            if self.UnitBeingBuilt and not self.UnitBeingBuilt:IsDead() and self.UnitBeingBuilt:GetFractionComplete() != 1 then
+                self.UnitBeingBuilt:Kill()
+            end
+        end
+
+        if self.PlayDeathAnimation and not self:IsBeingBuilt() then
+            self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
+            self:SetCollisionShape('None')
+        end
+
+        self:OnKilledVO()
+        self:DoUnitCallbacks( 'OnKilled' )
+        self:DestroyTopSpeedEffects()
+        self.CreateEffects( self, SDExplosion, Army, Number)
+
+        if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
+            self.UnitBeingTeleported:Destroy()
+            self.UnitBeingTeleported = nil
+        end
+
+        #Notify instigator that you killed me.
+        if instigator and IsUnit(instigator) then
+            instigator:OnKilledUnit(self)
+        end
+        if self.DeathWeaponEnabled != false then
+            self:DoDeathWeapon()
+        end
+        self:DisableShield()
+        self:DisableUnitIntel()
+        self:ForkThread(self.DeathThread, overkillRatio , instigator)
+    end,
+
+
+    #Sets if the unit can be killed.  val = true means it can be killed.
+    #val = false means it can't be killed
+    SetCanBeKilled = function(self, val)
+        self.CanBeKilled = val
+    end,
+
+    CreateDestructionEffects = function( self, overKillRatio )
+        local SDModifiedExplosion = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
+        SDModifiedExplosion.CreateScalableUnitExplosion( self, overKillRatio )
+    end,
+}
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {
@@ -59,14 +198,13 @@ AirUnit = Class( oldAirUnit ) {
     CreateUnitAirDestructionEffects = function( self, scale )
     end,
     ####Needed for custom booms####
-
     ##Make sure we use factional damage effects
     OnCreate = function(self)
         MobileUnit.OnCreate(self)
         self:AddPingPong()
 		if self.RKEmitters == nil then self.RKEmitters = {} end
         local Faction = self:GetFaction()
-	local UnitTechLvl = self:GetUnitTechLvl()
+		local UnitTechLvl = self:GetUnitTechLvl()
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
@@ -93,6 +231,7 @@ AirUnit = Class( oldAirUnit ) {
             self:DestroyAllDamageEffects()			
             self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
             self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
+			DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
             self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
@@ -141,7 +280,7 @@ AirUnit = Class( oldAirUnit ) {
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
             EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.Splashy )
-			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(GetRandomInt(0.1, 1.5)) )
+			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
@@ -214,8 +353,8 @@ SeaUnit = Class( oldSeaUnit ) {
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 
-        EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion ):ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-
+        EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		DefaultExplosionsStock.CreateFlash( self, boneName, Number/1.225, Army )
     end,
 
     CreateUnitSeaDestructionEffects = function( self, scale )
@@ -453,25 +592,126 @@ SubUnit = Class( oldSubUnit ) {
 		local Faction = self:GetFaction()
 		local UnitTechLvl = self:GetUnitTechLvl()
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-		local SDFactionalSubBoomAboveWater = SDEffectTemplate[UnitTechLvl.. Faction ..'SubExplosionAboveWater']
-		local SDFactionalSubBoomUnderWater = SDEffectTemplate[UnitTechLvl.. Faction ..'SubExplosionUnderWater']
+		local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
+		local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
 		
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         local bp = self:GetBlueprint()
         
         if (layer == 'Sub' or layer == 'Seabed') then
-		self.CreateEffects( self, [SDFactionalSubBoomUnderWater], Army, (Number*GlobalExplosionScaleValue) )
+		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
 		elseif (layer == 'Water') then
-		self.CreateEffects( self, [SDFactionalSubBoomAboveWater], Army, (Number*GlobalExplosionScaleValue) )
+		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
+        end
+        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
+    end,
+
+    OnKilled = function(self, instigator, type, overkillRatio)
+        local army = self:GetArmy()
+		local bp = self:GetBlueprint()
+		local Army = self:GetArmy()
+		local Faction = self:GetFaction()
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
+		local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
+		
+        local layer = self:GetCurrentLayer()
+        self:DestroyIdleEffects()
+        local bp = self:GetBlueprint()
+        
+        if (layer == 'Sub' or layer == 'Seabed') then
+		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
+		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+        self.SinkThread = self:ForkThread(self.SinkingThread)
+		elseif (layer == 'Water') then
+		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
+		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+        self.SinkThread = self:ForkThread(self.SinkingThread)
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     ExplosionThread = function(self)
+        local maxcount = Random(17,20) # max number of above surface explosions. timed to animation
+        local d = 0 # delay offset after surface explosions cease
+        local sx, sy, sz = self:GetUnitSizes()
+        local vol = sx * sy * sz
+
+        local volmin = 1.5
+        local volmax = 15
+        local scalemin = 1
+        local scalemax = 3
+        local t = (vol-volmin)/(volmax-volmin)
+        local rs = scalemin + (t * (scalemax-scalemin))
+        if rs < scalemin then
+            rs = scalemin
+        elseif rs > scalemax then
+            rs = scalemax
+        end
+        local army = self:GetArmy()
+
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs)
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_02_emit.bp'):ScaleEmitter(rs)
+        CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_surface_ripples_01_emit.bp'):ScaleEmitter(rs)
+
+        while true do
+            local rx, ry, rz = self:GetRandomOffset(1)
+            local rs = Random(vol/2, vol*2) / (vol*2)
+            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
+            CreateEmitterAtEntity(self,army,'/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):ScaleEmitter(rs):OffsetEmitter(rx, ry, rz)
+
+            d = d + 1 # increase delay offset
+            local rd = Random(30,70) / 10
+            WaitTicks(rd + d)
+        end
     end,
     
 	DeathThread = function(self, overkillRatio, instigator)
+		##CreateScaledBoom(self, overkillRatio)
+		local sx, sy, sz = self:GetUnitSizes()
+		local vol = sx * sy * sz
+		local army = self:GetArmy()
+		local pos = self:GetPosition()
+		local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
+		local DaveyJones = (seafloor - pos[2])*20
+		local numBones = self:GetBoneCount()-1
+		
+
+		
+		self:ForkThread(function()
+			local i = 0
+			while true do
+			local rx, ry, rz = self:GetRandomOffset(0.25)
+			local rs = Random(vol/2, vol*2) / (vol*2)
+			local randBone = Util.GetRandomInt( 0, numBones)
+
+			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp')
+					:ScaleEmitter(sx)
+					:OffsetEmitter(rx, ry, rz)
+			CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+					:ScaleEmitter(sx/2)
+					:OffsetEmitter(rx, ry, rz)
+			CreateEmitterAtBone( self, 0, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+					:ScaleEmitter(sx)
+					:OffsetEmitter(rx, ry, rz)
+					
+			local rd = Util.GetRandomFloat( 0.4+i, 1.0+i)
+			WaitSeconds(rd)
+				i = i + 0.3
+			end
+		end)
+
+		local slider = CreateSlider(self, 0)
+		slider:SetGoal(0, DaveyJones+5, 0)
+		slider:SetSpeed(8)
+		WaitFor(slider)
+		slider:Destroy()
+			
+		##CreateScaledBoom(self, overkillRatio)
+		self:CreateWreckage(overkillRatio, instigator)
+		self:Destroy()
 	end,
 }
 local Unit = import('/lua/sim/Unit.lua').Unit
@@ -647,6 +887,7 @@ StructureUnit = Class(Unit) {
     
         local army = self:GetArmy()
         EffectUtil.CreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
+		DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
     end,
 
     CreateFactionalExplosionAtBone = function( self, boneName, scale )
@@ -659,7 +900,7 @@ StructureUnit = Class(Unit) {
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 
         EffectUtil.CreateBoneEffects( self, boneName, army, SDExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-
+		DefaultExplosionsStock.CreateFlash( self, boneName, Number, Army )
     end,
 
     ####Needed for the custom booms####
@@ -834,7 +1075,7 @@ StructureUnit = Class(Unit) {
         
         local GlobalBuildingBoomScaleDivider = 7.5
 
-        if( self:GetSizeOfBuilding(self) < 2.0 ) then
+        if( self:GetSizeOfBuilding(self) < 1.45 ) then
             self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
         else
             LOG('	STARTING BOOM PROCESS ON: ', bp.General.UnitName )
@@ -846,10 +1087,12 @@ StructureUnit = Class(Unit) {
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.1 )
             self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue) )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             WaitSeconds( 1.15)
             self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
             if UnitTechLvl == 'TECH1' then
                 RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             elseif UnitTechLvl == 'TECH2' then

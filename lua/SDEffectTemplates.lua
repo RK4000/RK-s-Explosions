@@ -477,7 +477,6 @@ BigAirUnitFireSmokeTECH3seraphim = {
 
 #####################UEF T1 Ship Sub-Boom###############################
 uefShipSubExplTECH1 = {
-	ModPath .. 'dust_emit.bp',
 	ModPath .. 'UEFMedium_test_smoke.bp',       
 	ModPath .. 'UEFSmallMedium_test_random.bp',
 	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
@@ -489,7 +488,6 @@ uefShipSubExplTECH1 = {
 
 #####################UEF T2 Ship Sub-Boom###############################
 uefShipSubExplTECH2 = {
-	ModPath .. 'dust_emit.bp',
 	ModPath .. 'UEFMedium_test_smoke.bp',       
 	ModPath .. 'UEFSmallMedium_test_random.bp',
 	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
@@ -501,7 +499,6 @@ uefShipSubExplTECH2 = {
 
 #####################UEF T3 Ship Sub-Boom###############################
 uefShipSubExplTECH3 = {
-	ModPath .. 'dust_emit.bp',
 	ModPath .. 'UEFMedium_test_smoke.bp',       
 	ModPath .. 'UEFSmallMedium_test_random.bp',
 	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
@@ -594,11 +591,93 @@ seraphimShipSubExplTECH3 = {
 
 ######################################################################################################### Ship Sub-Booms
 ######################################################################################################### 
-######################################################################################################### Sub Booms
+######################################################################################################### Sub Booms (surface) (PLACEHOLDER EFFECTS)
 
+#####################UEF Sub Boom (Surface)###############################
+uefSubExplosionAboveWater = {
+	ModPath .. 'UEFMedium_test_smoke.bp',       
+	ModPath .. 'UEFSmallMedium_test_random.bp',
+	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
+        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
+        ModPath .. 'small_UEF_test_fire_T3.bp',	
+}
 
+#####################Cybran Sub Boom (Surface)###############################
+cybranSubExplosionAboveWater = {
+	ModPath .. 'UEFMedium_test_smoke.bp',       
+	ModPath .. 'UEFSmallMedium_test_random.bp',
+	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
+        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
+        ModPath .. 'small_UEF_test_fire_T3.bp',	
+}
 
-######################################################################################################### Sub Booms
+#####################Aeon Sub Boom (Surface)###############################
+aeonSubExplosionAboveWater = {
+	ModPath .. 'UEFMedium_test_smoke.bp',       
+	ModPath .. 'UEFSmallMedium_test_random.bp',
+	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
+        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
+        ModPath .. 'small_UEF_test_fire_T3.bp',	
+}
+
+#####################Sera Sub Boom (Surface)###############################
+seraphimSubExplosionAboveWater = {
+	ModPath .. 'UEFMedium_test_smoke.bp',       
+	ModPath .. 'UEFSmallMedium_test_random.bp',
+	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
+        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
+        ModPath .. 'small_UEF_test_fire_T3.bp',	
+}
+
+######################################################################################################### Sub Booms (Surface) (PLACEHOLDER EFFECTS)
+######################################################################################################### 
+######################################################################################################### Sub Booms (Underwater) (PLACEHOLDER EFFECTS)
+
+#####################UEF Sub Boom (Underwater)###############################
+uefSubExplosionUnderWater = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################Cybran Sub Boom (Underwater)###############################
+cybranSubExplosionUnderWater = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################Aeon Sub Boom (Underwater)###############################
+aeonSubExplosionUnderWater = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################Sera Sub Boom (Underwater)###############################
+seraSubExplosionUnderWater = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+######################################################################################################### Sub Booms (Underwater) (PLACEHOLDER EFFECTS)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Cyb)
 
