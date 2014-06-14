@@ -28,7 +28,24 @@ Unit = Class( oldUnit ) {
     	
      	return UnitTechLvl
      end,
-
+	 
+	 GetUnitLayer = function(self)
+      	local Categories = self:GetBlueprint().Categories or {}
+      	local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
+    	local UnitTechLvl = 'NAVAL'
+    	
+    	for index, Cat in Cats do
+    		if table.find(Categories, Cat) then
+    			UnitLayer = Cat
+    			break
+    		end
+    	end
+    	
+    	
+     	return UnitLayer
+     end,
+	 
+	 
     GetNumberByTechLvl = function(self, UnitTechLvl)
 
     	if UnitTechLvl == 'TECH1' then
@@ -49,33 +66,23 @@ Unit = Class( oldUnit ) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
- 
         self.Dead = true
-
         local bp = self:GetBlueprint()
-
         local Army = self:GetArmy()
-	local Faction = self:GetFaction()
-	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local Faction = self:GetFaction()
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local UnitLayer = self:GetUnitLayer()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-
+		
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 
-        if(rklog) then LOG('------------------') end
-        if(rklog) then LOG('---------------------------------------') end
-        if(rklog) then LOG('	Game time: ', GetGameTimeSeconds() ) end
-        if(rklog) then LOG('	Name of unit: ', bp.General.UnitName ) end
-        if(rklog) then LOG('	Faction: ', self:GetFaction() ) end
-        if(rklog) then LOG('	Script-related Tech level: ', self:GetUnitTechLvl() ) end
-        if(rklog) then LOG('	Explosion scale multiplier: ', self:GetNumberByTechLvl(UnitTechLvl or 'TECH1') ) end
-        if(rklog) then LOG('---------------------------------------') end
-        if(rklog) then LOG(repr(SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction])) end
-        if(rklog) then LOG('---------------------------------------') end
-        if(rklog) then LOG('------------------') end
-
-	##self.CreateEffects( self, SDExplosion, Army, Number)  ####################Removed this because the sub units were still using it, and added the code neccesary for land units to have custom explosions to defaultunits.lua
-
+		if UnitLayer == 'NAVAL' then
+			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
+		else
+			self.CreateEffects( self, SDExplosion, Army, Number)
+		end
+		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
         end
@@ -125,7 +132,12 @@ Unit = Class( oldUnit ) {
         self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )
         self:DestroyTopSpeedEffects()
-        ##self.CreateEffects( self, SDExplosion, Army, Number) ####################Removed this because the sub units were still using it, and added the code neccesary for land units to have custom explosions to defaultunits.lua
+		
+        if UnitLayer == 'NAVAL' then
+			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
+		else
+			self.CreateEffects( self, SDExplosion, Army, Number)
+		end
 
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
             self.UnitBeingTeleported:Destroy()
