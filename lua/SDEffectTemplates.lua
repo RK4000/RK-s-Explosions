@@ -125,6 +125,7 @@ ExplosionTECH1aeon = {
 	ModPath .. 'AeonT2_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT2.bp',
 }
 
 #####################T2 Aeon Unit Boom###############################
@@ -134,6 +135,7 @@ ExplosionTECH2aeon = {
 	ModPath .. 'AeonT2_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT2.bp',
 }
 
 #####################T3 Aeon Unit Boom###############################
@@ -143,6 +145,7 @@ ExplosionTECH3aeon = {
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3.bp',
 }
 
 #####################T1 Sera Unit Boom###############################
@@ -544,6 +547,7 @@ aeonShipSubExplTECH1 = {
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3.bp',
 }
 
 #####################Aeon T2 Ship Sub-Boom###############################
@@ -552,6 +556,7 @@ aeonShipSubExplTECH2 = {
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3.bp',
 }
 
 #####################Aeon T3 Ship Sub-Boom###############################
@@ -560,6 +565,7 @@ aeonShipSubExplTECH3 = {
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3.bp',
 }
 
 #####################Sera T1 Ship Sub-Boom###############################
@@ -591,7 +597,7 @@ seraphimShipSubExplTECH3 = {
 
 ######################################################################################################### Ship Sub-Booms
 ######################################################################################################### 
-######################################################################################################### Sub Booms (surface) (PLACEHOLDER EFFECTS)
+######################################################################################################### Sub Booms (surface)
 
 #####################UEF Sub Boom (Surface)###############################
 uefSubExplosionAboveWater = {
@@ -637,9 +643,9 @@ seraphimSubExplosionAboveWater = {
         ModPath .. 'small_UEF_test_fire_T3.bp',	
 }
 
-######################################################################################################### Sub Booms (Surface) (PLACEHOLDER EFFECTS)
+######################################################################################################### Sub Booms (Surface)
 ######################################################################################################### 
-######################################################################################################### Sub Booms (Underwater) (PLACEHOLDER EFFECTS)
+######################################################################################################### Sub Booms (Underwater)
 
 #####################UEF Sub Boom (Underwater)###############################
 uefSubExplosionUnderWater = {
@@ -677,7 +683,7 @@ seraSubExplosionUnderWater = {
 	ModPath .. 'Medium_test_sonic.bp',
 }
 
-######################################################################################################### Sub Booms (Underwater) (PLACEHOLDER EFFECTS)
+######################################################################################################### Sub Booms (Underwater)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Cyb)
 
@@ -710,6 +716,7 @@ ExplosionEXPMediumAeon = {
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'AeonEXPMED_aura.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Small.bp',
 }
 
 #####################Aeon EXP Large Boom###############################
@@ -719,6 +726,7 @@ ExplosionEXPLargeAeon = {
 	ModPath .. 'AeonEXPLRG2D_aura.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Med.bp',
 }
 
 #####################Aeon EXP Very Large Boom###############################
@@ -728,6 +736,7 @@ ExplosionEXPVeryLargeAeon = {
 	ModPath .. 'AeonEXPVLRG2D_aura.bp',
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Big.bp',
 }
 
 ######################################################################################################### EXP BOOMS (Aeon)

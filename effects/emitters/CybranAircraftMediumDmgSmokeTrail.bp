@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=2.000,z=4.000 },
+			{ x=25.000,y=2.000/10,z=4.000 },
 		},
 	},
 	XPosCurve = {

@@ -46,13 +46,13 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=8.500,z=0.000 },
+			{ x=25.000,y=17.500,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=6.000,y=6.000/1.35,z=4.000 },
+			{ x=6.000,y=6.000/1.85,z=4.000 },
 		},
 	},
 	VelocityCurve = {

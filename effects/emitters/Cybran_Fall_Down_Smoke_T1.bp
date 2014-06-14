@@ -19,7 +19,7 @@ EmitterBlueprint {
 	ParticleResistance = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = -0.05,
+	SortOrder = 0.01,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=6.000,z=4.000 },
+			{ x=25.000,y=6.000/10,z=4.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=25.000,y=2.000,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=3.000,z=1.000 },
+			{ x=25.000,y=4.000,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {
