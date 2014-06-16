@@ -452,7 +452,7 @@ BigAirUnitFireSmokeTECH2aeon = {
 #####################T3 Aeon Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH3aeon = { 
         ModPath .. 'AeonT3AircraftHeavyDmgFire.bp',
-        ModPath .. 'AeonT3AircraftHeavyDmgSmokeTrail.bp',
+        ##ModPath .. 'AeonT3AircraftHeavyDmgSmokeTrail.bp',
 }
 
 #####################T1 Sera Plane Hvy DMG###############################
