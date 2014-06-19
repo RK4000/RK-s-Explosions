@@ -46,7 +46,7 @@ ExplosionVeryLargeShortDurSmoke = {
 
 #####################AddNothing Boom###############################
 AddNothing = {}
-#########################################################################################################################
+######################################################################################################################### MAIN FACTIONAL FX
 ######################################################################################################### OTHER FX
 ######################################################################################################### 
 ######################################################################################################### LAND BOOMS 
@@ -120,6 +120,7 @@ ExplosionTECH3cybran = {
 
 #####################T1 Aeon Unit Boom###############################
 ExplosionTECH1aeon = {
+    ModPath .. 'Aeon_Spark.bp',
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'AeonT2_aura.bp',
@@ -130,6 +131,7 @@ ExplosionTECH1aeon = {
 
 #####################T2 Aeon Unit Boom###############################
 ExplosionTECH2aeon = {
+    ModPath .. 'Aeon_Spark.bp',
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'AeonT2_aura.bp',
@@ -140,6 +142,7 @@ ExplosionTECH2aeon = {
 
 #####################T3 Aeon Unit Boom###############################
 ExplosionTECH3aeon = {
+    ModPath .. 'Aeon_Spark.bp',
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonT3_aura.bp',
@@ -180,7 +183,121 @@ ExplosionTECH3seraphim = {
 
 ######################################################################################################### LAND BOOMS
 ######################################################################################################### 
+######################################################################################################### AIR BOOMS 
+
+#####################T1 UEF Air Unit Boom###############################
+AirExplosionTECH1uef = {             
+	ModPath .. 'UEFMedium_test_smoke.bp',            
+	ModPath .. 'UEFMedium_test_sonic.bp',      
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_air.bp',		
+}
+
+#####################T2 UEF Air Unit Boom###############################
+AirExplosionTECH2uef = {
+	ModPath .. 'UEFMedium_test_smoke.bp',            
+	ModPath .. 'UEFMedium_test_sonic.bp',      
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_air.bp',	
+}
+
+#####################T3 UEF Air Unit Boom###############################
+AirExplosionTECH3uef = {
+	ModPath .. 'UEFMedium_test_smoke.bp',            
+	ModPath .. 'UEFMedium_test_sonic.bp',      
+        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        EmtBpPath .. 'SDantimatter_ring_01_air.bp',	
+}
+
+#####################T1 Cyb Air Unit Boom###############################
+AirExplosionTECH1cybran = {
+	ModPath .. 'CybT2_smoke.bp',
+        ModPath .. 'CybT2_charge.bp',
+        ModPath .. 'CybT2_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################T2 Cyb Air Unit Boom###############################
+AirExplosionTECH2cybran = {
+	ModPath .. 'CybT2_smoke.bp',
+        ModPath .. 'CybT2_charge.bp',
+        ModPath .. 'CybT2_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################T3 Cyb Air Unit Boom###############################
+AirExplosionTECH3cybran = {
+	ModPath .. 'CybT3_smoke.bp',
+        ModPath .. 'CybT3_charge.bp',
+        ModPath .. 'CybT3_chargelong.bp',
+        ModPath .. 'CybT3_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################T1 Aeon Air Unit Boom###############################
+AirExplosionTECH1aeon = {
+    ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'AeonT2_aura.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT2_Air.bp',
+}
+
+#####################T2 Aeon Air Unit Boom###############################
+AirExplosionTECH2aeon = {
+    ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'AeonT2_aura.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT2_Air.bp',
+}
+
+#####################T3 Aeon Air Unit Boom###############################
+AirExplosionTECH3aeon = {
+    ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'AeonT3_aura.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3_Air.bp',
+}
+
+#####################T1 Sera Air Unit Boom###############################
+AirExplosionTECH1seraphim = {
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'SeraT2_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################T2 Sera Air Unit Boom###############################
+AirExplosionTECH2seraphim = {
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'SeraT2_electricity.bp',
+        ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+#####################T3 Sera Air Unit Boom###############################
+AirExplosionTECH3seraphim = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+	ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+
+######################################################################################################### AIR BOOMS
+######################################################################################################### 
 ######################################################################################################### FALLDOWN FX
+
 
 #####################T1 UEF Plane Fall Down###############################
 TECH1uefFallDownTrail = { 
@@ -543,6 +660,7 @@ cybranShipSubExplTECH3 = {
 
 #####################Aeon T1 Ship Sub-Boom###############################
 aeonShipSubExplTECH1 = {
+    ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
@@ -552,6 +670,7 @@ aeonShipSubExplTECH1 = {
 
 #####################Aeon T2 Ship Sub-Boom###############################
 aeonShipSubExplTECH2 = {
+    ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
@@ -561,6 +680,7 @@ aeonShipSubExplTECH2 = {
 
 #####################Aeon T3 Ship Sub-Boom###############################
 aeonShipSubExplTECH3 = {
+    ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
@@ -713,6 +833,7 @@ ExplosionEXPLargeCybran = {
 
 #####################Aeon EXP Medium Boom###############################
 ExplosionEXPMediumAeon = {
+    ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'AeonEXPMED_aura.bp',
 	ModPath .. 'Medium_test_sonic.bp',
@@ -721,6 +842,7 @@ ExplosionEXPMediumAeon = {
 
 #####################Aeon EXP Large Boom###############################
 ExplosionEXPLargeAeon = {
+    ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonEXPLRG_aura.bp',
 	ModPath .. 'AeonEXPLRG2D_aura.bp',
@@ -731,6 +853,7 @@ ExplosionEXPLargeAeon = {
 
 #####################Aeon EXP Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
+    ModPath .. 'Aeon_Spark_BIG.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonEXPVLRG_aura.bp',
 	ModPath .. 'AeonEXPVLRG2D_aura.bp',
@@ -765,7 +888,7 @@ ExplosionEXPLargeSera  = {
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 
 ######################################################################################################### OTHER FX
-#########################################################################################################################
+######################################################################################################################### MAIN FACTIONAL FX
 
 OilSlick = {
        ModPath .. 'OilSlick.bp',

@@ -86,7 +86,7 @@ AirUnit = Class( oldAirUnit ) {
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+        local SDExplosion = SDEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
         local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
@@ -216,7 +216,7 @@ SeaUnit = Class( oldSeaUnit ) {
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 
         EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-		DefaultExplosionsStock.CreateFlash( self, boneName, Number, Army )
+		DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/3, Army )
     end,
 
     CreateUnitSeaDestructionEffects = function( self, scale )
@@ -748,8 +748,7 @@ StructureUnit = Class(Unit) {
         end
     
         local army = self:GetArmy()
-        EffectUtil.CreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
-		DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
+        EffectUtil.RKCreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
     end,
 
     CreateFactionalExplosionAtBone = function( self, boneName, scale )
