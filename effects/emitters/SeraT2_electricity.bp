@@ -1,6 +1,6 @@
 EmitterBlueprint {
 	BlueprintId = 'SeraT2_electricity',
-	Lifetime = 0.75,
+	Lifetime = 0.35,
 	Repeattime = 1.00,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
@@ -53,7 +53,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=2.040,y=12.000,z=0.000 },
+			{ x=2.040,y=12.000*1.65,z=0.000 },
 		},
 	},
 	VelocityCurve = {

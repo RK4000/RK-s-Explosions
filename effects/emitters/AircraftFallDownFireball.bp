@@ -2,8 +2,8 @@ EmitterBlueprint {
 	BlueprintId = 'AircraftFallDownFireball',
 	Lifetime = -1,
 	Repeattime = 1,
-	TextureFramecount = 16.00,
-	Blendmode = 0.00,
+	TextureFramecount = 1.00,
+	Blendmode = 3.00,
 	LocalVelocity = true,
 	LocalAcceleration = true,
 	Gravity = false,
@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/fireballslong.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/fire_damage_flame_add_01.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=17.500,z=0.000 },
+			{ x=25.000,y=10.500,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.115,z=0.000 },
+			{ x=25.000,y=1.015,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.250,z=0.000 },
+			{ x=25.000,y=0.750,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.75,z=0.600 },
+			{ x=25.000,y=1.25,z=0.600 },
 		},
 	},
 	InitialRotationCurve = {

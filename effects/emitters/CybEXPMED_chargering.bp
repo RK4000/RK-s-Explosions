@@ -1,6 +1,6 @@
 EmitterBlueprint {
 	BlueprintId = 'CybT3_chargering',
-	Lifetime = 0.10,
+	Lifetime = 0.50,
 	Repeattime = 0.10,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=0.500*3,z=0.000 },
+			{ x=0.000,y=0.500*6,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
@@ -100,7 +100,7 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=3.000,z=0.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	ZPosCurve = {
@@ -118,7 +118,7 @@ EmitterBlueprint {
 	EndSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=3.947*0.995,y=4.250*0.995,z=3.947*0.995},
+			{ x=3.947,y=4.250,z=3.947},
 		},
 	},
 	InitialRotationCurve = {

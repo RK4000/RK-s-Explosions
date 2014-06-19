@@ -1,7 +1,7 @@
 EmitterBlueprint {
-	BlueprintId = 'Sera_Fall_Down_Electricity_T1',
-	Lifetime = -1,
-	Repeattime = -1,
+	BlueprintId = 'CybT2_charge',
+	Lifetime = 0.75,
+	Repeattime = 1.00,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
 	LocalVelocity = false,
@@ -23,8 +23,8 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/electricity_wild_sdempnuke.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/cybran_charge.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_blinking_2_transparent_smooth.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
@@ -46,21 +46,21 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=2.000,z=0.000 },
-			{ x=20.000,y=2.000,z=0.000 },
+			{ x=10.000,y=19.000*1.85,z=0.000 },
+			{ x=20.000,y=18.000*1.85,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=2.040,y=8.000,z=0.000 },
+			{ x=2.040,y=13.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=1/1.55,z=0.000 },
-			{ x=10.000,y=2/1.55,z=0.000 },
+			{ x=10.000,y=8.333/1.41,z=0.000 },
+			{ x=10.000,y=11.666/1.41,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -114,26 +114,26 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=1.450/1.95*1.4,z=1.000 },
+			{ x=10.000,y=1.650,z=1.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=0.500*1.4,z=2.000 },
-			{ x=20.000,y=0.375*1.4,z=1.000 },
+			{ x=10.000,y=1.000,z=2.000 },
+			{ x=20.000,y=0.750,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=360.000,y=360.000,z=360.000 }, 
+			{ x=360.000,y=360.000,z=360.000 }, ##{ x=10.000,y=180.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=3600.000,y=360.000,z=360.000 },
+			{ x=3600.000,y=360.000,z=360.000 }, ##{ x=10.000,y=1.000,z=0.000 },
 		},
 	},
 	FrameRateCurve = {

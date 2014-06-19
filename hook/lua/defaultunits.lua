@@ -93,7 +93,7 @@ AirUnit = Class( oldAirUnit ) {
             self:DestroyAllDamageEffects()			
             self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
             self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
-			DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
+			DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2, Army )
             self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
@@ -142,6 +142,7 @@ AirUnit = Class( oldAirUnit ) {
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
             EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.Splashy )
+			DefaultExplosionsStock.CreateFlash( self, -1, (Number)/3, Army )
 			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
@@ -720,7 +721,7 @@ StructureUnit = Class(Unit) {
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 	local ExplosionMultiplierTech = self:GetNumberByTechLvlBuilding2(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
         local NumExplFaction = self:GetNumberBasedOffFaction()
 
         local numExplosions = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction)
@@ -741,14 +742,14 @@ StructureUnit = Class(Unit) {
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
         if self:BeenDestroyed() then 
             return
         end
     
         local army = self:GetArmy()
-        EffectUtil.RKCreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
+        EffectUtil.CreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
     end,
 
     CreateFactionalExplosionAtBone = function( self, boneName, scale )
@@ -758,7 +759,7 @@ StructureUnit = Class(Unit) {
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
         EffectUtil.CreateBoneEffects( self, boneName, army, SDExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
 		DefaultExplosionsStock.CreateFlash( self, boneName, Number, Army )
@@ -920,7 +921,7 @@ StructureUnit = Class(Unit) {
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')

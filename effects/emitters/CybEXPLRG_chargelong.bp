@@ -1,6 +1,6 @@
 EmitterBlueprint {
 	BlueprintId = 'CybT3_chargelong',
-	Lifetime = 3.15*45,
+	Lifetime = 3.15*4.5,
 	Repeattime = 1.00,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
