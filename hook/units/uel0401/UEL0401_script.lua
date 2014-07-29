@@ -174,7 +174,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
 	DeathThread = function(self)
         self:PlayUnitSound('Destroyed')
         local army = self:GetArmy()
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 2)##sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone( self, 'UEL0401', 0.25)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 2/2)##sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone( self, 'UEL0401', 0.25)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedBigDeathBoom') then
@@ -183,7 +183,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
             end
         end
         WaitSeconds(2.855/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left01', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left01', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -193,7 +193,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right02', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right02', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -203,7 +203,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.55/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint01', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint01', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -213,7 +213,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.35/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -223,7 +223,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.65/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Ramp', 1.25 )
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Ramp', 1.25/2 )
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -233,7 +233,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.55/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -243,7 +243,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.8/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -253,7 +253,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.35/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Ramp', 1.25 )
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Ramp', 1.25/2 )
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -263,7 +263,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -273,7 +273,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.8/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -283,7 +283,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1.855/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Front_Core', 2)##sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone( self, 'Front_Core', 0.25)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Front_Core', 2/2)##sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone( self, 'Front_Core', 0.25)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedBigDeathBoom') then
@@ -293,7 +293,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(3.875/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Right02', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Right02', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -303,7 +303,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.95/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint01', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint01', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -313,7 +313,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1.35/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -323,7 +323,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Front_Core', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Front_Core', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -333,7 +333,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.25/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Rear_Core', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Rear_Core', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -343,7 +343,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.25/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -353,7 +353,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1.15/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Right02', 2)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Right02', 2/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -363,7 +363,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1.35/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 2.25)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 2.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -373,7 +373,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.25/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left02', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left02', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -383,7 +383,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Ramp', 2*1.5 )
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Ramp', 2*1.5/2 )
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -393,7 +393,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.35/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Front_Core', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Front_Core', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -403,7 +403,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Attachpoint03', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -413,7 +413,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.25/2)
-        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 1.25)
+        sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 1.25/2)
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'SmallDeathBoom') then
@@ -423,20 +423,20 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1)
-        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 5)
+        sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 5/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)
-		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 2.25)
+		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right01', 2.25/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)
-		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right02', 2.25)
+		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Right02', 2.25/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)
-		sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 5)
+		sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 5/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)
-		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left02', 2.25)
-		sdexplosion.CreateUEFLargeHitExplosionAtBone( self, 'UEL0401', 17)
+		sdexplosion.CreateUEFSmallHitExplosionAtBone( self, 'Turret_Left02', 2.25/2)
+		sdexplosion.CreateUEFLargeHitExplosionAtBone( self, 'UEL0401', 17/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)
         local bp = self:GetBlueprint()

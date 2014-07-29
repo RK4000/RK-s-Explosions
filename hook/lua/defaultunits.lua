@@ -93,7 +93,14 @@ AirUnit = Class( oldAirUnit ) {
             self:DestroyAllDamageEffects()			
             self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
             self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
-			DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2, Army )
+			if ( self:GetUnitTechLvl() == 'TECH1' ) then
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5, Army )
+			elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15, Army )
+			else
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.75, Army )
+			end
+			##DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15, Army )
             self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
@@ -447,28 +454,6 @@ SubUnit = Class( oldSubUnit ) {
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
         end
     end,
-	
-	OnKilled = function(self, instigator, type, overkillRatio)
-		local army = self:GetArmy()
-		local bp = self:GetBlueprint()
-		local Army = self:GetArmy()
-		local Faction = self:GetFaction()
-		local UnitTechLvl = self:GetUnitTechLvl()
-		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-		local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
-		local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
-		
-        local layer = self:GetCurrentLayer()
-        self:DestroyIdleEffects()
-        local bp = self:GetBlueprint()
-        
-        if (layer == 'Sub' or layer == 'Seabed') then
-		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
-		elseif (layer == 'Water') then
-		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
-        end
-        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
-    end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
         local army = self:GetArmy()
@@ -577,6 +562,7 @@ SubUnit = Class( oldSubUnit ) {
 		self:Destroy()
 	end,
 }
+
 local Unit = import('/lua/sim/Unit.lua').Unit
 StructureUnit = Class(Unit) {
     LandBuiltHiddenBones = {'Floatation'},
@@ -677,9 +663,9 @@ StructureUnit = Class(Unit) {
     GetNumberBasedOffFaction = function(self)
         local Faction = self:GetFaction()
         if Faction == 'seraphim' then
-            return 0.25
+            return 0.65
         else
-            return 0.5
+            return 0.65
         end
     end,
 
@@ -696,11 +682,22 @@ StructureUnit = Class(Unit) {
     end,
 
     ##For final boom final scale tweaking, for cyb
-    GetFinalBoomMultBasedOffFaction = function(self)
+    GetFinalBoomMultBasedOffFactionCyb = function(self)
         local UnitTechLvl = self:GetUnitTechLvl()
         local Faction = self:GetFaction()
         if ( (Faction == 'cybran') and (UnitTechLvl == 'TECH3') )  then
             return 1.525
+        else
+            return 1
+        end
+    end,
+	
+	##For final boom final scale tweaking, for cyb
+    GetFinalBoomMultBasedOffFactionCybT1Fac = function(self)
+        local UnitTechLvl = self:GetUnitTechLvl()
+        local Faction = self:GetFaction()
+        if ( (Faction == 'cybran') and (UnitTechLvl == 'TECH1') )  then
+            return 0.75
         else
             return 1
         end
@@ -724,14 +721,14 @@ StructureUnit = Class(Unit) {
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
         local NumExplFaction = self:GetNumberBasedOffFaction()
 
-        local numExplosions = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction)
+        local numExplosions = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction + Number)
         local x,y,z = self:GetUnitSizes(self)
         LOG('	Sub-explosion number: ', numExplosions )
         self:ShakeCamera( 30*1.65, 1*1.65, 0, 0.45 * numExplosions *1.65 )
         for i = 0, numExplosions do
             self.CreateFactionalHitExplosionOffset( self, 1.0, unpack({Util.GetRandomOffset(x,y,z,1.2)}))
             self:PlayUnitSound('DeathExplosion')
-            WaitSeconds( Util.GetRandomFloat( (0.3 * NumExplFaction), (0.6* NumExplFaction) ) )
+            WaitSeconds( ( Util.GetRandomFloat( (0.3 * NumExplFaction), (0.6* NumExplFaction) ) ) +0.3 )
         end
     end,
 
@@ -927,12 +924,13 @@ StructureUnit = Class(Unit) {
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local BuildingSize = self:GetSizeOfBuilding()
 
-        local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction())
+        local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()*self:GetFinalBoomMultBasedOffFactionCyb())
 
         LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
         LOG('Final Boom Size Mult', self:GetSizeOfBuilding() )
         LOG('Final Boom Faction Mult', self:GetFinalBoomMultBasedOffFaction() )
-        LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFaction() )
+        LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFactionCyb() )
+		LOG('Final Boom Cyb Mult T1', self:GetFinalBoomMultBasedOffFactionCybT1Fac() )
         LOG('	Final boom multiplier: ', (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()) )
         
         local GlobalBuildingBoomScaleDivider = 7.5
@@ -947,8 +945,8 @@ StructureUnit = Class(Unit) {
             LOG('	Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1') )
             LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
-            WaitSeconds( 0.1 )
-            self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue) )
+            WaitSeconds( 0.5 )
+            self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
 			DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})

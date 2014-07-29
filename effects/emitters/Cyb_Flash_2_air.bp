@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/sparkle_sera.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/sparkle_cybran.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 0.90,
@@ -52,7 +52,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 0.90,
 		Keys = {
-			{ x=0.450,y=4.000,z=0.000 },
+			{ x=0.450,y=9.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {
@@ -112,7 +112,7 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 0.90,
 		Keys = {
-			{ x=0.450,y=14.500,z=0.000 },
+			{ x=0.450,y=27.500,z=0.000 },
 		},
 	},
 	EndSizeCurve = {

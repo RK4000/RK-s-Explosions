@@ -1,16 +1,16 @@
 EmitterBlueprint {
-	BlueprintId = 'watertower_m',
-	Lifetime = 2.00*10,
+	BlueprintId = 'UEFMedium_test_smoke',
+	Lifetime = 2.00*20*1.35,
 	Repeattime = 50.00,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
 	LocalVelocity = false,
 	LocalAcceleration = false,
-	Gravity = true,
+	Gravity = false,
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 1000.00,
+	LODCutoff = 800.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
@@ -19,58 +19,58 @@ EmitterBlueprint {
 	ParticleResistance = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = 0.00,
+	SortOrder = -0.05,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/textures/particles/water_particle.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.200 },##{ x=0.200,y=0.000,z=0.100 },
+			{ x=25.000,y=0.000,z=0.050 },
 		},
 	},
 	YDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.300,z=0.050 },##{ x=0.333,y=0.300,z=0.300 },
+			{ x=25.000,y=0.005,z=0.030 },
 		},
 	},
 	ZDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.200 },
+			{ x=25.000,y=0.000,z=0.060 },
 		},
 	},
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=3.333/10/5,y=6.939/10/5,z=6.000/10/5 },
+			{ x=25.000,y=20.000/20/2,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=24.933/3,y=80.000/3,z=40.000/3 },
+			{ x=25.000,y=30.000,z=40.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=1.200,z=0.000 },
+			{ x=25.000,y=4.750,z=0.000 },
 		},
 	},
 	XAccelCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=24.733,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	YAccelCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.333,y=0.000,z=0.000 },
+			{ x=25.000,y=0.003,z=0.000 },
 		},
 	},
 	ZAccelCurve = {
@@ -82,13 +82,13 @@ EmitterBlueprint {
 	ResistanceCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.527,z=0.000 },
+			{ x=25.000,y=3.000,z=4.000 },
 		},
 	},
 	XPosCurve = {
@@ -100,7 +100,7 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=25.000,y=1.000,z=0.500 },
 		},
 	},
 	ZPosCurve = {
@@ -112,31 +112,31 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=3.000,z=0.000 },
+			{ x=25.000,y=2.000,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=5.800*2,y=5.000*2,z=0.100*2 },
+			{ x=25.000,y=3.000,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=30.000 },
+			{ x=25.000,y=180.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.500 },
+			{ x=25.000,y=0.000,z=2.000 },
 		},
 	},
 	FrameRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=26.467,y=2.457,z=0.000 },
+			{ x=25.000,y=1.000,z=0.000 },
 		},
 	},
 	TextureSelectionCurve = {
@@ -148,7 +148,7 @@ EmitterBlueprint {
 	RampSelectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=24.867,y=0.485,z=0.000 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 }

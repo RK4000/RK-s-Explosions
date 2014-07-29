@@ -112,13 +112,13 @@ end
 function CreateUEFMediumHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionMedium )
+    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionMediumSD )
 end
 
 function CreateUEFLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionLarge )
+    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionLargeShortDurSmoke )
     CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
 end
 
