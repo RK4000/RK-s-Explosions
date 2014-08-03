@@ -2149,6 +2149,7 @@ TNukeRings01 = {
 	EmtBpPath .. 'nuke_concussion_ring_02_emit.bp',
 	EmtBpPath .. 'shockwave_01_emit.bp',
 	EmtBpPath .. 'shockwave_smoke_01_emit.bp',
+	ModPath .. 'very_large_test_sonic_nuke.bp',
 }
 Twig = {
     EmtBpPath .. 'nuke_concussion_ring_01_emit.bp',
@@ -2685,6 +2686,7 @@ SIFInainoDetonate01 = {
     EmtBpPath .. 'seraphim_inaino_explode_06_emit.bp',		## fast flash in air
     EmtBpPath .. 'seraphim_inaino_explode_07_emit.bp',		## long glow in air, oriented
     EmtBpPath .. 'seraphim_inaino_explode_08_emit.bp',		## center plasma, ser7    
+	ModPath .. 'very_large_test_sonic_nuke.bp',
 }
 
 SIFInainoPlumeFxTrails01 = {
@@ -2751,6 +2753,7 @@ SIFExperimentalStrategicMissileDetonate01 = {
 	EmtBpPath .. 'seraphim_expnuke_detonate_03_emit.bp',		## non oriented glow
 	EmtBpPath .. 'seraphim_expnuke_detonate_04_emit.bp',		## oriented glow
     EmtBpPath .. 'seraphim_expnuke_concussion_01_emit.bp',		## ring fast
+	ModPath .. 'very_large_test_sonic_nuke.bp',
 }
 
 SIFExperimentalStrategicMissileFxTrails01 = {

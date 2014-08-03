@@ -916,35 +916,35 @@ uefSubExplosionAboveWater = {
 
 #####################Cybran Sub Boom (Surface)###############################
 cybranSubExplosionAboveWater = {
-	ModPath .. 'UEFMedium_test_smoke.bp',       
-	ModPath .. 'UEFSmallMedium_test_random.bp',
-	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
-        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
-        ModPath .. 'small_UEF_test_fire_T3.bp',	
+	ModPath .. 'CybT3_smoke.bp',
+        ModPath .. 'CybT3_charge.bp',
+        ModPath .. 'CybT3_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+        ModPath .. 'CybT3_chargelong.bp',
+			ModPath .. 'Cyb_Flash_2.bp',
 }
 
 #####################Aeon Sub Boom (Surface)###############################
 aeonSubExplosionAboveWater = {
-	ModPath .. 'UEFMedium_test_smoke.bp',       
-	ModPath .. 'UEFSmallMedium_test_random.bp',
-	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
-        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
-        ModPath .. 'small_UEF_test_fire_T3.bp',	
+    ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'AeonT3_aura.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AuraWaveT3.bp',
 }
 
 #####################Sera Sub Boom (Surface)###############################
 seraphimSubExplosionAboveWater = {
-	ModPath .. 'UEFMedium_test_smoke.bp',       
-	ModPath .. 'UEFSmallMedium_test_random.bp',
-	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-        EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
-        EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
-        ModPath .. 'small_UEF_test_fire_T3.bp',	
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+	ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'SeraT3_electricity3_building.bp',
+	##ModPath .. 'Sera_Flash_1.bp',
+	ModPath .. 'Sera_Flash_2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',	
 }
 
 ######################################################################################################### Sub Booms (Surface)
@@ -953,38 +953,26 @@ seraphimSubExplosionAboveWater = {
 
 #####################UEF Sub Boom (Underwater)###############################
 uefSubExplosionUnderWater = {
-	ModPath .. 'AeonT3_smoke.bp',
-	ModPath .. 'SeraT3_electricity.bp',
-        ModPath .. 'SeraT3_electricity2.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'UEF_Underwater_Fire_T1.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Cybran Sub Boom (Underwater)###############################
 cybranSubExplosionUnderWater = {
-	ModPath .. 'AeonT3_smoke.bp',
-	ModPath .. 'SeraT3_electricity.bp',
-        ModPath .. 'SeraT3_electricity2.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'CybT3_Underwater_charge.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Aeon Sub Boom (Underwater)###############################
 aeonSubExplosionUnderWater = {
-	ModPath .. 'AeonT3_smoke.bp',
-	ModPath .. 'SeraT3_electricity.bp',
-        ModPath .. 'SeraT3_electricity2.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'AeonT3_aura_underwater.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Sera Sub Boom (Underwater)###############################
-seraSubExplosionUnderWater = {
-	ModPath .. 'AeonT3_smoke.bp',
-	ModPath .. 'SeraT3_electricity.bp',
-        ModPath .. 'SeraT3_electricity2.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
+seraphimSubExplosionUnderWater = {
+    ModPath .. 'Seraphim_underwater_spark_T3.bp',
+	ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
 
 ######################################################################################################### Sub Booms (Underwater)

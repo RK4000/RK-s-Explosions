@@ -19,7 +19,7 @@ EmitterBlueprint {
 	ParticleResistance = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = 0,
+	SortOrder = -1,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
@@ -52,7 +52,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=6.000,y=6.000,z=4.000 },
+			{ x=6.000,y=6.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {

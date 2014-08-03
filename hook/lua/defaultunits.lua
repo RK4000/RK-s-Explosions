@@ -6,7 +6,8 @@ local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 
-local GlobalExplosionScaleValue = 0.8
+local GlobalExplosionScaleValueMain = 1
+local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
 local oldAirUnit = AirUnit
@@ -236,7 +237,7 @@ SeaUnit = Class( oldSeaUnit ) {
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
 
     PlaySubBoomSound = function(self, sound)
@@ -473,10 +474,12 @@ SubUnit = Class( oldSubUnit ) {
 		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
 		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
         self.SinkThread = self:ForkThread(self.SinkingThread)
+		self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
 		elseif (layer == 'Water') then
 		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
 		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
         self.SinkThread = self:ForkThread(self.SinkingThread)
+		self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
