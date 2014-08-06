@@ -13,6 +13,27 @@ EmtBpPathAlt = '/mods/rks_explosions/effects/emitters/'
 EmitterTempEmtBpPath = '/mods/rks_explosions/effects/emitters/temp/'
 ModPath = '/mods/rks_explosions/effects/emitters/'
 
+#####################WEAPON EXPLOSIONS####################################
+T2RocketBotMissileHitGround = {
+	##ModPath .. 'dust_emit.bp',
+	ModPath .. 'Cyb_Rktbot_smoke.bp',
+    ModPath .. 'Cyb_Rktbot_charge.bp',
+	ModPath .. 'Cyb_Flash_Rktbot.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
+}
+
+T2RocketBotMissileHit = {
+	##ModPath .. 'dust_emit.bp',
+	ModPath .. 'Cyb_Rktbot_smoke_Unit.bp',
+    ModPath .. 'Cyb_Rktbot_charge.bp',
+	ModPath .. 'Cyb_Flash_Rktbot_Unit.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
+}
+AeonRestorerMissileHit01 = {
+	ModPath .. 'Aeon_Restorer_Aura.bp',
+	ModPath .. 'Aeon_Restorer_Aura2.bp',
+	ModPath .. 'Aeon_Restorer_smoke.bp',
+}
 
 #####################HUGE EXP. EXPLOSIONS####################################
 ExplosionSmallSD = {
@@ -61,7 +82,7 @@ ExplosionVeryLargeShortDurSmoke = {
 
 #####################AddNothing Boom###############################
 AddNothing = {}
-######################################################################################################################### MAIN FACTIONAL FX
+######################################################################################################################### MAIN FACTIONAL DEATH FX
 ######################################################################################################### OTHER FX
 ######################################################################################################### 
 ######################################################################################################### LAND BOOMS 
@@ -979,7 +1000,7 @@ seraphimSubExplosionUnderWater = {
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Cyb)
 
-#####################Cyb EXP Medium Boom###############################
+#####################Cyb Generic Experimental  Medium Boom###############################
 ExplosionEXPMediumCybran = {
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'CybT2_smoke.bp',
@@ -990,7 +1011,7 @@ ExplosionEXPMediumCybran = {
 	ModPath .. 'Cyb_Flash_3.bp',
 }
 
-#####################Cyb EXP Large Boom###############################
+#####################Cyb Generic Experimental Large Boom###############################
 ExplosionEXPLargeCybran = {
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'CybT3_smoke.bp',
@@ -1005,7 +1026,7 @@ ExplosionEXPLargeCybran = {
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Aeon)
 
-#####################Aeon EXP Medium Boom###############################
+#####################Aeon GC Medium Boom###############################
 ExplosionEXPMediumAeon = {
     ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT2_smoke.bp',
@@ -1014,7 +1035,7 @@ ExplosionEXPMediumAeon = {
 	ModPath .. 'AuraWaveT4_Small.bp',
 }
 
-#####################Aeon EXP Large Boom###############################
+#####################Aeon GC Large Boom###############################
 ExplosionEXPLargeAeon = {
     ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
@@ -1025,7 +1046,7 @@ ExplosionEXPLargeAeon = {
 	ModPath .. 'AuraWaveT4_Med.bp',
 }
 
-#####################Aeon EXP Very Large Boom###############################
+#####################Aeon GC Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
     ModPath .. 'Aeon_Spark_BIG.bp',
 	ModPath .. 'AeonT3_smoke.bp',
@@ -1036,11 +1057,44 @@ ExplosionEXPVeryLargeAeon = {
 	ModPath .. 'AuraWaveT4_Big.bp',
 }
 
+#####################Aeon CZAR Initial Big Boom###############################
+CZAR_Initial_Center_Explosion = {
+	##ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Big_CZAR.bp',
+}
+CZARShockwaveEdge = {
+	ModPath .. 'Aeon_GlowingShockwaveEdge.bp',
+}
+CZARShockwaveEdgeUpper = {
+	ModPath .. 'Aeon_GlowingShockwaveEdgeUpper.bp',
+}
+CZARShockwaveHit = {
+	ModPath .. 'Aeon_GlowingShockwaveEdgeHit.bp',  
+}
+CZARCenterEffectUp= {
+	ModPath .. 'Aeon_CZARCenterEffectUp.bp', 
+}
+CZARCenterEffectDown= {
+	ModPath .. 'Aeon_CZARCenterEffectDown.bp',
+}
+CZARCenterImpactExplosion = {
+    ModPath .. 'Aeon_Spark_BIG.bp',
+	ModPath .. 'Aeon_CZAR_smoke.bp',
+	ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Big_CZAR_Impact.bp',
+}
+CZAR_Center_FallDown_Smoke = {
+	ModPath .. 'Aeon_CZAR_Center_FallDown_Smoke.bp',
+}
+CZAR_Center_Charge = {
+	ModPath .. 'Aeon_CZAR_Center_Charge.bp',
+}
+
 ######################################################################################################### EXP BOOMS (Aeon)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Seraphim)
 
-#####################Sera EXP Medium Boom###############################
+#####################Sera Chicken Medium Boom###############################
 ExplosionEXPMediumSera  = {
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'SeraT2_electricity.bp',
@@ -1049,7 +1103,7 @@ ExplosionEXPMediumSera  = {
 	ModPath .. 'Medium_test_sonic.bp',
 }
 
-#####################Sera EXP Large Boom###############################
+#####################Sera Chicken Large Boom###############################
 ExplosionEXPLargeSera  = {
 	ModPath .. 'dust_emit.bp',
 	ModPath .. 'AeonT3_smoke.bp',

@@ -99,7 +99,7 @@ UAL0401 = Class(AWalkingLandUnit) {
                 break
             end
         end
-        WaitSeconds(1.375105/0.8/0.8)
+        WaitSeconds(0.575105/0.8/0.8)
         self:PlayUnitSound('DestroyedStep3')
         sdexplosion.CreateAeonLargeHitExplosionAtBone( self, 'Torso', 4.5 )
         local bp = self:GetBlueprint()

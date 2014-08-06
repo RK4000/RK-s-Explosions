@@ -44,7 +44,7 @@ AirUnit = Class( oldAirUnit ) {
     	elseif UnitTechLvl == 'TECH3' then
     		return 1.515
     	else
-    		return 6.0
+    		return 0
     	end	
     end,
 
