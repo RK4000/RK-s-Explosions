@@ -1089,6 +1089,12 @@ CZAR_Center_FallDown_Smoke = {
 CZAR_Center_Charge = {
 	ModPath .. 'Aeon_CZAR_Center_Charge.bp',
 }
+CZAR_Center_Core_Breach = {
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical.bp',
+}
+CZAR_Air_Rushing_In = {
+	ModPath .. 'Aeon_CZAR_Air_Rushing_In.bp',
+}
 
 ######################################################################################################### EXP BOOMS (Aeon)
 ######################################################################################################### 

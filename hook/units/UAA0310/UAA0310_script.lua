@@ -35,12 +35,6 @@ local CANTorpedoLauncherWeapon = CybranWeaponsFile.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
-
-
-
-
-
-
 UAA0310 = Class(AAirUnit) {
     
 	CreateDeathExplosionInitialShockwave = function( self )
@@ -115,7 +109,81 @@ UAA0310 = Class(AAirUnit) {
         AAFizz02 = Class(AAATemporalFizzWeapon) {},
     },
 
+     
+        	
+
+    OnCreate = function(self)
+       AAirUnit.OnCreate(self)
+       lastDamageEffectThreshold = 1
+    end,
+ 
+    OnDamage = function(self, instigator, amount, vector, damageType)
+        local maxHealth = self:GetMaxHealth()
+        local oldHealthPercent = self:GetHealth()/maxHealth
+        AAirUnit.OnDamage(self, instigator, amount, vector, damageType)
+        local newHealthPercent = self:GetHealth()/maxHealth
+       
+        if newHealthPercent < self.lastDamageEffectThreshold then
+                self:ManageDamageEffects(newHealthPercent, oldHealthPercent)
+                self.lastDamageEffectThreshold = newHealthPercent - 0.05
+        end
+    end,
+ 
+    ManageDamageEffects = function(self, newHealth, oldHealth)
+		local army = self:GetArmy()
+		local bp = self:GetBlueprint()
+		local Army = self:GetArmy()
+		local Faction = self:GetFaction()
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local Faction = self:GetFaction()
+		local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')    
+        #LOG('*DEBUG: ManageDamageEffects, New: ', repr(newHealth), ' Old: ', repr(oldHealth))
+ 
+        if newHealth < oldHealth then
+            if oldHealth > 0.75 then
+                for i = 1, self.FxDamage1Amount do
+                    self:PlayDamageEffect(self.FxDamage1, self.DamageEffectsBag[1])
+                end
+            elseif oldHealth > 0.5 then
+                for i = 1, self.FxDamage2Amount do
+                    self:PlayDamageEffect(self.FxDamage2, self.DamageEffectsBag[2])
+                end
+            elseif oldHealth > 0.25 then
+                for i = 1, self.FxDamage3Amount do
+                    self:PlayDamageEffect(self.FxDamage3, self.DamageEffectsBag[3])
+                end
+            elseif oldHealth > 0.10 then
+				self.CreateEffects( self, SDEffectTemplate.CZAR_Center_Core_Breach, Army, 4 ) ##self:PlayDamageEffect(SDEffectTemplate.CZAR_Center_Core_Breach, self.DamageEffectsBag[4])
+				self.CreateEffects( self, SDEffectTemplate.CZAR_Air_Rushing_In, Army, 1 )##self:PlayDamageEffect(SDEffectTemplate.CZAR_Air_Rushing_In, self.DamageEffectsBag[4])
+            ##elseif oldHealth > 0.05 then
+            end
+        else
+            if newHealth <= 0.10 and newHealth > 0 then
+                                for k, v in self.DamageEffectsBag[4] do
+                    v:Destroy()
+                end
+            elseif newHealth <= 0.25 and newHealth > 0.10 then
+                for k, v in self.DamageEffectsBag[3] do
+                    v:Destroy()
+                end
+            elseif newHealth <= 0.5 and newHealth > 0.25 then
+                for k, v in self.DamageEffectsBag[2] do
+                    v:Destroy()
+                end
+            elseif newHealth <= 0.75 and newHealth > 0.5 then
+                for k, v in self.DamageEffectsBag[1] do
+                    v:Destroy()
+                end
+            elseif newHealth > 0.75 then
+                self:DestroyAllDamageEffects()    
+            end
+        end
+    end,
+
     OnKilled = function(self, instigator, type, overkillRatio)
+		if (self:GetCurrentLayer() == 'Air' ) then 
+            local army = self:GetArmy()  
         local wep = self:GetWeaponByLabel('QuantumBeamGeneratorWeapon')
         for k, v in wep.Beams do
             v.Beam:Disable()
@@ -135,7 +203,7 @@ UAA0310 = Class(AAirUnit) {
         self.detector:Enable()
 
 
-        AAirUnit.OnKilled(self, instigator, type, overkillRatio)
+        ##AAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		
 		####Needed for custom booms####
 		CreateEffects = function( self, EffectTable, army, scale)
@@ -159,8 +227,24 @@ UAA0310 = Class(AAirUnit) {
 		self.CreateEffects( self, SDEffectTemplate.CZAR_Center_Charge, Army, 4 )
 		
 		self:CreateDeathExplosionTareThroughEffect()
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
 		self:CreateDeathExplosionInitialShockwave()
+		self:DestroyTopSpeedEffects()
+            self:DestroyBeamExhaust()
+            self.OverKillRatio = overkillRatio
+            self:PlayUnitSound('Killed')
+            self:DoUnitCallbacks('OnKilled')
+            self:OnKilledVO()
+            if instigator and IsUnit(instigator) then
+                instigator:OnKilledUnit(self)
+            end
+        else
+        self.DeathBounce = 1
+        if instigator and IsUnit(instigator) then
+            instigator:OnKilledUnit(self)
+        end
+        AAirUnit.OnKilled(self, instigator, type, overkillRatio)
+		end
     end,
 	
 	OnImpact = function(self, with, other)
