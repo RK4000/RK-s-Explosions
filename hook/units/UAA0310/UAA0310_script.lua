@@ -34,9 +34,11 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local CANTorpedoLauncherWeapon = CybranWeaponsFile.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
+local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
+local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 
 UAA0310 = Class(AAirUnit) {
-    
+	
 	CreateDeathExplosionInitialShockwave = function( self )
         local blanketSides = 18*10
         local blanketAngle = (2*math.pi) / blanketSides
@@ -130,6 +132,16 @@ UAA0310 = Class(AAirUnit) {
     end,
  
     ManageDamageEffects = function(self, newHealth, oldHealth)
+	
+		PlaySubBoomSound = function(self, sound)
+			local bp = BoomSoundBP.Audio
+			if bp and bp[sound] then
+				self:PlaySound(bp[sound])
+				return true
+			end
+			return false
+		end
+		
 		local army = self:GetArmy()
 		local bp = self:GetBlueprint()
 		local Army = self:GetArmy()
@@ -138,6 +150,7 @@ UAA0310 = Class(AAirUnit) {
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 		local Faction = self:GetFaction()
 		local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')    
+		local CreateBoneEffectsAttachedWithBag1 = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
         #LOG('*DEBUG: ManageDamageEffects, New: ', repr(newHealth), ' Old: ', repr(oldHealth))
  
         if newHealth < oldHealth then
@@ -154,8 +167,12 @@ UAA0310 = Class(AAirUnit) {
                     self:PlayDamageEffect(self.FxDamage3, self.DamageEffectsBag[3])
                 end
             elseif oldHealth > 0.10 then
-				self.CreateEffects( self, SDEffectTemplate.CZAR_Center_Core_Breach, Army, 4 ) ##self:PlayDamageEffect(SDEffectTemplate.CZAR_Center_Core_Breach, self.DamageEffectsBag[4])
-				self.CreateEffects( self, SDEffectTemplate.CZAR_Air_Rushing_In, Army, 1 )##self:PlayDamageEffect(SDEffectTemplate.CZAR_Air_Rushing_In, self.DamageEffectsBag[4])
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Center_Core_Breach01, 3.15, 'CoreBreachEffects1' )  
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Center_Core_Breach02, 3, 'CoreBreachEffects1' ) 
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'UAA0310', Army, SDEffectTemplate.CZAR_Air_Rushing_In, 1, 'CoreBreachEffects2' ) 
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Core_Rupture, 3, 'CoreBreachEffects1' )
+				self:PlaySubBoomSound('CZARCoreDestroyed')	
+				self.PlaySubBoomSound('CZARCoreDestroyed')					
             ##elseif oldHealth > 0.05 then
             end
         else
@@ -164,19 +181,43 @@ UAA0310 = Class(AAirUnit) {
                     v:Destroy()
                 end
             elseif newHealth <= 0.25 and newHealth > 0.10 then
-                for k, v in self.DamageEffectsBag[3] do
+                for k, v in self.CoreBreachEffects1 do
+					v:Destroy()
+				end
+				for k, v in self.CoreBreachEffects2 do
+					v:Destroy()
+				end
+				for k, v in self.DamageEffectsBag[3] do
                     v:Destroy()
                 end
             elseif newHealth <= 0.5 and newHealth > 0.25 then
                 for k, v in self.DamageEffectsBag[2] do
                     v:Destroy()
                 end
+				for k, v in self.CoreBreachEffects1 do
+					v:Destroy()
+				end
+				for k, v in self.CoreBreachEffects2 do
+					v:Destroy()
+				end
             elseif newHealth <= 0.75 and newHealth > 0.5 then
                 for k, v in self.DamageEffectsBag[1] do
                     v:Destroy()
                 end
+				for k, v in self.CoreBreachEffects1 do
+					v:Destroy()
+				end
+				for k, v in self.CoreBreachEffects2 do
+					v:Destroy()
+				end
             elseif newHealth > 0.75 then
                 self:DestroyAllDamageEffects()    
+				for k, v in self.CoreBreachEffects1 do
+					v:Destroy()
+				end
+				for k, v in self.CoreBreachEffects2 do
+					v:Destroy()
+				end
             end
         end
     end,
@@ -206,6 +247,15 @@ UAA0310 = Class(AAirUnit) {
         ##AAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		
 		####Needed for custom booms####
+		CreateAlmostDeadEffects = function( self, EffectTable, army, scale)
+			for k, v in EffectTable do
+			if self.RKEmittersAlmostDead == nil then self.RKEmittersAlmostDead = {} end
+			local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
+            table.insert(self.RKEmittersAlmostDead, emitter)
+			self.Trash:Add(emitter)
+			end
+		end
+		
 		CreateEffects = function( self, EffectTable, army, scale)
 			for k, v in EffectTable do
 			if self.RKEmitters == nil then self.RKEmitters = {} end
@@ -218,6 +268,19 @@ UAA0310 = Class(AAirUnit) {
 		local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+		
+		if ((self.CoreBreachEffects1) != nil) then
+		for k, v in self.CoreBreachEffects1 do
+            v:Destroy()
+        end
+		end
+		
+		if ((self.CoreBreachEffects2) != nil) then
+		for k, v in self.CoreBreachEffects2 do
+            v:Destroy()
+        end
+		end
+		
 		
 		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint02', 0.5, SDEffectTemplate.CZAR_Center_FallDown_Smoke )    
 		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint06', 0.5, SDEffectTemplate.CZAR_Center_FallDown_Smoke )    
@@ -243,6 +306,7 @@ UAA0310 = Class(AAirUnit) {
         if instigator and IsUnit(instigator) then
             instigator:OnKilledUnit(self)
         end
+		
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		end
     end,

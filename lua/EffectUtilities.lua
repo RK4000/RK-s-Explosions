@@ -13,7 +13,6 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
 
-
 function CreateEffects( obj, army, EffectTable )
     local emitters = {}
     for k, v in EffectTable do

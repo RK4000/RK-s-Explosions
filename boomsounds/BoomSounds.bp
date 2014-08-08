@@ -1,5 +1,5 @@
 Audio = {
-        SubBoom1 = Sound {
+    SubBoom1 = Sound {
             Bank = 'UELDestroy',
             Cue = 'UEB_Destroy_Lrg_PreDestroy',
             LodCutoff = 'UnitMove_LodCutoff',
@@ -22,6 +22,11 @@ Audio = {
 	SubBoomSoundseraphim = Sound {
             Bank = 'XSL_Destroy',
             Cue = 'XSB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	CZARCoreDestroyed = Sound {
+            Bank = 'UALDestroy',
+            Cue = 'UAB_Destroy_Huge',
             LodCutoff = 'UnitMove_LodCutoff',
         },
 }

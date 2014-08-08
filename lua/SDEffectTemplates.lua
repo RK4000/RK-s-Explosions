@@ -1057,7 +1057,7 @@ ExplosionEXPVeryLargeAeon = {
 	ModPath .. 'AuraWaveT4_Big.bp',
 }
 
-#####################Aeon CZAR Initial Big Boom###############################
+#####################Aeon CZAR Stuff###############################
 CZAR_Initial_Center_Explosion = {
 	##ModPath .. 'Very_Large_test_sonic.bp',
 	ModPath .. 'AuraWaveT4_Big_CZAR.bp',
@@ -1089,11 +1089,21 @@ CZAR_Center_FallDown_Smoke = {
 CZAR_Center_Charge = {
 	ModPath .. 'Aeon_CZAR_Center_Charge.bp',
 }
-CZAR_Center_Core_Breach = {
-	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical.bp',
+CZAR_Center_Core_Breach01 = {
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_01.bp',
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_AuraGlow.bp',
+}
+CZAR_Center_Core_Breach02 = {
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_02.bp',
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_03.bp',
+	ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_04.bp',
 }
 CZAR_Air_Rushing_In = {
 	ModPath .. 'Aeon_CZAR_Air_Rushing_In.bp',
+}
+CZAR_Core_Rupture = {
+	ModPath .. 'Aeon_CZAR_Core_Rupture_Aura.bp',
+	ModPath .. 'Aeon_CZAR_Core_Rupture_Smoke.bp',
 }
 
 ######################################################################################################### EXP BOOMS (Aeon)
@@ -1119,6 +1129,28 @@ ExplosionEXPLargeSera  = {
 	ModPath .. 'Large_test_sonic.bp',
 }
 
+#####################Sera Asswasher Stuff###############################
+Ahwassa_Engine_PreFail_Electricity = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'SeraT3_electricity.bp',
+	ModPath .. 'SeraT3_electricity3_T3Air.bp',
+	ModPath .. 'Sera_Flash_2_T3air.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+Ahwassa_Engine_PreFail_Smoke = {
+    ModPath .. 'Ahwassa_PreFail_Smoke.bp',
+}
+Ahwassa_Engine_Critical_Explosion_Flashes = {
+	ModPath .. 'Ahwassa_Critical_Damage_Explosion_Electricity.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Explosion_Flashes.bp',
+}
+Ahwassa_Engine_Critical_Explosion_Sparks = {
+	ModPath .. 'Ahwassa_Critical_Damage_Explosion_Sparks.bp',
+}
+Ahwassa_Engine_Critical_Smoke = {
+	ModPath .. 'Ahwassa_critical_Damage_Smoke_Electrified.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Smoke.bp',
+}
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 
 ######################################################################################################### OTHER FX
