@@ -270,17 +270,19 @@ SeaUnit = Class( oldSeaUnit ) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
 		local nrofBones = self:GetBoneCount() -1
-                local watchBone = self:GetBlueprint().WatchBone or 0
-                local Army = self:GetArmy()
-                local UnitTechLvl = self:GetUnitTechLvl()
-                local BoomScale = self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1')
-                local BoomScale2 = self:GetSizeOfUnit()
-                LOG('	Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
-                LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
+        local watchBone = self:GetBlueprint().WatchBone or 0
+        local Army = self:GetArmy()
+        local UnitTechLvl = self:GetUnitTechLvl()
+        local BoomScale = self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1')
+        local BoomScale2 = self:GetSizeOfUnit()
+        LOG('	Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
+        LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
 
-		--LOG(self:GetBlueprint().Description, " watchbone is ", watchBone)
-                
-                self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+--LOG(self:GetBlueprint().Description, " watchbone is ", watchBone)
+        
+        if self:GetFractionComplete() == 1 then
+            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+        end
  		self:ForkThread(function()
 			-- LOG("Sinker thread created")
 			local pos = self:GetPosition()
@@ -474,12 +476,16 @@ SubUnit = Class( oldSubUnit ) {
 		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
 		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
         self.SinkThread = self:ForkThread(self.SinkingThread)
-		self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+        if self:GetFractionComplete() == 1 then
+            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+        end
 		elseif (layer == 'Water') then
 		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
 		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
         self.SinkThread = self:ForkThread(self.SinkingThread)
-		self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+        if self:GetFractionComplete() == 1 then
+            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+        end
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
