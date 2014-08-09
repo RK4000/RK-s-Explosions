@@ -74,11 +74,6 @@ UnitBlueprint {
             Cue = 'XSL0401_Death',
             LodCutoff = 'UnitMove_LodCutoff',
         },
-		Killed4 = Sound {
-            Bank = 'XSL',
-            Cue = 'XSL0401_Death',
-            LodCutoff = 'UnitMove_LodCutoff',
-        },
         Landing = Sound {
             Bank = 'XSA',
             Cue = 'XSA0402_Move_Land',

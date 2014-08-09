@@ -1178,7 +1178,7 @@ UnitBlueprint {
             WeaponCategory = 'Anti Navy',
         },
         {
-            Damage = 20000/4,
+            Damage = 20000/4/5,
             DamageFriendly = true,
             DamageRadius = 15,
             DamageType = 'Normal',
@@ -1188,7 +1188,7 @@ UnitBlueprint {
             WeaponCategory = 'Death',
         },
         {
-            Damage = 8999/4,
+            Damage = 8999/4/5,
             DamageFriendly = true,
             DamageRadius = 10.5,
             DamageType = 'Normal',
@@ -1198,7 +1198,7 @@ UnitBlueprint {
             WeaponCategory = 'Death',
         },
         {
-            Damage = 3000/4,
+            Damage = 3000/4/5,
             DamageFriendly = true,
             DamageRadius = 7,
             DamageType = 'Normal',
@@ -1208,7 +1208,7 @@ UnitBlueprint {
             WeaponCategory = 'Death',
         },
         {
-            Damage = 1100/4,
+            Damage = 1100/4/5,
             DamageFriendly = true,
             DamageRadius = 5,
             DamageType = 'Normal',

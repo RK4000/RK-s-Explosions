@@ -1021,7 +1021,45 @@ ExplosionEXPLargeCybran = {
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
 }
-
+SoulRipper_Impact_Explosion = {
+	ModPath .. 'dust_emit.bp',
+	ModPath .. 'CybT3_smoke.bp',
+        ModPath .. 'CybEXPLRG_charge.bp',
+        ModPath .. 'CybEXPLRG_chargelong.bp',
+        ModPath .. 'CybEXPLRG_chargering.bp',
+	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_4.bp',
+	ModPath .. 'SoulRipper_smoke.bp',
+	ModPath .. 'Large_test_sonic.bp',
+}
+SoulRipper_Final_Boom = {
+	ModPath .. 'CybT3_smoke.bp',
+        ModPath .. 'CybEXPLRG_charge.bp',
+        ModPath .. 'CybEXPLRG_chargelong.bp',
+        ModPath .. 'CybEXPLRG_chargering.bp',
+	ModPath .. 'Cyb_Flash_4_EXP.bp',
+	ModPath .. 'SoulRipper_smoke.bp',
+	ModPath .. 'Very_Large_test_sonic.bp',
+}
+SoulRipper_First_Series_Booms = {
+	ModPath .. 'dust_emit.bp',
+	ModPath .. 'CybT3_smoke.bp',
+    ModPath .. 'CybT3_charge.bp',
+    ModPath .. 'CybT3_chargelong.bp',
+    ModPath .. 'CybT3_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_4_EXP.bp',
+}
+SoulRipper_Fall_Down_Smoke = {
+	ModPath .. 'SoulRipper_Fall_Down_Smoke.bp',
+}
+SoulRipper_Ambient_Electricity = {
+	ModPath .. 'SoulRipper_Ambient_Electricity.bp',
+}
+SoulRipper_Ambient_Electricity_Upper = {
+	ModPath .. 'SoulRipper_Ambient_Electricity_Upper.bp',
+}
 ######################################################################################################### EXP BOOMS (Cyb)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Aeon)

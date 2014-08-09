@@ -140,6 +140,18 @@ XSA0402 = Class(SAirUnit) {
         end
     end,
 	
+	DeathThreadFn = function(self)
+	self:PlayUnitSound('Killed3')
+	self:PlayUnitSound('Killed')
+	self:PlayUnitSound('Killed2')
+	WaitSeconds(0.3)
+	self:PlayUnitSound('Killed2')
+	WaitSeconds(0.3)
+	self:PlayUnitSound('Killed2')
+	WaitSeconds(0.3)
+	self:PlayUnitSound('Killed2')
+	end,
+	
 	
     OnKilled = function(self, instigator, type, overkillRatio)
 		
@@ -191,15 +203,12 @@ XSA0402 = Class(SAirUnit) {
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Breach_Electricity, 1, 'EngineFail2' ) 
 		
 		LOG(repr(self:GetVelocity()))
-		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 50, {self:GetVelocity()}, 17, 0.23, 50.35, 20)
+		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 50, {self:GetVelocity()}, 17, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/Ahwassa_Debris/Ahwassa_Debris_proj.bp'))
 		
 		self:DestroyTopSpeedEffects()
         self:DestroyBeamExhaust()
         self.OverKillRatio = overkillRatio
-		self:PlayUnitSound('Killed')
-		self:PlayUnitSound('Killed2')
-		self:PlayUnitSound('Killed3')
-		self:PlayUnitSound('Killed4')
+		self:ForkThread(self.DeathThreadFn)
         self:DoUnitCallbacks('OnKilled')
         self:OnKilledVO()
         if instigator and IsUnit(instigator) then
@@ -215,6 +224,8 @@ XSA0402 = Class(SAirUnit) {
         SAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		end
     end,
+	
+	
 	
 	OnImpact = function(self, with, other)
 		local army = self:GetArmy()

@@ -1,4 +1,4 @@
-name = "rks_explosions (V7 BETA)"
+name = "rks_explosions"
 uid = "7749EEN4-DE86-5CC2-39AC-35672BDE76XF"
 version = 7
 description = "Makes explosions better looking and more optimized."

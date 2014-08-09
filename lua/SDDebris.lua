@@ -36,3 +36,15 @@ AhwassaFlamingDebris = Class( BaseGenericDebris ){
 	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
 	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
 }
+CZAR_Debris= Class( BaseGenericDebris ){
+    FxImpactLand = SDEffectTemplate.AirExplosionTECH1aeon,
+    FxTrails = SDEffectTemplate.AeonFlamingDebrisTrail,
+	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
+	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
+} 
+SR_Debris= Class( BaseGenericDebris ){
+    FxImpactLand = SDEffectTemplate.AirExplosionTECH2cybran,
+    FxTrails = SDEffectTemplate.CybranFlamingDebrisTrail,
+	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
+	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
+}
