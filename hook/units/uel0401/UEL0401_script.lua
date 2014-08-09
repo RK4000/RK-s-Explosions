@@ -25,7 +25,8 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local CreateUEFBuildSliceBeams = EffectUtil.CreateUEFBuildSliceBeams
 
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
-
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
+local explosion = import('/lua/defaultexplosions.lua')
 UEL0401 = Class(TMobileFactoryUnit) {
     Weapons = {
         RightTurret01 = Class(TDFGaussCannonWeapon) {},
@@ -173,6 +174,8 @@ UEL0401 = Class(TMobileFactoryUnit) {
 	
 	DeathThread = function(self)
         self:PlayUnitSound('Destroyed')
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local army = self:GetArmy()
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 2/2)##sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone( self, 'UEL0401', 0.25)
         local bp = self:GetBlueprint()
@@ -214,6 +217,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.35/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2/2)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -244,6 +248,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.8/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Bay_Cover', 2/2)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -274,6 +279,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.8/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Left01', 2/2)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -294,6 +300,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(3.875/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Turret_Right02', 2/2)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -334,6 +341,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.25/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Rear_Core', 2/2)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -384,6 +392,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(0.45/2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'Ramp', 2*1.5/2 )
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'MedDeathBoom') then
@@ -423,6 +432,11 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep2')
         WaitSeconds(1)
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         sdexplosion.CreateUEFMediumHitExplosionAtBone( self, 'UEL0401', 5/2)
 		self:PlayUnitSound('DestroyedStep4')
 		WaitSeconds(0.05)

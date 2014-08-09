@@ -798,7 +798,7 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 30000/7,
+            Damage = 30000/7/4,66667,
             DamageFriendly = true,
             DamageRadius = 19.5,
             DamageType = 'Normal',
@@ -809,7 +809,7 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 6000/7,
+            Damage = 6000/7/4,66667,
             DamageFriendly = true,
             DamageRadius = 10,
             DamageType = 'Normal',
@@ -820,7 +820,7 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 3000/7,
+            Damage = 3000/7/4,66667,
             DamageFriendly = true,
             DamageRadius = 7,
             DamageType = 'Normal',
@@ -831,7 +831,7 @@ UnitBlueprint {
         },
         {
             AboveWaterTargetsOnly = true,
-            Damage = 1200/7,
+            Damage = 1200/7/4,66667,
             DamageFriendly = true,
             DamageRadius = 5,
             DamageType = 'Normal',

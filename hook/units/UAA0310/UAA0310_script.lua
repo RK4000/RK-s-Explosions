@@ -36,6 +36,7 @@ local Entity = import('/lua/sim/Entity.lua').Entity
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 UAA0310 = Class(AAirUnit) {
 	
@@ -221,6 +222,12 @@ UAA0310 = Class(AAirUnit) {
             end
         end
     end,
+	
+	DeathThreadFn = function(self)
+	WaitSeconds(0.35)
+	sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, SDEffectTemplate.ExplosionTECH2aeon )    
+	self:PlayUnitSound('Killed')
+	end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
 		if (self:GetCurrentLayer() == 'Air' ) then 
@@ -296,16 +303,17 @@ UAA0310 = Class(AAirUnit) {
 		
 		self.CreateEffects( self, SDEffectTemplate.CZAR_Center_FallDown_Smoke, Army, 1 )
 		self.CreateEffects( self, SDEffectTemplate.CZAR_Center_Charge, Army, 4 )
-		
+		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/CZAR_Debris/CZAR_Debris_proj.bp'))
 		self:CreateDeathExplosionTareThroughEffect()
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
 		self:CreateDeathExplosionInitialShockwave()
 		self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
 			self:PlayUnitSound('BeamStop')
-            self:PlayUnitSound('Killed')
+            ##self:PlayUnitSound('Killed')
             self:DoUnitCallbacks('OnKilled')
+			self:ForkThread(self.DeathThreadFn)
             self:OnKilledVO()
             if instigator and IsUnit(instigator) then
                 instigator:OnKilledUnit(self)
