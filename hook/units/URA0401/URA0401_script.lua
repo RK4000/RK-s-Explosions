@@ -110,7 +110,7 @@ URA0401 = Class(CAirUnit) {
 		
 		if (self:GetCurrentLayer() == 'Air' ) then 
 		
-		####Needed for custom booms####
+        -- Used for custom booms
 		CreateAlmostDeadEffects = function( self, EffectTable, army, scale)
 			for k, v in EffectTable do
 			if self.RKEmittersAlmostDead == nil then self.RKEmittersAlmostDead = {} end
@@ -140,40 +140,15 @@ URA0401 = Class(CAirUnit) {
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 		local numBones = self:GetBoneCount() - 1
 		
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
+        for i = 1, 14, 1 do
+            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
+        end
 		
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, SDEffectTemplate.SoulRipper_Ambient_Electricity_Upper, 0.60/2, 'HullDamage' ) 
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, SDEffectTemplate.SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
 		
-		self:DestroyTopSpeedEffects()
-        self:DestroyBeamExhaust()
-        self.OverKillRatio = overkillRatio
 		self:ForkThread(self.DeathThreadFn)
-        self:DoUnitCallbacks('OnKilled')
-        self:OnKilledVO()
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-		
-		else
-        self.DeathBounce = 1
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-        
+
         CAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		end
     end,
@@ -181,99 +156,44 @@ URA0401 = Class(CAirUnit) {
 
 	
 	ExplodingThreadFn = function(self)
-	local numBones = self:GetBoneCount() - 1
-	WaitSeconds(6.25)
-	LOG("Starting first series of booms")
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 3.5), SDEffectTemplate.SoulRipper_First_Series_Booms)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 3))
-	###################### 2nd series of booms
-	WaitSeconds(5)
-	LOG("Starting second series of booms")
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	local rd = (Util.GetRandomFloat(0, 1))
-	WaitSeconds(rd)
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 1.5), SDEffectTemplate.ExplosionTECH2cybran)
-	self:PlayUnitSound('SubBooms')
-	###################### 3rd series of booms
-	WaitSeconds(5)
-	LOG("Starting third series of booms")
-	local rd = (Util.GetRandomFloat(0, 4))
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 4.5), SDEffectTemplate.ExplosionEXPMediumCybran)
-	self:PlayUnitSound('SubBooms')
-	WaitSeconds(rd)
-	local rd = (Util.GetRandomFloat(0, 4))
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 4.5), SDEffectTemplate.ExplosionEXPMediumCybran)
-	self:PlayUnitSound('SubBooms')
-	WaitSeconds(rd)
-	local rd = (Util.GetRandomFloat(0, 4))
-	RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, 4.5), SDEffectTemplate.ExplosionEXPMediumCybran)
-	self:PlayUnitSound('SubBooms')
-	
-	for k, v in self.HullDamage do
-		v:Destroy()
-	end
-	###################### Final boom
-	WaitSeconds(5)
-	LOG(repr({self:GetVelocity()}))
-	RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
-	RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), SDEffectTemplate.SoulRipper_Final_Boom)
-	self:PlayUnitSound('FinalBoom')
-	self:CreateWreckage()
-	self:Destroy()
+    
+
+        local numBones = self:GetBoneCount() - 1
+
+        local DoSubBoom = function(bound, fx)
+            RKExplosion.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), Util.GetRandomFloat(1, bound), fx)
+            self:PlayUnitSound('SubBooms')
+        end
+            
+        WaitSeconds(6.25)
+        -- First secries of booms
+        for i = 1, 8, 1 do
+            DoSubBoom(3.5, SDEffectTemplate.SoulRipper_First_Series_Booms)
+            WaitSeconds(Util.GetRandomFloat(0,3))
+        end
+        ###################### 2nd series of booms
+        WaitSeconds(5)
+        for i = 1, 8, 1 do
+            DoSubBoom(1.5, SDEffectTemplate.ExplosionTECH2cybran)
+            WaitSeconds(Util.GetRandomFloat(0,3))
+        end
+        ###################### 3rd series of booms
+        WaitSeconds(5)
+        for i = 1, 3, 1 do
+            DoSubBoom(4.5, SDEffectTemplate.ExplosionEXPMediumCybran)
+            WaitSeconds(Util.GetRandomFloat(0,4))
+        end
+        
+        for k, v in self.HullDamage do
+            v:Destroy()
+        end
+        ###################### Final boom
+        WaitSeconds(5)
+        RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
+        RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), SDEffectTemplate.SoulRipper_Final_Boom)
+        self:PlayUnitSound('FinalBoom')
+        self:CreateWreckage()
+        self:Destroy()
 	
 	end,
 	

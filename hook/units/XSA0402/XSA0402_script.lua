@@ -205,21 +205,7 @@ XSA0402 = Class(SAirUnit) {
 		LOG(repr(self:GetVelocity()))
 		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 50, {self:GetVelocity()}, 17, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/Ahwassa_Debris/Ahwassa_Debris_proj.bp'))
 		
-		self:DestroyTopSpeedEffects()
-        self:DestroyBeamExhaust()
-        self.OverKillRatio = overkillRatio
 		self:ForkThread(self.DeathThreadFn)
-        self:DoUnitCallbacks('OnKilled')
-        self:OnKilledVO()
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-		
-		else
-        self.DeathBounce = 1
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
         
         SAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		end

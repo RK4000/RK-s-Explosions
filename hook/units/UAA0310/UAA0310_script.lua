@@ -307,23 +307,9 @@ UAA0310 = Class(AAirUnit) {
 		self:CreateDeathExplosionTareThroughEffect()
 		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
 		self:CreateDeathExplosionInitialShockwave()
-		self:DestroyTopSpeedEffects()
-            self:DestroyBeamExhaust()
-            self.OverKillRatio = overkillRatio
-			self:PlayUnitSound('BeamStop')
-            ##self:PlayUnitSound('Killed')
-            self:DoUnitCallbacks('OnKilled')
-			self:ForkThread(self.DeathThreadFn)
-            self:OnKilledVO()
-            if instigator and IsUnit(instigator) then
-                instigator:OnKilledUnit(self)
-            end
-        else
-        self.DeathBounce = 1
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-		
+
+        self:ForkThread(self.DeathThreadFn)
+
         AAirUnit.OnKilled(self, instigator, type, overkillRatio)
 		end
     end,
