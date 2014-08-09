@@ -1513,9 +1513,6 @@ FactoryUnit = Class(StructureUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         StructureUnit.OnKilled(self, instigator, type, overkillRatio)
-        if self.UnitBeingBuilt then
-            self.UnitBeingBuilt:Destroy()
-        end
     end,
 }
 
