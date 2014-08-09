@@ -1148,8 +1148,26 @@ Ahwassa_Engine_Critical_Explosion_Sparks = {
 	ModPath .. 'Ahwassa_Critical_Damage_Explosion_Sparks.bp',
 }
 Ahwassa_Engine_Critical_Smoke = {
-	ModPath .. 'Ahwassa_critical_Damage_Smoke_Electrified.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Smoke_Electrified.bp',
 	ModPath .. 'Ahwassa_Critical_Damage_Smoke.bp',
+}
+Ahwassa_Engine_Critical_Breach = {
+	ModPath .. 'Ahwassa_Critical_Damage_Breach_01.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Breach_02.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Breach_03.bp',
+}
+Ahwassa_Engine_Critical_Breach_Electricity = {
+	ModPath .. 'Ahwassa_Critical_Damage_Breach_Electricity.bp',
+}
+Ahwassa_Impact_Explosion = {
+	ModPath .. 'Aeon_CZAR_smoke.bp',
+	ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'Ahwassa_Crash_Flash1.bp',
+	ModPath .. 'Ahwassa_Crash_Flash2.bp',
+	ModPath .. 'Ahwassa_Impact_Glow01.bp',
+	ModPath .. 'Ahwassa_Impact_Glow02.bp',
+	ModPath .. 'Ahwassa_Impact_Electricity.bp',
+	ModPath .. 'Ahwassa_Impact_Shockwave.bp',
 }
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 
@@ -1203,6 +1221,10 @@ SeraFlamingDebrisLandImpact = {
 
 SeraFlamingDebrisTrail = {
        ModPath .. 'SeraFlamingDebrisFire.bp',
+       ##ModPath .. 'AeonFlamingDebrisSmoke.bp',
+}
+AhwassaFlamingDebrisTrail  = {
+       ModPath .. 'AhwassaFlamingDebrisFire.bp',
        ##ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
 DebrisSplashyWater = {

@@ -11,7 +11,7 @@
 local Entity = import('/lua/sim/entity.lua').Entity
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-local util = import('utilities.lua')
+local util = import('/lua/utilities.lua')
 local GetRandomFloat = util.GetRandomFloat
 local GetRandomInt = util.GetRandomInt
 local GetRandomOffset = util.GetRandomOffset
@@ -95,6 +95,37 @@ function CreateShipFlamingDebrisProjectiles( obj, volume, dimensions )
         obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
         end
     end
+end
+
+function CreateInheritedVelocityDebrisProjectiles( obj, numOfDebris, speed, preVelocity, spreadMul, spread )
+	local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
+    local bp = obj:GetBlueprint()
+    local Army = obj:GetArmy()
+    local Faction = obj:GetFaction()
+	
+
+    local vx, vy, vz = unpack(speed)
+   		
+		# Create several other projectiles in a dispersal pattern
+        local angle = (2*math.pi) / numOfDebris
+        local angleInitial = RandomFloat( 0, angle )
+        
+        # Randomization of the spread
+        local angleVariation = angle * spread # Adjusts angle variance spread       
+        
+        local xVec = 0 
+        local yVec = 0
+        local zVec = 0
+
+        # Launch projectiles at semi-random angles away from split location
+        for i = 0, (numOfDebris -1) do
+		local velocity = util.GetRandomFloat(preVelocity/2, preVelocity*2)
+		
+            xVec = vx + (GetRandomInt(0.6, 1.3) * ((math.sin(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3)
+            zVec = vz + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3)
+			yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(0, 0.5) ##Eject upward a bit more
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/Ahwassa_Debris/Ahwassa_Debris_proj.bp'):SetVelocity(xVec,yVec,zVec):SetVelocity(velocity)        
+        end
 end
 
 ##---------------------------------------------------------

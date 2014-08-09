@@ -29,3 +29,10 @@ SeraFlamingDebris = Class( BaseGenericDebris ){
 	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
 	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
 }
+
+AhwassaFlamingDebris = Class( BaseGenericDebris ){
+    FxImpactLand = SDEffectTemplate.AirExplosionTECH1seraphim,
+    FxTrails = SDEffectTemplate.AhwassaFlamingDebrisTrail,
+	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
+	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
+}

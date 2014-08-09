@@ -35,6 +35,11 @@ UnitBlueprint {
         StartTurnDistance = 50,
     },
     Audio = {
+		TerrainImpact = Sound {
+            Bank = 'UALDestroy',
+            Cue = 'UAB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
         AirUnitWaterImpact = Sound {
             Bank = 'Explosions',
             Cue = 'Expl_Water_Lrg_01',
@@ -46,13 +51,13 @@ UnitBlueprint {
             LodCutoff = 'UnitMove_LodCutoff',
         },
         Destroyed = Sound {
-            Bank = 'UAADestroy',
-            Cue = 'UAA_Destroy_Air',
+            Bank = 'UALDestroy',
+            Cue = 'UAL0401_Destroy',
             LodCutoff = 'UnitMove_LodCutoff',
         },
         Killed = Sound {
-            Bank = 'UAADestroy',
-            Cue = 'UAA_Destroy_Air_Killed',
+            Bank = 'UALDestroy',
+            Cue = 'UAB_Destroy_Huge',
             LodCutoff = 'UnitMove_LodCutoff',
         },
         StartMove = Sound {

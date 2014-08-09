@@ -705,6 +705,18 @@ StructureUnit = Class(Unit) {
             return 1
         end
     end,
+	
+	GetMultTechLvl = function(self, UnitTechLvl)
+    	if UnitTechLvl == 'TECH1' then
+   		return 0.695
+    	elseif UnitTechLvl == 'TECH2' then
+    		return 1
+    	elseif UnitTechLvl == 'TECH3' then
+    		return 1.5
+    	else
+    		return 0
+    	end	
+    end,
 
     ####Needed for the custom booms####
     CreateEffects = function( self, EffectTable, army, scale)
@@ -723,10 +735,15 @@ StructureUnit = Class(Unit) {
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
         local NumExplFaction = self:GetNumberBasedOffFaction()
+		local TECHMULT = self:GetMultTechLvl(UnitTechLvl or TECH1)
 
-        local numExplosions = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction + Number)
+        local numExplosions1 = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction + Number)
+		local numExplosions = (numExplosions1) * TECHMULT
+		
         local x,y,z = self:GetUnitSizes(self)
-        LOG('	Sub-explosion number: ', numExplosions )
+        LOG('	Original Sub Boom Count: ', numExplosions1 )
+		LOG('	Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1) )
+		LOG('	Sub-explosion number: ', numExplosions )
         self:ShakeCamera( 30*1.65, 1*1.65, 0, 0.45 * numExplosions *1.65 )
         for i = 0, numExplosions do
             self.CreateFactionalHitExplosionOffset( self, 1.0, unpack({Util.GetRandomOffset(x,y,z,1.2)}))

@@ -224,11 +224,19 @@ UAA0310 = Class(AAirUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
 		if (self:GetCurrentLayer() == 'Air' ) then 
-            local army = self:GetArmy()  
+        
+        local army = self:GetArmy()  
         local wep = self:GetWeaponByLabel('QuantumBeamGeneratorWeapon')
+		local bp = wep:GetBlueprint()
+        if bp.Audio.BeamStop then
+            wep:PlaySound(bp.Audio.BeamStop)
+        end
+        if bp.Audio.BeamLoop and wep.Beams[1].Beam then
+            wep.Beams[1].Beam:SetAmbientSound(nil, nil)
+        end
         for k, v in wep.Beams do
             v.Beam:Disable()
-        end
+        end     
 
         self.detector = CreateCollisionDetector(self)
         self.Trash:Add(self.detector)
@@ -295,6 +303,7 @@ UAA0310 = Class(AAirUnit) {
 		self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
+			self:PlayUnitSound('BeamStop')
             self:PlayUnitSound('Killed')
             self:DoUnitCallbacks('OnKilled')
             self:OnKilledVO()
@@ -353,6 +362,7 @@ UAA0310 = Class(AAirUnit) {
     end,
 
     OnAnimTerrainCollision = function(self, bone,x,y,z)
+		self:PlayUnitSound('TerrainImpact')
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
         sdexplosion.CreateFactionalExplosionAtBone( self, bone, 3.0, SDEffectTemplate.ExplosionTECH3aeon )
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
