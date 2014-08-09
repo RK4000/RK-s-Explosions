@@ -80,6 +80,17 @@ ExplosionVeryLargeShortDurSmoke = {
 		ModPath .. 'UEF_Outward_Spark_EXP_Big.bp', 
 } 
 
+LuXy_Heart = {
+	ModPath .. 'FluffyHeart.bp',
+	##ModPath .. 'Fluffy_Heart_Smoke.bp',
+}
+Heart_Debris_Boom = {
+	ModPath .. 'FluffyHeart_Small.bp',
+}
+Heart_Debris_Trail = {
+	ModPath .. 'FluffyHeart_Trail.bp',
+}
+
 #####################AddNothing Boom###############################
 AddNothing = {}
 ######################################################################################################################### MAIN FACTIONAL DEATH FX

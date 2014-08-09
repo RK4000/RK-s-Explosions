@@ -585,6 +585,7 @@ StructureUnit = Class(Unit) {
 
     OnCreate = function(self)
         Unit.OnCreate(self)
+        LOG('Are we even fucking hooking!?')
         self.WeaponMod = {}
         self.FxBlinkingLightsBag = {} 
         if self:GetCurrentLayer() == 'Land' and self:GetBlueprint().Physics.FlattenSkirt then

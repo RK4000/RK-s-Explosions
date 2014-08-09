@@ -48,3 +48,9 @@ SR_Debris= Class( BaseGenericDebris ){
 	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
 	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
 }
+Heart_Debris = Class( BaseGenericDebris ){
+    FxImpactLand = SDEffectTemplate.Heart_Debris_Boom,
+    FxTrails = SDEffectTemplate.Heart_Debris_Trail,
+	FxImpactWater = SDEffectTemplate.DebrisSplashyWater,
+	FxImpactUnderWater = SDEffectTemplate.DebrisSplashyWater,
+}
