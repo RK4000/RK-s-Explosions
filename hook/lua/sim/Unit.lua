@@ -7,11 +7,13 @@ local oldUnit = Unit
 -- explosion, since it's replaced by the factional ones.
 
 Unit = Class(oldUnit) {
-
+    
+    -- New function
     GetFaction = function(self)
         return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
     end,
 
+    -- New function
     GetTechLevel = function(self)
         local Categories = self:GetBlueprint().Categories or {}
         local Desired = {'TECH1', 'TECH2', 'TECH3'}
@@ -24,9 +26,10 @@ Unit = Class(oldUnit) {
             end
         end
         return TechLevel
-     end,
+    end,
      
-     GetUnitLayer = function(self)
+    --[[
+    GetUnitLayer = function(self)
         local Categories = self:GetBlueprint().Categories or {}
         local Desired = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE'}
         local Layer = nil
@@ -38,21 +41,20 @@ Unit = Class(oldUnit) {
             end
         end
         return Layer
-     end,
-     
+    end,--]]
+    
+    -- New function
     GetNumberByTechLvl = function(self, UnitTechLvl)
-
-        if UnitTechLvl == 'TECH1' then
-           return 0.425
-        elseif UnitTechLvl == 'TECH2' then
+        if UnitTechLvl == 'TECH2' then
             return 0.76/1.075
         elseif UnitTechLvl == 'TECH3' then
             return 1.025/1.175
         else
-            return 1
+            return 0.425
         end    
     end,
 
+    -- New function
     CreateEffects = function( self, EffectTable, army, scale)
         for k, v in EffectTable do
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
@@ -65,23 +67,22 @@ Unit = Class(oldUnit) {
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetTechLevel()
-        local UnitLayer = self:GetUnitLayer()
+        local Layer = self:GetCurrentLayer()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 
-        if UnitLayer == 'NAVAL' then
+        if Layer == 'Water' or Layer == 'Sub' then
             self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
         else
             self.CreateEffects( self, SDExplosion, Army, Number)
         end
         
-        if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
+        if Layer == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
         end
         
-        if self:GetCurrentLayer() == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
+        if Layer == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
             --Handle ships that can walk on land...
             self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
         else
@@ -125,13 +126,7 @@ Unit = Class(oldUnit) {
 
         self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )
-        self:DestroyTopSpeedEffects()
-        
-        if UnitLayer == 'NAVAL' then
-            self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
-        else
-            self.CreateEffects( self, SDExplosion, Army, Number)
-        end
+        self:DestroyTopSpeedEffects()      
 
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
             self.UnitBeingTeleported:Destroy()
