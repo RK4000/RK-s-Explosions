@@ -5,10 +5,13 @@ local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
 
 local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
+
+local toggle = 0
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {
@@ -71,13 +74,22 @@ AirUnit = Class( oldAirUnit ) {
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
-
-        ####Air unit factional-specific damage effects and smoke
-        self.FxDamage1 = { SDFactionalSmallSmoke, EffectTemplate.DamageSparks01 } ## 75% HP
-        self.FxDamage2 = { SDFactionalSmallFire } ## 50% HP
-        self.FxDamage3 = { SDFactionalBigFireSmoke } ## 25% HP
-        ####Air unit factional-specific damage effects and smoke
-
+		
+		local NFactionalSmallSmoke = NEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
+        local NFactionalSmallFire = NEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
+        local NFactionalBigFireSmoke = NEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
+		
+		if (toggle == 1) then
+			####Air unit factional-specific damage effects and smoke
+			self.FxDamage1 = { SDFactionalSmallSmoke, EffectTemplate.DamageSparks01 } ## 75% HP
+			self.FxDamage2 = { SDFactionalSmallFire } ## 50% HP
+			self.FxDamage3 = { SDFactionalBigFireSmoke } ## 25% HP
+			####Air unit factional-specific damage effects and smoke
+		else
+			self.FxDamage1 = { NFactionalSmallSmoke, EffectTemplate.DamageSparks01 } ## 75% HP
+			self.FxDamage2 = { NFactionalSmallFire } ## 50% HP
+			self.FxDamage3 = { NFactionalBigFireSmoke } ## 25% HP
+		end
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
@@ -86,14 +98,31 @@ AirUnit = Class( oldAirUnit ) {
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+		local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+		
         local SDExplosion = SDEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
         local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+		
+		local NExplosion = NEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
+        local NFallDownTrail = NEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+		
+		##local toggle = 1
+		
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
-            self:DestroyAllDamageEffects()			
-            self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
-            self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
+            self:DestroyAllDamageEffects()	
+			
+			WARN('TOGGLE FOR BOOMS:', toggle )
+			if (toggle == 1) then
+				self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
+				self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
+			else
+				self.CreateEffects( self, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Default explosion when unit is in the air
+				self.CreateEffects( self, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
+			end
+			
 			if ( self:GetUnitTechLvl() == 'TECH1' ) then
 				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5, Army )
 			elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
@@ -127,12 +156,18 @@ AirUnit = Class( oldAirUnit ) {
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-    local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')    
+    local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')  
+	local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
+	
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
-        self.CreateEffects( self, SDExplosionImpact, Army, ((Number/1.75)*GlobalExplosionScaleValue) )
-        ##self.CreateUnitAirDestructionEffects( self, 1.0 )		
-        ## ^ Custom explosion when unit hits the ground                                                                              
-        ##(scaled to be bigger than when it explodes in the air because PHYSICS YO)
+	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+		
+		
+		if (toggle == 1) then
+				self.CreateEffects( self, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
+			else
+				self.CreateEffects( self, NExplosionImpact, Army, 1) ##Default explosion when unit is in the air
+		end
 
         # Damage the area we have impacted with.
         local bp = self:GetBlueprint()
@@ -151,7 +186,11 @@ AirUnit = Class( oldAirUnit ) {
             self:PlayUnitSound('AirUnitWaterImpact')
             EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.Splashy )
 			DefaultExplosionsStock.CreateFlash( self, -1, (Number)/3, Army )
-			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+			if (toggle == 1) then 
+				self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+			else 
+				self.CreateEffects( self, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+			end
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
@@ -223,8 +262,13 @@ SeaUnit = Class( oldSeaUnit ) {
 		local UnitTechLvl = self:GetUnitTechLvl()
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
-
-        EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
+		
+		if (toggle == 1) then
+			EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		else
+			EffectUtil.CreateBoneEffects( self, boneName, army, NFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		end
 		DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/3, Army )
     end,
 
@@ -281,7 +325,11 @@ SeaUnit = Class( oldSeaUnit ) {
 --LOG(self:GetBlueprint().Description, " watchbone is ", watchBone)
         
         if self:GetFractionComplete() == 1 then
-            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+			if (toggle == 1) then 
+				self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+			else
+				self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+			end
         end
  		self:ForkThread(function()
 			-- LOG("Sinker thread created")
@@ -468,24 +516,43 @@ SubUnit = Class( oldSubUnit ) {
 		local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
 		local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
 		
+		local NFactionalSubBoomAboveWater = NEffectTemplate[Faction ..'SubExplosionAboveWater']
+		local NFactionalSubBoomUnderWater = NEffectTemplate[Faction ..'SubExplosionUnderWater']
+		
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         local bp = self:GetBlueprint()
         
         if (layer == 'Sub' or layer == 'Seabed') then
-		self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
-		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-        self.SinkThread = self:ForkThread(self.SinkingThread)
-        if self:GetFractionComplete() == 1 then
-            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
-        end
+			if (toggle == 1) then
+				self.CreateEffects( self, SDFactionalSubBoomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
+			else
+				self.CreateEffects( self, NFactionalSubBOomUnderWater, Army, (Number*GlobalExplosionScaleValue) )
+			end
+			self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+			self.SinkThread = self:ForkThread(self.SinkingThread)
+			if self:GetFractionComplete() == 1 then
+				if (toggle == 1) then
+					self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+				else 
+					self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+				end
+			end
 		elseif (layer == 'Water') then
-		self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
-		self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-        self.SinkThread = self:ForkThread(self.SinkingThread)
-        if self:GetFractionComplete() == 1 then
-            self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
-        end
+			if (toggle == 1) then
+				self.CreateEffects( self, SDFactionalSubBoomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
+			else
+				self.CreateEffects( self, NFactionalSubBOomAboveWater, Army, (Number*GlobalExplosionScaleValue) )
+			end
+			self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+			self.SinkThread = self:ForkThread(self.SinkingThread)
+			if self:GetFractionComplete() == 1 then
+				if (toggle == 1) then
+					self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+				else 
+					self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( Number*GlobalExplosionScaleValue ) )
+				end
+			end
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
@@ -766,13 +833,18 @@ StructureUnit = Class(Unit) {
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
+		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
         if self:BeenDestroyed() then 
             return
         end
     
         local army = self:GetArmy()
+		if (toggle == 1) then
         EffectUtil.CreateBoneEffectsOffset( self, -1, army, SDExplosion, xOffset, yOffset, zOffset )
+		else
+		EffectUtil.CreateBoneEffectsOffset( self, -1, army, NExplosion, xOffset, yOffset, zOffset )
+		end
     end,
 
     CreateFactionalExplosionAtBone = function( self, boneName, scale )
@@ -783,8 +855,13 @@ StructureUnit = Class(Unit) {
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
+		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
-        EffectUtil.CreateBoneEffects( self, boneName, army, SDExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		if (toggle == 1) then
+			EffectUtil.CreateBoneEffects( self, boneName, army, SDExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		else
+			EffectUtil.CreateBoneEffects( self, boneName, army, NExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+		end
 		DefaultExplosionsStock.CreateFlash( self, boneName, Number, Army )
     end,
 
@@ -945,6 +1022,7 @@ StructureUnit = Class(Unit) {
 	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
+		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
@@ -962,7 +1040,11 @@ StructureUnit = Class(Unit) {
         local GlobalBuildingBoomScaleDivider = 7.5
 
         if( self:GetSizeOfBuilding(self) < 1.45 ) then
-            self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
+			if (toggle == 1) then
+				self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
+			else
+				self.CreateEffects( self, NExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
+			end
         else
             LOG('	STARTING BOOM PROCESS ON: ', bp.General.UnitName )
             LOG('	Building Size: ', self:GetSizeOfBuilding() )
@@ -972,12 +1054,22 @@ StructureUnit = Class(Unit) {
             LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.5 )
-            self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
+			if (toggle == 1) then 
+				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
+			else
+				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
+			end
 			DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             WaitSeconds( 1.15)
-            self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+			
+			if (toggle == 1) then 
+				self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+			else
+				self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+			end
+			
 			DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
             if UnitTechLvl == 'TECH1' then
                 RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})

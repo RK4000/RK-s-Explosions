@@ -1,4 +1,5 @@
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 local DefaultExplosions = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local Entity = import('/lua/sim/entity.lua').Entity
@@ -16,6 +17,8 @@ local CreateBoneEffects = EfctUtil.CreateBoneEffects
 local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
+
+local toggle = 0
 
 function GetUnitSizes( unit )
     local bp = unit:GetBlueprint()
@@ -90,13 +93,25 @@ function _CreateScalableUnitExplosion( obj )
     #LOG(scale)
     if layer == 'Land' then 
 	    if scale < 1.1 then   ## Small units
-             BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			if (toggle == 1) then 
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			else
+				BaseEffectTable = NEffectTemplate.ExplosionSmall 
+			end
 		elseif scale > 3.75 then ## Large units
-			BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			if (toggle == 1) then 
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			else
+				BaseEffectTable = NEffectTemplate.ExplosionSmall 
+			end
 			ShakeTimeModifier = 1.0
 			ShakeMaxMul = 0.25
 		else                  ## Medium units
-			BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			if (toggle == 1) then 
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+			else
+				BaseEffectTable = NEffectTemplate.ExplosionSmall 
+			end
 		end
 	end
 	

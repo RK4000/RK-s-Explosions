@@ -7,6 +7,8 @@ rklog = false
 ##It is also neccesary because the changes here remove the current generic
 ##explosion, since it's replaced by the factional ones.
 
+local toggle = 0
+
 Unit = Class( oldUnit ) {
 
     GetFaction = function(self)
@@ -74,13 +76,19 @@ Unit = Class( oldUnit ) {
 		local UnitLayer = self:GetUnitLayer()
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+		local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
 		
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
-
+		local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+		
 		if UnitLayer == 'NAVAL' then
 			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
 		else
-			self.CreateEffects( self, SDExplosion, Army, Number)
+			if (toggle == 1) then
+				self.CreateEffects( self, SDExplosion, Army, Number)
+			else
+				self.CreateEffects( self, NExplosion, Army, Number)
+			end
 		end
 		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
@@ -136,7 +144,11 @@ Unit = Class( oldUnit ) {
         if UnitLayer == 'NAVAL' then
 			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
 		else
-			self.CreateEffects( self, SDExplosion, Army, Number)
+			if (toggle == 1) then
+				self.CreateEffects( self, SDExplosion, Army, Number)
+			else
+				self.CreateEffects( self, NExplosion, Army, Number)
+			end
 		end
 
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
