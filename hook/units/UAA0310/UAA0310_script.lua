@@ -309,9 +309,10 @@ UAA0310 = Class(AAirUnit) {
 		self:CreateDeathExplosionInitialShockwave()
 
         self:ForkThread(self.DeathThreadFn)
-
-        AAirUnit.OnKilled(self, instigator, type, overkillRatio)
+		
 		end
+        AAirUnit.OnKilled(self, instigator, type, overkillRatio)
+
     end,
 	
 	OnImpact = function(self, with, other)

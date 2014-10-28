@@ -950,7 +950,7 @@ options = {
                 end,
                 set = function(key,value,startup)
                     if 0 == value then
-                    ConExecute("ren_Bloom true")
+                    ConExecute("ren_Bloom false")
                     ConExecute("ren_BloomGlowCopyScale 7.0000")
                     ConExecute("ren_BloomBlurCount 1")
                     ConExecute("ren_BloomBlurKernelScale 1.5000")

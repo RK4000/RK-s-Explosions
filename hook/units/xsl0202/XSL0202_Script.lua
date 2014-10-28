@@ -56,7 +56,7 @@ XSL0202 = Class(SWalkingLandUnit) {
         SWalkingLandUnit.OnKilled(self, instigator, type, overkillRatio) -- Remove this call if adding everything anyway
 		local bp = self:GetBlueprint()
         local Army = self:GetArmy()
-        local luxyAliases = {"LuXy", "Lu_Xun_17", "Sheeo", "Pinky_Zoria", "RK4000", } -- Add as many as you want
+        local luxyAliases = {"LuXy", "Lu_Xun_17", "Sheeo", "Pinky_Zoria", "RK4000", "TA4Life"} -- Add as many as you want
 		
         if TableHas(luxyAliases, ArmyBrains[self:GetArmy()].Nickname) then
 			self:CreateFluffyHeartShockwave()

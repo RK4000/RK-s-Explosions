@@ -148,9 +148,10 @@ URA0401 = Class(CAirUnit) {
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, SDEffectTemplate.SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
 		
 		self:ForkThread(self.DeathThreadFn)
-
-        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
+		
 		end
+        CAirUnit.OnKilled(self, instigator, type, overkillRatio)
+
     end,
 	
 
@@ -168,27 +169,27 @@ URA0401 = Class(CAirUnit) {
         WaitSeconds(6.25)
         -- First secries of booms
         for i = 1, 8, 1 do
-            DoSubBoom(3.5, SDEffectTemplate.SoulRipper_First_Series_Booms)
-            WaitSeconds(Util.GetRandomFloat(0,3))
+            DoSubBoom(2.5, SDEffectTemplate.ExplosionEXPMediumCybran)
+            WaitSeconds(Util.GetRandomFloat(0.95,1.35))
         end
         ###################### 2nd series of booms
-        WaitSeconds(5)
+        WaitSeconds(4)
         for i = 1, 8, 1 do
             DoSubBoom(1.5, SDEffectTemplate.ExplosionTECH2cybran)
-            WaitSeconds(Util.GetRandomFloat(0,3))
+            WaitSeconds(Util.GetRandomFloat(0,0.6))
         end
         ###################### 3rd series of booms
-        WaitSeconds(5)
+        WaitSeconds(3)
         for i = 1, 3, 1 do
-            DoSubBoom(4.5, SDEffectTemplate.ExplosionEXPMediumCybran)
-            WaitSeconds(Util.GetRandomFloat(0,4))
+			DoSubBoom(3.5, SDEffectTemplate.SoulRipper_First_Series_Booms)
+            WaitSeconds(Util.GetRandomFloat(2,3))
         end
         
         for k, v in self.HullDamage do
             v:Destroy()
         end
         ###################### Final boom
-        WaitSeconds(5)
+        WaitSeconds(4)
         RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
         RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), SDEffectTemplate.SoulRipper_Final_Boom)
         self:PlayUnitSound('FinalBoom')
