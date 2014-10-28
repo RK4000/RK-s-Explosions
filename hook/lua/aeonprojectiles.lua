@@ -1,9 +1,9 @@
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local SinglePolyTrailProjectile = DefaultProjectileFile.SinglePolyTrailProjectile
---The mod file
+-- The mod file
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 
---Modify the explosion for the Restorer's AA missiles
+-- Modify the explosion for the Restorer's AA missiles
 AZealot02AAMissileProjectile = Class(SinglePolyTrailProjectile) {
     PolyTrail = '/effects/emitters/aeon_missile_trail_03_emit.bp',
 

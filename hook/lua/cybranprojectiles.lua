@@ -1,9 +1,9 @@
 local DefaultProjectileFile = import('/lua/sim/defaultprojectiles.lua')
 local SingleCompositeEmitterProjectile = DefaultProjectileFile.SingleCompositeEmitterProjectile
---The mod file
+-- The mod file
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 
---Modify Cybran T2 Gunship rocket explosion to reduce lag and improve visuals
+-- Modify Cybran T2 Gunship rocket explosion to reduce lag and improve visuals
 CIridiumRocketProjectile = Class(SingleCompositeEmitterProjectile) {
     FxTrails = {},
     PolyTrail = '/effects/emitters/cybran_iridium_missile_polytrail_01_emit.bp',    

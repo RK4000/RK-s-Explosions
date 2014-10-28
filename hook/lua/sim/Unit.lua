@@ -1,62 +1,56 @@
 local oldUnit = Unit
-rklog = false
 
-##Includes changes to the fundamental Unit class,
-##in case some type of unit does not have a specifically modified OnKilled to use the 
-##factional explosions, this acts as sort of a backup to still spawn them. 
-##It is also neccesary because the changes here remove the current generic
-##explosion, since it's replaced by the factional ones.
+-- Includes changes to the fundamental Unit class,
+-- in case some type of unit does not have a specifically modified OnKilled to use the 
+-- factional explosions, this acts as sort of a backup to still spawn them. 
+-- It is also necessary because the changes here remove the current generic
+-- explosion, since it's replaced by the factional ones.
 
-Unit = Class( oldUnit ) {
+Unit = Class(oldUnit) {
 
     GetFaction = function(self)
-    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
     end,
 
-    GetUnitTechLvl = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'TECH1', 'TECH2', 'TECH3' }
-    	local UnitTechLvl = 'TECH1'
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitTechLvl = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitTechLvl
+    GetTechLevel = function(self)
+        local Categories = self:GetBlueprint().Categories or {}
+        local Desired = {'TECH1', 'TECH2', 'TECH3'}
+        local TechLevel = nil
+        
+        for k, v in Desired do
+            if table.find(Categories, v) then
+                TechLevel = v
+                break
+            end
+        end
+        return TechLevel
      end,
-	 
-	 GetUnitLayer = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
-    	local UnitTechLvl = 'NAVAL'
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitLayer = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitLayer
+     
+     GetUnitLayer = function(self)
+        local Categories = self:GetBlueprint().Categories or {}
+        local Desired = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE'}
+        local Layer = nil
+        
+        for k, v in Desired do
+            if table.find(Categories, v) then
+                Layer = v
+                break
+            end
+        end
+        return Layer
      end,
-	 
-	 
+     
     GetNumberByTechLvl = function(self, UnitTechLvl)
 
-    	if UnitTechLvl == 'TECH1' then
-   		return 0.425
-    	elseif UnitTechLvl == 'TECH2' then
-    		return 0.76/1.075
-    	elseif UnitTechLvl == 'TECH3' then
-    		return 1.025/1.175
-    	else
-    		return 1
-    	end	
+        if UnitTechLvl == 'TECH1' then
+           return 0.425
+        elseif UnitTechLvl == 'TECH2' then
+            return 0.76/1.075
+        elseif UnitTechLvl == 'TECH3' then
+            return 1.025/1.175
+        else
+            return 1
+        end    
     end,
 
     CreateEffects = function( self, EffectTable, army, scale)
@@ -69,20 +63,20 @@ Unit = Class( oldUnit ) {
         self.Dead = true
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
-		local Faction = self:GetFaction()
-		local UnitTechLvl = self:GetUnitTechLvl()
-		local UnitLayer = self:GetUnitLayer()
-		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+        local Faction = self:GetFaction()
+        local UnitTechLvl = self:GetTechLevel()
+        local UnitLayer = self:GetUnitLayer()
+        local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-		
+        
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 
-		if UnitLayer == 'NAVAL' then
-			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
-		else
-			self.CreateEffects( self, SDExplosion, Army, Number)
-		end
-		
+        if UnitLayer == 'NAVAL' then
+            self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
+        else
+            self.CreateEffects( self, SDExplosion, Army, Number)
+        end
+        
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
         end
@@ -95,25 +89,25 @@ Unit = Class( oldUnit ) {
         end
         
         if EntityCategoryContains(categories.COMMAND, self) then
-        	LOG('com is dead') 
-			# If there is a killer, and it's not me 
-        	if instigator and instigator:GetArmy() != self:GetArmy() then
-        		local instigatorBrain = ArmyBrains[instigator:GetArmy()]
-        		if instigatorBrain and not instigatorBrain:IsDefeated() then
-					instigatorBrain:AddArmyStat("FAFWin", 1)        		
-				end      		
+            LOG('com is dead') 
+            # If there is a killer, and it's not me 
+            if instigator and instigator:GetArmy() != self:GetArmy() then
+                local instigatorBrain = ArmyBrains[instigator:GetArmy()]
+                if instigatorBrain and not instigatorBrain:IsDefeated() then
+                    instigatorBrain:AddArmyStat("FAFWin", 1)                
+                end              
 
-        	end
-	
-			## Score change, we send the score of all players, yes mam !
-			
-			for index, brain in ArmyBrains do
-				if brain and not brain:IsDefeated() then
-					local result = string.format("%s %i", "score", math.floor(brain:GetArmyStat("FAFWin",0.0).Value + brain:GetArmyStat("FAFLose",0.0).Value) )
-					table.insert( Sync.GameResult, { index, result } )
-				end
+            end
+    
+            ## Score change, we send the score of all players, yes mam !
+            
+            for index, brain in ArmyBrains do
+                if brain and not brain:IsDefeated() then
+                    local result = string.format("%s %i", "score", math.floor(brain:GetArmyStat("FAFWin",0.0).Value + brain:GetArmyStat("FAFLose",0.0).Value) )
+                    table.insert( Sync.GameResult, { index, result } )
+                end
 
-			end
+            end
         end
 
 
@@ -132,12 +126,12 @@ Unit = Class( oldUnit ) {
         self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )
         self:DestroyTopSpeedEffects()
-		
+        
         if UnitLayer == 'NAVAL' then
-			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
-		else
-			self.CreateEffects( self, SDExplosion, Army, Number)
-		end
+            self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
+        else
+            self.CreateEffects( self, SDExplosion, Army, Number)
+        end
 
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
             self.UnitBeingTeleported:Destroy()
