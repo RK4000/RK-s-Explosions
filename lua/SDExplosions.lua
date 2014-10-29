@@ -60,6 +60,10 @@ end
 function CreateFlash( obj, bone, scale, army )
     CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), 'glow_03', 'ramp_flare_02' )
 end
+
+function CreateFlashOffset( obj, bone, scale, army )
+    CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), 'glow_03', 'ramp_flare_02' )
+end
 ##----------------------------------------(end of) NECCESARY STUFF----------------------------------------##
 
 function CreateShipFlamingDebrisProjectiles( obj, volume, dimensions )

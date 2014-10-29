@@ -560,18 +560,21 @@ TECH3aeonFallDownTrail = {
 #####################T1 Sera Plane Fall Down###############################
 TECH1seraphimFallDownTrail = { 
         ModPath .. 'Sera_Fall_Down_Electricity_T1.bp',
+		ModPath .. 'Sera_Fall_Down_Electricity_T1_2.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
 #####################T2 Sera Plane Fall Down###############################
 TECH2seraphimFallDownTrail = { 
         ModPath .. 'Sera_Fall_Down_Electricity_T1.bp',
+		ModPath .. 'Sera_Fall_Down_Electricity_T1_2.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
 #####################T3 Sera Plane Fall Down###############################
 TECH3seraphimFallDownTrail = { 
         ModPath .. 'Sera_Fall_Down_Electricity_T1.bp',
+		ModPath .. 'Sera_Fall_Down_Electricity_T1_2.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 

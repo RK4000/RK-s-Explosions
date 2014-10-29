@@ -107,6 +107,7 @@ AirUnit = Class( oldAirUnit ) {
 		
 		local NExplosion = NEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
         local NFallDownTrail = NEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/4.5
 		
 		##local toggle = 1
 		
@@ -117,7 +118,8 @@ AirUnit = Class( oldAirUnit ) {
 			WARN('TOGGLE FOR BOOMS:', toggle )
 			if (toggle == 1) then
 				self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
-				self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##Custom falling-down trail
+				self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85) ) ##Custom falling-down trail
+				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 			else
 				self.CreateEffects( self, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Default explosion when unit is in the air
 				self.CreateEffects( self, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
@@ -170,10 +172,11 @@ AirUnit = Class( oldAirUnit ) {
 	
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
 	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
-		
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
 		
 		if (toggle == 1) then
 				self.CreateEffects( self, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
+				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 			else
 				self.CreateEffects( self, NExplosionImpact, Army, 1) ##Default explosion when unit is in the air
 		end
@@ -272,10 +275,12 @@ SeaUnit = Class( oldSeaUnit ) {
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 		local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
 		
 		if (toggle == 1) then
 			EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
 			DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/3, Army )
+			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 		else
 			EffectUtil.CreateBoneEffects( self, boneName, army, NFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
 			DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/6, Army )
@@ -290,9 +295,9 @@ SeaUnit = Class( oldSeaUnit ) {
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
 
     PlaySubBoomSound = function(self, sound)
@@ -330,6 +335,8 @@ SeaUnit = Class( oldSeaUnit ) {
         local UnitTechLvl = self:GetUnitTechLvl()
         local BoomScale = self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1')
         local BoomScale2 = self:GetSizeOfUnit()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )
         LOG('	Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
         LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
 
@@ -338,6 +345,7 @@ SeaUnit = Class( oldSeaUnit ) {
         if self:GetFractionComplete() == 1 then
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
 			else
 				self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
 			end
@@ -419,7 +427,7 @@ SeaUnit = Class( oldSeaUnit ) {
 
                 ##Make faction boom
                 self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
                 self:PlaySubBoomSound('SubBoomSound'..Faction)
                 ##Make faction boom
                 
@@ -1040,7 +1048,7 @@ StructureUnit = Class(Unit) {
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local BuildingSize = self:GetSizeOfBuilding()
-
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/0.5
         local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()*self:GetFinalBoomMultBasedOffFactionCyb())
 
         LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
@@ -1076,12 +1084,13 @@ StructureUnit = Class(Unit) {
 			end
 			
             self:PlayUnitSound('DeathExplosion')
-            ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+            RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             WaitSeconds( 1.15)
 			
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
 				DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
+				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
 			else
 				self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
 				DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5/1.5, Army )
@@ -1089,14 +1098,14 @@ StructureUnit = Class(Unit) {
 			
 			
             if UnitTechLvl == 'TECH1' then
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             elseif UnitTechLvl == 'TECH2' then
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             elseif UnitTechLvl == 'TECH3' then
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-                ##RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             end
             self:PlayUnitSound('DeathExplosion')
             self:PlayUnitSound('DeathExplosion')

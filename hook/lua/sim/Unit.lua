@@ -83,7 +83,7 @@ Unit = Class( oldUnit ) {
 		local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 		
 		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
-		local NumberForShake = Util.GetRandomFloat( Number, Number + 1 )
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
 		
 		if UnitLayer == 'NAVAL' then
 			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
