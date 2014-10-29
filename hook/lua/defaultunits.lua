@@ -11,7 +11,7 @@ local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
-local toggle = 1
+local toggle = 0
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {
@@ -114,34 +114,25 @@ AirUnit = Class( oldAirUnit ) {
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
             self:DestroyAllDamageEffects()	
-			
+			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 			WARN('TOGGLE FOR BOOMS:', toggle )
+			
 			if (toggle == 1) then
 				self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
 				self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85) ) ##Custom falling-down trail
-				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 			else
 				self.CreateEffects( self, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Default explosion when unit is in the air
 				self.CreateEffects( self, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
 			end
 			
-			if (toggle == 1) then
-				if ( self:GetUnitTechLvl() == 'TECH1' ) then
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5, Army )
-				elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15, Army )
-				else
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.75, Army )
-				end
+			if ( self:GetUnitTechLvl() == 'TECH1' ) then
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5/2.5, Army )
+			elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15/2, Army )
 			else
-				if ( self:GetUnitTechLvl() == 'TECH1' ) then
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5/2.5, Army )
-				elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15/2, Army )
-				else
-					DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.75/1.85, Army )
-				end
+				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.75/1.85, Army )
 			end
+			
             self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
@@ -174,9 +165,11 @@ AirUnit = Class( oldAirUnit ) {
 	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
 		
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+		
 		if (toggle == 1) then
 				self.CreateEffects( self, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
-				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+				
 			else
 				self.CreateEffects( self, NExplosionImpact, Army, 1) ##Default explosion when unit is in the air
 		end
@@ -277,13 +270,12 @@ SeaUnit = Class( oldSeaUnit ) {
 		local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
 		
+		DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/4.75, Army )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 		if (toggle == 1) then
-			EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-			DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/3, Army )
-			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+			EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...	
 		else
 			EffectUtil.CreateBoneEffects( self, boneName, army, NFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-			DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/6, Army )
 		end
 		
     end,
@@ -341,11 +333,11 @@ SeaUnit = Class( oldSeaUnit ) {
         LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
 
 --LOG(self:GetBlueprint().Description, " watchbone is ", watchBone)
-        
+
+        self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
         if self:GetFractionComplete() == 1 then
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
-				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
 			else
 				self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
 			end
@@ -878,10 +870,8 @@ StructureUnit = Class(Unit) {
 
 		if (toggle == 1) then
 			EffectUtil.CreateBoneEffects( self, boneName, army, SDExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-			DefaultExplosionsStock.CreateFlash( self, boneName, Number, Army )
 		else
 			EffectUtil.CreateBoneEffects( self, boneName, army, NExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
-			DefaultExplosionsStock.CreateFlash( self, boneName,(number)/1.5, Army )
 		end
 		
     end,
@@ -1075,25 +1065,22 @@ StructureUnit = Class(Unit) {
             LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.5 )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
-				DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
 			else
 				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
-				DefaultExplosionsStock.CreateFlash( self, -1, Number*2/1.5, Army )
 			end
 			
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             WaitSeconds( 1.15)
-			
+			DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
+			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
-				DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
-				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
 			else
 				self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
-				DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5/1.5, Army )
 			end
 			
 			

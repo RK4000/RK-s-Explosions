@@ -18,7 +18,7 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 
-local toggle = 1
+local toggle = 0
 
 function GetUnitSizes( unit )
     local bp = unit:GetBlueprint()
@@ -167,12 +167,8 @@ function _CreateScalableUnitExplosion( obj )
     # Create Generic emitter effects
     CreateEffects( obj, army, EffectTable )
 	
-    # Create Light particle flash, but only for stock explosions. rks only creates light on the start (handled in unit.lua)
-	if (toggle == 1) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
-	else
-		DefaultExplosionsStock.CreateFlash( obj, -1, scale, army )
-	end
+    # Create Light particle flash
+	DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
 
     # Create scorch mark
     if layer == 'Land' then
