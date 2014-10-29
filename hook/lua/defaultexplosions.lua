@@ -18,7 +18,7 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 
-local toggle = 0
+local toggle = 1
 
 function GetUnitSizes( unit )
     local bp = unit:GetBlueprint()
@@ -96,7 +96,7 @@ function _CreateScalableUnitExplosion( obj )
 			if (toggle == 1) then 
 				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
 			else
-				BaseEffectTable = NEffectTemplate.ExplosionSmall 
+				BaseEffectTable = NEffectTemplate.ExplosionSmallest 
 			end
 		elseif scale > 3.75 then ## Large units
 			if (toggle == 1) then 
@@ -110,7 +110,7 @@ function _CreateScalableUnitExplosion( obj )
 			if (toggle == 1) then 
 				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
 			else
-				BaseEffectTable = NEffectTemplate.ExplosionSmall 
+				BaseEffectTable = NEffectTemplate.ExplosionSmaller
 			end
 		end
 	end
@@ -166,9 +166,13 @@ function _CreateScalableUnitExplosion( obj )
     #---------------------------------------------------------------
     # Create Generic emitter effects
     CreateEffects( obj, army, EffectTable )
-
-    # Create Light particle flash
-    DefaultExplosionsStock.CreateFlash( obj, -1, scale, army )
+	
+    # Create Light particle flash, but only for stock explosions. rks only creates light on the start (handled in unit.lua)
+	if (toggle == 1) then
+		DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
+	else
+		DefaultExplosionsStock.CreateFlash( obj, -1, scale, army )
+	end
 
     # Create scorch mark
     if layer == 'Land' then
@@ -182,8 +186,12 @@ function _CreateScalableUnitExplosion( obj )
     # Create GenericDebris chunks
     DefaultExplosionsStock.CreateDebrisProjectiles( obj, obj.Spec.BoundingXYZRadius, obj.Spec.Dimensions )
 
-    # Camera Shake  (.radius .maxshake .minshake .lifetime)
-    obj:ShakeCamera( 30 * scale, scale * ShakeMaxMul, 0, 0.5 + ShakeTimeModifier )
+    # Camera Shake  (.radius .maxshake .minshake .lifetime) ##Shake only for default explosions, they shake on both starting and ending explosion. rks only shakes at start (handled in unit.lua)
+	if (toggle == 1) then
+		obj:ShakeCamera( 0, 0, 0, 0 )
+	else
+		obj:ShakeCamera( 30 * scale, scale * ShakeMaxMul, 0, 0.5 + ShakeTimeModifier )
+	end
     #---------------------------------------------------------------
     #WaitSeconds( 5 )
     #_CreateScalableUnitExplosion( obj )

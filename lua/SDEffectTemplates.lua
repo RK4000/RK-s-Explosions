@@ -126,7 +126,7 @@ ExplosionTECH2uef = {
 #####################T3 UEF Unit Boom###############################
 ExplosionTECH3uef = {
 	ModPath .. 'dust_emit.bp',
-	ModPath .. 'UEFMedium_test_smoke.bp',       
+	ModPath .. 'UEFMedium_test_smokeT3.bp',       
 	ModPath .. 'UEFSmallMedium_test_random.bp',
 	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
         ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 

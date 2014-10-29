@@ -7,7 +7,8 @@ rklog = false
 ##It is also neccesary because the changes here remove the current generic
 ##explosion, since it's replaced by the factional ones.
 
-local toggle = 0
+local toggle = 1
+local Util = import('/lua/utilities.lua')
 
 Unit = Class( oldUnit ) {
 
@@ -81,13 +82,18 @@ Unit = Class( oldUnit ) {
         local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 		local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 		
+		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
+		local NumberForShake = Util.GetRandomFloat( Number, Number + 1 )
+		
 		if UnitLayer == 'NAVAL' then
 			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
 		else
 			if (toggle == 1) then
 				self.CreateEffects( self, SDExplosion, Army, Number)
+				DefaultExplosionsStock.CreateFlash( self, -1, Number, Army ) ##Only add the flash in the initial boom for rks explosions. The code that creates the default explosions is the one originally there by GPG, which adds an explosion (and flash) at the start and end of an animation, while my explosions are only done at the start of the animation. (performance reasons)
+				self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375) ##Only add the shake in the initial boom for rks explosions. The code that creates the default explosions is the one originally there by GPG, which adds an explosion (and shake) at the start and end of an animation, while my explosions are only done at the start of the animation.
 			else
-				self.CreateEffects( self, NExplosion, Army, Number)
+				self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, Number)
 			end
 		end
 		

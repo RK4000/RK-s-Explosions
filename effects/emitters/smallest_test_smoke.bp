@@ -1,6 +1,6 @@
 EmitterBlueprint {
-	BlueprintId = 'CybT2_smoke',
-	Lifetime = 3.00,
+	BlueprintId = 'small_test_smoke',
+	Lifetime = 1.5,
 	Repeattime = 50.00,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
@@ -46,19 +46,19 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=2.000,z=0.000 },
+			{ x=25.000,y=14.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=80.000,z=40.000 },
+			{ x=25.000,y=30.000,z=20.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.750,z=0.000 },
+			{ x=25.000,y=4.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=4.000,z=0.000 },
+			{ x=25.000,y=1.500,z=1.000 },
 		},
 	},
 	XPosCurve = {
@@ -100,7 +100,7 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.500 },
+			{ x=25.000,y=0.500,z=0.250 },
 		},
 	},
 	ZPosCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=25.000,y=0.200,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=3.000,z=1.000 },
+			{ x=25.000,y=0.800,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {

@@ -36,6 +36,16 @@ AeonRestorerMissileHit01 = {
 }
 
 #####################HUGE EXP. EXPLOSIONS####################################
+ExplosionSmallest = {
+	ModPath .. 'smallest_test_sonic.bp',
+	ModPath .. 'smallest_test_fire.bp',
+	ModPath .. 'smallest_test_smoke.bp',	 
+}
+ExplosionSmaller = {
+	ModPath .. 'smaller_test_sonic.bp',
+	ModPath .. 'smaller_test_fire.bp',
+	ModPath .. 'smaller_test_smoke.bp',	 
+}
 ExplosionSmall = {
 	ModPath .. 'small_test_sonic.bp',
 	ModPath .. 'small_test_fire.bp',

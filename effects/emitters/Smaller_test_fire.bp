@@ -1,16 +1,16 @@
 EmitterBlueprint {
-	BlueprintId = 'CybT2_smoke',
-	Lifetime = 3.00,
-	Repeattime = 50.00,
+	BlueprintId = 'Small_test_fire',
+	Lifetime = 1.20/5,
+	Repeattime = 25.00,
 	TextureFramecount = 1.00,
-	Blendmode = 0.00,
-	LocalVelocity = false,
-	LocalAcceleration = false,
+	Blendmode = 3.00,
+	LocalVelocity = true,
+	LocalAcceleration = true,
 	Gravity = false,
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 800.00,
+	LODCutoff = 500.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
@@ -19,46 +19,46 @@ EmitterBlueprint {
 	ParticleResistance = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = -0.05,
+	SortOrder = 0,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/fire_damage_flame_add_01.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=25.000,y=0.000,z=0.050 },
 		},
 	},
 	YDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.005,z=0.030 },
+			{ x=25.000,y=0.000,z=0.050 },
 		},
 	},
 	ZDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.020 },
+			{ x=25.000,y=0.000,z=0.050 },
 		},
 	},
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=2.000,z=0.000 },
+			{ x=25.000,y=12.500*5,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=80.000,z=40.000 },
+			{ x=25.000,y=9.000,z=4.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.750,z=0.000 },
+			{ x=25.000,y=3.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=4.000,z=0.000 },
+			{ x=25.000,y=1.215/1.2,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -100,7 +100,7 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.500 },
+			{ x=25.000,y=0.100,z=0.000 },
 		},
 	},
 	ZPosCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=25.000,y=0.400/1.2,z=0.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=3.000,z=1.000 },
+			{ x=25.000,y=1.115/1.2,z=0.100 },
 		},
 	},
 	InitialRotationCurve = {
@@ -136,7 +136,7 @@ EmitterBlueprint {
 	FrameRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=25.000,y=0.200,z=0.000 },
 		},
 	},
 	TextureSelectionCurve = {
