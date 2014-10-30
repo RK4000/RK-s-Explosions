@@ -212,6 +212,7 @@ ExplosionTECH1seraphim = {
 	##ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T2 Sera Unit Boom###############################
@@ -225,6 +226,7 @@ ExplosionTECH2seraphim = {
 	##ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T3 Sera Unit Boom###############################
@@ -238,6 +240,7 @@ ExplosionTECH3seraphim = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 ######################################################################################################### LAND BOOMS
@@ -256,7 +259,7 @@ AirExplosionTECH1uef = {
 AirExplosionTECH2uef = {
 	ModPath .. 'UEFMedium_test_smoke.bp',            
 	ModPath .. 'UEFMedium_test_sonic.bp',      
-        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
         EmtBpPath .. 'SDantimatter_ring_01_air.bp',	
 }
 
@@ -264,7 +267,7 @@ AirExplosionTECH2uef = {
 AirExplosionTECH3uef = {
 	ModPath .. 'UEFMedium_test_smoke.bp',            
 	ModPath .. 'UEFMedium_test_sonic.bp',      
-        ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+        ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
         EmtBpPath .. 'SDantimatter_ring_01_air.bp',		
 		ModPath .. 'UEF_Outward_Spark_Air.bp', 
 }
@@ -340,6 +343,7 @@ AirExplosionTECH1seraphim = {
 	##ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	##ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T2 Sera Air Unit Boom###############################
@@ -352,6 +356,7 @@ AirExplosionTECH2seraphim = {
 	##ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T3 Sera Air Unit Boom###############################
@@ -364,6 +369,7 @@ AirExplosionTECH3seraphim = {
 	ModPath .. 'Sera_Flash_2_T3air.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 ######################################################################################################### AIR BOOMS
@@ -471,6 +477,7 @@ BuildingExplosionTECH1seraphim = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T2 Sera Building Unit Boom###############################
@@ -483,6 +490,7 @@ BuildingExplosionTECH2seraphim = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T3 Sera Building Unit Boom###############################
@@ -495,6 +503,7 @@ BuildingExplosionTECH3seraphim = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 
@@ -542,18 +551,21 @@ TECH3cybranFallDownTrail = {
 #####################T1 Aeon Plane Fall Down###############################
 TECH1aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
 #####################T2 Aeon Plane Fall Down###############################
 TECH2aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
 #####################T3 Aeon Plane Fall Down###############################
 TECH3aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
@@ -908,6 +920,7 @@ seraphimShipSubExplTECH1 = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################Sera T2 Ship Sub-Boom###############################
@@ -920,6 +933,7 @@ seraphimShipSubExplTECH2 = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################Sera T3 Ship Sub-Boom###############################
@@ -932,6 +946,7 @@ seraphimShipSubExplTECH3 = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 ######################################################################################################### Ship Sub-Booms
@@ -980,6 +995,7 @@ seraphimSubExplosionAboveWater = {
 	ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',	
+	ModPath .. 'Sera_Afterhue.bp',
 }
 
 ######################################################################################################### Sub Booms (Surface)

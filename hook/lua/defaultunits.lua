@@ -11,7 +11,7 @@ local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
-local toggle = 0
+local toggle = 1
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {
@@ -821,18 +821,18 @@ StructureUnit = Class(Unit) {
         local NumExplFaction = self:GetNumberBasedOffFaction()
 		local TECHMULT = self:GetMultTechLvl(UnitTechLvl or TECH1)
 
-        local numExplosions1 = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1,2.5) * NumExplFaction + Number)
+        local numExplosions1 = (self:GetSizeOfBuilding(self) * Util.GetRandomFloat(1, 2.5) * NumExplFaction + Number)
 		local numExplosions = (numExplosions1) * TECHMULT
 		
         local x,y,z = self:GetUnitSizes(self)
         LOG('	Original Sub Boom Count: ', numExplosions1 )
 		LOG('	Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1) )
 		LOG('	Sub-explosion number: ', numExplosions )
-        self:ShakeCamera( 30*1.65, 1*1.65, 0, 0.45 * numExplosions *1.65 )
         for i = 0, numExplosions do
             self.CreateFactionalHitExplosionOffset( self, 1.0, unpack({Util.GetRandomOffset(x,y,z,1.2)}))
             self:PlayUnitSound('DeathExplosion')
-            WaitSeconds( ( Util.GetRandomFloat( (0.3 * NumExplFaction), (0.6* NumExplFaction) ) ) +0.3 )
+			self:ShakeCamera( 30*1.65/4, 1*1.65/4, 0, (((Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3) /2) )
+            WaitSeconds( (Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3 )
         end
     end,
 
@@ -1065,11 +1065,11 @@ StructureUnit = Class(Unit) {
             LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.5 )
-			DefaultExplosionsStock.CreateFlash( self, -1, Number*2, Army )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
 			if (toggle == 1) then 
-				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
+				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
 			else
-				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()) )
+				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
 			end
 			
             self:PlayUnitSound('DeathExplosion')

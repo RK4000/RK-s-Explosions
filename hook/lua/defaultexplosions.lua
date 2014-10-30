@@ -18,7 +18,7 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 
-local toggle = 0
+local toggle = 1
 
 function GetUnitSizes( unit )
     local bp = unit:GetBlueprint()

@@ -1,12 +1,12 @@
 EmitterBlueprint {
 	BlueprintId = 'sdexplosion_fire_sparks_02_emit',
-	Lifetime = 35.00/35,
-	Repeattime = 35.00/35,
+	Lifetime = -1,
+	Repeattime = -1,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
 	LocalVelocity = true,
 	LocalAcceleration = false,
-	Gravity = true,
+	Gravity = false,
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
@@ -18,7 +18,7 @@ EmitterBlueprint {
 	OnlyEmitOnWater = false,
 	InterpolateEmission = true,
 	TextureStripcount = 16.00,
-	SortOrder = 0.00,
+	SortOrder = -1.00,
 	Texture = [[/mods/rks_explosions/textures/particles/debris_alpha_02.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_fire_02.dds]],
 	XDirectionCurve = {
@@ -30,7 +30,7 @@ EmitterBlueprint {
 	YDirectionCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=4.025,y=0.340,z=0.100 },
+			{ x=4.025,y=0.000,z=0.100 },
 		},
 	},
 	ZDirectionCurve = {
@@ -42,21 +42,19 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=17.962,y=18.865*3,z=10.000 },
+			{ x=17.962,y=18.865/2,z=10.000/2 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=17.675,y=41.110/2,z=15.000 },
-			{ x=32.641,y=80.667/2,z=20.000 },
+			{ x=17.675,y=20.000/1.8,z=19.500/0.8 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=0.000,y=1.548*0.52,z=0.350*0.52 },
-			{ x=23.087*0.52,y=0.833*0.52,z=0.350*0.52 },
+			{ x=0.000,y=0,z=0.5 },
 		},
 	},
 	XAccelCurve = {
@@ -68,7 +66,7 @@ EmitterBlueprint {
 	YAccelCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=17.500,y=-0.010,z=0.000 },
+			{ x=17.500,y=0.000,z=0.000 },
 		},
 	},
 	ZAccelCurve = {
@@ -80,7 +78,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=17.454,y=2.154,z=0.000 },
+			{ x=17.454,y=0.754,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -105,13 +103,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=16.716,y=0.060,z=0.010 },
+			{ x=16.716,y=0.060*4,z=0.010 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 35.00,
 		Keys = {
-			{ x=17.129,y=0.220,z=0.020 },
+			{ x=17.129,y=0.220*4,z=0.020 },
 		},
 	},
 	InitialRotationCurve = {
