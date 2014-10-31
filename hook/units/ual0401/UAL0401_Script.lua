@@ -111,7 +111,7 @@ UAL0401 = Class(AWalkingLandUnit) {
         end
         
         WaitSeconds(2.5/0.8/0.8)
-        sdexplosion.CreateAeonFinalLargeHitExplosionAtBone( self, 'Torso', 16.5 )    
+        sdexplosion.CreateAeonFinalLargeHitExplosionAtBone( self, 'Torso', 10.5 )    
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'CollossusDeathBigBoom') then

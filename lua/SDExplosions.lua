@@ -24,6 +24,17 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+
+local toggle = 0
+
+function GetEffectTemplateFile(toggle)
+	if toggle == 1 then
+		return SDEffectTemplate
+	else 
+		return NEffectTemplate
+	end
+end
 
 ##----------------------------------------NECCESARY STUFF----------------------------------------##
 function GetUnitSizes( unit )
@@ -182,41 +193,41 @@ end
 function CreateUEFSmallHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionSmallSD )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionSmallSD )
 end
 
 function CreateUEFMediumHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionMediumSD )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionMediumSD )
 end
 
 function CreateUEFLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionLargeShortDurSmoke )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke )
+    ##CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
 end
 
 function CreateUEFLargeShortDurSmokeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionLargeShortDurSmoke )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke )
+    ##CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
 end
 
 function CreateUEFVeryLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionVeryLarge )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionVeryLarge )
+    ##CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
 end
 
 function CreateUEFVeryLargeShortDurSmokeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-    CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionVeryLargeShortDurSmoke )
-    CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionVeryLargeShortDurSmoke )
+    ##CreateBoneEffects( obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02 )
 end
 
 ##---------------------------------------------------------
@@ -228,31 +239,31 @@ end
 function CreateCybranSmallHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-	CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumCybran )##:ScaleEmitter(1)
+	CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran )##:ScaleEmitter(1)
 end
 
 function CreateCybranMediumHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumCybran )##:ScaleEmitter(2.5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran )##:ScaleEmitter(2.5)
 end
 
 function CreateCybranLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumCybran )##:ScaleEmitter(5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran )##:ScaleEmitter(5)
 end
 
 function CreateCybranVeryLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumCybran )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran )##:ScaleEmitter(10)
 end
 
 function CreateCybranFinalLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeCybran )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeCybran )##:ScaleEmitter(10)
 end
 
 ##---------------------------------------------------------
@@ -264,31 +275,31 @@ end
 function CreateAeonSmallHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-	CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumAeon )##:ScaleEmitter(1)
+	CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumAeon )##:ScaleEmitter(1)
 end
 
 function CreateAeonMediumHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumAeon )##:ScaleEmitter(2.5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumAeon )##:ScaleEmitter(2.5)
 end
 
 function CreateAeonLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeAeon )##:ScaleEmitter(5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon )##:ScaleEmitter(5)
 end
 
 function CreateAeonVeryLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeAeon )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon )##:ScaleEmitter(10)
 end
 
 function CreateAeonFinalLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPVeryLargeAeon )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPVeryLargeAeon )##:ScaleEmitter(10)
 end
 
 ##---------------------------------------------------------
@@ -300,29 +311,29 @@ end
 function CreateSeraSmallHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-	CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumSera )##:ScaleEmitter(1)
+	CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera )##:ScaleEmitter(1)
 end
 
 function CreateSeraMediumHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPMediumSera )##:ScaleEmitter(2.5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera )##:ScaleEmitter(2.5)
 end
 
 function CreateSeraLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeSera )##:ScaleEmitter(5)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera )##:ScaleEmitter(5)
 end
 
 function CreateSeraVeryLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeSera )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera )##:ScaleEmitter(10)
 end
 
 function CreateSeraFinalLargeHitExplosionAtBone( obj, boneName, scale )
     local army = obj:GetArmy()
     CreateFlash( obj, boneName, scale * 0.5, army )
-		CreateBoneEffects( obj, boneName, army, SDEffectTemplate.ExplosionEXPLargeSera  )##:ScaleEmitter(10)
+		CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera  )##:ScaleEmitter(10)
 end

@@ -11,7 +11,7 @@ local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
-local toggle = 1
+local toggle = 0
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {
@@ -772,10 +772,10 @@ StructureUnit = Class(Unit) {
     GetFinalBoomMultBasedOffFactionCyb = function(self)
         local UnitTechLvl = self:GetUnitTechLvl()
         local Faction = self:GetFaction()
-        if ( (Faction == 'cybran') and (UnitTechLvl == 'TECH3') )  then
-            return 1.525
-        else
+        if ( (Faction == 'cybran') and (UnitTechLvl == 'TECH3') and (self:GetBlueprint().Categories == 'FACTORY') )  then
             return 1
+        else
+            return 0.8
         end
     end,
 	
@@ -1069,7 +1069,7 @@ StructureUnit = Class(Unit) {
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
 			else
-				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
+				self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3*4 )
 			end
 			
             self:PlayUnitSound('DeathExplosion')
@@ -1080,7 +1080,7 @@ StructureUnit = Class(Unit) {
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
 			else
-				self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+				self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier)*2 )
 			end
 			
 			

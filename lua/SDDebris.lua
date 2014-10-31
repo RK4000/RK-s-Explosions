@@ -4,7 +4,7 @@ local EffectTemplates = import('/lua/EffectTemplates.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 
-local toggle = 1
+local toggle = 0
 
 function GetEffectTemplateFile(toggle)
 	if toggle == 1 then

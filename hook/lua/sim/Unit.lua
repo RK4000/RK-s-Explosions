@@ -7,7 +7,7 @@ rklog = false
 ##It is also neccesary because the changes here remove the current generic
 ##explosion, since it's replaced by the factional ones.
 
-local toggle = 1
+local toggle = 0
 local Util = import('/lua/utilities.lua')
 
 Unit = Class( oldUnit ) {

@@ -8,91 +8,82 @@
 #**  Copyright © 2014 RK Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 TableCat = import('/lua/utilities.lua').TableCat
-EmtBpPath = '/mods/rks_explosions/effects/emitters/'
-EmtBpPathAlt = '/mods/rks_explosions/effects/emitters/'
+EmtBpPath = '/mods/rks_explosions/effects/emitters/stock/'
+EmtBpPathAlt = '/mods/rks_explosions/effects/emitters/stock/'
 EmitterTempEmtBpPath = '/mods/rks_explosions/effects/emitters/temp/'
-ModPath = '/mods/rks_explosions/effects/emitters/'
+ModPath = '/mods/rks_explosions/effects/emitters/stock/'
+ModPathrk = '/mods/rks_explosions/effects/emitters/'
 
 #####################WEAPON EXPLOSIONS####################################
 T2RocketBotMissileHitGround = {
-	##ModPath .. 'dust_emit.bp',
-	ModPath .. 'Cyb_Rktbot_smoke.bp',
-    ModPath .. 'Cyb_Rktbot_charge.bp',
-	ModPath .. 'Cyb_Flash_Rktbot.bp',
-	##ModPath .. 'Medium_test_sonic.bp',
+    EmtBpPath .. 'dust_emit.bp',
+	EmtBpPath .. 'small_test_sonic.bp',
+	EmtBpPath .. 'small_test_fire.bp',
+	EmtBpPath .. 'small_test_random.bp',
+	EmtBpPath .. 'small_test_smoke.bp',
 }
 
 T2RocketBotMissileHit = {
-	##ModPath .. 'dust_emit.bp',
-	ModPath .. 'Cyb_Rktbot_smoke_Unit.bp',
-    ModPath .. 'Cyb_Rktbot_charge.bp',
-	ModPath .. 'Cyb_Flash_Rktbot_Unit.bp',
-	##ModPath .. 'Medium_test_sonic.bp',
+	EmtBpPath .. 'small_test_sonic.bp',
+	EmtBpPath .. 'small_test_fire.bp',
+	EmtBpPath .. 'small_test_random.bp',
+	EmtBpPath .. 'small_test_smoke.bp',
 }
 AeonRestorerMissileHit01 = {
-	ModPath .. 'Aeon_Restorer_Aura.bp',
-	ModPath .. 'Aeon_Restorer_Aura2.bp',
-	ModPath .. 'Aeon_Restorer_smoke.bp',
+	EmtBpPath .. 'small_test_sonic.bp',
+	EmtBpPath .. 'small_test_fire.bp',
+	EmtBpPath .. 'small_test_random.bp',
+	EmtBpPath .. 'small_test_smoke.bp',
 }
 
 #####################HUGE EXP. EXPLOSIONS####################################
 ExplosionSmallest = {
-	ModPath .. 'smallest_test_sonic.bp',
-	ModPath .. 'smallest_test_fire.bp',
-	ModPath .. 'smallest_test_smoke.bp',	 
+    EmtBpPath .. 'dust_emit.bp',
+	EmtBpPath .. 'small_test_sonic.bp',
+	EmtBpPath .. 'small_test_fire.bp',
+	EmtBpPath .. 'small_test_random.bp',
+	EmtBpPath .. 'small_test_smoke.bp', 
 }
 ExplosionSmaller = {
-	ModPath .. 'smaller_test_sonic.bp',
-	ModPath .. 'smaller_test_fire.bp',
-	ModPath .. 'smaller_test_smoke.bp',	 
+    EmtBpPath .. 'dust_emit.bp',
+	EmtBpPath .. 'small_test_sonic.bp',
+	EmtBpPath .. 'small_test_fire.bp',
+	EmtBpPath .. 'small_test_random.bp',
+	EmtBpPath .. 'small_test_smoke.bp', 
 }
 ExplosionSmall = {
-	ModPath .. 'small_test_sonic.bp',
-	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_smoke.bp',	 
+	EmtBpPath .. 'dust_emit.bp',
+	EmtBpPath .. 'Medium_test_smoke.bp',
+	EmtBpPath .. 'Medium_test_fire.bp',
+	EmtBpPath .. 'Medium_test_random.bp',
+	EmtBpPath .. 'Medium_test_sonic.bp',
 }
 ExplosionSmallSD = {
-	##ModPath .. 'dust_small_emit.bp',
-	ModPath .. 'small_test_sonic.bp',
+	##ModPath .. 'small_test_sonic.bp',
 	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_random.bp',
-	ModPath .. 'small_test_smoke.bp',
-	ModPath .. 'UEF_Outward_Spark_EXP_Small.bp', 
+	##ModPath .. 'small_test_smoke.bp',
 }
 
 ExplosionMediumSD = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'Medium_test_smoke.bp',
-	ModPath .. 'Medium_test_fire.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
-		ModPath .. 'UEF_Outward_Spark_EXP_Medium.bp', 
+	##ModPath .. 'Medium_test_smoke.bp',
+	ModPath .. 'small_test_fire.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 ExplosionLargeShortDurSmoke = {
-	##ModPath .. 'Large_ShortDur_test_smoke.bp',
-	ModPath .. 'residue_Very_Large_test_smoke.bp',
-	ModPath .. 'Large_test_fire.bp',
-	ModPath .. 'Large_test_random.bp',
-	ModPath .. 'Large_test_sonic.bp',
-		ModPath .. 'UEF_Very_Large_test_sonic.bp',
-		ModPath .. 'UEF_Outward_Spark_EXP_Big.bp', 
+	ModPath .. 'Medium_test_smoke.bp',
+	ModPath .. 'small_test_fire.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 ExplosionVeryLarge = {
-        ModPath .. 'residue_Very_Large_test_smoke.bp',
-	ModPath .. 'Very_Large_test_smoke.bp',
-	ModPath .. 'Very_Large_test_fire.bp',
-	ModPath .. 'Very_Large_test_random.bp',
-	ModPath .. 'Very_Large_test_sonic.bp',
-		ModPath .. 'UEF_Outward_Spark_EXP_Big.bp', 
+	ModPath .. 'Medium_test_smoke.bp',
+	ModPath .. 'Medium_test_fire.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 }
 ExplosionVeryLargeShortDurSmoke = {
-        ModPath .. 'residue_Very_Large_test_smoke.bp',
-	ModPath .. 'Very_ShortDur_Large_test_smoke.bp',
-	ModPath .. 'Very_Large_test_fire.bp',
-	ModPath .. 'Very_Large_test_random.bp',
-	ModPath .. 'Very_Large_test_sonic.bp',
-		ModPath .. 'UEF_Outward_Spark_EXP_Big.bp', 
+	ModPath .. 'Medium_test_smoke.bp',
+	ModPath .. 'Medium_test_fire.bp',
+	##ModPath .. 'Medium_test_sonic.bp',
 } 
 
 LuXy_Heart = {
@@ -421,62 +412,62 @@ TECH3seraphimFallDownTrail = {}
 
 #####################T1 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH1uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH2uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH3uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Cybran Plane Light DMG###############################
 SmallAirUnitSmokeTECH1cybran = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 Cybran Plane Light DMG###############################
 SmallAirUnitSmokeTECH2cybran = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Cybran Plane Light DMG###############################
 SmallAirUnitSmokeTECH3cybran = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Aeon Plane Light DMG###############################
 SmallAirUnitSmokeTECH1aeon = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 Aeon Plane Light DMG###############################
 SmallAirUnitSmokeTECH2aeon = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Aeon Plane Light DMG###############################
 SmallAirUnitSmokeTECH3aeon = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Sera Plane Light DMG###############################
 SmallAirUnitSmokeTECH1seraphim = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 Sera Plane Light DMG###############################
 SmallAirUnitSmokeTECH2seraphim = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Sera Plane Light DMG###############################
 SmallAirUnitSmokeTECH3seraphim = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 ######################################################################################################### LIGHT AIR DMG FX
@@ -485,20 +476,20 @@ SmallAirUnitSmokeTECH3seraphim = {
 
 #####################T1 UEF Plane Med DMG###############################
 SmallAirUnitFireTECH1uef = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 UEF Plane Med DMG###############################
 SmallAirUnitFireTECH2uef = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 UEF Plane Med DMG###############################
 SmallAirUnitFireTECH3uef = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Cybran Plane Med DMG###############################
@@ -509,50 +500,50 @@ SmallAirUnitFireTECH1cybran = {
 
 #####################T2 Cybran Plane Med DMG###############################
 SmallAirUnitFireTECH2cybran = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Cybran Plane Med DMG###############################
 SmallAirUnitFireTECH3cybran = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Aeon Plane Med DMG###############################
 SmallAirUnitFireTECH1aeon = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 Aeon Plane Med DMG###############################
 SmallAirUnitFireTECH2aeon = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Aeon Plane Med DMG###############################
 SmallAirUnitFireTECH3aeon = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T1 Sera Plane Med DMG###############################
 SmallAirUnitFireTECH1seraphim = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T2 Sera Plane Med DMG###############################
 SmallAirUnitFireTECH2seraphim = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 #####################T3 Sera Plane Med DMG###############################
 SmallAirUnitFireTECH3seraphim = { 
-        ModPath .. 'AircraftDamageFireSmall01.bp',
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPathrk .. 'AircraftDamageFireSmall01.bp',
+        ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 ######################################################################################################### MED AIR DMG FX
@@ -561,74 +552,74 @@ SmallAirUnitFireTECH3seraphim = {
 
 #####################T1 UEF Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH1uef = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T2 UEF Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH2uef = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T3 UEF Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH3uef = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T1 Cybran Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH1cybran = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T2 Cybran Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH2cybran = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T3 Cybran Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH3cybran = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T1 Aeon Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH1aeon = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T2 Aeon Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH2aeon = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T3 Aeon Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH3aeon = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T1 Sera Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH1seraphim = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T2 Sera Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH2seraphim = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 #####################T3 Sera Plane Hvy DMG###############################
 BigAirUnitFireSmokeTECH3seraphim = { 
-        ModPath .. 'AircraftDamageFireBig01.bp',
-        ModPath .. 'AircraftDamageSmokeBig01.bp',
+        ModPathrk .. 'AircraftDamageFireBig01.bp',
+        ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 
@@ -786,63 +777,40 @@ seraphimSubExplosionUnderWater = {
 
 #####################Cyb Generic Experimental  Medium Boom###############################
 ExplosionEXPMediumCybran = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT2_smoke.bp',
-        ModPath .. 'CybEXPMED_charge.bp',
-        ModPath .. 'CybEXPMED_chargelong.bp',
-        ModPath .. 'CybEXPMED_chargering.bp',
-	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_3.bp',
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
 }
 
 #####################Cyb Generic Experimental Large Boom###############################
 ExplosionEXPLargeCybran = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
-        ModPath .. 'CybEXPLRG_charge.bp',
-        ModPath .. 'CybEXPLRG_chargelong.bp',
-        ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Large_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_4.bp',
+	ModPath .. 'medium_test_sonic.bp',
+	ModPath .. 'medium_test_fire.bp',
+	ModPath .. 'medium_test_smoke.bp',
 }
 SoulRipper_Impact_Explosion = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
-        ModPath .. 'CybEXPLRG_charge.bp',
-        ModPath .. 'CybEXPLRG_chargelong.bp',
-        ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Large_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_4.bp',
-	ModPath .. 'SoulRipper_smoke.bp',
-	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'medium_test_sonic.bp',
+	ModPath .. 'medium_test_fire.bp',
+	ModPath .. 'medium_test_smoke.bp',
 }
 SoulRipper_Final_Boom = {
-	ModPath .. 'CybT3_smoke.bp',
-        ModPath .. 'CybEXPLRG_charge.bp',
-        ModPath .. 'CybEXPLRG_chargelong.bp',
-        ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Cyb_Flash_4_EXP.bp',
-	ModPath .. 'SoulRipper_smoke.bp',
-	ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'medium_test_sonic.bp',
+	ModPath .. 'medium_test_fire.bp',
+	ModPath .. 'medium_test_smoke.bp',
 }
 SoulRipper_First_Series_Booms = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
-    ModPath .. 'CybT3_charge.bp',
-    ModPath .. 'CybT3_chargelong.bp',
-    ModPath .. 'CybT3_chargering.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_4_EXP.bp',
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
 }
 SoulRipper_Fall_Down_Smoke = {
-	ModPath .. 'SoulRipper_Fall_Down_Smoke.bp',
+	##ModPath .. 'SoulRipper_Fall_Down_Smoke.bp',
 }
 SoulRipper_Ambient_Electricity = {
-	ModPath .. 'SoulRipper_Ambient_Electricity.bp',
+	##ModPath .. 'SoulRipper_Ambient_Electricity.bp',
 }
 SoulRipper_Ambient_Electricity_Upper = {
-	ModPath .. 'SoulRipper_Ambient_Electricity_Upper.bp',
+	##ModPath .. 'SoulRipper_Ambient_Electricity_Upper.bp',
 }
 ######################################################################################################### EXP BOOMS (Cyb)
 ######################################################################################################### 
@@ -864,9 +832,10 @@ ExplosionEXPLargeAeon = {
 
 #####################Aeon GC Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
-	ModPath .. 'big_test_sonic.bp',
-	ModPath .. 'big_test_fire.bp',
-	ModPath .. 'big_test_smoke.bp',
+	EmtBpPath .. 'medium_test_smoke.bp',
+	EmtBpPath .. 'medium_test_fire.bp',
+	EmtBpPath .. 'medium_test_random.bp',
+	EmtBpPath .. 'medium_test_sonic.bp',
 }
 
 #####################Aeon CZAR Stuff###############################
@@ -883,9 +852,9 @@ CZARCenterEffectUp= {}
 CZARCenterEffectDown= {}
 
 CZARCenterImpactExplosion = {	
-	ModPath .. 'big_test_sonic.bp',
-	ModPath .. 'big_test_fire.bp',
-	ModPath .. 'big_test_smoke.bp',
+	ModPath .. 'large_test_sonic.bp',
+	ModPath .. 'large_test_fire.bp',
+	ModPath .. 'large_test_smoke_stock.bp',
 }
 
 CZAR_Center_FallDown_Smoke = {}
@@ -934,9 +903,10 @@ Ahwassa_Engine_Critical_Breach = {}
 Ahwassa_Engine_Critical_Breach_Electricity = {}
 
 Ahwassa_Impact_Explosion = {
-	ModPath .. 'big_test_sonic.bp',
-	ModPath .. 'big_test_fire.bp',
-	ModPath .. 'big_test_smoke.bp',
+	EmtBpPath .. 'Large_test_smoke.bp',
+	EmtBpPath .. 'Large_test_fire.bp',
+	EmtBpPath .. 'Large_test_random.bp',
+	EmtBpPath .. 'Large_test_sonic.bp',
 }
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 

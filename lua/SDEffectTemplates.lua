@@ -276,7 +276,7 @@ AirExplosionTECH3uef = {
 AirExplosionTECH1cybran = {
 	ModPath .. 'CybT2_smoke.bp',
         ModPath .. 'CybT2_charge.bp',
-        ModPath .. 'CybT2_chargering.bp',
+        ModPath .. 'CybT2_chargering_air.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 }
@@ -285,7 +285,7 @@ AirExplosionTECH1cybran = {
 AirExplosionTECH2cybran = {
 	ModPath .. 'CybT2_smoke.bp',
         ModPath .. 'CybT2_charge.bp',
-        ModPath .. 'CybT2_chargering.bp',
+        ModPath .. 'CybT2_chargering_air.bp',
 		ModPath .. 'CybT3_chargelong.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
@@ -297,7 +297,7 @@ AirExplosionTECH3cybran = {
 	ModPath .. 'CybT3_smoke.bp',
         ModPath .. 'CybT3_charge.bp',
         ModPath .. 'CybT3_chargelong_air.bp',
-        ModPath .. 'CybT3_chargering.bp',
+        ModPath .. 'CybT3_chargering_air.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 		ModPath .. 'Cyb_Flash_2_air.bp',
