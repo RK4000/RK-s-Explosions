@@ -21,6 +21,17 @@ local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
+
+function GetEffectTemplateFile(toggle)
+	if toggle == 1 then
+		return SDEffectTemplate
+	else 
+		return NEffectTemplate
+	end
+end
 
 URA0401 = Class(CAirUnit) {
     Weapons = {
@@ -141,11 +152,11 @@ URA0401 = Class(CAirUnit) {
 		local numBones = self:GetBoneCount() - 1
 		
         for i = 1, 14, 1 do
-            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, SDEffectTemplate.SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
+            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt( 0, numBones), Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage' ) 
         end
 		
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, SDEffectTemplate.SoulRipper_Ambient_Electricity_Upper, 0.60/2, 'HullDamage' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, SDEffectTemplate.SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity_Upper, 0.60/2, 'HullDamage' ) 
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, GetEffectTemplateFile(toggle).SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
 		
 		self:ForkThread(self.DeathThreadFn)
 		
@@ -166,32 +177,32 @@ URA0401 = Class(CAirUnit) {
             self:PlayUnitSound('SubBooms')
         end
             
-        WaitSeconds(6.25)
+        WaitSeconds(6.25/1.5)
         -- First secries of booms
         for i = 1, 8, 1 do
-            DoSubBoom(2.5, SDEffectTemplate.ExplosionEXPMediumCybran)
-            WaitSeconds(Util.GetRandomFloat(0.95,1.35))
+            DoSubBoom(2.5, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran)
+            WaitSeconds(Util.GetRandomFloat(0.95/3,1.35/3))
         end
         ###################### 2nd series of booms
-        WaitSeconds(4)
+        WaitSeconds(4/3)
         for i = 1, 8, 1 do
-            DoSubBoom(1.5, SDEffectTemplate.ExplosionTECH2cybran)
-            WaitSeconds(Util.GetRandomFloat(0,0.6))
+            DoSubBoom(1.5, GetEffectTemplateFile(toggle).ExplosionTECH2cybran)
+            WaitSeconds(Util.GetRandomFloat(0,0.6/3))
         end
         ###################### 3rd series of booms
-        WaitSeconds(3)
+        WaitSeconds(3/3)
         for i = 1, 3, 1 do
-			DoSubBoom(3.5, SDEffectTemplate.SoulRipper_First_Series_Booms)
-            WaitSeconds(Util.GetRandomFloat(2,3))
+			DoSubBoom(3.5, GetEffectTemplateFile(toggle).SoulRipper_First_Series_Booms)
+            WaitSeconds(Util.GetRandomFloat(2/3,3/3))
         end
         
         for k, v in self.HullDamage do
             v:Destroy()
         end
         ###################### Final boom
-        WaitSeconds(4)
+        WaitSeconds(4/3)
         RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
-        RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), SDEffectTemplate.SoulRipper_Final_Boom)
+        RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), GetEffectTemplateFile(toggle).SoulRipper_Final_Boom)
         self:PlayUnitSound('FinalBoom')
         self:CreateWreckage()
         self:Destroy()
@@ -231,7 +242,7 @@ URA0401 = Class(CAirUnit) {
             self:PlayUnitSound('AirUnitWaterImpact')
             self.CreateEffects( self, EffectTemplate.Splashy, Army, 12  )
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
-			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 7 )
+			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
 			
             ##self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
@@ -242,7 +253,7 @@ URA0401 = Class(CAirUnit) {
                 ##self:ForkThread(self.DeathThread, self.OverKillRatio )
                 self.DeathBounce = 1
             end
-		RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', 3.5, SDEffectTemplate.SoulRipper_Impact_Explosion )
+		RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', 3.5, GetEffectTemplateFile(toggle).SoulRipper_Impact_Explosion )
 		CreateLightParticle(self, -1, army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
 		
         end

@@ -22,6 +22,17 @@ local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
+
+function GetEffectTemplateFile(toggle)
+	if toggle == 1 then
+		return SDEffectTemplate
+	else 
+		return NEffectTemplate
+	end
+end
 
 XSA0402 = Class(SAirUnit) {
 	
@@ -89,9 +100,9 @@ XSA0402 = Class(SAirUnit) {
                     self:PlayDamageEffect(self.FxDamage3, self.DamageEffectsBag[3])
                 end
             elseif oldHealth > 0.10 then
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_PreFail_Electricity, 0.50, 'EngineFailing1' ) 
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_PreFail_Electricity, 0.50, 'EngineFailing1' ) 
 				##self:PlaySubBoomSound('SubBoomSoundseraphim')	
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_PreFail_Smoke, 5.115, 'EngineFailing1' ) 				
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_PreFail_Smoke, 5.115, 'EngineFailing1' ) 				
             end
         else
             if newHealth <= 0.10 and newHealth > 0 then
@@ -196,11 +207,11 @@ XSA0402 = Class(SAirUnit) {
         local Army = self:GetArmy()
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 		
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Explosion_Flashes, 4.20/2, 'EngineFail1' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Explosion_Sparks, 1.20/2, 'EngineFail1' )
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Smoke, 15.115/6, 'EngineFail1' ) 		
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Breach, 2, 'EngineFail2' ) 
-		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, SDEffectTemplate.Ahwassa_Engine_Critical_Breach_Electricity, 1, 'EngineFail2' ) 
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_Critical_Explosion_Flashes, 4.20/2, 'EngineFail1' ) 
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_Critical_Explosion_Sparks, 1.20/2, 'EngineFail1' )
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_Critical_Smoke, 15.115/6, 'EngineFail1' ) 		
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_Critical_Breach, 2, 'EngineFail2' ) 
+		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Center_Muzzle', Army, GetEffectTemplateFile(toggle).Ahwassa_Engine_Critical_Breach_Electricity, 1, 'EngineFail2' ) 
 		
 		LOG(repr(self:GetVelocity()))
 		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 50, {self:GetVelocity()}, 17, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/Ahwassa_Debris/Ahwassa_Debris_proj.bp'))
@@ -245,7 +256,7 @@ XSA0402 = Class(SAirUnit) {
             self:PlayUnitSound('AirUnitWaterImpact')
             self.CreateEffects( self, EffectTemplate.Splashy, Army, 12  )
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
-			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 7 )
+			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
@@ -254,7 +265,7 @@ XSA0402 = Class(SAirUnit) {
                 self:ForkThread(self.DeathThread, self.OverKillRatio )
                 self.DeathBounce = 1
             end
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'XSA0402', 3.5, SDEffectTemplate.Ahwassa_Impact_Explosion )
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'XSA0402', 3.5, GetEffectTemplateFile(toggle).Ahwassa_Impact_Explosion )
 		CreateLightParticle(self, -1, army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
         end
     end,
@@ -262,7 +273,7 @@ XSA0402 = Class(SAirUnit) {
     OnAnimTerrainCollision = function(self, bone,x,y,z)
 		self:PlayUnitSound('TerrainImpact')
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
-        sdexplosion.CreateFactionalExplosionAtBone( self, bone, 2.5, SDEffectTemplate.BuildingExplosionTECH3seraphim )
+        sdexplosion.CreateFactionalExplosionAtBone( self, bone, 2.5, GetEffectTemplateFile(toggle).BuildingExplosionTECH3seraphim )
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
     

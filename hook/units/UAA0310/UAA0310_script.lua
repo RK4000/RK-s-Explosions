@@ -37,6 +37,17 @@ local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
+
+function GetEffectTemplateFile(toggle)
+	if toggle == 1 then
+		return SDEffectTemplate
+	else 
+		return NEffectTemplate
+	end
+end
 
 UAA0310 = Class(AAirUnit) {
 	
@@ -168,10 +179,10 @@ UAA0310 = Class(AAirUnit) {
                     self:PlayDamageEffect(self.FxDamage3, self.DamageEffectsBag[3])
                 end
             elseif oldHealth > 0.10 then
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Center_Core_Breach01, 3.15, 'CoreBreachEffects1' )  
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Center_Core_Breach02, 3, 'CoreBreachEffects1' ) 
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'UAA0310', Army, SDEffectTemplate.CZAR_Air_Rushing_In, 1, 'CoreBreachEffects2' ) 
-				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, SDEffectTemplate.CZAR_Core_Rupture, 3, 'CoreBreachEffects1' )
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach01, 3.15, 'CoreBreachEffects1' )  
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach02, 3, 'CoreBreachEffects1' ) 
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'UAA0310', Army, GetEffectTemplateFile(toggle).CZAR_Air_Rushing_In, 1, 'CoreBreachEffects2' ) 
+				RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Core_Rupture, 3, 'CoreBreachEffects1' )
 				self:PlaySubBoomSound('CZARCoreDestroyed')	
 				self.PlaySubBoomSound('CZARCoreDestroyed')					
             ##elseif oldHealth > 0.05 then
@@ -225,7 +236,7 @@ UAA0310 = Class(AAirUnit) {
 	
 	DeathThreadFn = function(self)
 	WaitSeconds(0.35)
-	sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, SDEffectTemplate.ExplosionTECH2aeon )    
+	sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, GetEffectTemplateFile(toggle).ExplosionTECH2aeon )    
 	self:PlayUnitSound('Killed')
 	end,
 
@@ -297,15 +308,15 @@ UAA0310 = Class(AAirUnit) {
 		end
 		
 		
-		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint02', 0.5, SDEffectTemplate.CZAR_Center_FallDown_Smoke )    
-		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint06', 0.5, SDEffectTemplate.CZAR_Center_FallDown_Smoke )    
-		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint08', 0.5, SDEffectTemplate.CZAR_Center_FallDown_Smoke )    
+		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint02', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )    
+		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint06', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )    
+		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint08', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )    
 		
-		self.CreateEffects( self, SDEffectTemplate.CZAR_Center_FallDown_Smoke, Army, 1 )
-		self.CreateEffects( self, SDEffectTemplate.CZAR_Center_Charge, Army, 4 )
+		self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, Army, 1 )
+		self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_Charge, Army, 4 )
 		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/CZAR_Debris/CZAR_Debris_proj.bp'))
 		self:CreateDeathExplosionTareThroughEffect()
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, SDEffectTemplate.CZAR_Initial_Center_Explosion )    
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, GetEffectTemplateFile(toggle).CZAR_Initial_Center_Explosion )    
 		self:CreateDeathExplosionInitialShockwave()
 
         self:ForkThread(self.DeathThreadFn)
@@ -343,7 +354,7 @@ UAA0310 = Class(AAirUnit) {
             self:PlayUnitSound('AirUnitWaterImpact')
             self.CreateEffects( self, EffectTemplate.Splashy, Army, 12  )
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
-			self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 7 )
+			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
             #self:Destroy()
 	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
@@ -352,14 +363,14 @@ UAA0310 = Class(AAirUnit) {
                 self:ForkThread(self.DeathThread, self.OverKillRatio )
                 self.DeathBounce = 1
             end
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 4.5, SDEffectTemplate.CZARCenterImpactExplosion )
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 4.5, GetEffectTemplateFile(toggle).CZARCenterImpactExplosion )
         end
     end,
 
     OnAnimTerrainCollision = function(self, bone,x,y,z)
 		self:PlayUnitSound('TerrainImpact')
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
-        sdexplosion.CreateFactionalExplosionAtBone( self, bone, 3.0, SDEffectTemplate.ExplosionTECH3aeon )
+        sdexplosion.CreateFactionalExplosionAtBone( self, bone, 3.0, GetEffectTemplateFile(toggle).ExplosionTECH3aeon )
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
 

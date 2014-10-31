@@ -18,7 +18,7 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 
-local toggle = 0
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function GetUnitSizes( unit )
     local bp = unit:GetBlueprint()

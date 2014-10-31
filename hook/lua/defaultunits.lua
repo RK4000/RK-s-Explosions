@@ -11,7 +11,7 @@ local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
-local toggle = 0
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 local oldAirUnit = AirUnit
 AirUnit = Class( oldAirUnit ) {

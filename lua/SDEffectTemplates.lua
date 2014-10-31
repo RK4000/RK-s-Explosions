@@ -464,7 +464,7 @@ BuildingExplosionTECH3aeon = {
 	ModPath .. 'AeonT3_aura.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'AuraWaveT3_Air.bp',
+	##ModPath .. 'AuraWaveT3_Air.bp',
 }
 
 #####################T1 Sera Building Unit Boom###############################
@@ -1264,6 +1264,7 @@ UEFFlamingDebrisTrail = {
 
 CybranFlamingDebrisLandImpact = {
        ##ModPath .. 'dust_emit.bp',
+	   ModPath .. 'CybT1_charge.bp',
        ##ModPath .. 'CybT2_smoke.bp',
 }
 
@@ -1274,6 +1275,7 @@ CybranFlamingDebrisTrail = {
 
 AeonFlamingDebrisLandImpact = {
        ##ModPath .. 'dust_emit.bp',
+	   	ModPath .. 'Debris_aura.bp',
        ##ModPath .. 'AeonT2_smoke.bp',
 }
 
@@ -1284,6 +1286,7 @@ AeonFlamingDebrisTrail = {
 
 SeraFlamingDebrisLandImpact = {
        ##ModPath .. 'dust_emit.bp',
+	   ModPath .. 'SeraT2_electricity.bp',
        ##ModPath .. 'AeonT2_smoke.bp',
 }
 
@@ -1298,4 +1301,28 @@ AhwassaFlamingDebrisTrail  = {
 DebrisSplashyWater = {
     ##EmtBpPath .. 'Splashy_Ripples_ring_01_emit.bp',
     ##EmtBpPath .. 'Splashy_Plume_01_emit.bp',
+}
+SRDebrisImpact = {
+	ModPath .. 'CybT2_smoke.bp',
+        ModPath .. 'CybT2_charge.bp',
+        ModPath .. 'CybT2_chargering_air.bp',
+		ModPath .. 'CybT3_chargelong.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+		ModPath .. 'Cyb_Flash_1.bp',
+}
+CZARDebrisImpact = {
+    ##ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'Debris_aura.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	##ModPath .. 'AuraWaveT2_Air.bp',
+}
+AsswasherDebrisImpact = {
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'SeraT2_electricity.bp',
+    ModPath .. 'SeraT3_electricity2.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
 }

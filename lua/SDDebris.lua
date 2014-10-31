@@ -4,7 +4,7 @@ local EffectTemplates = import('/lua/EffectTemplates.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 
-local toggle = 0
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function GetEffectTemplateFile(toggle)
 	if toggle == 1 then
@@ -43,19 +43,19 @@ SeraFlamingDebris = Class( BaseGenericDebris ){
 }
 
 AhwassaFlamingDebris = Class( BaseGenericDebris ){
-    FxImpactLand = GetEffectTemplateFile(toggle).AirExplosionTECH1seraphim,
+    FxImpactLand = GetEffectTemplateFile(toggle).AsswasherDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).AhwassaFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 CZAR_Debris= Class( BaseGenericDebris ){
-    FxImpactLand = GetEffectTemplateFile(toggle).AirExplosionTECH1aeon,
+    FxImpactLand = GetEffectTemplateFile(toggle).CZARDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).AeonFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 } 
 SR_Debris= Class( BaseGenericDebris ){
-    FxImpactLand = GetEffectTemplateFile(toggle).AirExplosionTECH2cybran,
+    FxImpactLand = GetEffectTemplateFile(toggle).SRDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).CybranFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,

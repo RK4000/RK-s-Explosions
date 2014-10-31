@@ -804,13 +804,13 @@ SoulRipper_First_Series_Booms = {
 	ModPath .. 'small_test_smoke.bp',
 }
 SoulRipper_Fall_Down_Smoke = {
-	##ModPath .. 'SoulRipper_Fall_Down_Smoke.bp',
+		ModPath .. 'small_test_smoke.bp',
 }
 SoulRipper_Ambient_Electricity = {
-	##ModPath .. 'SoulRipper_Ambient_Electricity.bp',
+		ModPath .. 'small_test_smoke.bp',
 }
 SoulRipper_Ambient_Electricity_Upper = {
-	##ModPath .. 'SoulRipper_Ambient_Electricity_Upper.bp',
+		ModPath .. 'small_test_smoke.bp',
 }
 ######################################################################################################### EXP BOOMS (Cyb)
 ######################################################################################################### 
@@ -854,20 +854,20 @@ CZARCenterEffectDown= {}
 CZARCenterImpactExplosion = {	
 	ModPath .. 'large_test_sonic.bp',
 	ModPath .. 'large_test_fire.bp',
-	ModPath .. 'large_test_smoke_stock.bp',
+	ModPath .. 'large_test_smoke.bp',
 }
 
-CZAR_Center_FallDown_Smoke = {}
+CZAR_Center_FallDown_Smoke = {	ModPath .. 'small_test_smoke.bp',}
 
-CZAR_Center_Charge = {}
+CZAR_Center_Charge = {	ModPath .. 'small_test_smoke.bp',}
 
-CZAR_Center_Core_Breach01 = {}
+CZAR_Center_Core_Breach01 = {	ModPath .. 'small_test_smoke.bp',}
 
-CZAR_Center_Core_Breach02 = {}
+CZAR_Center_Core_Breach02 = {	ModPath .. 'small_test_smoke.bp',}
 
 CZAR_Air_Rushing_In = {}
 
-CZAR_Core_Rupture = {}
+CZAR_Core_Rupture = {	ModPath .. 'small_test_smoke.bp',}
 
 ######################################################################################################### EXP BOOMS (Aeon)
 ######################################################################################################### 
@@ -888,19 +888,19 @@ ExplosionEXPLargeSera  = {
 }
 
 #####################Sera Asswasher Stuff###############################
-Ahwassa_Engine_PreFail_Electricity = {}
+Ahwassa_Engine_PreFail_Electricity = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_PreFail_Smoke = {}
+Ahwassa_Engine_PreFail_Smoke = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_Critical_Explosion_Flashes = {}
+Ahwassa_Engine_Critical_Explosion_Flashes = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_Critical_Explosion_Sparks = {}
+Ahwassa_Engine_Critical_Explosion_Sparks = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_Critical_Smoke = {}
+Ahwassa_Engine_Critical_Smoke = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_Critical_Breach = {}
+Ahwassa_Engine_Critical_Breach = {	ModPath .. 'small_test_smoke.bp',}
 
-Ahwassa_Engine_Critical_Breach_Electricity = {}
+Ahwassa_Engine_Critical_Breach_Electricity = {	ModPath .. 'small_test_smoke.bp',}
 
 Ahwassa_Impact_Explosion = {
 	EmtBpPath .. 'Large_test_smoke.bp',
@@ -954,3 +954,6 @@ DebrisSplashyWater = {
     ##EmtBpPath .. 'Splashy_Ripples_ring_01_emit.bp',
     ##EmtBpPath .. 'Splashy_Plume_01_emit.bp',
 }
+SRDebrisImpact = {}
+CZARDebrisImpact = {}
+AsswasherDebrisImpact = {}

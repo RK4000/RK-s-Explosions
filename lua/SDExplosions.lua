@@ -26,7 +26,7 @@ local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 
-local toggle = 0
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function GetEffectTemplateFile(toggle)
 	if toggle == 1 then

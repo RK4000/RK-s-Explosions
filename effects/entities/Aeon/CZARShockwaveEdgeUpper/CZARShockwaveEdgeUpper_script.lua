@@ -2,14 +2,25 @@
 # script for projectile BoneAttached
 #
 local EmitterProjectile = import('/lua/sim/defaultprojectiles.lua').EmitterProjectile
-local SDEffectsTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
+
+function GetEffectTemplateFile(toggle)
+	if toggle == 1 then
+		return SDEffectTemplate
+	else 
+		return NEffectTemplate
+	end
+end
 
 CZARShockwaveEdgeUpper = Class(EmitterProjectile) {
-    FxTrails = SDEffectsTemplate.CZARShockwaveEdgeUpper,
-	FxImpact = SDEffectsTemplate.CZARShockwaveHit,
-	FxImpactLand = SDEffectsTemplate.CZARShockwaveHit,
-	FxImpactProp = SDEffectsTemplate.CZARShockwaveHit,
-	FxImpactUnit = SDEffectsTemplate.CZARShockwaveHit,
+    FxTrails = GetEffectTemplateFile(toggle).CZARShockwaveEdgeUpper,
+	FxImpact = GetEffectTemplateFile(toggle).CZARShockwaveHit,
+	FxImpactLand = GetEffectTemplateFile(toggle).CZARShockwaveHit,
+	FxImpactProp = GetEffectTemplateFile(toggle).CZARShockwaveHit,
+	FxImpactUnit = GetEffectTemplateFile(toggle).CZARShockwaveHit,
 }
 
 TypeClass = CZARShockwaveEdgeUpper
