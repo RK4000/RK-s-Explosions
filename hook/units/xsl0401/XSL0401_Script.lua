@@ -86,7 +86,8 @@ XSL0401 = Class(SWalkingLandUnit) {
         for i=1,Random(4,6) do
             local bone = RandBoneIter()
             sdexplosion.CreateSeraMediumHitExplosionAtBone( self, bone, 0.5 )
-            WaitTicks(Random(1,3))
+			self:PlayUnitSound('Destroyed1')
+            WaitTicks(Random(2,4))
         end
         
         local bp = self:GetBlueprint()

@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/Aeon_Spark.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_blinking_2_transparent_smooth_dark.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_blinking_2_transparent_smooth.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 5.00,
 		Keys = {
-			{ x=2.566,y=48.865,z=10.000 },
+			{ x=2.566,y=28.865,z=10.000 },
 		},
 	},
 	LifetimeCurve = {

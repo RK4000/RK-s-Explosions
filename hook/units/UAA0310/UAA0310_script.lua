@@ -363,7 +363,7 @@ UAA0310 = Class(AAirUnit) {
                 self:ForkThread(self.DeathThread, self.OverKillRatio )
                 self.DeathBounce = 1
             end
-		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 4.5, GetEffectTemplateFile(toggle).CZARCenterImpactExplosion )
+		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 14.5, GetEffectTemplateFile(toggle).CZARCenterImpactExplosion )
         end
     end,
 

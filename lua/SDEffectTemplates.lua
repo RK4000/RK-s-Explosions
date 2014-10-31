@@ -265,7 +265,7 @@ AirExplosionTECH2uef = {
 
 #####################T3 UEF Air Unit Boom###############################
 AirExplosionTECH3uef = {
-	ModPath .. 'UEFMedium_test_smoke.bp',            
+	##ModPath .. 'UEFMedium_test_smoke.bp',            
 	ModPath .. 'UEFMedium_test_sonic.bp',      
         ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
         EmtBpPath .. 'SDantimatter_ring_01_air.bp',		
@@ -277,7 +277,7 @@ AirExplosionTECH1cybran = {
 	ModPath .. 'CybT2_smoke.bp',
         ModPath .. 'CybT2_charge.bp',
         ModPath .. 'CybT2_chargering_air.bp',
-	ModPath .. 'Medium_test_random.bp',
+	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 }
 
@@ -287,18 +287,18 @@ AirExplosionTECH2cybran = {
         ModPath .. 'CybT2_charge.bp',
         ModPath .. 'CybT2_chargering_air.bp',
 		ModPath .. 'CybT3_chargelong.bp',
-	ModPath .. 'Medium_test_random.bp',
+	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 		ModPath .. 'Cyb_Flash_1.bp',
 }
 
 #####################T3 Cyb Air Unit Boom###############################
 AirExplosionTECH3cybran = {
-	ModPath .. 'CybT3_smoke.bp',
+	##ModPath .. 'CybT3_smoke.bp',
         ModPath .. 'CybT3_charge.bp',
         ModPath .. 'CybT3_chargelong_air.bp',
         ModPath .. 'CybT3_chargering_air.bp',
-	ModPath .. 'Medium_test_random.bp',
+	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 		ModPath .. 'Cyb_Flash_2_air.bp',
 }
@@ -326,9 +326,9 @@ AirExplosionTECH2aeon = {
 #####################T3 Aeon Air Unit Boom###############################
 AirExplosionTECH3aeon = {
     ModPath .. 'Aeon_Spark_air.bp',
-	ModPath .. 'AeonT3_smoke.bp',
+	##ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonT3_aura.bp',
-	ModPath .. 'Medium_test_random.bp',
+	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 	ModPath .. 'AuraWaveT3_Air.bp',
 }
@@ -361,13 +361,13 @@ AirExplosionTECH2seraphim = {
 
 #####################T3 Sera Air Unit Boom###############################
 AirExplosionTECH3seraphim = {
-	ModPath .. 'AeonT3_smoke.bp',
+	##ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'SeraT3_electricity.bp',
 	##ModPath .. 'SeraT3_electricity2.bp',
 	ModPath .. 'SeraT3_electricity3_T3Air.bp',
 	##ModPath .. 'Sera_Flash_1.bp',
 	ModPath .. 'Sera_Flash_2_T3air.bp',
-	ModPath .. 'Medium_test_random.bp',
+	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
 	ModPath .. 'Sera_Afterhue.bp',
 }

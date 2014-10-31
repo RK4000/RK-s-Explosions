@@ -24,6 +24,11 @@ UnitBlueprint {
             Cue = 'XSL0401_Death',
             LodCutoff = 'UnitMove_LodCutoff',
         },
+		Destroyed1 = Sound {
+            Bank = 'XSL_Destroy',
+            Cue = 'XSB_Destroy_Lrg_PreDestroy',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
         StartMove = Sound {
             Bank = 'XSL',
             Cue = 'XSL0401_Move_Start',

@@ -11,13 +11,22 @@ TableCat = import('utilities.lua').TableCat
 EmtBpPath = '/effects/emitters/'
 EmitterTempEmtBpPath = '/effects/emitters/temp/'
 ModPath = '/mods/rks_explosions/effects/Emitters/'
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 # For gatling gun cooldown
 WeaponSteam01 = {
     EmtBpPath .. 'weapon_mist_01_emit.bp',
 }
 
+local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
+function NukeShockwave(toggle)
+	if toggle == 1 then
+		return 'very_large_test_sonic_nuke.bp'
+	else 
+		return 'nothing.bp'
+	end
+end
 
 
 #---------------------------------------------------------------
@@ -2149,7 +2158,7 @@ TNukeRings01 = {
 	EmtBpPath .. 'nuke_concussion_ring_02_emit.bp',
 	EmtBpPath .. 'shockwave_01_emit.bp',
 	EmtBpPath .. 'shockwave_smoke_01_emit.bp',
-	ModPath .. 'very_large_test_sonic_nuke.bp',
+	ModPath .. NukeShockwave(toggle),
 }
 Twig = {
     EmtBpPath .. 'nuke_concussion_ring_01_emit.bp',
@@ -2686,7 +2695,7 @@ SIFInainoDetonate01 = {
     EmtBpPath .. 'seraphim_inaino_explode_06_emit.bp',		## fast flash in air
     EmtBpPath .. 'seraphim_inaino_explode_07_emit.bp',		## long glow in air, oriented
     EmtBpPath .. 'seraphim_inaino_explode_08_emit.bp',		## center plasma, ser7    
-	ModPath .. 'very_large_test_sonic_nuke.bp',
+	ModPath .. NukeShockwave(toggle),
 }
 
 SIFInainoPlumeFxTrails01 = {
@@ -2753,7 +2762,7 @@ SIFExperimentalStrategicMissileDetonate01 = {
 	EmtBpPath .. 'seraphim_expnuke_detonate_03_emit.bp',		## non oriented glow
 	EmtBpPath .. 'seraphim_expnuke_detonate_04_emit.bp',		## oriented glow
     EmtBpPath .. 'seraphim_expnuke_concussion_01_emit.bp',		## ring fast
-	ModPath .. 'very_large_test_sonic_nuke.bp',
+	ModPath .. NukeShockwave(toggle),
 }
 
 SIFExperimentalStrategicMissileFxTrails01 = {

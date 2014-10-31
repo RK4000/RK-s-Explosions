@@ -196,6 +196,7 @@ XRL0403 = Class(CWalkingLandUnit) {
         end
         
         WaitSeconds(0.15)
+		self:PlayUnitSound('Destroyed')
         sdexplosion.CreateCybranLargeHitExplosionAtBone( self, 'Right_Leg01_B02', 2.25 )
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter( 0, 5, 0 )
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter( 0, 5, 0 )
