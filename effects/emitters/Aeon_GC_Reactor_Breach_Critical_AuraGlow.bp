@@ -1,7 +1,7 @@
 EmitterBlueprint {
-	BlueprintId = 'AeonT3_aura',
-	Lifetime = 1.00,
-	Repeattime = 1.00,
+	BlueprintId = 'Aeon_Fall_Down_Aura_T1',
+	Lifetime = -1,
+	Repeattime = -1,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
 	LocalVelocity = false,
@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/aeon_explosion_aura.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_lightning_01.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 1.00,
 		Keys = {
@@ -46,13 +46,13 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=2.000,z=0.000 },
+			{ x=0.000,y=30.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=15.000,z=0.000 },
+			{ x=0.500,y=1,z=0.000 },
 		},
 	},
 	VelocityCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.650,z=0.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -100,25 +100,25 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=1.150,z=0.000 },
+			{ x=0.000,y=0.500,z=0.000 },
 		},
 	},
 	ZPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.000 },
+			{ x=0.000,y=0.200,z=0.000 },
 		},
 	},
 	StartSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.497,y=6.475,z=0.000 },
+			{ x=2.497/4,y=3.000/7,z=2.900/7 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.247,y=0.000,z=0.000 },
+			{ x=2.497/4,y=3.000/7,z=2.900/7 },
 		},
 	},
 	InitialRotationCurve = {

@@ -127,13 +127,13 @@ EmitterBlueprint {
 	InitialRotationCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=360.000,y=360.000,z=360.000 }, 
+			{ x=360.000,y=360.000,z=720.000 }, 
 		},
 	},
 	RotationRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=3600.000,y=360.000,z=360.000 },
+			{ x=3600.000,y=360.000,z=36.000 },
 		},
 	},
 	FrameRateCurve = {

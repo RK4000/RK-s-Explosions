@@ -95,7 +95,7 @@ Unit = Class( oldUnit ) {
 			end
 		end
 		
-		DefaultExplosionsStock.CreateFlash( self, -1, Number, Army ) 
+		DefaultExplosionsStock.CreateFlash( self, -1, Number/1.65, Army ) 
 		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then

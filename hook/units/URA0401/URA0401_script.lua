@@ -180,19 +180,19 @@ URA0401 = Class(CAirUnit) {
         WaitSeconds(6.25/1.5)
         -- First secries of booms
         for i = 1, 8, 1 do
-            DoSubBoom(2.5, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran)
+            DoSubBoom(2.5, GetEffectTemplateFile(toggle).SoulRipper_First_Series_Booms)
             WaitSeconds(Util.GetRandomFloat(0.95/3,1.35/3))
         end
         ###################### 2nd series of booms
         WaitSeconds(4/3)
         for i = 1, 8, 1 do
-            DoSubBoom(1.5, GetEffectTemplateFile(toggle).ExplosionTECH2cybran)
+            DoSubBoom(1.5, GetEffectTemplateFile(toggle).SoulRipper_Second_Series_Booms)
             WaitSeconds(Util.GetRandomFloat(0,0.6/3))
         end
         ###################### 3rd series of booms
         WaitSeconds(3/3)
         for i = 1, 3, 1 do
-			DoSubBoom(3.5, GetEffectTemplateFile(toggle).SoulRipper_First_Series_Booms)
+			DoSubBoom(3.5, GetEffectTemplateFile(toggle).SoulRipper_Third_Series_Booms)
             WaitSeconds(Util.GetRandomFloat(2/3,3/3))
         end
         

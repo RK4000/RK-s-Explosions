@@ -30,6 +30,7 @@ local explosion = import('/lua/defaultexplosions.lua')
 local CreateDeathExplosion = explosion.CreateDefaultHitExplosionAtBone
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local utilities = import('/lua/Utilities.lua')
+local Util = import('/lua/Utilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local CANTorpedoLauncherWeapon = CybranWeaponsFile.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
@@ -236,7 +237,9 @@ UAA0310 = Class(AAirUnit) {
 	
 	DeathThreadFn = function(self)
 	WaitSeconds(0.35)
-	sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 8.5, GetEffectTemplateFile(toggle).ExplosionTECH2aeon )    
+	sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 13.5, GetEffectTemplateFile(toggle).ExplosionTECH2aeon ) 
+	local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*7.5 / 1.375)
 	self:PlayUnitSound('Killed')
 	end,
 
@@ -341,7 +344,9 @@ UAA0310 = Class(AAirUnit) {
         local bp = self:GetBlueprint()
         local i = 1
         local numWeapons = table.getn(bp.Weapon)
+		
 
+		
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'DeathImpact') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
@@ -364,6 +369,8 @@ UAA0310 = Class(AAirUnit) {
                 self.DeathBounce = 1
             end
 		sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 14.5, GetEffectTemplateFile(toggle).CZARCenterImpactExplosion )
+		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+		self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*7.5 / 1.375)
         end
     end,
 

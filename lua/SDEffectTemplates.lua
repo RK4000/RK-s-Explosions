@@ -131,6 +131,7 @@ ExplosionTECH3uef = {
 	ModPath .. 'UEFSmallMedium_test_sonic.bp', 
         ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
         EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
         EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
 		ModPath .. 'UEF_Outward_Spark.bp', 
         ModPath .. 'small_UEF_test_fire_T3.bp',	
@@ -260,7 +261,7 @@ AirExplosionTECH2uef = {
 	ModPath .. 'UEFMedium_test_smoke.bp',            
 	ModPath .. 'UEFMedium_test_sonic.bp',      
         ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
-        EmtBpPath .. 'SDantimatter_ring_01_air.bp',	
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
 }
 
 #####################T3 UEF Air Unit Boom###############################
@@ -391,8 +392,8 @@ BuildingExplosionTECH2uef = {
 	ModPath .. 'UEFMedium_test_sonic.bp',      
         ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
         ##EmtBpPath .. 'SDantimatter_ring_01_building.bp',
-        ModPath .. 'small_UEF_test_fire_T3.bp',				
-		ModPath .. 'UEF_Outward_Spark_Building.bp', 
+        ModPath .. 'small_UEF_test_fire_T3.bp',			
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
 }
 
 #####################T3 UEF Building Unit Boom###############################
@@ -403,6 +404,7 @@ BuildingExplosionTECH3uef = {
         ##EmtBpPath .. 'SDantimatter_ring_01_building.bp',	
         ModPath .. 'small_UEF_test_fire_T3.bp',			
 		ModPath .. 'UEF_Outward_Spark_Building.bp', 
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
 	
 }
 
@@ -834,6 +836,7 @@ uefShipSubExplTECH2 = {
         EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',	
         EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
         ModPath .. 'small_UEF_test_fire_T3.bp',	
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
 }
 
 #####################UEF T3 Ship Sub-Boom###############################
@@ -846,6 +849,7 @@ uefShipSubExplTECH3 = {
         EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',	
         ModPath .. 'small_UEF_test_fire_T3.bp',		
 		ModPath .. 'UEF_Outward_Spark_Building.bp', 
+		EmtBpPath .. 'SDantimatter_ring_03_Land.bp',	
 }
 
 #####################Cyb T1 Ship Sub-Boom###############################
@@ -1053,7 +1057,7 @@ ExplosionEXPLargeCybran = {
 }
 SoulRipper_Impact_Explosion = {
 	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
+	##ModPath .. 'CybT3_smoke.bp',
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
@@ -1073,7 +1077,24 @@ SoulRipper_Final_Boom = {
 }
 SoulRipper_First_Series_Booms = {
 	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
+	##ModPath .. 'CybT2_smoke.bp',
+        ModPath .. 'CybEXPMED_charge.bp',
+        ModPath .. 'CybEXPMED_chargelong.bp',
+        ModPath .. 'CybEXPMED_chargering.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_3.bp',
+}
+SoulRipper_Second_Series_Booms = {
+	ModPath .. 'dust_emit.bp',
+	##ModPath .. 'CybT2_smoke.bp',
+        ModPath .. 'CybT2_charge.bp',
+        ModPath .. 'CybT2_chargering.bp',
+	ModPath .. 'Medium_test_random.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
+SoulRipper_Third_Series_Booms = {
+	ModPath .. 'dust_emit.bp',
+	##ModPath .. 'CybT3_smoke.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargelong.bp',
     ModPath .. 'CybT3_chargering.bp',
@@ -1093,10 +1114,16 @@ SoulRipper_Ambient_Electricity_Upper = {
 ######################################################################################################### EXP BOOMS (Cyb)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Aeon)
-
+#####################Aeon GC Small Boom###############################
+ExplosionEXPSmallAeon = {
+    ##ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT2_smoke.bp',
+	ModPath .. 'AeonEXPSML_aura.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+}
 #####################Aeon GC Medium Boom###############################
 ExplosionEXPMediumAeon = {
-    ModPath .. 'Aeon_Spark_air.bp',
+    ##ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT2_smoke.bp',
 	ModPath .. 'AeonEXPMED_aura.bp',
 	ModPath .. 'Medium_test_sonic.bp',
@@ -1105,7 +1132,17 @@ ExplosionEXPMediumAeon = {
 
 #####################Aeon GC Large Boom###############################
 ExplosionEXPLargeAeon = {
-    ModPath .. 'Aeon_Spark_air.bp',
+    ##ModPath .. 'Aeon_Spark_air.bp',
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'AeonEXPLRG_aura_long.bp',
+	ModPath .. 'AeonEXPLRG2D_aura_long.bp',
+	ModPath .. 'Medium_test_sonic.bp',
+	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Med.bp',
+}
+#####################Aeon GC Large Initial Boom###############################
+ExplosionEXPLargeInitialAeon = {
+    ##ModPath .. 'Aeon_Spark_air.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonEXPLRG_aura.bp',
 	ModPath .. 'AeonEXPLRG2D_aura.bp',
@@ -1113,7 +1150,6 @@ ExplosionEXPLargeAeon = {
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'AuraWaveT4_Med.bp',
 }
-
 #####################Aeon GC Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
     ModPath .. 'Aeon_Spark_BIG.bp',
@@ -1123,8 +1159,22 @@ ExplosionEXPVeryLargeAeon = {
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Very_Large_test_sonic.bp',
 	ModPath .. 'AuraWaveT4_Big.bp',
+	ModPath .. 'Aeon_GC_Death_smoke.bp',
 }
-
+#####################Aeon GC Core Breach###############################
+GC_Core_Breach02 = {
+	##ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_01.bp',
+	##ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_02.bp',
+	##ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_03.bp',
+	##ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_04.bp',
+	ModPath .. 'Aeon_GC_Reactor_Breach_Critical_AuraGlow.bp',
+}
+#####################Aeon GC Smoking Limbs###############################
+GC_Body_Part_Damage = {
+        ModPath .. 'GC_Fall_Aura_T1.bp',
+		ModPath .. 'GC_Fall_Green_Hue.bp',
+        ModPath .. 'GC_Fall_Smoke_T1.bp',
+}
 #####################Aeon CZAR Stuff###############################
 CZAR_Initial_Center_Explosion = {
 	##ModPath .. 'Very_Large_test_sonic.bp',

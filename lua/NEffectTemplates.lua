@@ -803,6 +803,16 @@ SoulRipper_First_Series_Booms = {
 	ModPath .. 'small_test_fire.bp',
 	ModPath .. 'small_test_smoke.bp',
 }
+SoulRipper_Second_Series_Booms = {
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
+}
+SoulRipper_Third_Series_Booms = {
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
+}
 SoulRipper_Fall_Down_Smoke = {
 		ModPath .. 'small_test_smoke.bp',
 }
@@ -815,7 +825,12 @@ SoulRipper_Ambient_Electricity_Upper = {
 ######################################################################################################### EXP BOOMS (Cyb)
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Aeon)
-
+#####################Aeon GC Small Boom###############################
+ExplosionEXPSmallAeon = {
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
+}
 #####################Aeon GC Medium Boom###############################
 ExplosionEXPMediumAeon = {
 	ModPath .. 'small_test_sonic.bp',
@@ -829,7 +844,12 @@ ExplosionEXPLargeAeon = {
 	ModPath .. 'medium_test_fire.bp',
 	ModPath .. 'medium_test_smoke.bp',
 }
-
+#####################Aeon GC Large Boom###############################
+ExplosionEXPLargeInitialAeon = {
+	ModPath .. 'medium_test_sonic.bp',
+	ModPath .. 'medium_test_fire.bp',
+	ModPath .. 'medium_test_smoke.bp',
+}
 #####################Aeon GC Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
 	EmtBpPath .. 'medium_test_smoke.bp',
@@ -837,7 +857,14 @@ ExplosionEXPVeryLargeAeon = {
 	EmtBpPath .. 'medium_test_random.bp',
 	EmtBpPath .. 'medium_test_sonic.bp',
 }
-
+#####################Aeon GC Core Breach###############################
+GC_Core_Breach02 = {
+	EmtBpPath .. 'small_test_smoke.bp',
+}
+#####################Aeon GC Smoking Limbs###############################
+GC_Body_Part_Damage = {
+	EmtBpPath .. 'small_test_smoke.bp',
+}
 #####################Aeon CZAR Stuff###############################
 CZAR_Initial_Center_Explosion = {}
 

@@ -23,7 +23,7 @@ local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
-
+local Util = import('/lua/Utilities.lua')
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function GetEffectTemplateFile(toggle)
@@ -152,15 +152,20 @@ XSA0402 = Class(SAirUnit) {
     end,
 	
 	DeathThreadFn = function(self)
+	local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
 	self:PlayUnitSound('Killed3')
 	self:PlayUnitSound('Killed')
 	self:PlayUnitSound('Killed2')
+	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
+	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
+	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
+	self:ShakeCamera( 30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 	end,
 	
 	
@@ -267,6 +272,8 @@ XSA0402 = Class(SAirUnit) {
             end
 		sdexplosion.CreateFactionalExplosionAtBone( self, 'XSA0402', 3.5, GetEffectTemplateFile(toggle).Ahwassa_Impact_Explosion )
 		CreateLightParticle(self, -1, army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
+		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+		self:ShakeCamera( 30 * NumberForShake*8.5, NumberForShake*8.5, 0, NumberForShake*9.15 / 1.375)
         end
     end,
 
