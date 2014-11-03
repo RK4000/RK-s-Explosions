@@ -12,6 +12,7 @@ local Entity = import('/lua/sim/entity.lua').Entity
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local util = import('/lua/utilities.lua')
+local Util = import('/lua/utilities.lua')
 local GetRandomFloat = util.GetRandomFloat
 local GetRandomInt = util.GetRandomInt
 local GetRandomOffset = util.GetRandomOffset
@@ -24,9 +25,16 @@ local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')	
+local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
+
+
+local GlobalExplosionScaleValueMain = 1
+local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
+WARN('		Global Explosion Scale:		', GlobalExplosionScaleValue )
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
+
 
 function GetEffectTemplateFile(toggle)
 	if toggle == 1 then
@@ -77,6 +85,148 @@ function CreateFlashOffset( obj, bone, scale, army )
 end
 ##----------------------------------------(end of) NECCESARY STUFF----------------------------------------##
 
+##---------------------------------------------------------
+##---------------------------------------------------------
+##--Air/Land Unit explosion thread
+##---------------------------------------------------------
+##---------------------------------------------------------
+function ExplosionAirMidAir(obj)
+    local Army = obj:GetArmy()
+	local Faction = obj:GetFaction()
+	local UnitTechLvl = obj:GetUnitTechLvl()
+	local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	
+    local SDExplosion = SDEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
+    local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+	
+	local NExplosion = NEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
+    local NFallDownTrail = NEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+	
+	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/4.5
+	obj:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+	
+	if (toggle == 1) then
+		obj.CreateEffects( obj, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
+		obj.CreateEffects( obj, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85) ) ##Custom falling-down trail
+	else
+		obj.CreateEffects( obj, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Default explosion when unit is in the air
+		obj.CreateEffects( obj, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
+	end
+			
+	if ( obj:GetUnitTechLvl() == 'TECH1' ) then
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5, Army )
+	elseif ( obj:GetUnitTechLvl() == 'TECH2' ) then
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2, Army )
+	else
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85, Army )
+	end
+end
+
+function ExplosionAirImpact(obj)
+    local Army = obj:GetArmy()
+	local Faction = obj:GetFaction()
+	local UnitTechLvl = obj:GetUnitTechLvl()
+	local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	
+    local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
+	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
+	
+	obj:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+	
+	if (toggle == 1) then
+		obj.CreateEffects( obj, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air			
+	else
+		obj.CreateEffects( obj, NExplosionImpact, Army, 1) ##Default explosion when unit is in the air
+	end
+			
+	if ( obj:GetUnitTechLvl() == 'TECH1' ) then
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5, Army )
+	elseif ( obj:GetUnitTechLvl() == 'TECH2' ) then
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2, Army )
+	else
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85, Army )
+	end
+	
+	local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.3333
+	if (UnitTechLvl == 'TECH1') then
+	##DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, scale*1.7, Army )
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 0.875, Army )
+	elseif (UnitTechLvl == 'TECH2') then
+	##DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, scale*1.3, Army )
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 1.5, Army )
+	elseif (UnitTechLvl == 'TECH3') then 
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 2, Army )
+	else 
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 5, Army )
+	end
+end
+
+function AirImpactWater(obj)
+    local Army = obj:GetArmy()
+	local Faction = obj:GetFaction()
+	local UnitTechLvl = obj:GetUnitTechLvl()
+	local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	
+    local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
+	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
+	
+	EfctUtil.CreateEffects( obj, obj:GetArmy(), EffectTemplate.Splashy )
+	DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/3, Army )
+	if (toggle == 1) then 
+		obj.CreateEffects( obj, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+	else 
+		obj.CreateEffects( obj, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+	end
+end
+
+function ExplosionLand(obj)
+	local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.333
+	local ScaleForScorch = (scale - 0.2 )*1.5
+	local Army = obj:GetArmy()
+	local army = obj:GetArmy()
+	local Faction = obj:GetFaction()
+	local UnitTechLvl = obj:GetUnitTechLvl()
+	local UnitLayer = obj:GetUnitLayer()
+	local BaseEffectTable = {}
+    local EnvironmentalEffectTable = {}
+    local EffectTable = {}
+	local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+    local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
+	local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 	
+	local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+	local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
+	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
+	
+		if UnitLayer == 'NAVAL' then
+			obj.CreateEffects( obj, SDEffectTemplate.AddNothing, Army, 0)
+		else
+			if (toggle == 1) then
+				obj.CreateEffects( obj, SDExplosion, Army, Number)
+			else
+				obj.CreateEffects( obj, SDEffectTemplate.AddNothing, Army, Number)
+			end
+		end
+		
+		DefaultExplosionsStock.CreateFlash( obj, -1, Number/1.65, Army ) 
+		
+		if (toggle == 1) then
+			obj:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+		else
+			obj:ShakeCamera( 0, 0, 0, 0) ##Stock explosions handle shaking in CreateScalableUnitExplosion
+		end
+		
+        DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, ScaleForScorch , army )
+	
+		LOG(repr(ScaleForScorch))
+		
+end
+##---------------------------------------------------------
+##---------------------------------------------------------
+##--Debris 
+##---------------------------------------------------------
+##---------------------------------------------------------
 function CreateShipFlamingDebrisProjectiles( obj, volume, dimensions )
     local bp = obj:GetBlueprint()
     local Army = obj:GetArmy()

@@ -9,6 +9,7 @@ rklog = false
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
+local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 Unit = Class( oldUnit ) {
 
@@ -71,32 +72,9 @@ Unit = Class( oldUnit ) {
     OnKilled = function(self, instigator, type, overkillRatio)
         self.Dead = true
         local bp = self:GetBlueprint()
-        local Army = self:GetArmy()
-		local Faction = self:GetFaction()
-		local UnitTechLvl = self:GetUnitTechLvl()
-		local UnitLayer = self:GetUnitLayer()
-		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-		local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
-		
-        local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
-		local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
-		
 		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
-		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
-		
-		if UnitLayer == 'NAVAL' then
-			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
-		else
-			if (toggle == 1) then
-				self.CreateEffects( self, SDExplosion, Army, Number)
-			else
-				self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, Number)
-			end
-		end
-		
-		DefaultExplosionsStock.CreateFlash( self, -1, Number/1.65, Army ) 
-		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+	
+		self:ForkThread(SDExplosions.ExplosionLand(self))
 		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
@@ -148,16 +126,6 @@ Unit = Class( oldUnit ) {
         self:DoUnitCallbacks( 'OnKilled' )
         self:DestroyTopSpeedEffects()
 		
-        if UnitLayer == 'NAVAL' then
-			self.CreateEffects( self, SDEffectTemplate.AddNothing, Army, 0)
-		else
-			if (toggle == 1) then
-				self.CreateEffects( self, SDExplosion, Army, Number)
-			else
-				self.CreateEffects( self, NExplosion, Army, Number)
-			end
-		end
-
         if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
             self.UnitBeingTeleported:Destroy()
             self.UnitBeingTeleported = nil
@@ -174,7 +142,48 @@ Unit = Class( oldUnit ) {
         self:DisableUnitIntel()
         self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
+	
+	DeathThread = function( self, overkillRatio, instigator)
+		self:PlayUnitSound('Destroyed')
+        #LOG('*DEBUG: OVERKILL RATIO = ', repr(overkillRatio))
 
+        WaitSeconds( utilities.GetRandomFloat( self.DestructionExplosionWaitDelayMin, self.DestructionExplosionWaitDelayMax) )
+        self:DestroyAllDamageEffects()
+
+        if self.PlayDestructionEffects then
+            self:CreateDestructionEffects( overkillRatio )
+        end
+
+        #MetaImpact( self, self:GetPosition(), 0.1, 0.5 )
+        if self.DeathAnimManip then
+            WaitFor(self.DeathAnimManip)
+            if self.PlayDestructionEffects and self.PlayEndAnimDestructionEffects then
+                self:CreateDestructionEffects( self, overkillRatio )
+            end
+        end
+
+        self:CreateWreckage( overkillRatio )
+
+        -- CURRENTLY DISABLED UNTIL DESTRUCTION
+        -- Create destruction debris out of the mesh, currently these projectiles look like crap,
+        --since projectile rotation and terrain collision doesn't work that great. These are left in
+        -- hopes that this will look better in the future.. =)
+        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+            if overkillRatio <= 1 then
+                self.CreateUnitDestructionDebris( self, true, true, false )
+            elseif overkillRatio <= 2 then
+                self.CreateUnitDestructionDebris( self, true, true, false )
+            elseif overkillRatio <= 3 then
+                self.CreateUnitDestructionDebris( self, true, true, true )
+            else #VAPORIZED
+                self.CreateUnitDestructionDebris( self, true, true, true )
+            end
+        end
+
+        #LOG('*DEBUG: DeathThread Destroying in ',  self.DeathThreadDestructionWaitTime )
+        WaitSeconds(self.DeathThreadDestructionWaitTime)
+        self:Destroy()
+    end,
 
     #Sets if the unit can be killed.  val = true means it can be killed.
     #val = false means it can't be killed

@@ -6,6 +6,7 @@ local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
+local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
@@ -93,46 +94,11 @@ AirUnit = Class( oldAirUnit ) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        local bp = self:GetBlueprint()
-        local Army = self:GetArmy()
-	local Faction = self:GetFaction()
-	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 	
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-		local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
-		
-        local SDExplosion = SDEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
-        local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
-		
-		local NExplosion = NEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
-        local NFallDownTrail = NEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
-		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/4.5
-		
-		##local toggle = 1
-		
         if (self:GetCurrentLayer() == 'Air' ) then 
             local army = self:GetArmy()  
+			self:ForkThread(SDExplosions.ExplosionAirMidAir(self))
             self:DestroyAllDamageEffects()	
-			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
-			WARN('TOGGLE FOR BOOMS:', toggle )
-			
-			if (toggle == 1) then
-				self.CreateEffects( self, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
-				self.CreateEffects( self, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85) ) ##Custom falling-down trail
-			else
-				self.CreateEffects( self, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Default explosion when unit is in the air
-				self.CreateEffects( self, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
-			end
-			
-			if ( self:GetUnitTechLvl() == 'TECH1' ) then
-				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.5/2.5, Army )
-			elseif ( self:GetUnitTechLvl() == 'TECH2' ) then
-				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.15/2, Army )
-			else
-				DefaultExplosionsStock.CreateFlash( self, -1, (Number)/2.75/1.85, Army )
-			end
-			
             self:DestroyTopSpeedEffects()
             self:DestroyBeamExhaust()
             self.OverKillRatio = overkillRatio
@@ -152,52 +118,31 @@ AirUnit = Class( oldAirUnit ) {
     end,
 
     OnImpact = function(self, with, other)
-    local army = self:GetArmy()
-    local bp = self:GetBlueprint()
-    local Army = self:GetArmy()
-	local Faction = self:GetFaction()
-	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-    local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')  
-	local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
+		local army = self:GetArmy()
+		local bp = self:GetBlueprint()
+		local Army = self:GetArmy()
 	
-    local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
-	local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
-		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
+		local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')  
+		local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
+	
+		local bp = self:GetBlueprint()
+		local i = 1
+		local numWeapons = table.getn(bp.Weapon)
 		
-		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
-		
-		if (toggle == 1) then
-				self.CreateEffects( self, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air
-				
-			else
-				self.CreateEffects( self, NExplosionImpact, Army, 1) ##Default explosion when unit is in the air
-		end
-
-        # Damage the area we have impacted with.
-        local bp = self:GetBlueprint()
-        local i = 1
-        local numWeapons = table.getn(bp.Weapon)
-
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'DeathImpact') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
                 break
             end
         end
+		
+		self:ForkThread(SDExplosions.ExplosionAirImpact(self))
 
         if with == 'Water' then
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
-            EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.Splashy )
-			DefaultExplosionsStock.CreateFlash( self, -1, (Number)/3, Army )
-			if (toggle == 1) then 
-				self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
-			else 
-				self.CreateEffects( self, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
-			end
-            #self:Destroy()
-	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
+			self:ForkThread(SDExplosions.AirImpactWater(self))
+			self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
         else
             # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
             if not self.DeathBounce then

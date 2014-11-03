@@ -40,6 +40,11 @@ function GetAverageBoundingXYZRadius( unit )
     return ((bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0) * 0.333)
 end
 
+function GetSizeOfUnit (obj)
+    local bp = obj:GetBlueprint()
+    return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
+end
+
 function QuatFromRotation( rotation, x, y, z )
     local angleRot, qw, qx, qy, qz, angle
     angle = 0.00872664625 * rotation
@@ -79,28 +84,54 @@ function CreateScalableUnitExplosion( unit, overKillRatio )
 	end
 end
 
+function CreateEffectsScalable( obj, army, EffectTable, scale )
+    local emitters = {}
+    for k, v in EffectTable do
+        table.insert(emitters,CreateEmitterAtEntity( obj, army, v ):ScaleEmitter(scale))
+    end
+    return emitters
+end
+
+function CreateScorchMarkDecalRKS( obj, scale, army )
+    CreateDecal(obj:GetPosition(),GetRandomFloat(0,2*math.pi),ScorchDecalTextures[GetRandomInt(1,table.getn(ScorchDecalTextures))], '', 'Albedo', scale *3, scale *3, GetRandomFloat(200*4,350*4), GetRandomFloat(300,600), army)
+end
+
+ScorchDecalTextures = {
+    'scorch_001_albedo',
+    'scorch_002_albedo',
+    'scorch_003_albedo',
+    'scorch_004_albedo',
+    'scorch_005_albedo',
+    'scorch_006_albedo',
+    'scorch_007_albedo',
+    'scorch_008_albedo',
+    'scorch_009_albedo',
+    'scorch_010_albedo',
+}
+
 function _CreateScalableUnitExplosion( obj )
     local army = obj.Spec.Army
-    local scale = obj.Spec.BoundingXZRadius
+    local scale = (obj.Spec.BoundingXYZRadius) / 0.3333
     local layer = obj.Spec.Layer
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}
     local EffectTable = {}
     local ShakeTimeModifier = 0
     local ShakeMaxMul = 1 
-
+	local Number = (scale - 0.2) *1.4 
+	
     # Determine effect table to use, based on unit bounding box scale
     #LOG(scale)
     if layer == 'Land' then 
 	    if scale < 1.1 then   ## Small units
 			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
 			else
 				BaseEffectTable = NEffectTemplate.ExplosionSmallest 
 			end
 		elseif scale > 3.75 then ## Large units
 			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
 			else
 				BaseEffectTable = NEffectTemplate.ExplosionSmall 
 			end
@@ -108,7 +139,7 @@ function _CreateScalableUnitExplosion( obj )
 			ShakeMaxMul = 0.25
 		else                  ## Medium units
 			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, stuff uses custom explosions now.
+				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
 			else
 				BaseEffectTable = NEffectTemplate.ExplosionSmaller
 			end
@@ -165,19 +196,10 @@ function _CreateScalableUnitExplosion( obj )
 
     #---------------------------------------------------------------
     # Create Generic emitter effects
-    CreateEffects( obj, army, EffectTable )
-	
+    CreateEffectsScalable( obj, army, EffectTable, Number )
+	LOG(Number)
     # Create Light particle flash
 	DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
-
-    # Create scorch mark
-    if layer == 'Land' then
-        if scale > 1.2 then
-            DefaultExplosionsStock.CreateScorchMarkDecal( obj, scale, army )
-        else
-            DefaultExplosionsStock.CreateScorchMarkSplat( obj, scale, army )
-        end
-    end
 
     # Create GenericDebris chunks
     DefaultExplosionsStock.CreateDebrisProjectiles( obj, obj.Spec.BoundingXYZRadius, obj.Spec.Dimensions )

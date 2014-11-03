@@ -167,7 +167,7 @@ URA0401 = Class(CAirUnit) {
 	
 
 	
-	ExplodingThreadFn = function(self)
+	ExplodingThreadFn = function(self, overkillRatio)
     
 
         local numBones = self:GetBoneCount() - 1
@@ -204,7 +204,7 @@ URA0401 = Class(CAirUnit) {
         RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
         RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), GetEffectTemplateFile(toggle).SoulRipper_Final_Boom)
         self:PlayUnitSound('FinalBoom')
-        self:CreateWreckage()
+        self:CreateWreckage( overkillRatio )
         self:Destroy()
 	
 	end,
@@ -249,7 +249,7 @@ URA0401 = Class(CAirUnit) {
         else
             # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
             if not self.DeathBounce then
-				self:ForkThread(self.ExplodingThreadFn)
+				self:ForkThread(self.ExplodingThreadFn, self.OverKillRatio)
                 ##self:ForkThread(self.DeathThread, self.OverKillRatio )
                 self.DeathBounce = 1
             end
