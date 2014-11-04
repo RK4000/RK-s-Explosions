@@ -74,7 +74,7 @@ Unit = Class( oldUnit ) {
         local bp = self:GetBlueprint()
 		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 	
-		self:ForkThread(SDExplosions.ExplosionLand(self))
+		self:ForkThread(SDExplosions.ExplosionLand) ##Want to fork this from another fork (DeathThread) but that does odd things.
 		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
@@ -144,9 +144,10 @@ Unit = Class( oldUnit ) {
     end,
 	
 	DeathThread = function( self, overkillRatio, instigator)
-		self:PlayUnitSound('Destroyed')
         #LOG('*DEBUG: OVERKILL RATIO = ', repr(overkillRatio))
 
+		
+		
         WaitSeconds( utilities.GetRandomFloat( self.DestructionExplosionWaitDelayMin, self.DestructionExplosionWaitDelayMax) )
         self:DestroyAllDamageEffects()
 

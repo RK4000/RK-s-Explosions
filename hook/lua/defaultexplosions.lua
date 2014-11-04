@@ -112,6 +112,7 @@ ScorchDecalTextures = {
 function _CreateScalableUnitExplosion( obj )
     local army = obj.Spec.Army
     local scale = (obj.Spec.BoundingXYZRadius) / 0.3333
+	local scalefornavy = scale *0.333
     local layer = obj.Spec.Layer
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}
@@ -148,20 +149,20 @@ function _CreateScalableUnitExplosion( obj )
 	
 	if layer == 'Air' then 
 	    if scale < 1.1 then   ## Small units
-             BaseEffectTable = EffectTemplate.ExplosionSmallAir  
+             BaseEffectTable = SDEffectTemplate.AddNothing  
 		elseif scale > 3 then ## Large units
-			BaseEffectTable = EffectTemplate.ExplosionLarge
+			BaseEffectTable = SDEffectTemplate.AddNothing
 			ShakeTimeModifier = 1.0
 			ShakeMaxMul = 0.25
 		else                  ## Medium units
-			BaseEffectTable = EffectTemplate.ExplosionMedium
+			BaseEffectTable = SDEffectTemplate.AddNothing
 		end
 	end
 	
 	if layer == 'Water' then 
-	    if scale < 1 then   ## Small units
+	    if scalefornavy < 1 then   ## Small units
              BaseEffectTable = EffectTemplate.ExplosionSmallWater 
-		elseif scale > 3 then ## Large units
+		elseif scalefornavy > 3 then ## Large units
 			BaseEffectTable = EffectTemplate.ExplosionMediumWater
 			ShakeTimeModifier = 1.0
 			ShakeMaxMul = 0.25
@@ -171,9 +172,9 @@ function _CreateScalableUnitExplosion( obj )
 	end
 
         if layer == 'Sub' then 
-	    if scale < 1.1 then   ## Small units
+	    if scalefornavy < 1.1 then   ## Small units
              BaseEffectTable = EffectTemplate.ExplosionSmallUnderWater 
-		elseif scale > 3 then ## Large units
+		elseif scalefornavy > 3 then ## Large units
 			BaseEffectTable = EffectTemplate.ExplosionSmallUnderWater
 			ShakeTimeModifier = 1.0
 			ShakeMaxMul = 0.25
@@ -196,8 +197,12 @@ function _CreateScalableUnitExplosion( obj )
 
     #---------------------------------------------------------------
     # Create Generic emitter effects
-    CreateEffectsScalable( obj, army, EffectTable, Number )
-	LOG(Number)
+	if layer == 'Water' then
+		CreateEffectsScalable( obj, army, EffectTable, Number*0.333 )
+	else
+		CreateEffectsScalable( obj, army, EffectTable, Number )
+	end
+	##LOG(Number)
     # Create Light particle flash
 	DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
 

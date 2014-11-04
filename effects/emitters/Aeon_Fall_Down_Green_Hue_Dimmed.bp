@@ -1,64 +1,64 @@
 EmitterBlueprint {
-	BlueprintId = 'CybT3_chargering',
-	Lifetime = 0.10,
-	Repeattime = 0.10,
+	BlueprintId = 'Aeon_Fall_Down_Aura_T1',
+	Lifetime = -1,
+	Repeattime = -1,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
-	LocalVelocity = false,
+	LocalVelocity = true,
 	LocalAcceleration = false,
 	Gravity = false,
 	AlignRotation = false,
 	AlignToBone = false,
-	Flat = true,
-	LODCutoff = 200000000.00,
+	Flat = false,
+	LODCutoff = 2000000000.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
 	SnapToWaterline = false,
 	OnlyEmitOnWater = false,
-	ParticleResistance = false,
+	ParticleResistance = true,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
 	SortOrder = 0.00,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/cybran_charge_ring.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/aeon_green_hue_air_dimmed.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=0.000,z=1.100 },
 		},
 	},
 	YDirectionCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=0.000,z=1.100 },
 		},
 	},
 	ZDirectionCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=0.000,z=1.100 },
 		},
 	},
 	EmitRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=7.500*2,z=0.000 },
+			{ x=0.000,y=1.025,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=9.250/2,z=0.000 },
+			{ x=0.500,y=8.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=1.000,z=0.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -82,61 +82,61 @@ EmitterBlueprint {
 	ResistanceCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=1.000,z=1.000 },
 		},
 	},
 	SizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=0.350,z=0.000 },
 		},
 	},
 	XPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.000,y=0.000,z=0.000 },
 		},
 	},
 	YPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=1.000,z=0.000 },
+			{ x=0.000,y=0.000,z=0.000 },
 		},
 	},
 	ZPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.000,y=0.000,z=0.000 },
 		},
 	},
 	StartSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.497,y=0.500,z=0.000 },
+			{ x=2.497/4,y=3.000/1*2.0,z=0 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=3.947/1.995,y=12.250/1.995,z=3.947/1.995 },
+			{ x=1.947/3,y=3.000/1*1.5,z=0 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=180.000,z=360.000 },
+			{ x=0.500,y=720.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=360.000,z=720.000 },
 		},
 	},
 	FrameRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=1.600,z=0.000 },
+			{ x=0.500,y=1.000,z=0.000 },
 		},
 	},
 	TextureSelectionCurve = {
@@ -148,7 +148,7 @@ EmitterBlueprint {
 	RampSelectionCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.326,y=0.950,z=0.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 }

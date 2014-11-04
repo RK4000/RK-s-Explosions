@@ -90,6 +90,22 @@ end
 ##--Air/Land Unit explosion thread
 ##---------------------------------------------------------
 ##---------------------------------------------------------
+function AddFalldownTrail(obj)
+	local Army = obj:GetArmy()
+	local Faction = obj:GetFaction()
+	local UnitTechLvl = obj:GetUnitTechLvl()
+	local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	
+    local SDFallDownTrail = SDEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+    local NFallDownTrail = NEffectTemplate[UnitTechLvl.. Faction..'FallDownTrail']
+	
+	if (toggle == 1) then
+	obj.CreateEffects( obj, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85) ) ##Custom falling-down trail
+	else
+	obj.CreateEffects( obj, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) ##No falling-down trail
+	end
+	
+end
 function ExplosionAirMidAir(obj)
     local Army = obj:GetArmy()
 	local Faction = obj:GetFaction()
@@ -114,12 +130,15 @@ function ExplosionAirMidAir(obj)
 	end
 			
 	if ( obj:GetUnitTechLvl() == 'TECH1' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5, Army )
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5*2, Army )
 	elseif ( obj:GetUnitTechLvl() == 'TECH2' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2, Army )
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2*2, Army )
 	else
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85, Army )
+		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85*2, Army )
 	end
+	
+	##obj.ForkThread(AddFalldownTrail) For some reason, when this was added, the unit exploded twice upon impact with ground.
+	
 end
 
 function ExplosionAirImpact(obj)
@@ -133,6 +152,7 @@ function ExplosionAirImpact(obj)
 	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
 	
 	obj:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+	obj:PlayUnitSound('Destroyed')
 	
 	if (toggle == 1) then
 		obj.CreateEffects( obj, SDExplosionImpact, Army, (Number/1.95*GlobalExplosionScaleValue)) ##Custom explosion when unit is in the air			
@@ -150,13 +170,11 @@ function ExplosionAirImpact(obj)
 	
 	local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.3333
 	if (UnitTechLvl == 'TECH1') then
-	##DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, scale*1.7, Army )
 	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 0.875, Army )
 	elseif (UnitTechLvl == 'TECH2') then
-	##DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, scale*1.3, Army )
-	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 1.5, Army )
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 1.3, Army )
 	elseif (UnitTechLvl == 'TECH3') then 
-	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 2, Army )
+	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 1.6, Army )
 	else 
 	DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, 5, Army )
 	end
@@ -198,6 +216,7 @@ function ExplosionLand(obj)
 	local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 	local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
+		obj:PlayUnitSound('Destroyed')
 	
 		if UnitLayer == 'NAVAL' then
 			obj.CreateEffects( obj, SDEffectTemplate.AddNothing, Army, 0)
@@ -218,8 +237,6 @@ function ExplosionLand(obj)
 		end
 		
         DefaultExplosionsStock.CreateScorchMarkDecalRKS( obj, ScaleForScorch , army )
-	
-		LOG(repr(ScaleForScorch))
 		
 end
 ##---------------------------------------------------------

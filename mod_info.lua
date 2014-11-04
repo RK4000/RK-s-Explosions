@@ -1,7 +1,7 @@
-name = "rks_explosions V8 Beta"
+name = "rks_explosions V8 Alpha"
 uid = "7749EEN4-DE86-5CC2-49AC-35692BDE76XF"
 version = 1
-description = "Makes explosions better looking and more optimized."
+description = "Rough toggle test"
 author = "RK4000, Domino, Sheeo, Gyle (advertising) and everyone else that posted feedback."
 url = "FAF forums, check useful mods subthread."
 selectable = true

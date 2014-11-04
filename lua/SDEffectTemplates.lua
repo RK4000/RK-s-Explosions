@@ -140,7 +140,7 @@ ExplosionTECH3uef = {
 #####################T1 Cyb Unit Boom###############################
 ExplosionTECH1cybran = {
 	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT2_smoke.bp',
+	ModPath .. 'CybT1_smoke.bp',
         ModPath .. 'CybT1_charge.bp',
         ModPath .. 'CybT2_chargering.bp',
 	ModPath .. 'Medium_test_random.bp',
@@ -275,7 +275,7 @@ AirExplosionTECH3uef = {
 
 #####################T1 Cyb Air Unit Boom###############################
 AirExplosionTECH1cybran = {
-	ModPath .. 'CybT2_smoke.bp',
+	ModPath .. 'CybT1_smoke.bp',
         ModPath .. 'CybT2_charge.bp',
         ModPath .. 'CybT2_chargering_air.bp',
 	##ModPath .. 'Medium_test_random.bp',
@@ -357,7 +357,7 @@ AirExplosionTECH2seraphim = {
 	##ModPath .. 'Sera_Flash_2.bp',
 	ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'Sera_Afterhue.bp',
+	##ModPath .. 'Sera_Afterhue.bp',
 }
 
 #####################T3 Sera Air Unit Boom###############################
@@ -370,7 +370,7 @@ AirExplosionTECH3seraphim = {
 	ModPath .. 'Sera_Flash_2_T3air.bp',
 	##ModPath .. 'Medium_test_random.bp',
 	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'Sera_Afterhue.bp',
+	##ModPath .. 'Sera_Afterhue.bp',
 }
 
 ######################################################################################################### AIR BOOMS
@@ -554,6 +554,7 @@ TECH3cybranFallDownTrail = {
 TECH1aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
 		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue_Dimmed.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
@@ -561,6 +562,7 @@ TECH1aeonFallDownTrail = {
 TECH2aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
 		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue_Dimmed.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 
@@ -568,6 +570,7 @@ TECH2aeonFallDownTrail = {
 TECH3aeonFallDownTrail = { 
         ModPath .. 'Aeon_Fall_Down_Aura_T1.bp',
 		ModPath .. 'Aeon_Fall_Down_Green_Hue.bp',
+		ModPath .. 'Aeon_Fall_Down_Green_Hue_Dimmed.bp',
         ModPath .. 'Aeon_Fall_Down_Smoke_T1.bp',
 }
 

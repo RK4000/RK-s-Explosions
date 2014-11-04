@@ -136,7 +136,7 @@ AirUnit = Class( oldAirUnit ) {
             end
         end
 		
-		self:ForkThread(SDExplosions.ExplosionAirImpact(self))
+		self:ForkThread(SDExplosions.ExplosionAirImpact)
 
         if with == 'Water' then
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
