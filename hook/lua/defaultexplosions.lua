@@ -111,8 +111,8 @@ ScorchDecalTextures = {
 
 function _CreateScalableUnitExplosion( obj )
     local army = obj.Spec.Army
-    local scale = (obj.Spec.BoundingXYZRadius) / 0.3333
-	local scalefornavy = scale *0.333
+    local scale = (obj.Spec.BoundingXYZRadius) / 0.3333 
+	local scalefornavy = scale *0.333 / 1.2 
     local layer = obj.Spec.Layer
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}

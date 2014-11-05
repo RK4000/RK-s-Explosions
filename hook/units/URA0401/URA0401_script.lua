@@ -22,6 +22,7 @@ local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
@@ -201,12 +202,13 @@ URA0401 = Class(CAirUnit) {
         end
         ###################### Final boom
         WaitSeconds(4/3)
+		local army = self:GetArmy()
+		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
         RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
         RKExplosion.CreateFactionalExplosionAtBone( self, 'URA0401', Util.GetRandomFloat(1, 7.5), GetEffectTemplateFile(toggle).SoulRipper_Final_Boom)
         self:PlayUnitSound('FinalBoom')
         self:CreateWreckage( overkillRatio )
         self:Destroy()
-	
 	end,
 	
 	OnImpact = function(self, with, other)

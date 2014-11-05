@@ -18,6 +18,7 @@ local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function GetEffectTemplateFile(toggle)
@@ -56,6 +57,7 @@ UAL0401 = Class(AWalkingLandUnit) {
         
     DeathThread = function( self, overkillRatio , instigator)
 		local Army = self:GetArmy()
+		local army = self:GetArmy()
 		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
 		self:ShakeCamera( 30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
 		
@@ -179,8 +181,8 @@ UAL0401 = Class(AWalkingLandUnit) {
                 self.CreateUnitDestructionDebris( self, true, true, true )
             end
         end
-        
-        self:PlayUnitSound('Destroyed')
+		self:PlayUnitSound('Destroyed')
+        RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 20, army)
         self:Destroy()
     end,
     

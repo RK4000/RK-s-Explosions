@@ -2,6 +2,7 @@ local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua'
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local EffectUtil = import('/mods/rks_explosions/hook/lua/EffectUtilities.lua')
 local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
+local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
@@ -214,13 +215,14 @@ SeaUnit = Class( oldSeaUnit ) {
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 		local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
 		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
+		local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
 		
 		DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/4.75, Army )
 		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 		if (toggle == 1) then
-			EffectUtil.CreateBoneEffects( self, boneName, army, SDFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...	
+			RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms ) 
 		else
-			EffectUtil.CreateBoneEffects( self, boneName, army, NFactionalShipSubExplosion )##:ScaleEmitter(scale) ##<-- if added, returns an error that "scale" is a nil value...
+			RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms ) 
 		end
 		
     end,
@@ -304,14 +306,14 @@ SeaUnit = Class( oldSeaUnit ) {
         self:DestroyIdleEffects()
         self:CreateUnitSeaDestructionEffects( self, 1.0 )
         if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            ##self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
         end
 	
 	local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         
-	if(layer == 'Water' or layer == 'Seabed' or layer == 'Sub')then
+	if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
         end
@@ -332,20 +334,50 @@ SeaUnit = Class( oldSeaUnit ) {
         ##if bp.SizeZ < 1 then
         ##    bp.SizeZ = 1
         ##end
-         
         return (math.abs( (bp.SizeX)*(bp.SizeX)) or 0 + ((bp.SizeY)*(bp.SizeY)) or 0 + ((bp.SizeZ)*(bp.SizeZ)) or 0 ) ##For bigger difference between big and small units
         
     end,
 
+	
+	GetSubBoomExplCount2 = function(self, UnitTechLvl)
+	
+		if (UnitTechLvl == 'TECH1') then
+			return Util.GetRandomInt(3, 6)
+		elseif (UnitTechLvl == 'TECH2') then
+			return Util.GetRandomInt(5, 7)
+		elseif (UnitTechLvl == 'TECH3') then
+			return Util.GetRandomInt(7, 11)
+		else 
+			return 10
+		end
+		
+	end,
+	
+	GetSubBoomScaleNumber = function(self, UnitTechLvl)
+		if UnitTechLvl == 'TECH1' then
+			return 0.3
+		elseif UnitTechLvl == 'TECH2' then
+			return 0.575
+		elseif UnitTechLvl == 'TECH3' then
+			return 0.9
+		else 
+			return 2
+		end
+	end,
+	
     ExplosionThread = function(self) ##EXPLOSIONNNNNNNNN
         ##Kidding aside, this stock explosion code is scripted very clumsily... It assumes bigger ships have longer sinking animations, and that all animations put the ship below water at the same rate...
         ##All of this code will probably need to be rewritten as this offers me too little control. For now, it has just
         ##been modified to use factional sub-explosions, and nothing else... But as stated, needs a rewrite soon.
 
-        local SubExplCountBasedOffSizeMax = (self:GetSizeOfUnitForSubBooms()-self:GetSizeOfUnit()) /1.15      
-        local SubExplCountBasedOffSizeMin = (self:GetSizeOfUnitForSubBooms()-(self:GetSizeOfUnit()-4)) /2.15           
+        ##local SubExplCountBasedOffSizeMax = (self:GetSizeOfUnitForSubBooms()-self:GetSizeOfUnit()) /1.15      
+        ##local SubExplCountBasedOffSizeMin = (self:GetSizeOfUnitForSubBooms()-(self:GetSizeOfUnit()-4)) /2.15           
 
-        local maxcount = Util.GetRandomInt(SubExplCountBasedOffSizeMin,SubExplCountBasedOffSizeMax)
+        ##local maxcount = Util.GetRandomInt(SubExplCountBasedOffSizeMin,SubExplCountBasedOffSizeMax) 
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local maxcount = self:GetSubBoomExplCount2(UnitTechLvl or 'TECH1')
+		LOG(maxcount)
+		
         local i = maxcount # initializing the above surface counter
         local d = 0 # delay offset after surface explosions cease
         local sx, sy, sz = self:GetUnitSizes()
@@ -354,7 +386,8 @@ SeaUnit = Class( oldSeaUnit ) {
         local numBones = self:GetBoneCount() - 1
 
         local Faction = self:GetFaction()
-
+		
+		WaitSeconds(1)
         while true do
             if i > 0 then
                 local rx, ry, rz = self:GetRandomOffset(1)
@@ -383,7 +416,7 @@ SeaUnit = Class( oldSeaUnit ) {
             CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
             CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
 
-            local rd = Util.GetRandomFloat( 0.4*3.5, 1*2.25 )        
+            local rd = Util.GetRandomFloat( 0.3, 1 )        
             WaitSeconds(rd)
         end
     end,
@@ -1039,8 +1072,8 @@ StructureUnit = Class(Unit) {
                 RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
                 RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             end
-            self:PlayUnitSound('DeathExplosion')
-            self:PlayUnitSound('DeathExplosion')
+            self:PlayUnitSound('Killed')
+            self:PlayUnitSound('Destroyed')
         end
     end,
 

@@ -9,6 +9,7 @@
 #****************************************************************************
 
 local SAirUnit = import('/lua/seraphimunits.lua').SAirUnit
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local SAALosaareAutoCannonWeapon = SeraphimWeapons.SAALosaareAutoCannonWeapon
 local SB0OhwalliExperimentalStrategicBombWeapon = SeraphimWeapons.SB0OhwalliExperimentalStrategicBombWeapon
@@ -239,7 +240,7 @@ XSA0402 = Class(SAirUnit) {
 		local Faction = self:GetFaction()
 		local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')    
 		self:PlayUnitSound('Destroyed')
-
+		self:PlayUnitSound('Killed3')
 		 # Damage the area we have impacted with.
         local bp = self:GetBlueprint()
         local i = 1
@@ -275,6 +276,8 @@ XSA0402 = Class(SAirUnit) {
 		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
 		self:ShakeCamera( 30 * NumberForShake*8.5, NumberForShake*8.5, 0, NumberForShake*9.15 / 1.375)
         end
+		local army = self:GetArmy()
+		RKExplosion.CreateScorchMarkDecalRKSExpSera(self, 37, army)
     end,
 
     OnAnimTerrainCollision = function(self, bone,x,y,z)

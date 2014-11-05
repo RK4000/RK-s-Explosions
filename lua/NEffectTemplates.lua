@@ -749,26 +749,26 @@ seraphimSubExplosionAboveWater = {
 
 #####################UEF Sub Boom (Underwater)###############################
 uefSubExplosionUnderWater = {
-	ModPath .. 'UEF_Underwater_Fire_T1.bp',
+	ModPathrk .. 'UEF_Underwater_Fire_T1.bp',
 	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Cybran Sub Boom (Underwater)###############################
 cybranSubExplosionUnderWater = {
-	ModPath .. 'CybT3_Underwater_charge.bp',
+	ModPathrk  .. 'CybT3_Underwater_charge.bp',
 	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Aeon Sub Boom (Underwater)###############################
 aeonSubExplosionUnderWater = {
-	ModPath .. 'AeonT3_aura_underwater.bp',
+	ModPathrk  .. 'AeonT3_aura_underwater.bp',
 	##ModPath .. 'Medium_test_sonic.bp',
 }
 
 #####################Sera Sub Boom (Underwater)###############################
 seraphimSubExplosionUnderWater = {
-    ModPath .. 'Seraphim_underwater_spark_T3.bp',
-	ModPath .. 'Sera_T3_chargering_underwater.bp',
+    ModPathrk  .. 'Seraphim_underwater_spark_T3.bp',
+	ModPathrk  .. 'Sera_T3_chargering_underwater.bp',
 }
 
 ######################################################################################################### Sub Booms (Underwater)

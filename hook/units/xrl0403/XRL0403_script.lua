@@ -16,6 +16,7 @@ local EffectTemplate = import('/lua/EffectTemplates.lua')
 local utilities = import('/lua/Utilities.lua')
 local EffectUtil = import('/lua/EffectUtilities.lua')
 local Entity = import('/lua/sim/Entity.lua').Entity
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 local Weapon = import('/lua/sim/Weapon.lua').Weapon
 local CybranWeaponsFile = import('/lua/cybranweapons.lua')
@@ -430,6 +431,8 @@ XRL0403 = Class(CWalkingLandUnit) {
         end
 		
 		WaitSeconds(0.15)
+		local army = self:GetArmy()
+		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
         self:PlayUnitSound('DestroyedStep3')
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter( 0, 5, 0 )
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter( 0, 5, 0 )

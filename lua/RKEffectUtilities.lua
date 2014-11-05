@@ -20,4 +20,12 @@ function CreateBoneEffectsAttachedWithBag( obj, bone, army, EffectTable, scale, 
     return BagName
 end
 
+function CreateBoneEffectsScaled( obj, bone, army, EffectTable, scale )
+    local emitters = {}
+    for k, v in EffectTable do
+        table.insert(emitters,CreateEmitterAtBone( obj, bone, army, v ):ScaleEmitter(scale))
+    end
+    return emitters
+end
+
 ##RKS_EXPLOSIONS

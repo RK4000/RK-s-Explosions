@@ -346,7 +346,8 @@ UAA0310 = Class(AAirUnit) {
         local numWeapons = table.getn(bp.Weapon)
 		
 
-		
+		self:PlayUnitSound('Destroyed')
+		RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 50, army)
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'DeathImpact') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)

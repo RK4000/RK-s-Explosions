@@ -23,7 +23,7 @@ local EffectUtil = import('/lua/EffectUtilities.lua')
 local CANTorpedoLauncherWeapon = CybranWeaponsFile.CANTorpedoLauncherWeapon
 local Entity = import('/lua/sim/Entity.lua').Entity
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
-
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 URL0402 = Class(CWalkingLandUnit) {
     WalkingAnimRate = 1.2,
@@ -235,6 +235,7 @@ URL0402 = Class(CWalkingLandUnit) {
     DeathThread = function(self)
         self:PlayUnitSound('Destroyed')
         local army = self:GetArmy()
+				RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 12, army)
         sdexplosion.CreateCybranMediumHitExplosionAtBone( self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
         sdexplosion.CreateCybranMediumHitExplosionAtBone( self, 'Left_Projectile01', 1.0)
 

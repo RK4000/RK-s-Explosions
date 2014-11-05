@@ -10,6 +10,7 @@
 
 local SWalkingLandUnit = import('/lua/seraphimunits.lua').SWalkingLandUnit
 local WeaponsFile = import ('/lua/seraphimweapons.lua')
+local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local SDFExperimentalPhasonProj = WeaponsFile.SDFExperimentalPhasonProj
 local SDFAireauWeapon = WeaponsFile.SDFAireauWeapon
 local SDFSinnuntheWeapon = WeaponsFile.SDFSinnuntheWeapon
@@ -133,7 +134,8 @@ XSL0401 = Class(SWalkingLandUnit) {
 		for k, v in self.SpawnEffects do
 			CreateAttachedEmitter(spiritUnit, -1, self:GetArmy(), v )
 		end	
-        
+        local army = self:GetArmy()
+		RKExplosion.CreateScorchMarkDecalRKSExpSera(self, 17, army)
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
