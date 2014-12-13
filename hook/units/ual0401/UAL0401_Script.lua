@@ -181,7 +181,7 @@ UAL0401 = Class(AWalkingLandUnit) {
                 self.CreateUnitDestructionDebris( self, true, true, true )
             end
         end
-		self:PlayUnitSound('Destroyed')
+		self:PlayUnitSound('DestroyedFinal')
         RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 20, army)
         self:Destroy()
     end,

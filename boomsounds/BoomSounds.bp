@@ -29,4 +29,25 @@ Audio = {
             Cue = 'UAB_Destroy_Huge',
             LodCutoff = 'UnitMove_LodCutoff',
         },
+		
+	DeathBoomSounduef = Sound {
+            Bank = 'UELDestroy',
+            Cue = 'UEB_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	DeathBoomSoundcybran = Sound {
+            Bank = 'URLDestroy',
+            Cue = 'URB_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	DeathBoomSoundaeon = Sound {
+            Bank = 'UALDestroy',
+            Cue = 'UAB_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	DeathBoomSoundseraphim = Sound {
+            Bank = 'XSL_Destroy',
+            Cue = 'XSB_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
 }

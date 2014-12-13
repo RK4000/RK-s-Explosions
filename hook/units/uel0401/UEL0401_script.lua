@@ -27,6 +27,7 @@ local CreateUEFBuildSliceBeams = EffectUtil.CreateUEFBuildSliceBeams
 local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local explosion = import('/lua/defaultexplosions.lua')
+
 UEL0401 = Class(TMobileFactoryUnit) {
     Weapons = {
         RightTurret01 = Class(TDFGaussCannonWeapon) {},
@@ -489,6 +490,7 @@ UEL0401 = Class(TMobileFactoryUnit) {
             end
         end
         self:PlayUnitSound('DestroyedStep3')
+		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
         self:CreateWreckage(0.1)
         self:Destroy()
     end,

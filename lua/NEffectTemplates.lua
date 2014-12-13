@@ -878,6 +878,10 @@ CZARCenterEffectUp= {}
 
 CZARCenterEffectDown= {}
 
+CZAR_Center_FallDown_Aura = {
+	ModPath .. 'nothing.bp',
+}
+
 CZARCenterImpactExplosion = {	
 	ModPath .. 'large_test_sonic.bp',
 	ModPath .. 'large_test_fire.bp',

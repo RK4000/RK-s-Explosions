@@ -1207,6 +1207,9 @@ CZARCenterImpactExplosion = {
 CZAR_Center_FallDown_Smoke = {
 	ModPath .. 'Aeon_CZAR_Center_FallDown_Smoke.bp',
 }
+CZAR_Center_FallDown_Aura = {
+	ModPath .. 'Aeon_CZAR_Center_FallDown_Aura.bp',
+}
 CZAR_Center_Charge = {
 	ModPath .. 'Aeon_CZAR_Center_Charge.bp',
 }

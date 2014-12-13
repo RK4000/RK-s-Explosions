@@ -11,7 +11,50 @@ local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
+
+
+
+
 Unit = Class( oldUnit ) {
+
+	GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
+
+    	if UnitTechLvl == 'TECH1' then
+   		return 2.0
+    	elseif UnitTechLvl == 'TECH2' then
+    		return 2.3
+    	elseif UnitTechLvl == 'TECH3' then
+    		return 2.875
+    	else
+    		return 3.0
+    	end	
+    end,
+
+	PlayAnimationThreadShips = function(self, anim, rate)
+		local bp = self:GetBlueprint().Display[anim]
+		local TechLvl = self:GetUnitTechLvl()
+		local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
+		LOG(AnimMultNumber)
+		if bp then
+			local animBlock = self:ChooseAnimBlock( bp )
+			if animBlock.Mesh then
+				self:SetMesh(animBlock.Mesh)
+			end
+			if animBlock.Animation then
+				local sinkAnim = CreateAnimator(self)
+				self:StopRocking()
+				self.DeathAnimManip = sinkAnim
+				sinkAnim:PlayAnim(animBlock.Animation)
+				rate = rate or 1
+				if animBlock.AnimationRateMax and animBlock.AnimationRateMin then
+					rate = Random(animBlock.AnimationRateMin * 10, animBlock.AnimationRateMax * 10) / 10
+				end
+				sinkAnim:SetRate(rate/AnimMultNumber)
+				self.Trash:Add(sinkAnim)
+				WaitFor(sinkAnim)
+			end
+		end
+	end,
 
     GetFaction = function(self)
     return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
@@ -116,11 +159,18 @@ Unit = Class( oldUnit ) {
                 self.UnitBeingBuilt:Kill()
             end
         end
-
-        if self.PlayDeathAnimation and not self:IsBeingBuilt() then
-            self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
-            self:SetCollisionShape('None')
-        end
+		
+		if self:GetCurrentLayer() == 'Water' then
+			if self.PlayDeathAnimation and not self:IsBeingBuilt() then
+				self:ForkThread(self.PlayAnimationThreadShips, 'AnimationDeath')
+				self:SetCollisionShape('None')
+			end
+		else
+			if self.PlayDeathAnimation and not self:IsBeingBuilt() then
+				self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
+				self:SetCollisionShape('None')
+			end
+		end
 
         self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )

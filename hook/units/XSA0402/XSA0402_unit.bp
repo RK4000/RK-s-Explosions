@@ -178,7 +178,7 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    LODCutoff = 500,
+                    LODCutoff = 500*100,
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     Scrolling = true,
                     SecondaryName = '/units/uaa0310/uaa0310_secondary.dds',
@@ -186,7 +186,7 @@ UnitBlueprint {
                 },
                 {
                     AlbedoName = 'xsa0402_lod1_albedo.dds',
-                    LODCutoff = 1500,
+                    LODCutoff = 1500*100,
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
                     ShaderName = 'Seraphim',
                     SpecularName = 'xsa0402_lod1_specteam.dds',

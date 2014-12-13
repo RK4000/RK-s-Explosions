@@ -112,7 +112,7 @@ ScorchDecalTextures = {
 function _CreateScalableUnitExplosion( obj )
     local army = obj.Spec.Army
     local scale = (obj.Spec.BoundingXYZRadius) / 0.3333 
-	local scalefornavy = scale *0.333 / 1.2 
+	local scalefornavy = scale *0.333 
     local layer = obj.Spec.Layer
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}
@@ -120,6 +120,7 @@ function _CreateScalableUnitExplosion( obj )
     local ShakeTimeModifier = 0
     local ShakeMaxMul = 1 
 	local Number = (scale - 0.2) *1.4 
+	local Numberfornavy = (scalefornavy - 0.2) *1.4
 	
     # Determine effect table to use, based on unit bounding box scale
     #LOG(scale)
@@ -198,7 +199,7 @@ function _CreateScalableUnitExplosion( obj )
     #---------------------------------------------------------------
     # Create Generic emitter effects
 	if layer == 'Water' then
-		CreateEffectsScalable( obj, army, EffectTable, Number*0.333 )
+		CreateEffectsScalable( obj, army, EffectTable, Numberfornavy/2 )
 	else
 		CreateEffectsScalable( obj, army, EffectTable, Number )
 	end

@@ -316,6 +316,7 @@ UAA0310 = Class(AAirUnit) {
 		##sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint08', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )    
 		
 		self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, Army, 1 )
+		self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Aura, Army, 1 )
 		self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_Charge, Army, 4 )
 		RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/CZAR_Debris/CZAR_Debris_proj.bp'))
 		self:CreateDeathExplosionTareThroughEffect()

@@ -14,6 +14,11 @@ UnitBlueprint {
     },
     Audio = {
         Destroyed = Sound {
+            Bank = 'UALWeapon',
+            Cue = 'UAL0401_Phason_Laser_Stop',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+		DestroyedFinal = Sound {
             Bank = 'XRL_Destroy',              ##Bank = 'UALDestroy',
             Cue = 'XRL0403_Death',              ##Cue = 'UAL0401_Destroy',
             LodCutoff = 'UnitMove_LodCutoff',              ##LodCutoff = 'UnitMove_LodCutoff',
@@ -115,7 +120,7 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    LODCutoff = 500,
+                    LODCutoff = 500*100,
                     Scrolling = true,
                     ShaderName = 'Aeon',
                 },

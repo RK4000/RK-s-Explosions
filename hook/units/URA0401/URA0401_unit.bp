@@ -187,7 +187,7 @@ UnitBlueprint {
             IconFadeInZoom = 130,
             LODs = {
                 {
-                    LODCutoff = 550,
+                    LODCutoff = 550*100,
                     ShaderName = 'Insect',
                 },
             },
