@@ -76,8 +76,25 @@ function QuatFromRotation( rotation, x, y, z )
     return qx, qy, qz, qw
 end
 
+FlashTransparent = {
+	'/mods/rks_explosions/textures/particles/glow_03_transparent.dds'
+}
 function CreateFlash( obj, bone, scale, army )
-    CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), 'glow_03', 'ramp_flare_02' )
+	CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale/1.575, GetRandomFloat(10.5*1.65, 14.5*1.65), FlashTransparent, 'ramp_flare_02' )
+    CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), FlashTransparent, 'ramp_flare_02' )
+	CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale*1.575, GetRandomFloat(10.5/4.15, 14.5/4.15), FlashTransparent, 'ramp_flare_02' )
+end
+
+function CreateFlashShort( obj, bone, scale, army, mult )
+	##CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale/1.575, GetRandomFloat(10.5*1.65, 14.5*1.65)/mult, FlashTransparent, 'ramp_flare_02' )
+    ##CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5)/mult, FlashTransparent, 'ramp_flare_02' )
+	CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale*1.575, GetRandomFloat(10.5/4.15, 14.5/4.15)/mult, FlashTransparent, 'ramp_flare_02' )
+end
+
+function CreateFlashLong( obj, bone, scale, army, mult )
+	CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale/1.575, GetRandomFloat(10.5*1.65, 14.5*1.65)*mult, FlashTransparent, 'ramp_flare_02' )
+    CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5)*mult, FlashTransparent, 'ramp_flare_02' )
+	CreateLightParticle( obj, bone, army, GetRandomFloat(6,10) * scale*1.775, GetRandomFloat(10.5/4.15, 14.5/4.15)*(mult/2), FlashTransparent, 'ramp_flare_02' )
 end
 
 function CreateFlashOffset( obj, bone, scale, army )
@@ -163,11 +180,11 @@ function ExplosionAirMidAir(obj)
 	end
 			
 	if ( obj:GetUnitTechLvl() == 'TECH1' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5*2, Army )
+		CreateFlash( obj, -1, (Number)/2.5/2.5*2, Army )
 	elseif ( obj:GetUnitTechLvl() == 'TECH2' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2*2, Army )
+		CreateFlash( obj, -1, (Number)/2.15/2*2, Army )
 	else
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85*2, Army )
+		CreateFlash( obj, -1, (Number)/2.75/1.85*2, Army )
 	end
 	
 	##obj.ForkThread(AddFalldownTrail) For some reason, when this was added, the unit exploded twice upon impact with ground.
@@ -194,11 +211,11 @@ function ExplosionAirImpact(obj)
 	end
 			
 	if ( obj:GetUnitTechLvl() == 'TECH1' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.5/2.5, Army )
+		CreateFlash( obj, -1, (Number)/2.5/2.5*2, Army )
 	elseif ( obj:GetUnitTechLvl() == 'TECH2' ) then
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.15/2, Army )
+		CreateFlash( obj, -1, (Number)/2.15/2*2, Army )
 	else
-		DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/2.75/1.85, Army )
+		CreateFlash( obj, -1, (Number)/2.75/1.85*2, Army )
 	end
 	
 	local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.3333
@@ -224,7 +241,7 @@ function AirImpactWater(obj)
 	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/3.5
 	
 	EfctUtil.CreateEffects( obj, obj:GetArmy(), EffectTemplate.Splashy )
-	DefaultExplosionsStock.CreateFlash( obj, -1, (Number)/3, Army )
+	CreateFlash( obj, -1, (Number)/3, Army )
 	if (toggle == 1) then 
 		obj.CreateEffects( obj, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
 	else 
@@ -261,7 +278,7 @@ function ExplosionLand(obj)
 			end
 		end
 		
-		DefaultExplosionsStock.CreateFlash( obj, -1, Number/1.65, Army ) 
+		CreateFlash( obj, -1, Number/1.65/1.3, Army ) 
 		
 		if (toggle == 1) then
 			obj:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)

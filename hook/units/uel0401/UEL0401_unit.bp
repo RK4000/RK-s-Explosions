@@ -1180,7 +1180,7 @@ UnitBlueprint {
         {
             Damage = 20000/4/5,
             DamageFriendly = true,
-            DamageRadius = 8,
+            DamageRadius = 3.5,
             DamageType = 'Normal',
             DisplayName = 'Death Weapon',
             DummyWeapon = true,
@@ -1190,7 +1190,7 @@ UnitBlueprint {
         {
             Damage = 8999/4/5,
             DamageFriendly = true,
-            DamageRadius = 6.5,
+            DamageRadius = 2.5,
             DamageType = 'Normal',
             DisplayName = 'Death Weapon',
             DummyWeapon = true,
@@ -1200,7 +1200,7 @@ UnitBlueprint {
         {
             Damage = 3000/4/5,
             DamageFriendly = true,
-            DamageRadius = 3,
+            DamageRadius = 2,
             DamageType = 'Normal',
             DisplayName = 'Death Weapon',
             DummyWeapon = true,
@@ -1210,7 +1210,7 @@ UnitBlueprint {
         {
             Damage = 1100/4/5,
             DamageFriendly = true,
-            DamageRadius = 2,
+            DamageRadius = 1,
             DamageType = 'Normal',
             DisplayName = 'Death Weapon',
             DummyWeapon = true,

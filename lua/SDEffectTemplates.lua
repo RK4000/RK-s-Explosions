@@ -1273,6 +1273,7 @@ Ahwassa_Engine_Critical_Explosion_Sparks = {
 }
 Ahwassa_Engine_Critical_Smoke = {
 	ModPath .. 'Ahwassa_Critical_Damage_Smoke_Electrified.bp',
+	ModPath .. 'Ahwassa_Fall_Down_Electricity.bp',
 	ModPath .. 'Ahwassa_Critical_Damage_Smoke.bp',
 }
 Ahwassa_Engine_Critical_Breach = {

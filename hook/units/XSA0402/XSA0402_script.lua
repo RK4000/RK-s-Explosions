@@ -154,19 +154,24 @@ XSA0402 = Class(SAirUnit) {
 	
 	DeathThreadFn = function(self)
 	local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+	local army = self:GetArmy()
 	self:PlayUnitSound('Killed3')
 	self:PlayUnitSound('Killed')
 	self:PlayUnitSound('Killed2')
 	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
+	RKExplosion.CreateFlashShort( self, -1, 1.5, army, 3 )
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
 	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
+	RKExplosion.CreateFlashShort( self, -1, 1.5, army, 3 )
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
 	self:ShakeCamera( 30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*0.15 / 1.375)
+	RKExplosion.CreateFlashShort( self, -1, 1.5, army, 3 )
 	WaitSeconds(0.3)
 	self:PlayUnitSound('Killed2')
 	self:ShakeCamera( 30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
+	RKExplosion.CreateFlashShort( self, -1, 1.5, army, 3 )
 	end,
 	
 	
@@ -273,6 +278,7 @@ XSA0402 = Class(SAirUnit) {
             end
 		sdexplosion.CreateFactionalExplosionAtBone( self, 'XSA0402', 3.5, GetEffectTemplateFile(toggle).Ahwassa_Impact_Explosion )
 		CreateLightParticle(self, -1, army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
+		RKExplosion.CreateFlashLong( self, -1, 5.5, army, 3 )
 		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
 		self:ShakeCamera( 30 * NumberForShake*8.5, NumberForShake*8.5, 0, NumberForShake*9.15 / 1.375)
         end

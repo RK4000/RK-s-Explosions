@@ -7,9 +7,9 @@ EmitterBlueprint {
 	LocalVelocity = false,
 	LocalAcceleration = false,
 	Gravity = false,
-	AlignRotation = true,
+	AlignRotation = false,
 	AlignToBone = false,
-	Flat = true, 
+	Flat = false,
 	LODCutoff = 200000000.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
@@ -18,12 +18,12 @@ EmitterBlueprint {
 	OnlyEmitOnWater = false,
 	ParticleResistance = false,
 	InterpolateEmission = true,
-	TextureStripcount = 2.00,
-	SortOrder = 0.00,
+	TextureStripcount = 1.00,
+	SortOrder = -10.00,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/electricity_wild_sdempnuke.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/sera_blue_hue_airtrail.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
@@ -46,14 +46,14 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=4.000,z=0.000 },
-			{ x=20.000,y=5.000,z=0.000 },
+			{ x=10.000,y=0.950/2,z=0.250 },
+			{ x=20.000,y=0.950/2,z=0.250 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=2.040,y=7.000,z=0.000 },
+			{ x=2.040,y=21.725,z=6.000 },
 		},
 	},
 	VelocityCurve = {
@@ -90,7 +90,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=0.050/5,z=0.000 },
+			{ x=10.000,y=0.050,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -114,26 +114,26 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=0.250,z=1.000 },
+			{ x=10.000,y=2.450/1.95*1.4*3*1.5,z=1.000 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=0.500,z=2.000 },
-			{ x=20.000,y=0.675,z=1.000 },
+			{ x=10.000,y=2.450/1.95*1.4,z=2.000 },
+			{ x=20.000,y=2.450/1.95*1.4,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=360.000,y=360.000,z=360.000 }, 
+			{ x=360.000,y=360.000,z=720.000 }, 
 		},
 	},
 	RotationRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=3600.000,y=360.000,z=360.000 },
+			{ x=3600.000,y=3600.000,z=360.000 },
 		},
 	},
 	FrameRateCurve = {

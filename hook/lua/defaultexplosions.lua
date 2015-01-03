@@ -200,6 +200,8 @@ function _CreateScalableUnitExplosion( obj )
     # Create Generic emitter effects
 	if layer == 'Water' then
 		CreateEffectsScalable( obj, army, EffectTable, Numberfornavy/2 )
+	elseif scale > 3 then 
+		CreateEffectsScalable( obj, army, EffectTable, Number*0 )
 	else
 		CreateEffectsScalable( obj, army, EffectTable, Number )
 	end
