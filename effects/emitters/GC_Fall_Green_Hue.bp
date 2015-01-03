@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/aeon_green_hue.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/aeon_green_hue_czar_dimmed.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 1.00,
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=1.225,z=0.000 },
+			{ x=0.000,y=0.625,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=2.497/4,y=3.000/1*2.5,z=0 },
+			{ x=2.497/4,y=3.000/1*2.5*2,z=0 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=1.947/3,y=3.000/1*2.5,z=0 },
+			{ x=1.947/3,y=3.000/1*2.5*2,z=0 },
 		},
 	},
 	InitialRotationCurve = {
