@@ -54,13 +54,112 @@ UAL0401 = Class(AWalkingLandUnit) {
             v.Beam:Disable()
         end     
     end,
-        
-    DeathThread = function( self, overkillRatio , instigator)
+	
+	DeathThreadWater = function( self, overkillratio, instigator)
 		local Army = self:GetArmy()
 		local army = self:GetArmy()
 		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
-		self:ShakeCamera( 30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
+        
+        self:PlayUnitSound('DestroyedStep2')
 		
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Torso', 5.0 )
+        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()}) 
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathMedBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end          
+        WaitSeconds(1/0.8/0.8/0.8/0.9)
+        self:PlayUnitSound('DestroyedStep2')
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Right_Leg_B02', 0.5 )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathSmallBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        WaitSeconds(0.85/0.8/0.8*0.8)
+        self:PlayUnitSound('DestroyedStep2')
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Right_Leg_B01', 0.3 )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathSmallBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        WaitSeconds(0.95/0.8/0.8)
+        self:PlayUnitSound('DestroyedStep2')
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Left_Arm_B02', 0.3 )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathSmallBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        WaitSeconds(0.75/0.8/0.8*0.7)
+        self:PlayUnitSound('DestroyedStep2')
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Right_Arm_B01', 0.3 )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathSmallBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        self:PlayUnitSound('DestroyedStep2')
+        ##sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Right_Leg_B01', 0.5 )
+		self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathSmallBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        WaitSeconds(0.575105/0.8/0.8/0.7)
+        self:PlayUnitSound('DestroyedStep3')
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Torso', 4.5 )
+		self:ShakeCamera( 30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathMedBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+        
+        WaitSeconds(2.5/0.8/0.8/0.8*0.8)
+        sdexplosion.CreateGenericFlashExplosionAtBone( self, 'Torso', 6.5 )
+		self:ShakeCamera( 30*2.5 * NumberForShake*2.5, NumberForShake*2.5, 0, NumberForShake*3.5)    
+        local bp = self:GetBlueprint()
+        for i, numWeapons in bp.Weapon do
+            if(bp.Weapon[i].Label == 'CollossusDeathBigBoom') then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+		
+		if self.DeathAnimManip then
+            WaitFor(self.DeathAnimManip)
+        end
+		
+	end,
+	
+	DeathThreadLand = function( self, overkillratio, instigator)
+		local Army = self:GetArmy()
+		local army = self:GetArmy()
+		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+        
+		self:ShakeCamera( 30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
         self:PlayUnitSound('DestroyedStep2')
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Torso', Army, GetEffectTemplateFile(toggle).GC_Core_Breach02, 2.15, 'CoreBreach' ) 
 		RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'B01', Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath' ) 
@@ -155,7 +254,29 @@ UAL0401 = Class(AWalkingLandUnit) {
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
                 break
             end
-        end    
+        end
+		
+		if self.DeathAnimManip then
+            WaitFor(self.DeathAnimManip)
+        end
+		
+	end,
+		
+    DeathThread = function( self, overkillRatio , instigator)
+		local Army = self:GetArmy()
+		local army = self:GetArmy()
+		local NumberForShake = (Util.GetRandomFloat( 1.5, 1.5 + 1 ) )/3.5
+		local layer = self:GetCurrentLayer() 
+		
+		if layer == ('Water') then
+			self.DeathThreadWater(self,  overkillRatio , instigator)
+		elseif layer == ('Seabed') then
+			self.DeathThreadWater(self,  overkillRatio , instigator)
+		else
+			self.DeathThreadLand(self,  overkillRatio , instigator)
+		end
+		
+		
 
         if self.DeathAnimManip then
             WaitFor(self.DeathAnimManip)

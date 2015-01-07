@@ -243,9 +243,9 @@ function AirImpactWater(obj)
 	EfctUtil.CreateEffects( obj, obj:GetArmy(), EffectTemplate.Splashy )
 	CreateFlash( obj, -1, (Number)/3, Army )
 	if (toggle == 1) then 
-		obj.CreateEffects( obj, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+		obj.CreateEffects( obj, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)) )
 	else 
-		obj.CreateEffects( obj, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.1, 1.5)) )
+		obj.CreateEffects( obj, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)) )
 	end
 end
 
@@ -389,6 +389,18 @@ function CreateUpwardsVelocityDebrisProjectiles( obj, numOfDebris, speed, preVel
 			yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i*angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(-2.0, 2.5) ##Eject upward a bit more
             obj:CreateProjectile(debris):SetVelocity(xVec,yVec,zVec):SetVelocity(velocity)        
         end
+end
+
+##---------------------------------------------------------
+##---------------------------------------------------------
+##--OnBone Underwater Flash Explosion 
+##---------------------------------------------------------
+##---------------------------------------------------------
+
+function CreateGenericFlashExplosionAtBone( obj, boneName, scale )
+    local army = obj:GetArmy()
+    CreateFlash( obj, boneName, scale * 0.5, army )
+    CreateBoneEffects( obj, boneName, army, GetEffectTemplateFile(toggle).AddNothing )
 end
 
 ##---------------------------------------------------------

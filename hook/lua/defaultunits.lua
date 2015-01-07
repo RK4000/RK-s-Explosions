@@ -137,20 +137,15 @@ AirUnit = Class( oldAirUnit ) {
             end
         end
 		
-		self:ForkThread(SDExplosions.ExplosionAirImpact)
-
         if with == 'Water' then
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
 			self:ForkThread(SDExplosions.AirImpactWater(self))
-			self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
-        else
-            # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
-            if not self.DeathBounce then
-                self:ForkThread(self.DeathThread, self.OverKillRatio )
-                self.DeathBounce = 1
-            end
+			EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.DefaultProjectileWaterImpact )
+		else 
+			self:ForkThread(SDExplosions.ExplosionAirImpact)
         end
+        self:ForkThread(self.DeathThread, self.OverKillRatio )
     end,
 }
 
@@ -475,7 +470,7 @@ SeaUnit = Class( oldSeaUnit ) {
             CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
 			
 			local rd = math.abs(Util.GetRandomFloat((self:GetSubBoomTimingNumber(UnitTechLvl or 'TECH1')) - 0.4, (self:GetSubBoomTimingNumber(UnitTechLvl or 'TECH1') + 0.6)))
-			LOG(rd)
+			##LOG(rd)
             ##local rd = Util.GetRandomFloat( 0.3, 1 )        
             WaitSeconds(rd)
         end

@@ -116,8 +116,12 @@ Unit = Class( oldUnit ) {
         self.Dead = true
         local bp = self:GetBlueprint()
 		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
-	
+		
+		if EntityCategoryContains(categories.AIR, self) then
+		self:ForkThread(SDExplosions.AirImpactWater)
+		else
 		self:ForkThread(SDExplosions.ExplosionLand) ##Want to fork this from another fork (DeathThread) but that does odd things.
+		end
 		
         if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
@@ -193,46 +197,105 @@ Unit = Class( oldUnit ) {
         self:ForkThread(self.DeathThread, overkillRatio , instigator)
     end,
 	
-	DeathThread = function( self, overkillRatio, instigator)
-        #LOG('*DEBUG: OVERKILL RATIO = ', repr(overkillRatio))
+	SinkDestructionEffects = function(self)
+        local Util = utilities
+        local sx, sy, sz = self:GetUnitSizes()
+        local vol = sx * sy * sz
+        local army = self:GetArmy()
+        local numBones = self:GetBoneCount() - 1
+        local pos = self:GetPosition()
+        local surfaceHeight = GetSurfaceHeight(pos[1], pos[3])
+        local i = 0
 
-		
-		
+        while true do
+            local randBone = Util.GetRandomInt( 0, numBones)
+            local boneHeight = self:GetPosition(randBone)[2]
+            local toSurface = surfaceHeight - boneHeight
+            local y = toSurface
+            local rx, ry, rz = self:GetRandomOffset(0.3)
+            local rs = math.max(math.min(2.5, vol / 20), 0.5)
+            local scale = Util.GetRandomFloat(rs/2, rs)
+
+            self:DestroyAllDamageEffects()
+            if(toSurface < 1) then
+                CreateAttachedEmitter(self, randBone, army,'/effects/emitters/destruction_water_sinking_ripples_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
+                CreateAttachedEmitter(self, randBone, army, '/effects/emitters/destruction_water_sinking_wash_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
+            end
+
+            if toSurface < 0 then
+                ##explosion.CreateDefaultHitExplosionAtBone( self, randBone, scale*1.5)
+            else
+                local lifetime = Util.GetRandomInt(50, 200)
+
+                if(toSurface > 1) then
+                    CreateEmitterAtBone( self, randBone, army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
+                        :ScaleEmitter(scale)
+                        :SetEmitterParam('LIFETIME', lifetime)
+
+                    CreateAttachedEmitter(self, -1, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                end
+                CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+            end
+            local rd = Util.GetRandomFloat( 0.4, 1.0)
+            WaitSeconds(i + rd)
+            i = i + 0.3
+        end
+    end,
+	
+	DeathThread = function( self, overkillRatio, instigator)
+        local layer = self:GetCurrentLayer()
+        local isNaval = EntityCategoryContains(categories.NAVAL, self)
+        local isSinking = layer == 'Water' or layer == 'Sub'
+        local isNavalFactory = (EntityCategoryContains(categories.FACTORY, self) and EntityCategoryContains(categories.STRUCTURE, self) and EntityCategoryContains(categories.NAVAL, self))
         WaitSeconds( utilities.GetRandomFloat( self.DestructionExplosionWaitDelayMin, self.DestructionExplosionWaitDelayMax) )
         self:DestroyAllDamageEffects()
+        self:DestroyTopSpeedEffects()
+        self:DestroyIdleEffects()
+        self:DestroyBeamExhaust()
 
         if self.PlayDestructionEffects then
-            self:CreateDestructionEffects( overkillRatio )
+            ##self:CreateDestructionEffects(overkillRatio)
         end
 
-        #MetaImpact( self, self:GetPosition(), 0.1, 0.5 )
-        if self.DeathAnimManip then
-            WaitFor(self.DeathAnimManip)
-            if self.PlayDestructionEffects and self.PlayEndAnimDestructionEffects then
-                self:CreateDestructionEffects( self, overkillRatio )
-            end
+        -- Make sure Naval units use their animation to sink
+        if isSinking and not (isNaval and self.DeathAnimManip) then
+            self:ForkThread(self.SinkThread)
         end
 
-        self:CreateWreckage( overkillRatio )
-
-        -- CURRENTLY DISABLED UNTIL DESTRUCTION
-        -- Create destruction debris out of the mesh, currently these projectiles look like crap,
-        --since projectile rotation and terrain collision doesn't work that great. These are left in
-        -- hopes that this will look better in the future.. =)
-        if( self.ShowUnitDestructionDebris and overkillRatio ) then
+        if((self.ShowUnitDestructionDebris and overkillRatio)) then
             if overkillRatio <= 1 then
                 self.CreateUnitDestructionDebris( self, true, true, false )
             elseif overkillRatio <= 2 then
                 self.CreateUnitDestructionDebris( self, true, true, false )
             elseif overkillRatio <= 3 then
                 self.CreateUnitDestructionDebris( self, true, true, true )
-            else #VAPORIZED
+            else --VAPORIZED
                 self.CreateUnitDestructionDebris( self, true, true, true )
             end
         end
 
-        #LOG('*DEBUG: DeathThread Destroying in ',  self.DeathThreadDestructionWaitTime )
+        if self.DeathAnimManip and not isNaval then --Wait for non naval-units death animations
+            if not isSinking then
+                WaitFor(self.DeathAnimManip)
+            end
+
+            if self.PlayDestructionEffects and self.PlayEndAnimDestructionEffects then
+               ## self:CreateDestructionEffects(overkillRatio )
+            end
+        end
+
+        if isSinking and not isNavalFactory then
+            self:ForkThread(self.SinkDestructionEffects)
+            self:SeabedWatcher() -- Finishes when unit reached seabed
+        end
+
+        self:CreateWreckage( overkillRatio )
         WaitSeconds(self.DeathThreadDestructionWaitTime)
+
+        if not isSinking then
+           ## self:PlayUnitSound('Destroyed')
+        end
         self:Destroy()
     end,
 

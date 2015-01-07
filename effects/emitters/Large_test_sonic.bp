@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/ring_white_04.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_01.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
