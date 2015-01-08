@@ -244,10 +244,10 @@ URA0401 = Class(CAirUnit) {
             self:PlayUnitSound('AirUnitWaterImpact')
             self.CreateEffects( self, EffectTemplate.Splashy, Army, 12  )
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
-			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
+			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 14 )
 			
             ##self:Destroy()
-	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
+	    self:ForkThread(self.DeathThread, self.OverKillRatio )    
         else
             # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
             if not self.DeathBounce then

@@ -269,7 +269,7 @@ XSA0402 = Class(SAirUnit) {
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
 			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
             #self:Destroy()
-	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
+	    self:ForkThread(self.DeathThread, self.OverKillRatio )    
         else
             # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
             if not self.DeathBounce then

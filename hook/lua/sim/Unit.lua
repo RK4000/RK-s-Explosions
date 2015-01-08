@@ -255,7 +255,7 @@ Unit = Class( oldUnit ) {
         self:DestroyBeamExhaust()
 
         if self.PlayDestructionEffects then
-            ##self:CreateDestructionEffects(overkillRatio)
+            self:CreateDestructionEffects(overkillRatio)
         end
 
         -- Make sure Naval units use their animation to sink
@@ -281,7 +281,7 @@ Unit = Class( oldUnit ) {
             end
 
             if self.PlayDestructionEffects and self.PlayEndAnimDestructionEffects then
-               ## self:CreateDestructionEffects(overkillRatio )
+                self:CreateDestructionEffects(overkillRatio )
             end
         end
 

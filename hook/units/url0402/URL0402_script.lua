@@ -231,9 +231,9 @@ URL0402 = Class(CWalkingLandUnit) {
             CreateAttachedEmitter( self, 'URL0402', army, v )
         end
     end,
-
-    DeathThread = function(self)
-        self:PlayUnitSound('Destroyed')
+	
+	DeathThreadLand = function(self)
+	self:PlayUnitSound('Destroyed')
         local army = self:GetArmy()
 				RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 12, army)
         sdexplosion.CreateCybranMediumHitExplosionAtBone( self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
@@ -421,7 +421,26 @@ URL0402 = Class(CWalkingLandUnit) {
                 break
             end
         end
-
+	end,
+	
+	DeathThreadWater = function(self)
+	self:PlayUnitSound('Destroyed')
+    local army = self:GetArmy()
+	RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 12, army)
+	explosion.CreateFlash( self, 'Center_Turret', 3, army )
+	end,
+	
+    DeathThread = function(self)
+		local layer = self:GetCurrentLayer()
+		
+		if layer == ('Water') then
+			self.DeathThreadWater(self)
+		elseif layer == ('Seabed') then
+			self.DeathThreadWater(self)
+		else
+			self.DeathThreadLand(self)
+		end
+		
         self:CreateWreckage(0.1)
         self:Destroy()
     end,

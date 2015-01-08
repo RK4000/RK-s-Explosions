@@ -172,8 +172,15 @@ XRL0403 = Class(CWalkingLandUnit) {
             CreateAttachedEmitter( self, 'XRL0403', army, v ):OffsetEmitter( 0, 5, 0 )
         end
     end,
-
-    DeathThread = function(self)
+	
+	DeathThreadWater = function(self)
+        local army = self:GetArmy()
+        self:PlayUnitSound('Destroyed')
+		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+		explosion.CreateFlash( self, 'AA_Turret', 7, army )
+	end,
+	
+	DeathThreadLand = function(self)
         local army = self:GetArmy()
         self:PlayUnitSound('Destroyed')
         sdexplosion.CreateCybranLargeHitExplosionAtBone( self, 'AA_Turret', 2.25 )
@@ -445,8 +452,20 @@ XRL0403 = Class(CWalkingLandUnit) {
                 break
             end
         end
-        self:CreateWreckage(0.1)
+	end,
 
+    DeathThread = function(self)
+	local layer = self:GetCurrentLayer()
+		
+		if layer == ('Water') then
+			self.DeathThreadWater(self)
+		elseif layer == ('Seabed') then
+			self.DeathThreadWater(self)
+		else
+			self.DeathThreadLand(self)
+		end
+		
+        self:CreateWreckage(0.1)
         self:ShakeCamera(4, 3, 0, 0.25)
         self:Destroy()
     end,

@@ -173,8 +173,8 @@ UEL0401 = Class(TMobileFactoryUnit) {
         self.ReleaseEffectsBag = {}
     end,
 	
-	DeathThread = function(self)
-		local NumberForShake = (Util.GetRandomFloat( 0.5, 0.5 + 1 ) )/3.5
+	DeathThreadLand = function(self)
+	local NumberForShake = (Util.GetRandomFloat( 0.5, 0.5 + 1 ) )/3.5
         self:PlayUnitSound('Destroyed')
 		RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -491,6 +491,26 @@ UEL0401 = Class(TMobileFactoryUnit) {
         end
         self:PlayUnitSound('DestroyedStep3')
 		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+	end,
+	
+	DeathThreadWater = function(self)
+	local NumberForShake = (Util.GetRandomFloat( 0.5, 0.5 + 1 ) )/3.5
+    local army = self:GetArmy()
+        self:PlayUnitSound('DestroyedStep3')
+		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+	end,
+	
+	DeathThread = function(self)
+		local layer = self:GetCurrentLayer() 
+		
+		if layer == ('Water') then
+			self.DeathThreadWater(self)
+		elseif layer == ('Seabed') then
+			self.DeathThreadWater(self)
+		else
+			self.DeathThreadLand(self)
+		end
+		
         self:CreateWreckage(0.1)
         self:Destroy()
     end,

@@ -293,8 +293,8 @@ SeaUnit = Class( oldSeaUnit ) {
         local BoomScale2 = self:GetSizeOfUnit()
 		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )
-        LOG('	Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
-        LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
+        ##LOG('	Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
+        ##LOG('	Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
 
 --LOG(self:GetBlueprint().Description, " watchbone is ", watchBone)
 
@@ -406,7 +406,7 @@ SeaUnit = Class( oldSeaUnit ) {
         ##local maxcount = Util.GetRandomInt(SubExplCountBasedOffSizeMin,SubExplCountBasedOffSizeMax) 
 		local UnitTechLvl = self:GetUnitTechLvl()
 		local maxcount = self:GetSubBoomExplCount2(UnitTechLvl or 'TECH1')
-		LOG(maxcount)
+		##LOG(maxcount)
 		
         local i = maxcount # initializing the above surface counter
         local d = 0 # delay offset after surface explosions cease
@@ -705,7 +705,13 @@ StructureUnit = Class(Unit) {
 
     OnCreate = function(self)
         Unit.OnCreate(self)
-        LOG('Are we even fucking hooking!?')
+		
+		##local util = import('/lua/Utilities.lua')
+		##local randomnumberforfunnylog = util.GetRandomFloat(0, 100)
+		##if (randomnumberforfunnylog > 95) then 
+		##	LOG('Are we even fucking hooking!?')
+		##end
+		
         self.WeaponMod = {}
         self.FxBlinkingLightsBag = {} 
         if self:GetCurrentLayer() == 'Land' and self:GetBlueprint().Physics.FlattenSkirt then
@@ -888,9 +894,9 @@ StructureUnit = Class(Unit) {
 		local numExplosions = (numExplosions1) * TECHMULT
 		
         local x,y,z = self:GetUnitSizes(self)
-        LOG('	Original Sub Boom Count: ', numExplosions1 )
-		LOG('	Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1) )
-		LOG('	Sub-explosion number: ', numExplosions )
+        ##LOG('	Original Sub Boom Count: ', numExplosions1 )
+		##LOG('	Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1) )
+		##LOG('	Sub-explosion number: ', numExplosions )
         for i = 0, numExplosions do
             self.CreateFactionalHitExplosionOffset( self, 1.0, unpack({Util.GetRandomOffset(x,y,z,1.2)}))
             self:PlayUnitSound('DeathExplosion')
@@ -1104,12 +1110,12 @@ StructureUnit = Class(Unit) {
 		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/0.5
         local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()*self:GetFinalBoomMultBasedOffFactionCyb())
 
-        LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
-        LOG('Final Boom Size Mult', self:GetSizeOfBuilding() )
-        LOG('Final Boom Faction Mult', self:GetFinalBoomMultBasedOffFaction() )
-        LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFactionCyb() )
-		LOG('Final Boom Cyb Mult T1', self:GetFinalBoomMultBasedOffFactionCybT1Fac() )
-        LOG('	Final boom multiplier: ', (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()) )
+        ##LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
+        ##LOG('Final Boom Size Mult', self:GetSizeOfBuilding() )
+        ##LOG('Final Boom Faction Mult', self:GetFinalBoomMultBasedOffFaction() )
+        ##LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFactionCyb() )
+		##LOG('Final Boom Cyb Mult T1', self:GetFinalBoomMultBasedOffFactionCybT1Fac() )
+        ##LOG('	Final boom multiplier: ', (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()) )
         
         local GlobalBuildingBoomScaleDivider = 7.5
 
@@ -1120,12 +1126,12 @@ StructureUnit = Class(Unit) {
 				self.CreateEffects( self, NExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
 			end
         else
-            LOG('	STARTING BOOM PROCESS ON: ', bp.General.UnitName )
-            LOG('	Building Size: ', self:GetSizeOfBuilding() )
-            LOG('	Building Tech: ', self:GetUnitTechLvl() )
-            LOG('	Global Building Boom Divider: ', 4.5 )
-            LOG('	Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1') )
-            LOG('	Size Scale: ', self:GetSizeOfBuilding() )
+           ## LOG('	STARTING BOOM PROCESS ON: ', bp.General.UnitName )
+           ## LOG('	Building Size: ', self:GetSizeOfBuilding() )
+           ## LOG('	Building Tech: ', self:GetUnitTechLvl() )
+            ##LOG('	Global Building Boom Divider: ', 4.5 )
+            ##LOG('	Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1') )
+           ## LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.5 )
 			DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
@@ -1687,7 +1693,7 @@ FactoryUnit = Class(StructureUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         StructureUnit.OnKilled(self, instigator, type, overkillRatio)
-        if self.UnitBeingBuilt and not self.UnitBeingBuilt:BeenDestroyed() and self.UnitBeingBuilt:GetFractionComplete() != 1 then
+        if self.UnitBeingBuilt and not self.UnitBeingBuilt:BeenDestroyed() and self.UnitBeingBuilt:GetFractionComplete() < 1 then
             self.UnitBeingBuilt:Destroy()
         end
     end,

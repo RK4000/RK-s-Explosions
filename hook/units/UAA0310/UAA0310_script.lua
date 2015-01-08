@@ -355,7 +355,7 @@ UAA0310 = Class(AAirUnit) {
                 break
             end
         end
-
+		
         if with == 'Water' then
 		    for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
@@ -363,7 +363,7 @@ UAA0310 = Class(AAirUnit) {
 			DefaultExplosionsStock.CreateFlash( self, -1, 1, Army )
 			self.CreateEffects( self, GetEffectTemplateFile(toggle).OilSlick, Army, 7 )
             #self:Destroy()
-	    self:ForkThread(self.SinkIntoWaterAfterDeath, self.OverKillRatio )   
+	    self:ForkThread(self.DeathThread, self.OverKillRatio )   
         else
             # This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
             if not self.DeathBounce then
