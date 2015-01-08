@@ -323,16 +323,17 @@ SeaUnit = Class( oldSeaUnit ) {
 		local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         self:CreateUnitSeaDestructionEffects( self, 1.0 )
-    ##if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
-    ##        self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-    ##        self.SinkThread = self:ForkThread(self.SinkingThread)
-    ##    end
+		
+    if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
+            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            self.SinkThread = self:ForkThread(self.SinkingThread)
+    end
 	
 	local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
         
 	if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            ##self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
         end
         MobileUnit.OnKilled(self, instigator, type, overkillRatio)
