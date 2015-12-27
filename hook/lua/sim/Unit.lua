@@ -176,7 +176,7 @@ Unit = Class( oldUnit ) {
 			end
 		end
 
-        self:OnKilledVO()
+        ##self:OnKilledVO()
         self:DoUnitCallbacks( 'OnKilled' )
         self:DestroyTopSpeedEffects()
 		
