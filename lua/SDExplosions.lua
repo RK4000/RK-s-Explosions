@@ -267,7 +267,8 @@ function ExplosionLand(obj)
 	local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
 	local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
 		obj:PlayUnitSound('Destroyed')
-	
+		obj:PlayUnitSound('Killed')
+		
 		if UnitLayer == 'NAVAL' then
 			obj.CreateEffects( obj, SDEffectTemplate.AddNothing, Army, 0)
 		else

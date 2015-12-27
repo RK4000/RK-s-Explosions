@@ -149,155 +149,6 @@ AirUnit = Class( oldAirUnit ) {
     end,
 }
 
-local oldLandUnit = LandUnit
-LandUnit = Class(oldLandUnit) {
-
-	GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
-    	if UnitTechLvl == 'TECH1' then
-   		return 2.0
-    	elseif UnitTechLvl == 'TECH2' then
-    		return 2.3
-    	elseif UnitTechLvl == 'TECH3' then
-    		return 2.875
-    	else
-    		return 3.0
-    	end	
-    end,
-
-    GetFaction = function(self)
-    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
-    end,
-
-    GetUnitTechLvl = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'TECH1', 'TECH2', 'TECH3' }
-    	local UnitTechLvl = 'TECH1'
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitTechLvl = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitTechLvl
-     end,
-	 
-	 GetUnitLayer = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
-    	local UnitTechLvl = 'NAVAL'
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitLayer = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitLayer
-     end,
-	 
-	 
-    GetNumberByTechLvl = function(self, UnitTechLvl)
-
-    	if UnitTechLvl == 'TECH1' then
-   		return 0.425
-    	elseif UnitTechLvl == 'TECH2' then
-    		return 0.76/1.075
-    	elseif UnitTechLvl == 'TECH3' then
-    		return 1.025/1.175
-    	else
-    		return 1
-    	end	
-    end,
-
-    CreateEffects = function( self, EffectTable, army, scale)
-        for k, v in EffectTable do
-            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
-        end
-    end,
-
-    OnKilled = function(self, instigator, type, overkillRatio)
-        self.Dead = true
-        local bp = self:GetBlueprint()
-		local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
-		
-		if EntityCategoryContains(categories.AIR, self) then
-		self:ForkThread(SDExplosions.AirImpactWater)
-		else
-		self:ForkThread(SDExplosions.ExplosionLand) ##Want to fork this from another fork (DeathThread) but that does odd things.
-		end
-		
-        if self:GetCurrentLayer() == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
-            self:PlayUnitSound('HoverKilledOnWater')
-        end
-        
-        if self:GetCurrentLayer() == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
-            --Handle ships that can walk on land...
-            self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
-        else
-            self:PlayUnitSound('Killed')
-        end
-        
-        if EntityCategoryContains(categories.COMMAND, self) then
-        	LOG('com is dead') 
-			# If there is a killer, and it's not me 
-        	if instigator and instigator:GetArmy() != self:GetArmy() then
-        		local instigatorBrain = ArmyBrains[instigator:GetArmy()]
-        		if instigatorBrain and not instigatorBrain:IsDefeated() then
-					instigatorBrain:AddArmyStat("FAFWin", 1)        		
-				end      		
-
-        	end
-	
-			## Score change, we send the score of all players, yes mam !
-			
-			for index, brain in ArmyBrains do
-				if brain and not brain:IsDefeated() then
-					local result = string.format("%s %i", "score", math.floor(brain:GetArmyStat("FAFWin",0.0).Value + brain:GetArmyStat("FAFLose",0.0).Value) )
-					table.insert( Sync.GameResult, { index, result } )
-				end
-
-			end
-        end
-		
-		if self:GetCurrentLayer() == 'Water' then
-			if self.PlayDeathAnimation and not self:IsBeingBuilt() then
-				self:ForkThread(self.PlayAnimationThreadShips, 'AnimationDeath')
-				self:SetCollisionShape('None')
-			end
-		else
-			if self.PlayDeathAnimation and not self:IsBeingBuilt() then
-				self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
-				self:SetCollisionShape('None')
-			end
-		end
-
-        ##self:OnKilledVO()
-        self:DoUnitCallbacks( 'OnKilled' )
-        self:DestroyTopSpeedEffects()
-		
-        if self.UnitBeingTeleported and not self.UnitBeingTeleported:IsDead() then
-            self.UnitBeingTeleported:Destroy()
-            self.UnitBeingTeleported = nil
-        end
-
-        #Notify instigator that you killed me.
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-        if self.DeathWeaponEnabled != false then
-            self:DoDeathWeapon()
-        end
-        self:DisableShield()
-        self:DisableUnitIntel()
-    end,
-
-}
-
 local oldSeaUnit = SeaUnit
 SeaUnit = Class( oldSeaUnit ) {
     ##Get faction
@@ -1033,7 +884,7 @@ StructureUnit = Class(Unit) {
         local Army = self:GetArmy()
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
-        local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+        local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
 	local ExplosionMultiplierTech = self:GetNumberByTechLvlBuilding2(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1060,7 +911,7 @@ StructureUnit = Class(Unit) {
         local Army = self:GetArmy()
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1082,7 +933,7 @@ StructureUnit = Class(Unit) {
         local Army = self:GetArmy()
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1249,7 +1100,7 @@ StructureUnit = Class(Unit) {
         local Army = self:GetArmy()
 	local Faction = self:GetFaction()
 	local UnitTechLvl = self:GetUnitTechLvl()
-	local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+	local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
 		local NExplosion = NEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1257,7 +1108,7 @@ StructureUnit = Class(Unit) {
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local BuildingSize = self:GetSizeOfBuilding()
-		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/0.5
+		local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/0.5/2.5
         local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()*self:GetFinalBoomMultBasedOffFactionCyb())
 
         ##LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
@@ -1271,9 +1122,9 @@ StructureUnit = Class(Unit) {
 
         if( self:GetSizeOfBuilding(self) < 1.45 ) then
 			if (toggle == 1) then
-				self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
+				self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3) ) ##Custom explosion for smaller buildings. 
 			else
-				self.CreateEffects( self, NExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider)) ##Custom explosion for smaller buildings. 
+				self.CreateEffects( self, NExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3) ) ##Custom explosion for smaller buildings. 
 			end
         else
            ## LOG('	STARTING BOOM PROCESS ON: ', bp.General.UnitName )
@@ -1284,7 +1135,7 @@ StructureUnit = Class(Unit) {
            ## LOG('	Size Scale: ', self:GetSizeOfBuilding() )
             self.CreateTimedFactionalStuctureUnitExplosion( self )
             WaitSeconds( 0.5 )
-			DefaultExplosionsStock.CreateFlash( self, -1, Number, Army )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number/3, Army )
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
 			else
@@ -1294,7 +1145,7 @@ StructureUnit = Class(Unit) {
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
             WaitSeconds( 1.15)
-			DefaultExplosionsStock.CreateFlash( self, -1, Number*2.5, Army )
+			DefaultExplosionsStock.CreateFlash( self, -1, Number/1.85, Army )
 			self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
 			if (toggle == 1) then 
 				self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
