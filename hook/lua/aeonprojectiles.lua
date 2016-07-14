@@ -364,7 +364,6 @@ AZealot02AAMissileProjectile = Class(SinglePolyTrailProjectile) {
     FxImpactLand = SDEffectTemplate.AeonRestorerMissileHit01,
     FxImpactUnderWater = {},
 }
-
 AAALightDisplacementAutocannonMissileProjectile = Class(MultiPolyTrailProjectile) {
     FxImpactUnit = EffectTemplate.ALightDisplacementAutocannonMissileHit,
     FxImpactAirUnit = EffectTemplate.ALightDisplacementAutocannonMissileHitUnit,

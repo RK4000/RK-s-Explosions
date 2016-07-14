@@ -23,7 +23,7 @@ local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 function NukeShockwave(toggle)
 	if toggle == 1 then
 		return 'very_large_test_sonic_nuke.bp'
-	else 
+	else
 		return 'nothing.bp'
 	end
 end
@@ -43,19 +43,19 @@ ConcussionRingLrg01 = { EmtBpPath .. 'destruction_explosion_concussion_ring_01_e
 FireCloudSml01 = {
     ##EmtBpPath .. 'fire_cloud_05_emit.bp',
     ##EmtBpPath .. 'fire_cloud_04_emit.bp',
-	ModPath .. 'small_test_sonic.bp',
-	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_random.bp',
-	ModPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 FireCloudMed01 = { --HERE
     ##EmtBpPath .. 'fire_cloud_06_emit.bp',
     ##EmtBpPath .. 'explosion_fire_sparks_01_emit.bp',
-	ModPath .. 'small_test_sonic.bp',
-	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_random.bp',
-	ModPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 
@@ -136,51 +136,51 @@ DefaultHitExplosion02 = TableCat( FireCloudSml01, FlashSml01, FlareSml01, SmokeS
 
 Splashy = {
     ModPath .. 'Watersplash_s.bp',
-	ModPath .. 'Water_pie_s.bp',
+    ModPath .. 'Water_pie_s.bp',
 }
 
 ExplosionSmallWater = {
     ModPath .. 'Watertower_s.bp',
-	ModPath .. 'Water_pie_s.bp',
-	ModPath .. 'Watersplash_s.bp',
+    ModPath .. 'Water_pie_s.bp',
+    ModPath .. 'Watersplash_s.bp',
 	
 }
 
 ExplosionMediumWater = {
     ModPath .. 'Watertower_m.bp',
-	ModPath .. 'Water_pie.bp',
-	ModPath .. 'Watersplash_m.bp',
+    ModPath .. 'Water_pie.bp',
+    ModPath .. 'Watersplash_m.bp',
 	
 }
 
 ExplosionLarge = {
-	ModPath .. 'Large_test_smoke.bp',
-	ModPath .. 'Large_test_fire.bp',
-	ModPath .. 'Large_test_random.bp',
-	ModPath .. 'Large_test_sonic.bp',
-        ModPath .. 'residue_Very_Large_test_smoke.bp',
+    ModPath .. 'Large_test_smoke.bp',
+    ModPath .. 'Large_test_fire.bp',
+    ModPath .. 'Large_test_random.bp',
+    ModPath .. 'Large_test_sonic.bp',
+    ModPath .. 'residue_Very_Large_test_smoke.bp',
 }
 
 ExplosionSmallAir = {
-	ModPath .. 'small_test_sonic.bp',
-	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_random.bp',
-	ModPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 ExplosionSmall = {
     ModPath .. 'dust_small_emit.bp',
-	ModPath .. 'small_test_sonic.bp',
-	ModPath .. 'small_test_fire.bp',
-	ModPath .. 'small_test_random.bp',
-	ModPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 ExplosionMedium = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'Medium_test_smoke.bp',
-	ModPath .. 'Medium_test_fire.bp',
-	ModPath .. 'Medium_test_random.bp',
-	ModPath .. 'Medium_test_sonic.bp',
+    ModPath .. 'dust_emit.bp',
+    ModPath .. 'Medium_test_smoke.bp',
+    ModPath .. 'Medium_test_fire.bp',
+    ModPath .. 'Medium_test_random.bp',
+    ModPath .. 'Medium_test_sonic.bp',
 }
 ExplosionEffectsLrg02 = {
 	EmtBpPath .. 'destruction_explosion_flash_04_emit.bp',

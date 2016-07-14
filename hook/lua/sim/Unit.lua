@@ -12,110 +12,110 @@ local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 Unit = Class( oldUnit ) {
-	CreateEffects = function( self, EffectTable, army, scale)
+    CreateEffects = function( self, EffectTable, army, scale)
         for k, v in EffectTable do
-		if self.RKEmitters == nil then self.RKEmitters = {} end
-			local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
+        if self.RKEmitters == nil then self.RKEmitters = {} end
+            local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
             table.insert(self.RKEmitters, emitter)
-			self.Trash:Add(emitter)
+            self.Trash:Add(emitter)
         end
     end,
-	
-	GetFaction = function(self)
-    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+
+    GetFaction = function(self)
+        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
     end,
 
     GetUnitTechLvl = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'TECH1', 'TECH2', 'TECH3' }
-    	local UnitTechLvl = 'TECH1'
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitTechLvl = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitTechLvl
-     end,
-	 
-	 GetUnitLayer = function(self)
-      	local Categories = self:GetBlueprint().Categories or {}
-      	local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
-    	
-    	for index, Cat in Cats do
-    		if table.find(Categories, Cat) then
-    			UnitLayer = Cat
-    			break
-    		end
-    	end
-    	
-    	
-     	return UnitLayer
-     end,
-	 
-	 
-    GetNumberByTechLvl = function(self, UnitTechLvl)
+        local Categories = self:GetBlueprint().Categories or {}
+        local Cats = {'TECH1', 'TECH2', 'TECH3'}
+        local UnitTechLvl = 'TECH1'
 
-    if UnitTechLvl == 'TECH1' then
-   		return 0.425
-    	elseif UnitTechLvl == 'TECH2' then
-    		return 0.76/1.075
-    	elseif UnitTechLvl == 'TECH3' then
-    		return 1.025/1.175
-    	else
-    		return 1
-    	end	
+        for index, Cat in Cats do
+            if table.find(Categories, Cat) then
+                UnitTechLvl = Cat
+                break
+            end
+        end
+    	
+    	
+        return UnitTechLvl
+     end,
+
+     GetUnitLayer = function(self)
+        local Categories = self:GetBlueprint().Categories or {}
+        local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
+
+        for index, Cat in Cats do
+            if table.find(Categories, Cat) then
+                UnitLayer = Cat
+                break
+            end
+        end
+
+
+        return UnitLayer
+     end,
+
+	 
+     GetNumberByTechLvl = function(self, UnitTechLvl)
+
+        if UnitTechLvl == 'TECH1' then
+            return 0.425
+        elseif UnitTechLvl == 'TECH2' then
+            return 0.76/1.075
+        elseif UnitTechLvl == 'TECH3' then
+            return 1.025/1.175
+        else
+            return 1
+        end
     end,
-	
-	CreateDestructionEffects = function( self, overKillRatio )
+
+    CreateDestructionEffects = function( self, overKillRatio )
         local SDModifiedExplosion = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
         SDModifiedExplosion.CreateScalableUnitExplosion( self, overKillRatio )
     end,
-	
-	GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
 
-    	if UnitTechLvl == 'TECH1' then
-   		return 2.0
-    	elseif UnitTechLvl == 'TECH2' then
-    		return 2.3
-    	elseif UnitTechLvl == 'TECH3' then
-    		return 2.875
-    	else
-    		return 3.0
-    	end	
+    GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
+
+        if UnitTechLvl == 'TECH1' then
+        return 2.0
+        elseif UnitTechLvl == 'TECH2' then
+            return 2.3
+        elseif UnitTechLvl == 'TECH3' then
+            return 2.875
+        else
+            return 3.0
+        end
     end,
 
-	PlayAnimationThreadShips = function(self, anim, rate)
-		local bp = self:GetBlueprint().Display[anim]
-		local TechLvl = self:GetUnitTechLvl()
-		local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
-		LOG(AnimMultNumber)
-		if bp then
-			local animBlock = self:ChooseAnimBlock( bp )
-			if animBlock.Mesh then
-				self:SetMesh(animBlock.Mesh)
-			end
-			if animBlock.Animation then
-				local sinkAnim = CreateAnimator(self)
-				self:StopRocking()
-				self.DeathAnimManip = sinkAnim
-				sinkAnim:PlayAnim(animBlock.Animation)
-				rate = rate or 1
-				if animBlock.AnimationRateMax and animBlock.AnimationRateMin then
-					rate = Random(animBlock.AnimationRateMin * 10, animBlock.AnimationRateMax * 10) / 10
-				end
-				sinkAnim:SetRate(rate/AnimMultNumber)
-				self.Trash:Add(sinkAnim)
-				WaitFor(sinkAnim)
-			end
-		end
-	end,
-	
-	OnKilled = function(self, instigator, type, overkillRatio)
-		
+    PlayAnimationThreadShips = function(self, anim, rate)
+        local bp = self:GetBlueprint().Display[anim]
+        local TechLvl = self:GetUnitTechLvl()
+        local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
+        LOG(AnimMultNumber)
+        if bp then
+            local animBlock = self:ChooseAnimBlock( bp )
+            if animBlock.Mesh then
+                self:SetMesh(animBlock.Mesh)
+            end
+            if animBlock.Animation then
+                local sinkAnim = CreateAnimator(self)
+                self:StopRocking()
+                self.DeathAnimManip = sinkAnim
+                sinkAnim:PlayAnim(animBlock.Animation)
+                rate = rate or 1
+                if animBlock.AnimationRateMax and animBlock.AnimationRateMin then
+                    rate = Random(animBlock.AnimationRateMin * 10, animBlock.AnimationRateMax * 10) / 10
+                end
+                sinkAnim:SetRate(rate/AnimMultNumber)
+                self.Trash:Add(sinkAnim)
+                WaitFor(sinkAnim)
+            end
+        end
+    end,
+
+    OnKilled = function(self, instigator, type, overkillRatio)
+
         local layer = self:GetCurrentLayer()
         self.Dead = true
 
@@ -124,13 +124,13 @@ Unit = Class( oldUnit ) {
             self:ShowBone(0, true)
             self:ShowEnhancementBones()
         end
-		
-		if EntityCategoryContains(categories.AIR, self) then
-		self:ForkThread(SDExplosions.AirImpactWater)
-		else
-		self:ForkThread(SDExplosions.ExplosionLand) 
-		end
-		
+
+        if EntityCategoryContains(categories.AIR, self) then
+        self:ForkThread(SDExplosions.AirImpactWater)
+        else
+        self:ForkThread(SDExplosions.ExplosionLand)
+        end
+
         local bp = self:GetBlueprint()
         if layer == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
             self:PlayUnitSound('HoverKilledOnWater')
@@ -162,10 +162,10 @@ Unit = Class( oldUnit ) {
         end
         self:DisableShield()
         self:DisableUnitIntel()
-		self:ForkThread(self.DeathThread, overkillRatio , instigator)
-	end,
-	
-	SinkDestructionEffects = function(self)
+        self:ForkThread(self.DeathThread, overkillRatio , instigator)
+    end,
+
+    SinkDestructionEffects = function(self)
         local Util = utilities
         local sx, sy, sz = self:GetUnitSizes()
         local vol = sx * sy * sz
@@ -224,8 +224,8 @@ Unit = Class( oldUnit ) {
         proj:Start(10 * math.max(2, math.min(7, scale)), self, bone, callback)
         self.Trash:Add(proj)
     end,
-	
-	DeathThread = function( self, overkillRatio, instigator)
+
+    DeathThread = function( self, overkillRatio, instigator)
         local layer = self:GetCurrentLayer()
         local isNaval = EntityCategoryContains(categories.NAVAL, self)
         local shallSink = (
@@ -291,6 +291,6 @@ Unit = Class( oldUnit ) {
 
         self:Destroy()
     end,
-	
+
 
 }
