@@ -109,54 +109,13 @@ Unit = Class( oldUnit ) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-
-        local layer = self:GetCurrentLayer()
-        self.Dead = true
-
-        --Units killed while being invisible because they're teleporting should show when they're killed
-        if self.TeleportFx_IsInvisible then
-            self:ShowBone(0, true)
-            self:ShowEnhancementBones()
-        end
-
         if EntityCategoryContains(categories.AIR, self) then
-        self:ForkThread(SDExplosions.AirImpactWater)
+            self:ForkThread(SDExplosions.AirImpactWater)
         else
-        self:ForkThread(SDExplosions.ExplosionLand)
+            self:ForkThread(SDExplosions.ExplosionLand)
         end
 
-        local bp = self:GetBlueprint()
-        if layer == 'Water' and bp.Physics.MotionType == 'RULEUMT_Hover' then
-            self:PlayUnitSound('HoverKilledOnWater')
-        elseif layer == 'Land' and bp.Physics.MotionType == 'RULEUMT_AmphibiousFloating' then
-            --Handle ships that can walk on land
-            self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
-        else
-            --self:PlayUnitSound('Killed')
-        end
-
-        if self.PlayDeathAnimation and self:GetFractionComplete() > 0.5 then
-            self:ForkThread(self.PlayAnimationThread, 'AnimationDeath')
-            self.DisallowCollisions = true
-        end
-
-        self:DoUnitCallbacks( 'OnKilled' )
-
-        if self.UnitBeingTeleported and not self.UnitBeingTeleported.Dead then
-            self.UnitBeingTeleported:Destroy()
-            self.UnitBeingTeleported = nil
-        end
-
-        -- Notify instigator that you killed me.
-        if instigator and IsUnit(instigator) then
-            instigator:OnKilledUnit(self)
-        end
-        if self.DeathWeaponEnabled ~= false then
-            self:DoDeathWeapon()
-        end
-        self:DisableShield()
-        self:DisableUnitIntel()
-        self:ForkThread(self.DeathThread, overkillRatio , instigator)
+        return oldUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     SinkDestructionEffects = function(self)
