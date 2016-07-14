@@ -12,8 +12,9 @@ local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
 Unit = Class( oldUnit ) {
     CreateEffects = function( self, EffectTable, army, scale)
+        self.RKEmitters = self.RKEmitters or {}
+
         for k, v in EffectTable do
-        if self.RKEmitters == nil then self.RKEmitters = {} end
             local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
             table.insert(self.RKEmitters, emitter)
             self.Trash:Add(emitter)
