@@ -183,7 +183,7 @@ function _CreateScalableUnitExplosion(obj)
 
     -- Merge resulting tables to final explosion emitter list
     if table.getn( EnvironmentalEffectTable ) ~= 0 then
-        EffectTable = EffectTemplate.TableCat( BaseEffectTable, EnvironmentalEffectTable )
+        EffectTable = util.TableCat( BaseEffectTable, EnvironmentalEffectTable )
     else
         EffectTable = BaseEffectTable
     end
