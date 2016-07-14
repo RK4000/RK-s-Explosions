@@ -1,11 +1,10 @@
 local oldUnit = Unit
-rklog = false
 
-##Includes changes to the fundamental Unit class,
-##in case some type of unit does not have a specifically modified OnKilled to use the 
-##factional explosions, this acts as sort of a backup to still spawn them. 
-##It is also neccesary because the changes here remove the current generic
-##explosion, since it's replaced by the factional ones.
+-- Includes changes to the fundamental Unit class,
+-- in case some type of unit does not have a specifically modified OnKilled to use the
+-- factional explosions, this acts as sort of a backup to still spawn them.
+-- It is also neccesary because the changes here remove the current generic
+-- explosion, since it's replaced by the factional ones.
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
@@ -36,8 +35,6 @@ Unit = Class( oldUnit ) {
                 break
             end
         end
-    	
-    	
         return UnitTechLvl
      end,
 
@@ -56,9 +53,7 @@ Unit = Class( oldUnit ) {
         return UnitLayer
      end,
 
-	 
      GetNumberByTechLvl = function(self, UnitTechLvl)
-
         if UnitTechLvl == 'TECH1' then
             return 0.425
         elseif UnitTechLvl == 'TECH2' then
@@ -76,7 +71,6 @@ Unit = Class( oldUnit ) {
     end,
 
     GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
-
         if UnitTechLvl == 'TECH1' then
         return 2.0
         elseif UnitTechLvl == 'TECH2' then
@@ -138,7 +132,7 @@ Unit = Class( oldUnit ) {
             --Handle ships that can walk on land
             self:PlayUnitSound('AmphibiousFloatingKilledOnLand')
         else
-            ##self:PlayUnitSound('Killed')
+            --self:PlayUnitSound('Killed')
         end
 
         if self.PlayDeathAnimation and self:GetFractionComplete() > 0.5 then
@@ -153,7 +147,7 @@ Unit = Class( oldUnit ) {
             self.UnitBeingTeleported = nil
         end
 
-        --Notify instigator of kill
+        -- Notify instigator that you killed me.
         if instigator and IsUnit(instigator) then
             instigator:OnKilledUnit(self)
         end
@@ -191,7 +185,7 @@ Unit = Class( oldUnit ) {
             end
 
             if toSurface < 0 then
-                ##explosion.CreateDefaultHitExplosionAtBone( self, randBone, scale*1.5)
+                --explosion.CreateDefaultHitExplosionAtBone( self, randBone, scale*1.5)
             else
                 local lifetime = Util.GetRandomInt(50, 200)
 
@@ -278,7 +272,7 @@ Unit = Class( oldUnit ) {
         end
 
         -- If we're not doing fancy sinking rubbish, just blow the damn thing up.
-		##self:ForkThread(SDExplosions.ExplosionLand(self))
+        --self:ForkThread(SDExplosions.ExplosionLand(self))
         self:DestroyUnit(overkillRatio)
     end,
 

@@ -1,12 +1,11 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/utilities.lua
-#**  Author(s):  John Comes, Gordon Duclos
-#**
-#**  Summary  :  Utility functions for scripts.
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+------------------------------------------------------------------------------
+--  File     :  /lua/utilities.lua
+--  Author(s):  John Comes, Gordon Duclos
+--
+--  Summary  :  Utility functions for scripts.
+--
+--  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+------------------------------------------------------------------------------
 
 function GetDistanceBetweenTwoEntities(entity1, entity2)
     return VDist3(entity1:GetPosition(),entity2:GetPosition())
@@ -20,14 +19,14 @@ function GetEnemyUnitsInSphere(unit, position, radius)
     local y2 = position.y + radius
     local z2 = position.z + radius
     local UnitsinRec = GetUnitsInRect(Rect(x1, z1, x2, z2))
-	#Check for empty rectangle
+    -- Check for empty rectangle
     if not UnitsinRec then
         return UnitsinRec
     end
     local RadEntities = {}
     for k, v in UnitsinRec do
         local dist = VDist3(position, v:GetPosition())
-		if (unit:GetArmy() != v:GetArmy()) and (dist <= radius) then
+        if (unit:GetArmy() ~= v:GetArmy()) and (dist <= radius) then
             table.insert(RadEntities, v)
         end
     end
@@ -130,7 +129,7 @@ function DotP(v1, v2)
 end
 
 function GetAngleInBetween(v1, v2)
-    #normalize the vectors
+    -- Normalize the vectors
     local vec1 = {}
     local vec2 = {}
     vec1 = NormalizeVector(v1)
@@ -146,13 +145,11 @@ function UserConRequest(string)
     table.insert(Sync.UserConRequests, string)
 end
 
-#---------------------------------------------------------------
-# TableCat - Concatenates multiple tables into one single table
-#---------------------------------------------------------------
+-- TableCat - Concatenates multiple tables into one single table
 function TableCat(...)
     local ret = {}
     for index = 1, table.getn(arg) do
-        if arg[index] != nil then
+        if arg[index] ~= nil then
             for k, v in arg[index] do
                 table.insert(ret, v)
             end

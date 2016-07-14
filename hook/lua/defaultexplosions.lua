@@ -40,11 +40,6 @@ function GetAverageBoundingXYZRadius(unit)
     return ((bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0) * 0.333)
 end
 
-function GetSizeOfUnit (obj)
-    local bp = obj:GetBlueprint()
-    return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
-end
-
 function QuatFromRotation(rotation, x, y, z)
     local angleRot, qw, qx, qy, qz, angle
     angle = 0.00872664625 * rotation
@@ -73,7 +68,6 @@ function CreateUnitExplosionEntity(unit, overKillRatio)
     Warp( localentity, unit:GetPosition())
     return localentity
 end
-
 
 function CreateScalableUnitExplosion(unit, overKillRatio)
     if unit then
@@ -122,26 +116,26 @@ function _CreateScalableUnitExplosion(obj)
     local Number = (scale - 0.2) *1.4
     local Numberfornavy = (scalefornavy - 0.2) *1.4
 
-    # Determine effect table to use, based on unit bounding box scale
-    #LOG(scale)
+    -- Determine effect table to use, based on unit bounding box scale
+    -- LOG(scale)
     if layer == 'Land' then
-	    if scale < 1.1 then   ## Small units
-			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
+        if scale < 1.1 then   -- Small units
+            if toggle == 1 then
+                BaseEffectTable = SDEffectTemplate.AddNothing   ----Not needed, RKS only emits on start in a separate function
             else
                 BaseEffectTable = NEffectTemplate.ExplosionSmallest
             end
-		elseif scale > 3.75 then ## Large units
-			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
+        elseif scale > 3.75 then -- Large units
+            if toggle == 1 then
+                BaseEffectTable = SDEffectTemplate.AddNothing   ----Not needed, RKS only emits on start in a separate function
             else
                 BaseEffectTable = NEffectTemplate.ExplosionSmall
             end
             ShakeTimeModifier = 1.0
             ShakeMaxMul = 0.25
-		else                  ## Medium units
-			if (toggle == 1) then 
-				BaseEffectTable = SDEffectTemplate.AddNothing   ##Not needed, RKS only emits on start in a separate function
+        else                  -- Medium units
+            if toggle == 1 then
+                BaseEffectTable = SDEffectTemplate.AddNothing   ----Not needed, RKS only emits on start in a separate function
             else
                 BaseEffectTable = NEffectTemplate.ExplosionSmaller
             end
@@ -149,55 +143,53 @@ function _CreateScalableUnitExplosion(obj)
     end
 
     if layer == 'Air' then
-	    if scale < 1.1 then   ## Small units
+        if scale < 1.1 then   ---- Small units
            BaseEffectTable = SDEffectTemplate.AddNothing
-		elseif scale > 3 then ## Large units
+        elseif scale > 3 then ---- Large units
             BaseEffectTable = SDEffectTemplate.AddNothing
             ShakeTimeModifier = 1.0
             ShakeMaxMul = 0.25
-		else                  ## Medium units
+        else                  ---- Medium units
             BaseEffectTable = SDEffectTemplate.AddNothing
         end
     end
 
     if layer == 'Water' then
-	    if scalefornavy < 1 then   ## Small units
+        if scalefornavy < 1 then   ---- Small units
            BaseEffectTable = EffectTemplate.ExplosionSmallWater
-		elseif scalefornavy > 3 then ## Large units
+        elseif scalefornavy > 3 then ---- Large units
             BaseEffectTable = EffectTemplate.ExplosionMediumWater
             ShakeTimeModifier = 1.0
             ShakeMaxMul = 0.25
-		else                  ## Medium units
+        else                  ---- Medium units
             BaseEffectTable = EffectTemplate.ExplosionMediumWater
         end
     end
 
     if layer == 'Sub' then
-	    if scalefornavy < 1.1 then   ## Small units
+        if scalefornavy < 1.1 then   ---- Small units
             BaseEffectTable = EffectTemplate.ExplosionSmallUnderWater
-		elseif scalefornavy > 3 then ## Large units
+        elseif scalefornavy > 3 then ---- Large units
             BaseEffectTable = EffectTemplate.ExplosionSmallUnderWater
             ShakeTimeModifier = 1.0
             ShakeMaxMul = 0.25
-		else                  ## Medium units
+        else                  ---- Medium units
             BaseEffectTable = EffectTemplate.ExplosionSmallUnderWater
         end
     end
 
-    # Get Environmental effects for current layer
+    -- Get Environmental effects for current layer
     EnvironmentalEffectTable = DefaultExplosions.GetUnitEnvironmentalExplosionEffects( layer, scale )
 
-    # Merge resulting tables to final explosion emitter list
-    if table.getn( EnvironmentalEffectTable ) != 0 then
+    -- Merge resulting tables to final explosion emitter list
+    if table.getn( EnvironmentalEffectTable ) ~= 0 then
         EffectTable = EffectTemplate.TableCat( BaseEffectTable, EnvironmentalEffectTable )
     else
         EffectTable = BaseEffectTable
     end
 
-    #LOG( 'ExplosionEntity ', repr(obj), '\nEffect Table ', repr(EffectTable), '\nPosition ', repr(obj:GetPosition()) )
-
-    #---------------------------------------------------------------
-    # Create Generic emitter effects
+    -----------------------------------------------------------------
+    -- Create Generic emitter effects
     if layer == 'Water' then
         CreateEffectsScalable( obj, army, EffectTable, Numberfornavy/2 )
     elseif scale > 3 then
@@ -205,22 +197,18 @@ function _CreateScalableUnitExplosion(obj)
     else
         CreateEffectsScalable( obj, army, EffectTable, Number )
     end
-	##LOG(Number)
-    # Create Light particle flash
+    ----LOG(Number)
+    -- Create Light particle flash
     DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
 
-    # Create GenericDebris chunks
+    -- Create GenericDebris chunks
     DefaultExplosionsStock.CreateDebrisProjectiles( obj, obj.Spec.BoundingXYZRadius, obj.Spec.Dimensions )
-
-    # Camera Shake  (.radius .maxshake .minshake .lifetime) ##Shake only for default explosions, they shake on both starting and ending explosion. rks only shakes at start (handled in unit.lua)
-	if (toggle == 1) then
+    -- Camera Shake  (.radius .maxshake .minshake .lifetime)
+    if toggle == 1 then
         obj:ShakeCamera(0, 0, 0, 0 )
     else
         obj:ShakeCamera(30 * scale, scale * ShakeMaxMul, 0, 0.5 + ShakeTimeModifier)
     end
-    #---------------------------------------------------------------
-    #WaitSeconds( 5 )
-    #_CreateScalableUnitExplosion( obj )
     obj:Destroy()
 end
 
@@ -240,7 +228,6 @@ end
 
 function CreateDebrisProjectiles(obj, volume, dimensions)
     local partamounts = (math.min(GetRandomInt(1 + (volume * 50), (volume * 100)) , 250) /2.15)
-    ##local partamounts = GetRandomInt(1,3)
     local sx, sy, sz = unpack(dimensions)
     local vector = obj.Spec.OverKillRatio.debris_Vector
     for i = 1, partamounts do
