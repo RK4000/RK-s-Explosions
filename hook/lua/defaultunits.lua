@@ -264,7 +264,7 @@ SeaUnit = Class(oldSeaUnit) {
     -- Make sure we use factional damage effects
     OnCreate = function(self)
         MobileUnit.OnCreate(self)
-        self:AddPingPong()
+
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]     -- Using airplane damage effects
