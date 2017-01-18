@@ -355,9 +355,9 @@ SeaUnit = Class(oldSeaUnit) {
         if (UnitTechLvl == 'TECH1') then
             return Util.GetRandomInt(2*1.5, 6*1.5)
         elseif (UnitTechLvl == 'TECH2') then
-            return Util.GetRandomInt(3*1.7, 8*1.7)
+            return Util.GetRandomInt(3*1.7/1.2, 8*1.7/1.2)
         elseif (UnitTechLvl == 'TECH3') then
-            return Util.GetRandomInt(7*2, 13*2)
+            return Util.GetRandomInt(7*2/1.5, 13*2/1.5)
         else
             return 10
         end

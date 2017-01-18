@@ -1,7 +1,7 @@
 name = "rks_explosions V9 BETA"
-uid = "EFFFA8C6-96D9-11E4-9DA1-460D1D5D46B0"
+uid = "EFFFA8C6-96D9-11E4-9DA1-432D1D5D46B0"
 version = 1
-description = "wot"
+description = "Non-toggle version of V9 beta made playable as per request. :)"
 author = "RK4000, Sheeo, Everyone that posted feedback on the forums."
 url = "FAF forums, check useful mods subthread."
 selectable = true
