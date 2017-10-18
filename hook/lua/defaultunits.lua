@@ -51,7 +51,7 @@ AirUnit = Class(oldAirUnit) {
         end
 
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
@@ -195,7 +195,7 @@ SeaUnit = Class(oldSeaUnit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
@@ -216,7 +216,7 @@ SeaUnit = Class(oldSeaUnit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
@@ -234,7 +234,7 @@ SeaUnit = Class(oldSeaUnit) {
 
     CreateUnitSeaDestructionEffects = function(self, scale)
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
 
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -259,7 +259,7 @@ SeaUnit = Class(oldSeaUnit) {
         MobileUnit.OnCreate(self)
 
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]     -- Using airplane damage effects
         local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]       -- for now, yea, i know, it's cheap,
         local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction] -- so sue me, i don't care :P
@@ -275,7 +275,7 @@ SeaUnit = Class(oldSeaUnit) {
         local nrofBones = self:GetBoneCount() -1
         local watchBone = self:GetBlueprint().WatchBone or 0
         local Army = self:GetArmy()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local BoomScale = self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1')
         local BoomScale2 = self:GetSizeOfUnit()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -386,7 +386,7 @@ SeaUnit = Class(oldSeaUnit) {
         --local SubExplCountBasedOffSizeMin = (self:GetSizeOfUnitForSubBooms()-(self:GetSizeOfUnit()-4)) /2.15
 
         --local maxcount = Util.GetRandomInt(SubExplCountBasedOffSizeMin,SubExplCountBasedOffSizeMax)
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local maxcount = self:GetSubBoomExplCount2(UnitTechLvl or 'TECH1')
         --LOG(maxcount)
 
@@ -419,7 +419,7 @@ SeaUnit = Class(oldSeaUnit) {
             if i > 0 then
                 local rx, ry, rz = self:GetRandomOffset(1)
                 local rs = Random(vol/2, vol*2) / (vol*2)
-                local UnitTechLvl = self.techCategory
+                local UnitTechLvl = self:GetUnitTechLvl()
                 local UnitSize = self:GetSizeOfUnit()
 
                 -- Make faction boom
@@ -524,7 +524,7 @@ SubUnit = Class(oldSubUnit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH4')
         local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
         local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
@@ -684,7 +684,7 @@ StructureUnit = Class(Unit) {
         --  self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
         --else                                                                                                  LEFT FOR ANOTHER DAY
         --    local Faction = self:GetFaction()
-        --  local UnitTechLvl = self.techCategory
+        --  local UnitTechLvl = self:GetUnitTechLvl()
         --  local NFactionalSmallSmoke = NEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         --  local NFactionalSmallFire = NEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         --  local NFactionalBigFireSmoke = NEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
@@ -722,7 +722,7 @@ StructureUnit = Class(Unit) {
 
     -- Get final boom multiplier based off Tech number
     GetNumberTechFinalBoom = function(self)
-    local UnitTechLvl = self.techCategory
+    local UnitTechLvl = self:GetUnitTechLvl()
         if UnitTechLvl == 'TECH1' then
            return 1
         elseif UnitTechLvl == 'TECH2' then
@@ -768,7 +768,7 @@ StructureUnit = Class(Unit) {
 
     -- For final boom final scale tweaking, for cyb
     GetFinalBoomMultBasedOffFactionCyb = function(self)
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Faction = self:GetFaction()
         if ((Faction == 'cybran') and (UnitTechLvl == 'TECH3') and (self:GetBlueprint().Categories == 'FACTORY'))  then
             return 1
@@ -779,7 +779,7 @@ StructureUnit = Class(Unit) {
 
     -- For final boom final scale tweaking, for cyb
     GetFinalBoomMultBasedOffFactionCybT1Fac = function(self)
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Faction = self:GetFaction()
         if Faction == 'cybran' and UnitTechLvl == 'TECH1' then
             return 0.75
@@ -811,7 +811,7 @@ StructureUnit = Class(Unit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local ExplosionMultiplierTech = self:GetNumberByTechLvlBuilding2(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
@@ -838,7 +838,7 @@ StructureUnit = Class(Unit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -860,7 +860,7 @@ StructureUnit = Class(Unit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1020,7 +1020,7 @@ StructureUnit = Class(Unit) {
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
         local Faction = self:GetFaction()
-        local UnitTechLvl = self.techCategory
+        local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. UnitTechLvl ..Faction]
@@ -1050,7 +1050,7 @@ StructureUnit = Class(Unit) {
         else
            -- LOG(' STARTING BOOM PROCESS ON: ', bp.General.UnitName)
            -- LOG(' Building Size: ', self:GetSizeOfBuilding())
-           -- LOG(' Building Tech: ', self.techCategory)
+           -- LOG(' Building Tech: ', self:GetUnitTechLvl())
             --LOG(' Global Building Boom Divider: ', 4.5)
             --LOG(' Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1'))
            -- LOG(' Size Scale: ', self:GetSizeOfBuilding())

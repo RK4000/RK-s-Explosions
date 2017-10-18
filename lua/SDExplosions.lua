@@ -142,7 +142,7 @@ ScorchDecalTexturesSera = {
 function AddFalldownTrail(obj)
     local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
-    local UnitTechLvl = obj.techCategory
+    local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 
     local SDFallDownTrail = SDEffectTemplate[UnitTechLvl .. Faction .. 'FallDownTrail']
@@ -158,7 +158,7 @@ end
 function ExplosionAirMidAir(obj)
     local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
-    local UnitTechLvl = obj.techCategory
+    local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 
     local SDExplosion = SDEffectTemplate['AirExplosion'.. UnitTechLvl ..Faction]
@@ -178,9 +178,9 @@ function ExplosionAirMidAir(obj)
         obj.CreateEffects(obj, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) -- No falling-down trail
     end
 
-    if obj.techCategory == 'TECH1' then
+    if obj:GetUnitTechLvl() == 'TECH1' then
         CreateFlash(obj, -1, (Number)/2.5/2.5*2, Army)
-    elseif obj.techCategory == 'TECH2' then
+    elseif obj:GetUnitTechLvl() == 'TECH2' then
         CreateFlash(obj, -1, (Number)/2.15/2*2, Army)
     else
         CreateFlash(obj, -1, (Number)/2.75/1.85*2, Army)
@@ -192,7 +192,7 @@ end
 function ExplosionAirImpact(obj)
     local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
-    local UnitTechLvl = obj.techCategory
+    local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
 
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
@@ -208,9 +208,9 @@ function ExplosionAirImpact(obj)
         obj.CreateEffects(obj, NExplosionImpact, Army, 1) --Default explosion when unit is in the air
     end
             
-    if obj.techCategory == 'TECH1' then
+    if obj:GetUnitTechLvl() == 'TECH1' then
         CreateFlash(obj, -1, (Number)/2.5/2.5*2, Army)
-    elseif obj.techCategory == 'TECH2' then
+    elseif obj:GetUnitTechLvl() == 'TECH2' then
         CreateFlash(obj, -1, (Number)/2.15/2*2, Army)
     else
         CreateFlash(obj, -1, (Number)/2.75/1.85*2, Army)
@@ -231,7 +231,7 @@ end
 function AirImpactWater(obj)
     local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
-    local UnitTechLvl = obj.techCategory
+    local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
     
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]  
@@ -253,7 +253,7 @@ function ExplosionLand(obj)
     local Army = obj:GetArmy()
     local army = obj:GetArmy()
     local Faction = obj:GetFaction()
-    local UnitTechLvl = obj.techCategory
+    local UnitTechLvl = obj:GetUnitTechLvl()
     local UnitLayer = obj.layerCategory
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}

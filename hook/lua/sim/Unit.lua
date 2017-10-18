@@ -24,6 +24,14 @@ Unit = Class(oldUnit) {
         return string.lower(self.factionCategory)
     end,
 
+    GetUnitTechLvl = function(self)
+        if self.techCategory == 'EXPERIMENTAL' then
+            return 'TECH1'
+        else
+            return self.techCategory
+        end
+    end,
+
     GetNumberByTechLvl = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
             return 0.425
@@ -55,7 +63,7 @@ Unit = Class(oldUnit) {
 
     PlayAnimationThreadShips = function(self, anim, rate)
         local bp = self:GetBlueprint().Display[anim]
-        local TechLvl = self.techCategory
+        local TechLvl = self:GetUnitTechLvl()
         local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
 
         if bp then
