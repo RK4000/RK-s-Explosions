@@ -1,5 +1,3 @@
-local oldUnit = Unit
-
 -- Includes changes to the fundamental Unit class,
 -- in case some type of unit does not have a specifically modified OnKilled to use the
 -- factional explosions, this acts as sort of a backup to still spawn them.
@@ -10,8 +8,9 @@ local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
-Unit = Class( oldUnit ) {
-    CreateEffects = function( self, EffectTable, army, scale)
+local oldUnit = Unit
+Unit = Class(oldUnit) {
+    CreateEffects = function(self, EffectTable, army, scale)
         self.RKEmitters = self.RKEmitters or {}
 
         for k, v in EffectTable do
@@ -39,7 +38,7 @@ Unit = Class( oldUnit ) {
         return UnitTechLvl
      end,
 
-     GetUnitLayer = function(self)
+    GetUnitLayer = function(self)
         local Categories = self:GetBlueprint().Categories or {}
         local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
 
@@ -50,11 +49,10 @@ Unit = Class( oldUnit ) {
             end
         end
 
-
         return UnitLayer
      end,
 
-     GetNumberByTechLvl = function(self, UnitTechLvl)
+    GetNumberByTechLvl = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
             return 0.425
         elseif UnitTechLvl == 'TECH2' then
@@ -66,14 +64,14 @@ Unit = Class( oldUnit ) {
         end
     end,
 
-    CreateDestructionEffects = function( self, overKillRatio )
+    CreateDestructionEffects = function(self, overKillRatio)
         local SDModifiedExplosion = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
-        SDModifiedExplosion.CreateScalableUnitExplosion( self, overKillRatio )
+        SDModifiedExplosion.CreateScalableUnitExplosion(self, overKillRatio)
     end,
 
     GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
-        return 2.0
+            return 2.0
         elseif UnitTechLvl == 'TECH2' then
             return 2.3
         elseif UnitTechLvl == 'TECH3' then
@@ -87,9 +85,9 @@ Unit = Class( oldUnit ) {
         local bp = self:GetBlueprint().Display[anim]
         local TechLvl = self:GetUnitTechLvl()
         local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
-        LOG(AnimMultNumber)
+
         if bp then
-            local animBlock = self:ChooseAnimBlock( bp )
+            local animBlock = self:ChooseAnimBlock(bp)
             if animBlock.Mesh then
                 self:SetMesh(animBlock.Mesh)
             end
@@ -130,7 +128,7 @@ Unit = Class( oldUnit ) {
         local i = 0
 
         while i < 1 do
-            local randBone = Util.GetRandomInt( 0, numBones)
+            local randBone = Util.GetRandomInt(0, numBones)
             local boneHeight = self:GetPosition(randBone)[2]
             local toSurface = surfaceHeight - boneHeight
             local y = toSurface
@@ -139,27 +137,27 @@ Unit = Class( oldUnit ) {
             local scale = Util.GetRandomFloat(rs/2, rs)
 
             self:DestroyAllDamageEffects()
-            if(toSurface < 1) then
+            if toSurface < 1 then
                 CreateAttachedEmitter(self, randBone, army,'/effects/emitters/destruction_water_sinking_ripples_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
                 CreateAttachedEmitter(self, randBone, army, '/effects/emitters/destruction_water_sinking_wash_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
             end
 
             if toSurface < 0 then
-                --explosion.CreateDefaultHitExplosionAtBone( self, randBone, scale*1.5)
+                --explosion.CreateDefaultHitExplosionAtBone(self, randBone, scale*1.5)
             else
                 local lifetime = Util.GetRandomInt(50, 200)
 
                 if(toSurface > 1) then
-                    CreateEmitterAtBone( self, randBone, army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
+                    CreateEmitterAtBone(self, randBone, army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
                         :ScaleEmitter(scale)
                         :SetEmitterParam('LIFETIME', lifetime)
 
                     CreateAttachedEmitter(self, -1, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
                 end
-                CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
-                CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
             end
-            local rd = Util.GetRandomFloat( 0.4, 1.0)
+            local rd = Util.GetRandomFloat(0.4, 1.0)
             WaitSeconds(i + rd)
             i = i + 0.3
         end

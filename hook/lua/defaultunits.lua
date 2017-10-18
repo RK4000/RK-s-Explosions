@@ -139,11 +139,11 @@ AirUnit = Class(oldAirUnit) {
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
             self:ForkThread(SDExplosions.AirImpactWater(self))
-            EffectUtil.CreateEffects( self, self:GetArmy(), EffectTemplate.DefaultProjectileWaterImpact )
+            EffectUtil.CreateEffects(self, self:GetArmy(), EffectTemplate.DefaultProjectileWaterImpact)
         else
             self:ForkThread(SDExplosions.ExplosionAirImpact)
         end
-        self:ForkThread(self.DeathThread, self.OverKillRatio )
+        self:ForkThread(self.DeathThread, self.OverKillRatio)
     end,
 }
 
@@ -151,7 +151,7 @@ local oldSeaUnit = SeaUnit
 SeaUnit = Class(oldSeaUnit) {
     -- Get faction
     GetFaction = function(self)
-    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
     end,
 
     -- Get Tech number
@@ -204,20 +204,19 @@ SeaUnit = Class(oldSeaUnit) {
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
-        local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
+        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/4.75, Army )
-        self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
-        if (toggle == 1) then
-            RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms )
+        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75, Army)
+        self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
+        if toggle == 1 then
+            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms)
         else
-            RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms )
+            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms)
         end
-
     end,
 
-    CreateFactionalFinalExplosionAtBone = function( self, boneName, scale )
+    CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
         local army = self:GetArmy()
         local bp = self:GetBlueprint()
         local Army = self:GetArmy()
@@ -226,20 +225,19 @@ SeaUnit = Class(oldSeaUnit) {
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
-        local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/2.5
+        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash( self, boneName, (Number)/4.75*5, Army )
-        self:ShakeCamera( 30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
-        if (toggle == 1) then
-            RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*4 )
+        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75*5, Army)
+        self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
+        if toggle == 1 then
+            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*4)
         else
-            RKEffectUtil.CreateBoneEffectsScaled( self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms*4 )
+            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms*4)
         end
-
     end,
 
-    CreateUnitSeaDestructionEffects = function( self, scale )
+    CreateUnitSeaDestructionEffects = function(self, scale)
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
 
@@ -286,16 +284,16 @@ SeaUnit = Class(oldSeaUnit) {
         local BoomScale = self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1')
         local BoomScale2 = self:GetSizeOfUnit()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-        local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )
-        --LOG(' Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1') )
-        --LOG(' Oil slick scale multiplier (scale): ', self:GetSizeOfUnit() )
+        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))
+        --LOG(' Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(UnitTechLvl or 'TECH1'))
+        --LOG(' Oil slick scale multiplier (scale): ', self:GetSizeOfUnit())
 
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
         if self:GetFractionComplete() == 1 then
-            if (toggle == 1) then
-                self.CreateEffects( self, SDEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+            if toggle == 1 then
+                self.CreateEffects(self, SDEffectTemplate.OilSlick, Army, ((BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             else
-                self.CreateEffects( self, NEffectTemplate.OilSlick, Army, ( (BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue )
+                self.CreateEffects(self, NEffectTemplate.OilSlick, Army, ((BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             end
         end
         self:ForkThread(function()
@@ -314,7 +312,7 @@ SeaUnit = Class(oldSeaUnit) {
 
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
-        self:CreateUnitSeaDestructionEffects( self, 1.0 )
+        self:CreateUnitSeaDestructionEffects(self, 1.0)
 
         if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
@@ -345,13 +343,10 @@ SeaUnit = Class(oldSeaUnit) {
         --if bp.SizeZ < 1 then
         --    bp.SizeZ = 1
         --end
-        return (math.abs( (bp.SizeX)*(bp.SizeX)) or 0 + ((bp.SizeY)*(bp.SizeY)) or 0 + ((bp.SizeZ)*(bp.SizeZ)) or 0 ) --For bigger difference between big and small units
-
+        return (math.abs((bp.SizeX)*(bp.SizeX)) or 0 + ((bp.SizeY)*(bp.SizeY)) or 0 + ((bp.SizeZ)*(bp.SizeZ)) or 0) --For bigger difference between big and small units
     end,
 
-
     GetSubBoomExplCount2 = function(self, UnitTechLvl)
-
         if (UnitTechLvl == 'TECH1') then
             return Util.GetRandomInt(2*1.5, 6*1.5)
         elseif (UnitTechLvl == 'TECH2') then
@@ -361,7 +356,6 @@ SeaUnit = Class(oldSeaUnit) {
         else
             return 10
         end
-
     end,
 
     GetSubBoomScaleNumber = function(self, UnitTechLvl)
@@ -410,19 +404,19 @@ SeaUnit = Class(oldSeaUnit) {
         local Faction = self:GetFaction()
         local UnitSize = self:GetSizeOfUnit()
 
-        self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
+        self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..Faction)
         WaitSeconds(0.1)
-        self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
+        self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..Faction)
         WaitSeconds(0.1)
-        self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
+        self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..Faction)
         WaitSeconds(0.1)
-        self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
+        self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..Faction)
         WaitSeconds(0.1)
-        self.CreateFactionalExplosionAtBone( self, Util.GetRandomInt( 0, numBones), UnitSize )
+        self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..Faction)
 
         WaitSeconds(2)
@@ -444,34 +438,31 @@ SeaUnit = Class(oldSeaUnit) {
             i = i - 1
 
             if i == 0 then
-                self.CreateFactionalFinalExplosionAtBone( self, Util.GetRandomInt( 0, 0), UnitSize )
+                self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 WaitSeconds(0.2)
-                self.CreateFactionalFinalExplosionAtBone( self, Util.GetRandomInt( 0, 0), UnitSize )
+                self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 self:PlaySubBoomSound('DeathBoomSound'..Faction)
             end
 
             local rx, ry, rz = self:GetRandomOffset(0.25)
             local rs = Random(vol/2, vol*2) / (vol*2)
-            local randBone = Util.GetRandomInt( 0, numBones)
+            local randBone = Util.GetRandomInt(0, numBones)
 
-
-
-            CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
-            CreateEmitterAtBone( self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
+            CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
+            CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
 
             local rd = math.abs(Util.GetRandomFloat((self:GetSubBoomTimingNumber(UnitTechLvl or 'TECH1')) - 0.4, (self:GetSubBoomTimingNumber(UnitTechLvl or 'TECH1') + 0.6)))
             --LOG(rd)
-            --local rd = Util.GetRandomFloat( 0.3, 1 )
+            --local rd = Util.GetRandomFloat(0.3, 1)
             WaitSeconds(rd)
         end
 
         if i == 0 then
-            self.CreateFactionalFinalExplosionAtBone( self, Util.GetRandomInt( 0, 0), UnitSize )
+            self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             WaitSeconds(0.2)
-            self.CreateFactionalFinalExplosionAtBone( self, Util.GetRandomInt( 0, 0), UnitSize )
+            self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             self:PlaySubBoomSound('DeathBoomSound'..Faction)
         end
-
     end,
 
    SinkingThread = function(self) -- Well i guess we need to sink too, while exploding... fine with me! :D
@@ -523,7 +514,7 @@ SubUnit = Class(oldSubUnit) {
             end
         end
         return UnitTechLvl
-     end,
+    end,
 
     -- Get explosion scale based off Tech number
     GetNumberByTechLvlShip = function(self, UnitTechLvl)
@@ -662,6 +653,7 @@ SubUnit = Class(oldSubUnit) {
                 i = i + 0.3
             end
         end)
+
         local slider = CreateSlider(self, 0)
         slider:SetGoal(0, DaveyJones+5, 0)
         slider:SetSpeed(8)
@@ -680,9 +672,9 @@ StructureUnit = Class(Unit) {
     MinWeaponRequiresEnergy = 0,
 
     -- Stucture unit specific damage effects and smoke
-    FxDamage1 = { EffectTemplate.DamageStructureSmoke01, EffectTemplate.DamageStructureSparks01 },
-    FxDamage2 = { EffectTemplate.DamageStructureFireSmoke01, EffectTemplate.DamageStructureSparks01 },
-    FxDamage3 = { EffectTemplate.DamageStructureFire01, EffectTemplate.DamageStructureSparks01 },
+    FxDamage1 = {EffectTemplate.DamageStructureSmoke01, EffectTemplate.DamageStructureSparks01},
+    FxDamage2 = {EffectTemplate.DamageStructureFireSmoke01, EffectTemplate.DamageStructureSparks01},
+    FxDamage3 = {EffectTemplate.DamageStructureFire01, EffectTemplate.DamageStructureSparks01},
 
     OnCreate = function(self)
         Unit.OnCreate(self)
@@ -699,31 +691,30 @@ StructureUnit = Class(Unit) {
             self:FlattenSkirt()
         end
 
-        --if (toggle == 1) then
+        --if toggle == 1 then
         --    local Faction = self:GetFaction()
         --  local UnitTechLvl = 'TECH3'
         --  local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         --  local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         --  local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
-        --  self.FxDamage1 = { SDFactionalSmallSmoke, EffectTemplate.DamageSparks01 } -- 75% HP
-        --  self.FxDamage2 = { SDFactionalSmallFire } -- 50% HP
-        --  self.FxDamage3 = { SDFactionalBigFireSmoke } -- 25% HP
+        --  self.FxDamage1 = {SDFactionalSmallSmoke, EffectTemplate.DamageSparks01} -- 75% HP
+        --  self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+        --  self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
         --else                                                                                                  LEFT FOR ANOTHER DAY
         --    local Faction = self:GetFaction()
         --  local UnitTechLvl = self:GetUnitTechLvl()
         --  local NFactionalSmallSmoke = NEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]
         --  local NFactionalSmallFire = NEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]
         --  local NFactionalBigFireSmoke = NEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction]
-        --  self.FxDamage1 = { NFactionalSmallSmoke, EffectTemplate.DamageSparks01 } -- 75% HP
-        --  self.FxDamage2 = { NFactionalSmallFire } -- 50% HP
-        --  self.FxDamage3 = { NFactionalBigFireSmoke } -- 25% HP
+        --  self.FxDamage1 = {NFactionalSmallSmoke, EffectTemplate.DamageSparks01} -- 75% HP
+        --  self.FxDamage2 = {NFactionalSmallFire} -- 50% HP
+        --  self.FxDamage3 = {NFactionalBigFireSmoke} -- 25% HP
         --end
-
     end,
 
     -- Get faction
     GetFaction = function(self)
-    return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
     end,
 
     -- Get Tech number
@@ -817,7 +808,7 @@ StructureUnit = Class(Unit) {
     GetFinalBoomMultBasedOffFactionCyb = function(self)
         local UnitTechLvl = self:GetUnitTechLvl()
         local Faction = self:GetFaction()
-        if ( (Faction == 'cybran') and (UnitTechLvl == 'TECH3') and (self:GetBlueprint().Categories == 'FACTORY') )  then
+        if ((Faction == 'cybran') and (UnitTechLvl == 'TECH3') and (self:GetBlueprint().Categories == 'FACTORY'))  then
             return 1
         else
             return 0.8
@@ -870,14 +861,14 @@ StructureUnit = Class(Unit) {
         local numExplosions = (numExplosions1) * TECHMULT
 
         local x,y,z = self:GetUnitSizes(self)
-        --LOG(' Original Sub Boom Count: ', numExplosions1 )
-        --LOG(' Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1) )
-        --LOG(' Sub-explosion number: ', numExplosions )
+        --LOG(' Original Sub Boom Count: ', numExplosions1)
+        --LOG(' Tech Mult: ',  self:GetMultTechLvl(UnitTechLvl or TECH1))
+        --LOG(' Sub-explosion number: ', numExplosions)
         for i = 0, numExplosions do
             self.CreateFactionalHitExplosionOffset(self, 1.0, unpack({Util.GetRandomOffset(x,y,z,1.2)}))
             self:PlayUnitSound('DeathExplosion')
-            self:ShakeCamera( 30*1.65/4, 1*1.65/4, 0, (((Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3) /2) )
-            WaitSeconds( (Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3 )
+            self:ShakeCamera(30*1.65/4, 1*1.65/4, 0, (((Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3) /2))
+            WaitSeconds((Util.GetRandomFloat((0.3*NumExplFaction), (0.6*NumExplFaction)))+0.3)
         end
     end,
 
@@ -897,9 +888,9 @@ StructureUnit = Class(Unit) {
 
         local army = self:GetArmy()
         if toggle == 1 then
-        EffectUtil.CreateBoneEffectsOffset(self, -1, army, SDExplosion, xOffset, yOffset, zOffset)
+            EffectUtil.CreateBoneEffectsOffset(self, -1, army, SDExplosion, xOffset, yOffset, zOffset)
         else
-        EffectUtil.CreateBoneEffectsOffset(self, -1, army, NExplosion, xOffset, yOffset, zOffset)
+            EffectUtil.CreateBoneEffectsOffset(self, -1, army, NExplosion, xOffset, yOffset, zOffset)
         end
     end,
 
@@ -918,7 +909,6 @@ StructureUnit = Class(Unit) {
         else
             EffectUtil.CreateBoneEffects(self, boneName, army, NExplosion)-- :ScaleEmitter(scale) --<-- if added, returns an error that "scale" is a nil value...
         end
-
     end,
 
     -- Needed for the custom booms
@@ -976,7 +966,7 @@ StructureUnit = Class(Unit) {
                 Decals = {},
                 Orientation = orient,
                 CurrentBP = tarmac,
-           }
+            }
         end
         local GetTarmac = import('/lua/tarmacs.lua').GetTarmacType
         local terrain = GetTerrainType(x, z)
@@ -1077,49 +1067,49 @@ StructureUnit = Class(Unit) {
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
         local BuildingSize = self:GetSizeOfBuilding()
-        local NumberForShake = (Util.GetRandomFloat( Number, Number + 1 ) )/0.5/2.5
+        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/0.5/2.5
         local FinalBoomMultiplier = (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFaction()*self:GetFinalBoomMultBasedOffFactionCybT1Fac()*self:GetFinalBoomMultBasedOffFactionCyb())
 
-        --LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom() )
-        --LOG('Final Boom Size Mult', self:GetSizeOfBuilding() )
-        --LOG('Final Boom Faction Mult', self:GetFinalBoomMultBasedOffFaction() )
-        --LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFactionCyb() )
-        --LOG('Final Boom Cyb Mult T1', self:GetFinalBoomMultBasedOffFactionCybT1Fac() )
-        --LOG(' Final boom multiplier: ', (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()) )
+        --LOG('Final Boom Tech Mult', self:GetNumberTechFinalBoom())
+        --LOG('Final Boom Size Mult', self:GetSizeOfBuilding())
+        --LOG('Final Boom Faction Mult', self:GetFinalBoomMultBasedOffFaction())
+        --LOG('Final Boom Cyb Mult', self:GetFinalBoomMultBasedOffFactionCyb())
+        --LOG('Final Boom Cyb Mult T1', self:GetFinalBoomMultBasedOffFactionCybT1Fac())
+        --LOG(' Final boom multiplier: ', (self:GetSizeOfBuilding()*self:GetNumberTechFinalBoom()))
 
         local GlobalBuildingBoomScaleDivider = 7.5
 
-        if( self:GetSizeOfBuilding(self) < 1.45 ) then
-            if (toggle == 1) then
-                self.CreateEffects( self, SDExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3) ) --Custom explosion for smaller buildings.
+        if(self:GetSizeOfBuilding(self) < 1.45) then
+            if toggle == 1 then
+                self.CreateEffects(self, SDExplosion, Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
             else
-                self.CreateEffects( self, NExplosion, Army, ( (BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3) ) --Custom explosion for smaller buildings.
+                self.CreateEffects(self, NExplosion, Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
             end
         else
-           -- LOG(' STARTING BOOM PROCESS ON: ', bp.General.UnitName )
-           -- LOG(' Building Size: ', self:GetSizeOfBuilding() )
-           -- LOG(' Building Tech: ', self:GetUnitTechLvl() )
-            --LOG(' Global Building Boom Divider: ', 4.5 )
-            --LOG(' Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1') )
-           -- LOG(' Size Scale: ', self:GetSizeOfBuilding() )
-            self.CreateTimedFactionalStuctureUnitExplosion( self )
-            WaitSeconds( 0.5 )
-            DefaultExplosionsStock.CreateFlash( self, -1, Number/3, Army )
-            if (toggle == 1) then
-                self.CreateEffects( self, SDExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3 )
+           -- LOG(' STARTING BOOM PROCESS ON: ', bp.General.UnitName)
+           -- LOG(' Building Size: ', self:GetSizeOfBuilding())
+           -- LOG(' Building Tech: ', self:GetUnitTechLvl())
+            --LOG(' Global Building Boom Divider: ', 4.5)
+            --LOG(' Tech Scale: ', self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1'))
+           -- LOG(' Size Scale: ', self:GetSizeOfBuilding())
+            self.CreateTimedFactionalStuctureUnitExplosion(self)
+            WaitSeconds(0.5)
+            DefaultExplosionsStock.CreateFlash(self, -1, Number/3, Army)
+            if toggle == 1 then
+                self.CreateEffects(self, SDExplosion, Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3)
             else
-                self.CreateEffects( self, NExplosion, Army, ( ((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3*4 )
+                self.CreateEffects(self, NExplosion, Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3*4)
             end
 
             self:PlayUnitSound('DeathExplosion')
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-            WaitSeconds( 1.15)
-            DefaultExplosionsStock.CreateFlash( self, -1, Number/1.85, Army )
-            self:ShakeCamera( 30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
-            if (toggle == 1) then
-                self.CreateEffects( self, SDExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier) )
+            WaitSeconds(1.15)
+            DefaultExplosionsStock.CreateFlash(self, -1, Number/1.85, Army)
+            self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
+            if toggle == 1 then
+                self.CreateEffects(self, SDExplosion, Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier))
             else
-                self.CreateEffects( self, NExplosion, Army, ( (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier)*2 )
+                self.CreateEffects(self, NExplosion, Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier)*2)
             end
 
 
@@ -1168,7 +1158,7 @@ StructureUnit = Class(Unit) {
     IdleState = State {
         Main = function(self)
         end,
-   },
+    },
 
     UpgradingState = State {
         Main = function(self)
@@ -1221,7 +1211,7 @@ StructureUnit = Class(Unit) {
             self:CreateTarmac(true, true, true, self.TarmacBag.Orientation, self.TarmacBag.CurrentBP)
             ChangeState(self, self.IdleState)
         end,
-   },
+    },
 
     StartBeingBuiltEffects = function(self, builder, layer)
         Unit.StartBeingBuiltEffects(self, builder, layer)
@@ -1616,7 +1606,7 @@ FactoryUnit = Class(StructureUnit) {
             self:SetBlockCommandQueue(false)
             self:DestroyBuildRotator()
         end,
-    },
+   },
 
     BuildingState = State {
         Main = function(self)
@@ -1628,13 +1618,13 @@ FactoryUnit = Class(StructureUnit) {
             self:CreateBuildRotator()
             self:StartBuildFx(unitBuilding)
         end,
-    },
+   },
 
     RollingOffState = State {
         Main = function(self)
             self:RolloffBody()
         end,
-    },
+   },
 
     OnKilled = function(self, instigator, type, overkillRatio)
         StructureUnit.OnKilled(self, instigator, type, overkillRatio)
@@ -2029,7 +2019,7 @@ ShieldStructureUnit = Class(StructureUnit) {
         OnFailedToBuild = function(self)
             StructureUnit.UpgradingState.OnFailedToBuild(self)
         end,
-    }
+   }
 }
 
 -- TRANSPORT BEACON UNITS
