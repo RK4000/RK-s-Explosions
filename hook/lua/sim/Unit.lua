@@ -21,36 +21,8 @@ Unit = Class(oldUnit) {
     end,
 
     GetFaction = function(self)
-        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
+        return string.lower(self.factionCategory)
     end,
-
-    GetUnitTechLvl = function(self)
-        local Categories = self:GetBlueprint().Categories or {}
-        local Cats = {'TECH1', 'TECH2', 'TECH3'}
-        local UnitTechLvl = 'TECH1'
-
-        for index, Cat in Cats do
-            if table.find(Categories, Cat) then
-                UnitTechLvl = Cat
-                break
-            end
-        end
-        return UnitTechLvl
-     end,
-
-    GetUnitLayer = function(self)
-        local Categories = self:GetBlueprint().Categories or {}
-        local Cats = {'NAVAL', 'LAND', 'AIR', 'STRUCTURE' }
-
-        for index, Cat in Cats do
-            if table.find(Categories, Cat) then
-                UnitLayer = Cat
-                break
-            end
-        end
-
-        return UnitLayer
-     end,
 
     GetNumberByTechLvl = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
@@ -83,7 +55,7 @@ Unit = Class(oldUnit) {
 
     PlayAnimationThreadShips = function(self, anim, rate)
         local bp = self:GetBlueprint().Display[anim]
-        local TechLvl = self:GetUnitTechLvl()
+        local TechLvl = self.techCategory
         local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
 
         if bp then
