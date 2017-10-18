@@ -45,8 +45,7 @@ AirUnit = Class(oldAirUnit) {
     -- Needed for custom booms
     -- Make sure we use factional damage effects
     OnCreate = function(self)
-        MobileUnit.OnCreate(self)
-        self:AddPingPong()
+        oldAirUnit.OnCreate(self)
         if self.RKEmitters == nil then
             self.RKEmitters = {}
         end
@@ -75,8 +74,15 @@ AirUnit = Class(oldAirUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        if self:GetCurrentLayer() == 'Air' then
-            local army = self:GetArmy()
+        local bp = self:GetBlueprint()
+
+        -- A completed, flying plane expects an OnImpact event due to air crash.
+        -- An incomplete unit in the factory still reports as being in layer "Air", so needs this
+        -- stupid check.
+
+        -- Additional stupidity: An idle transport, bot loaded and unloaded, counts as 'Land' layer so it would die with the wreck hovering.
+        -- It also wouldn't call this code, and hence the cargo destruction. Awful!
+        if self:GetFractionComplete() == 1 and (self:GetCurrentLayer() == 'Air' or EntityCategoryContains(categories.TRANSPORTATION, self)) then
             self:ForkThread(SDExplosions.ExplosionAirMidAir(self))
             self:DestroyAllDamageEffects()
             self:DestroyTopSpeedEffects()
@@ -84,35 +90,58 @@ AirUnit = Class(oldAirUnit) {
             self.OverKillRatio = overkillRatio
             self:PlayUnitSound('Killed')
             self:DoUnitCallbacks('OnKilled')
-            -- self:OnKilledVO()
-            if instigator and IsUnit(instigator) then
-                instigator:OnKilledUnit(self)
+            self:DisableShield()
+
+            -- Store our death weapon's damage on the unit so it can be edited remotely by the shield bouncer projectile
+            local bp = self:GetBlueprint()
+            local i = 1
+            for i, numweapons in bp.Weapon do
+                if bp.Weapon[i].Label == 'DeathImpact' then
+                    self.deathWep = bp.Weapon[i]
+                    break
+                end
+            end
+
+            if not self.deathWep or self.deathWep == {} then
+                WARN('An Air unit with no death weapon, or with incorrect label has died!!')
+            else
+                self.DeathCrashDamage = self.deathWep.Damage
+            end
+
+            -- Create a projectile we'll use to interact with Shields
+            local proj = self:CreateProjectileAtBone('/projectiles/ShieldCollider/ShieldCollider_proj.bp', 0)
+            self.colliderProj = proj
+            proj:Start(self, 0)
+            self.Trash:Add(proj)
+
+            if self.totalDamageTaken > 0 and not self.veterancyDispersed then
+                self:VeterancyDispersal(not instigator or not IsUnit(instigator))
             end
         else
             self.DeathBounce = 1
-            if instigator and IsUnit(instigator) then
-                instigator:OnKilledUnit(self)
-            end
             MobileUnit.OnKilled(self, instigator, type, overkillRatio)
         end
     end,
 
-    OnImpact = function(self, with, other)
-        local army = self:GetArmy()
-        local bp = self:GetBlueprint()
-        local Army = self:GetArmy()
+    OnImpact = function(self, with)
+        if self.GroundImpacted then return end
+
+        -- Immediately destroy units outside the map
+        if not ScenarioFramework.IsUnitInPlayableArea(self) then
+            self:Destroy()
+        end
 
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 
-        local bp = self:GetBlueprint()
-        local i = 1
-        local numWeapons = table.getn(bp.Weapon)
-        for i, numWeapons in bp.Weapon do
-            if(bp.Weapon[i].Label == 'DeathImpact') then
-                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
-                break
-            end
+        -- Only call this code once
+        self.GroundImpacted = true
+
+        -- Damage the area we hit. For damage, use the value which may have been adjusted by a shield impact
+        if not self.deathWep or not self.DeathCrashDamage then -- Bail if stuff is missing
+            WARN('defaultunits.lua OnImpact: did not find a deathWep on the plane! Is the weapon defined in the blueprint? ' .. self:GetUnitId())
+        elseif self.DeathCrashDamage > 0 then -- It was completely absorbed by a shield!
+            local deathWep = self.deathWep -- Use a local copy for speed and easy reading
+            DamageArea(self, self:GetPosition(), deathWep.DamageRadius, self.DeathCrashDamage, deathWep.DamageType, deathWep.DamageFriendly)
         end
 
         if with == 'Water' then
@@ -120,9 +149,15 @@ AirUnit = Class(oldAirUnit) {
             self:PlayUnitSound('AirUnitWaterImpact')
             self:ForkThread(SDExplosions.AirImpactWater(self))
             EffectUtil.CreateEffects(self, self:GetArmy(), EffectTemplate.DefaultProjectileWaterImpact)
+            self.shallSink = true
+            self.colliderProj:Destroy()
+            self.colliderProj = nil
         else
             self:ForkThread(SDExplosions.ExplosionAirImpact)
         end
+
+        self:DisableUnitIntel('Killed')
+        self:DisableIntel('Vision') -- Disable vision seperately, it's not handled in DisableUnitIntel
         self:ForkThread(self.DeathThread, self.OverKillRatio)
     end,
 }
