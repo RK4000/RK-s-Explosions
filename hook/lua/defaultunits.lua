@@ -454,28 +454,16 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 }
 
+AircraftCarrier = Class(SeaUnit, BaseTransport) {
+    OnKilled = function(self, instigator, type, overkillRatio)
+        self:SaveCargoMass()
+        SeaUnit.OnKilled(self, instigator, type, overkillRatio)
+        self:DetachCargo()
+    end,
+}
+
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
-    -- Get faction
-    GetFaction = function(self)
-        return string.lower(self:GetBlueprint().General.FactionName or 'UEF')
-    end,
-
-    -- Get Tech number
-    GetUnitTechLvl = function(self)
-        local Categories = self:GetBlueprint().Categories or {}
-        local Cats = {'TECH1', 'TECH2', 'TECH3'}
-        local UnitTechLvl = 'TECH1'
-
-        for index, Cat in Cats do
-            if table.find(Categories, Cat) then
-                UnitTechLvl = Cat
-                break
-            end
-        end
-        return UnitTechLvl
-    end,
-
     -- Get explosion scale based off Tech number
     GetNumberByTechLvlShip = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
@@ -613,7 +601,6 @@ SubUnit = Class(oldSubUnit) {
                 i = i + 0.3
             end
         end)
-
         local slider = CreateSlider(self, 0)
         slider:SetGoal(0, DaveyJones+5, 0)
         slider:SetSpeed(8)
@@ -670,8 +657,6 @@ StructureUnit = Class(Unit) {
         --  self.FxDamage2 = {NFactionalSmallFire} -- 50% HP
         --  self.FxDamage3 = {NFactionalBigFireSmoke} -- 25% HP
         --end
-    end,
-
     end,
 
     -- Get explosion scale based off Tech number
