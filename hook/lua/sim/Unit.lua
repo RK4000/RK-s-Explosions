@@ -24,11 +24,12 @@ Unit = Class(oldUnit) {
         return string.lower(self.factionCategory)
     end,
 
+    -- Currently only TECH1 - TECH3 is supported in the code
     GetUnitTechLvl = function(self)
-        if self.techCategory == 'EXPERIMENTAL' then
-            return 'TECH1'
-        else
+        if self.techCategory and StringStartsWith(self.techCategory, "TECH") then
             return self.techCategory
+        else
+            return 'TECH1'
         end
     end,
 
