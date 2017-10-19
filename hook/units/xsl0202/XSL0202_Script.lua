@@ -4,12 +4,15 @@
 local SDEffectsTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
-function TableHas(table, string)
-    for k,v in table do
-        if v == string then return true end
-    end
-    return false
-end
+local heartExplosionOwners = {
+    ['123313'] = true, -- LuXy
+    ['85109'] = true, -- Lu_Xun_17
+    ['62956'] = true, -- Sheeo
+    ['30646'] = true, -- Pinky_Zoria
+    ['37639'] = true, -- RK4000
+    ['5268'] = true, -- TA4Life
+    ['21916'] = true, -- speed2
+}
 
 local oldXSL0202 = XSL0202
 XSL0202 = Class(oldXSL0202) {
@@ -44,7 +47,8 @@ XSL0202 = Class(oldXSL0202) {
         local Army = self:GetArmy()
         local luxyAliases = {"LuXy", "Lu_Xun_17", "Sheeo", "Pinky_Zoria", "RK4000", "TA4Life"} -- Add as many as you want
         
-        if TableHas(luxyAliases, ArmyBrains[self:GetArmy()].Nickname) then
+        local ID = ScenarioInfo.ArmySetup['ARMY_' .. self:GetArmy()].OwnerID
+        if ID and heartExplosionOwners[ID] then
             self:CreateFluffyHeartShockwave()
             self.CreateEffects( self, SDEffectsTemplate.LuXy_Heart, Army, 1)-- Heart explosion goes here
             --RKExplosion.CreateInheritedVelocityDebrisProjectiles( self, 4, {self:GetVelocity()}, 7.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/Heart_Debris/Heart_Debris_proj.bp'))
