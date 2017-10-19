@@ -10,11 +10,11 @@ WeaponSteam01 = {
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
 function NukeShockwave(toggle)
-	if toggle == 1 then
-		return 'very_large_test_sonic_nuke.bp'
-	else
-		return 'nothing.bp'
-	end
+    if toggle == 1 then
+        return 'very_large_test_sonic_nuke.bp'
+    else
+        return 'nothing.bp'
+    end
 end
 
 -- Fire Cloud Effects
@@ -108,10 +108,10 @@ SIFInainoDetonate01 = {
 -------------------------------------------------------------------------
 TNukeRings01 = {
     EmtBpPath .. 'nuke_concussion_ring_01_emit.bp',
-	EmtBpPath .. 'nuke_concussion_ring_02_emit.bp',
-	EmtBpPath .. 'shockwave_01_emit.bp',
-	EmtBpPath .. 'shockwave_smoke_01_emit.bp',
-	ModPath .. NukeShockwave(toggle),
+    EmtBpPath .. 'nuke_concussion_ring_02_emit.bp',
+    EmtBpPath .. 'shockwave_01_emit.bp',
+    EmtBpPath .. 'shockwave_smoke_01_emit.bp',
+    ModPath .. NukeShockwave(toggle),
 }
 
 SIFExperimentalStrategicMissileDetonate01 = {
