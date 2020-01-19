@@ -1,6 +1,6 @@
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
-local EffectUtil = import('/mods/rks_explosions/hook/lua/EffectUtilities.lua')
+local EffectUtil = import('/lua/EffectUtilities.lua')
 local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BlueprintUtil = import('/lua/system/Blueprints.lua')
