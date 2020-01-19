@@ -2,13 +2,6 @@ EmtBpPath = '/effects/emitters/'
 ModPath = '/mods/rks_explosions/effects/Emitters/'
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
--- For gatling gun cooldown
-WeaponSteam01 = {
-    EmtBpPath .. 'weapon_mist_01_emit.bp',
-}
-
-local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
-
 function NukeShockwave(toggle)
     if toggle == 1 then
         return 'very_large_test_sonic_nuke.bp'
