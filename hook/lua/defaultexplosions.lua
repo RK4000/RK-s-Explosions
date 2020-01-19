@@ -20,55 +20,6 @@ local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
-function GetUnitSizes(unit)
-    local bp = unit:GetBlueprint()
-    return bp.SizeX or 0, bp.SizeY or 0, bp.SizeZ or 0
-end
-
-function GetUnitVolume(unit)
-    local x,y,z = GetUnitSizes( unit )
-    return x*y*z
-end
-
-function GetAverageBoundingXZRadius(unit)
-    local bp = unit:GetBlueprint()
-    return ((bp.SizeX or 0 + bp.SizeZ or 0) * 0.5)
-end
-
-function GetAverageBoundingXYZRadius(unit)
-    local bp = unit:GetBlueprint()
-    return ((bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0) * 0.333)
-end
-
-function QuatFromRotation(rotation, x, y, z)
-    local angleRot, qw, qx, qy, qz, angle
-    angle = 0.00872664625 * rotation
-    angleRot = math.sin(angle)
-    qw = math.cos(angle)
-    qx = x * angleRot
-    qy = y * angleRot
-    qz = z * angleRot
-    return qx, qy, qz, qw
-end
-
-function MakeExplosionEntitySpec(unit, overKillRatio)
-    return {
-        Army = unit:GetArmy(),
-        Dimensions = {GetUnitSizes(unit)},
-        BoundingXZRadius = GetAverageBoundingXZRadius(unit),
-        BoundingXYZRadius = GetAverageBoundingXYZRadius(unit),
-        OverKillRatio = overKillRatio,
-        Volume = GetUnitVolume(unit),
-        Layer = unit:GetCurrentLayer(),
-    }
-end
-
-function CreateUnitExplosionEntity(unit, overKillRatio)
-    local localentity = Entity(MakeExplosionEntitySpec(unit, overKillRatio))
-    Warp( localentity, unit:GetPosition())
-    return localentity
-end
-
 function CreateScalableUnitExplosion(unit, overKillRatio)
     if unit then
         if IsUnit(unit) then
@@ -210,20 +161,6 @@ function _CreateScalableUnitExplosion(obj)
         obj:ShakeCamera(30 * scale, scale * ShakeMaxMul, 0, 0.5 + ShakeTimeModifier)
     end
     obj:Destroy()
-end
-
-function GetUnitEnvironmentalExplosionEffects(layer, scale)
-    local EffectTable = {}
-    if layer == 'Water' then
-        if scale < 0.5 then
-            EffectTable = EffectTemplate.Splashy
-        elseif scale > 1.5 then
-            EffectTable = EffectTemplate.ExplosionMediumWater
-        else
-            EffectTable = EffectTemplate.ExplosionSmallWater
-        end
-    end
-    return EffectTable
 end
 
 function CreateDebrisProjectiles(obj, volume, dimensions)
