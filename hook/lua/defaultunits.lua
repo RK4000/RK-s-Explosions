@@ -693,12 +693,6 @@ StructureHelperfunctions = Class() {
         return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
     end,
 
---already defined in Unit.lua
---     GetUnitSizes = function(self)
---         local bp = self:GetBlueprint()
---         return (bp.SizeX) or 0, (bp.SizeY-(bp.SizeY/2.20)) or 0, (bp.SizeZ) or 0
---     end,
-
     -- For speeding up Seraphim building explosions, they call the destruction thread twice, so I'm halving the number of explosions.
     GetNumberBasedOffFaction = function(self)
         local Faction = self:GetFaction()
@@ -754,14 +748,6 @@ StructureHelperfunctions = Class() {
             return 0
         end
     end,
-
---already defined in Unit.lua
-    --Needed for the custom booms
---     CreateEffects = function(self, EffectTable, army, scale)
---         for k, v in EffectTable do
---             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
---         end
---     end,
 
     CreateTimedFactionalStuctureUnitExplosion = function(self)
         local bp = self:GetBlueprint()
@@ -833,6 +819,20 @@ StructureHelperfunctions = Class() {
 --local Unit = import('/lua/sim/Unit.lua').Unit
 local oldStructureUnit = StructureUnit
 StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
+
+    --overrides definition in Unit.lua
+     GetUnitSizes = function(self)
+         local bp = self:GetBlueprint()
+         return (bp.SizeX) or 0, (bp.SizeY-(bp.SizeY/2.20)) or 0, (bp.SizeZ) or 0
+     end,
+
+    --overrides definition in Unit.lua
+    --Needed for the custom booms
+    CreateEffects = function(self, EffectTable, army, scale)
+        for k, v in EffectTable do
+            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
+        end
+    end,
 
     CreateDestructionEffects = function(self, overKillRatio)
         local bp = self:GetBlueprint()
@@ -907,65 +907,57 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
             self:PlayUnitSound('Destroyed')
         end
     end,
+
 }
 
 local oldFactoryUnit = FactoryUnit
-FactoryUnit = Class(StructureHelperfunctions, oldFactoryUnit) {
-                                                 
---     OnKilled = function(self, instigator, type, overkillRatio)
---         StructureUnit.OnKilled(self, instigator, type, overkillRatio)
---         if self.UnitBeingBuilt and not self.UnitBeingBuilt:BeenDestroyed() and self.UnitBeingBuilt:GetFractionComplete() < 1 then
---             self.UnitBeingBuilt:Destroy()
---         end
---     end,
-}
+FactoryUnit = Class(StructureUnit, oldFactoryUnit) {}
 
 -- AIR FACTORY UNITS
 AirFactoryUnit = Class(FactoryUnit) {}
 
 -- AIR STAGING PLATFORMS UNITS
 local oldAirStagingPlatformUnit = AirStagingPlatformUnit
-AirStagingPlatformUnit = Class(StructureHelperfunctions, oldAirStagingPlatformUnit) {}
+AirStagingPlatformUnit = Class(StructureUnit, oldAirStagingPlatformUnit) {}
 
 -- ENERGY CREATION UNITS
 local oldConcreteStructureUnit = ConcreteStructureUnit
-ConcreteStructureUnit = Class(StructureHelperfunctions, oldConcreteStructureUnit) {
-}
+ConcreteStructureUnit = Class(StructureUnit, oldConcreteStructureUnit) {}
 
 -- ENERGY CREATION UNITS
 local oldEnergyCreationUnit = EnergyCreationUnit
-EnergyCreationUnit = Class(StructureHelperfunctions, oldEnergyCreationUnit) {}
+EnergyCreationUnit = Class(StructureUnit, oldEnergyCreationUnit) {}
 
 -- ENERGY STORAGE UNITS
 local oldEnergyStorageUnit = EnergyStorageUnit
-EnergyStorageUnit = Class(StructureHelperfunctions, oldEnergyStorageUnit) {}
+EnergyStorageUnit = Class(StructureUnit, oldEnergyStorageUnit) {}
 
 -- LAND FACTORY UNITS
 LandFactoryUnit = Class(FactoryUnit) {}
 
 -- MASS COLLECTION UNITS
 local oldMassCollectionUnit = MassCollectionUnit
-MassCollectionUnit = Class(StructureHelperfunctions, oldMassCollectionUnit) {}
+MassCollectionUnit = Class(StructureUnit, oldMassCollectionUnit) {}
 
 -- MASS FABRICATION UNITS
 local oldMassFabricationUnit = MassFabricationUnit
-MassFabricationUnit = Class(StructureHelperfunctions, oldMassFabricationUnit) {}
+MassFabricationUnit = Class(StructureUnit, oldMassFabricationUnit) {}
 
 --  MASS STORAGE UNITS
 local oldMassStorageUnit = MassStorageUnit
-MassStorageUnit = Class(StructureHelperfunctions, oldMassStorageUnit) {}
+MassStorageUnit = Class(StructureUnit, oldMassStorageUnit) {}
 
 --  RADAR UNITS
 local oldRadarUnit = RadarUnit
-RadarUnit = Class(StructureHelperfunctions, oldRadarUnit) {}
+RadarUnit = Class(StructureUnit, oldRadarUnit) {}
 
 -- RADAR JAMMER UNITS
 local oldRadarJammerUnit = RadarJammerUnit
-RadarJammerUnit = Class(StructureHelperfunctions, oldRadarJammerUnit) {}
+RadarJammerUnit = Class(StructureUnit, oldRadarJammerUnit) {}
 
 -- SONAR UNITS
 local oldSonarUnit = SonarUnit
-SonarUnit = Class(StructureHelperfunctions, oldSonarUnit) {}
+SonarUnit = Class(StructureUnit, oldSonarUnit) {}
 
 -- SEA FACTORY UNITS
 local oldSeaFactoryUnit = SeaFactoryUnit
@@ -973,15 +965,15 @@ SeaFactoryUnit = Class(FactoryUnit, oldSeaFactoryUnit) {}
 
 -- SHIELD STRCUTURE UNITS
 local oldShieldStructureUnit = ShieldStructureUnit
-ShieldStructureUnit = Class(StructureHelperfunctions, oldShieldStructureUnit) {}
+ShieldStructureUnit = Class(StructureUnit, oldShieldStructureUnit) {}
 
 -- TRANSPORT BEACON UNITS
 local oldTransportBeaconUnit = TransportBeaconUnit
-TransportBeaconUnit = Class(StructureHelperfunctions, oldTransportBeaconUnit) {}
+TransportBeaconUnit = Class(StructureUnit, oldTransportBeaconUnit) {}
 
 -- WALL STRCUTURE UNITS
 local oldWallStructureUnit = WallStructureUnit
-WallStructureUnit = Class(StructureHelperfunctions, oldWallStructureUnit) {}
+WallStructureUnit = Class(StructureUnit, oldWallStructureUnit) {}
 
 -- QUANTUM GATE UNITS
 local oldQuantumGateUnit = QuantumGateUnit
