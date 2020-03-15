@@ -8,7 +8,7 @@ local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
-
+local Util = import('/lua/utilities.lua')
 local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 
