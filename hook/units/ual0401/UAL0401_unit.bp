@@ -33,6 +33,10 @@ UnitBlueprint {
         },
     },
 	Weapon = {
+        {},
+        {},
+        {},
+        {},
         {
             AboveWaterTargetsOnly = true,
             Damage = 562.5,
