@@ -153,7 +153,7 @@ function _CreateScalableUnitExplosion(obj)
     DefaultExplosionsStock.CreateFlash( obj, -1, 0, army )
 
     -- Create GenericDebris chunks
-    DefaultExplosionsStock.CreateDebrisProjectiles( obj, obj.Spec.BoundingXYZRadius, obj.Spec.Dimensions )
+    -- DefaultExplosionsStock.CreateDebrisProjectiles( obj, obj.Spec.BoundingXYZRadius, obj.Spec.Dimensions )    No debris for now, need to improve the look of them first.
     -- Camera Shake  (.radius .maxshake .minshake .lifetime)
     if toggle == 1 then
         obj:ShakeCamera(0, 0, 0, 0 )

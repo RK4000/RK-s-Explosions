@@ -32,7 +32,7 @@ XRL0403 = Class(oldXRL0403) {
 
     DeathThreadLand = function(self)
         local army = self:GetArmy()
-        self:PlayUnitSound('Destroyed')
+        self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
@@ -71,6 +71,7 @@ XRL0403 = Class(oldXRL0403) {
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'MegalithDeathMedBigBoom' then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+				self:PlayUnitSound('DestroyedStep2')
                 break
             end
         end

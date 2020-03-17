@@ -50,7 +50,7 @@ URL0402 = Class(oldURL0402) {
         WaitSeconds(1.1)
         sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
         sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Left_Projectile01', 2)
-
+		self:PlayUnitSound('DestroyedStep2')
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'SmallDeathBoom' then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
@@ -61,7 +61,7 @@ URL0402 = Class(oldURL0402) {
         WaitSeconds(0.5)
         sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
         sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Projectile01', 2)
-
+		self:PlayUnitSound('DestroyedStep2')
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'SmallDeathBoom' then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
