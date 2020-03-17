@@ -478,7 +478,7 @@ end
 function CreateCybranFinalLargeHitExplosionAtBone(obj, boneName, scale)
     local army = obj:GetArmy()
     CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeCybran) -- :ScaleEmitter(10)
+    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPFinalLargeCybran) -- :ScaleEmitter(10)
 end
 
 ------------------------------------------------------

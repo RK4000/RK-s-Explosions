@@ -145,24 +145,96 @@ URL0401 = Class(oldURL0401) {
 	
 	DeathThreadLand = function(self, overkillratio, instigator) -- LAND BOOM
         local army = self:GetArmy()
-        local NumberForShake = (Util.GetRandomFloat(1.5, 1.5 + 1))/3.5
-
-        self:ShakeCamera(30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
-        self:PlayUnitSound('DestroyedStep2')
+        local NumberForShake = 0
 		
+		--Primary central explosion
+		self:PlayUnitSound('DestroyedStep2')
 		RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 12, army)
+        sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'URL0401', 1.0)
 		
-		sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'URL0401', 0.25)
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'URL0401', 1.0)
 		
-		WaitSeconds(0.8)
+		
+		--Exhaust explosions
+		WaitSeconds(1.6)
+		
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Exhaust_Left_Front', Util.GetRandomFloat(0.5,1))
+		WaitSeconds(Util.GetRandomFloat(0.1,0.4))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Exhaust_Right', Util.GetRandomFloat(0.5,1))
+		WaitSeconds(Util.GetRandomFloat(0.1,0.4))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Exhaust_Right_Front', Util.GetRandomFloat(0.5,1))
+		WaitSeconds(Util.GetRandomFloat(0.1,0.4))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Exhaust_Left', Util.GetRandomFloat(0.5,1))
+		
+		--Turret explosions
+		WaitSeconds(1)
+		
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Turret', Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Turret_Barrel_C_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_E_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Turret_Barrel_A_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_F_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.5,1.0))
 		self:PlayUnitSound('DestroyedStep3')
+		sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Turret_Barrel_D_B03', Util.GetRandomFloat(0.2,0.7))
+		if self:IsValidBone('Turret_Barrel_D_B03') then
+            self:HideBone('Turret_Barrel_D_B03', true)
+        end
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_B_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_C_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_E_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.5,1))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Turret', Util.GetRandomFloat(0.5,1))
+		self:PlayUnitSound('DestroyedStep2')
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_A_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_C_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(2.0,2.5))
+		self:PlayUnitSound('DestroyedStep3alt')
+		sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Turret_Barrel_B_B03', Util.GetRandomFloat(0.2,0.7))
+		if self:IsValidBone('Turret_Barrel_B_B03') then
+            self:HideBone('Turret_Barrel_B_B03', true)
+        end
+		WaitSeconds(Util.GetRandomFloat(0.3,0.8))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_C_B0' .. Random(2,3), Util.GetRandomFloat(0.2,0.7))
+		WaitSeconds(Util.GetRandomFloat(0.2,0.6))
+		self:PlayUnitSound('DestroyedStep2')
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_F_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+
 		
-        -- Create Initial explosion effects
-        CreateAttachedEmitter(self, 'URL0401', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp')
-        CreateAttachedEmitter(self,'URL0401', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp')
-        
-		sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'URL0401', 9)
+        --Final explosion effects
+		WaitSeconds(Util.GetRandomFloat(1,2))
+		self:PlayUnitSound('DestroyedStep3')
+		sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'URL0401', 5)
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_A_B0' .. Random(1,2), Util.GetRandomFloat(0.2,0.7))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_B_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_C_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_D_B0' .. Random(1,2), Util.GetRandomFloat(0.2,0.7))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_E_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+		sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Turret_Barrel_F_B0' .. Random(1,3), Util.GetRandomFloat(0.2,0.7))
+
     end,
 	
     DeathThread = function(self, overkillRatio, instigator)
