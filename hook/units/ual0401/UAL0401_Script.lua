@@ -36,7 +36,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end  
 
-        WaitSeconds(1/0.8/0.8/0.8/0.9)
+        WaitSeconds(1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Right_Leg_B02', 0.5)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -48,7 +48,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.85/0.8/0.8*0.8)
+        WaitSeconds(0.85)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Right_Leg_B01', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -60,7 +60,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.95/0.8/0.8)
+        WaitSeconds(0.95)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Left_Arm_B02', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -72,7 +72,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.75/0.8/0.8*0.7)
+        WaitSeconds(0.75)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Right_Arm_B01', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -95,7 +95,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.575105/0.8/0.8/0.7)
+        WaitSeconds(0.58)
         self:PlayUnitSound('DestroyedStep3')
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Torso', 4.5)
         self:ShakeCamera(30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
@@ -107,7 +107,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
         
-        WaitSeconds(2.5/0.8/0.8/0.8*0.8)
+        WaitSeconds(2.5)
         sdexplosion.CreateGenericFlashExplosionAtBone(self, 'Torso', 6.5)
         self:ShakeCamera(30*2.5 * NumberForShake*2.5, NumberForShake*2.5, 0, NumberForShake*3.5)    
 
@@ -123,7 +123,7 @@ UAL0401 = Class(oldUAL0401) {
         end
     end,
     
-    DeathThreadLand = function(self, overkillratio, instigator)
+    DeathThreadLand = function(self, overkillratio, instigator) -- LAND BOOM
         local army = self:GetArmy()
         local NumberForShake = (Util.GetRandomFloat(1.5, 1.5 + 1))/3.5
 
@@ -149,7 +149,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(1/0.8/0.8/0.8/0.9)
+        WaitSeconds(2.1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateAeonMediumHitExplosionAtBone(self, 'Right_Leg_B02', 0.5)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -161,7 +161,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.85/0.8/0.8*0.8)
+        WaitSeconds(1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateAeonSmallHitExplosionAtBone(self, 'Right_Leg_B01', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -173,7 +173,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.95/0.8/0.8)
+        WaitSeconds(1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateAeonSmallHitExplosionAtBone(self, 'Left_Arm_B02', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -185,7 +185,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.75/0.8/0.8*0.7)
+        WaitSeconds(1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateAeonSmallHitExplosionAtBone(self, 'Right_Arm_B01', 0.3)
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -208,7 +208,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
 
-        WaitSeconds(0.575105/0.8/0.8/0.7)
+        WaitSeconds(0.5)
         self:PlayUnitSound('DestroyedStep3')
         sdexplosion.CreateAeonLargeHitExplosionAtBone(self, 'Torso', 4.5)
         self:ShakeCamera(30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
@@ -220,7 +220,7 @@ UAL0401 = Class(oldUAL0401) {
             end
         end
         
-        WaitSeconds(2.5/0.8/0.8/0.8*0.8)
+        WaitSeconds(4)
         sdexplosion.CreateAeonFinalLargeHitExplosionAtBone(self, 'Torso', 6.5)
         self:ShakeCamera(30*2.5 * NumberForShake*2.5, NumberForShake*2.5, 0, NumberForShake*3.5)    
 
