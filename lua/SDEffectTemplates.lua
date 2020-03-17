@@ -1039,7 +1039,7 @@ seraphimSubExplosionUnderWater = {
 
 #####################Cyb Generic Experimental Small Boom###############################
 ExplosionEXPSmallCybran = {
-	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_thin_smoke.bp',
         ModPath .. 'CybEXPSMALL_charge.bp',
         ModPath .. 'CybEXPSMALL_chargelong.bp',
         ModPath .. 'CybEXPSMALL_chargering.bp',
@@ -1049,7 +1049,7 @@ ExplosionEXPSmallCybran = {
 
 #####################Cyb Generic Experimental Medium Boom###############################
 ExplosionEXPMediumCybran = {
-	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_thin_smoke.bp',
         ModPath .. 'CybEXPMED_charge.bp',
         ModPath .. 'CybEXPMED_chargelong.bp',
         ModPath .. 'CybEXPMED_chargering.bp',
@@ -1059,12 +1059,24 @@ ExplosionEXPMediumCybran = {
 
 #####################Cyb Generic Experimental Large Boom###############################
 ExplosionEXPLargeCybran = {
-	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_thin_smoke.bp',
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
+}
+
+#####################Cyb Generic Experimental FinalLarge Boom###############################
+ExplosionEXPFinalLargeCybran = {
+	ModPath .. 'CybT4_long_thin_smoke.bp',
+        ModPath .. 'CybEXPLRG_charge.bp',
+        ModPath .. 'CybEXPLRG_chargelong.bp',
+        ModPath .. 'CybEXPLRG_chargering.bp',
+	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_4.bp',
+	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_smoke.bp',
 }
 #####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {

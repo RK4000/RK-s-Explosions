@@ -113,7 +113,6 @@ URL0402 = Class(oldURL0402) {
         # When the spider bot impacts with the ground
         # Effects: Explosion on turret, dust effects on the muzzle tip, large dust ring around unit
         # Other: Damage force ring to force trees over and camera shake
-        self:ShakeCamera(50, 5, 0, 1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Turret_Muzzle', 1)
         for k, v in EffectTemplate.FootFall01 do
