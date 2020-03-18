@@ -68,8 +68,7 @@ XSL0401 = Class(oldXSL0401) {
     end,
 
     OnDestroy = function(self)
-        local army = self:GetArmy()
-        RKExplosion.CreateScorchMarkDecalRKSExpSera(self, 17, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpSera(self, 17, self.Army)
         oldXSL0401.OnDestroy(self)
     end,
 }

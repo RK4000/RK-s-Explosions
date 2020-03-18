@@ -9,7 +9,6 @@ local explosion = import('/lua/defaultexplosions.lua')
 local oldUEL0401 = UEL0401
 UEL0401 = Class(oldUEL0401) {   
     DeathThreadLand = function(self)
-        local army = self:GetArmy()
         local bp = self:GetBlueprint()
         local NumberForShake = (Util.GetRandomFloat(0.5, 0.5 + 1))/8
 
@@ -353,14 +352,13 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep3')
-        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, self.Army)
     end,
     
     DeathThreadWater = function(self)
-    local NumberForShake = (Util.GetRandomFloat(0.5, 0.5 + 1))/3.5
-    local army = self:GetArmy()
+        local NumberForShake = (Util.GetRandomFloat(0.5, 0.5 + 1))/3.5
         self:PlayUnitSound('DestroyedStep3')
-        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, self.Army)
     end,
     
     DeathThread = function(self)
