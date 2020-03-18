@@ -140,7 +140,6 @@ ScorchDecalTexturesSera = {
 -- Air/Land Unit explosion thread
 ---------------------------------
 function AddFalldownTrail(obj)
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
     local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -149,14 +148,13 @@ function AddFalldownTrail(obj)
     local NFallDownTrail = NEffectTemplate[UnitTechLvl .. Faction .. 'FallDownTrail']
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDFallDownTrail, Army, (Number * GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
+        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (Number * GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
     else
-        obj.CreateEffects(obj, NFallDownTrail, Army, (Number * GlobalExplosionScaleValue)) -- No falling-down trail
+        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (Number * GlobalExplosionScaleValue)) -- No falling-down trail
     end
 end
 
 function ExplosionAirMidAir(obj)
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
     local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -171,26 +169,25 @@ function ExplosionAirMidAir(obj)
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) -- Custom explosion when unit is in the air
-        obj.CreateEffects(obj, SDFallDownTrail, Army, (Number*GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
+        obj.CreateEffects(obj, SDExplosion, obj.Army, (Number/1.95*GlobalExplosionScaleValue)) -- Custom explosion when unit is in the air
+        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (Number*GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
     else
-        obj.CreateEffects(obj, NExplosion, Army, (Number/1.95*GlobalExplosionScaleValue)) -- Default explosion when unit is in the air
-        obj.CreateEffects(obj, NFallDownTrail, Army, (Number*GlobalExplosionScaleValue)) -- No falling-down trail
+        obj.CreateEffects(obj, NExplosion, obj.Army, (Number/1.95*GlobalExplosionScaleValue)) -- Default explosion when unit is in the air
+        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (Number*GlobalExplosionScaleValue)) -- No falling-down trail
     end
 
     if obj:GetUnitTechLvl() == 'TECH1' then
-        CreateFlash(obj, -1, (Number)/2.5/2.5*2, Army)
+        CreateFlash(obj, -1, (Number)/2.5/2.5*2, obj.Army)
     elseif obj:GetUnitTechLvl() == 'TECH2' then
-        CreateFlash(obj, -1, (Number)/2.15/2*2, Army)
+        CreateFlash(obj, -1, (Number)/2.15/2*2, obj.Army)
     else
-        CreateFlash(obj, -1, (Number)/2.75/1.85*2, Army)
+        CreateFlash(obj, -1, (Number)/2.75/1.85*2, obj.Army)
     end
 
     --obj.ForkThread(AddFalldownTrail) For some reason, when this was added, the unit exploded twice upon impact with ground.
 end
 
 function ExplosionAirImpact(obj)
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
     local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -203,33 +200,32 @@ function ExplosionAirImpact(obj)
     obj:PlayUnitSound('Destroyed')
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDExplosionImpact, Army, (Number / 1.95 * GlobalExplosionScaleValue)) --Custom explosion when unit is in the air         
+        obj.CreateEffects(obj, SDExplosionImpact, obj.Army, (Number / 1.95 * GlobalExplosionScaleValue)) --Custom explosion when unit is in the air         
     else
-        obj.CreateEffects(obj, NExplosionImpact, Army, 1) --Default explosion when unit is in the air
+        obj.CreateEffects(obj, NExplosionImpact, obj.Army, 1) --Default explosion when unit is in the air
     end
             
     if obj:GetUnitTechLvl() == 'TECH1' then
-        CreateFlash(obj, -1, (Number)/2.5/2.5*2, Army)
+        CreateFlash(obj, -1, (Number)/2.5/2.5*2, obj.Army)
     elseif obj:GetUnitTechLvl() == 'TECH2' then
-        CreateFlash(obj, -1, (Number)/2.15/2*2, Army)
+        CreateFlash(obj, -1, (Number)/2.15/2*2, obj.Army)
     else
-        CreateFlash(obj, -1, (Number)/2.75/1.85*2, Army)
+        CreateFlash(obj, -1, (Number)/2.75/1.85*2, obj.Army)
     end
     
     local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.3333
     if UnitTechLvl == 'TECH1' then
-        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 0.875, Army)
+        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 0.875, obj.Army)
     elseif UnitTechLvl == 'TECH2' then
-        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.3, Army)
+        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.3, obj.Army)
     elseif UnitTechLvl == 'TECH3' then 
-        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.6, Army)
+        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.6, obj.Army)
     else 
-        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 5, Army)
+        DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 5, obj.Army)
     end
 end
 
 function AirImpactWater(obj)
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
     local UnitTechLvl = obj:GetUnitTechLvl()
     local Number = obj:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -238,20 +234,18 @@ function AirImpactWater(obj)
     local NExplosionImpact = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
     local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/3.5
     
-    EfctUtil.CreateEffects(obj, obj:GetArmy(), EffectTemplate.Splashy)
-    CreateFlash(obj, -1, (Number)/3, Army)
+    EfctUtil.CreateEffects(obj, obj.Army, EffectTemplate.Splashy)
+    CreateFlash(obj, -1, (Number)/3, obj.Army)
     if (toggle == 1) then 
-        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, obj.Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
     else 
-        obj.CreateEffects(obj, NEffectTemplate.OilSlick, Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, NEffectTemplate.OilSlick, obj.Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
     end
 end
 
 function ExplosionLand(obj)
     local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.333
     local ScaleForScorch = (scale - 0.2)*1.5
-    local Army = obj:GetArmy()
-    local army = obj:GetArmy()
     local Faction = obj:GetFaction()
     local UnitTechLvl = obj:GetUnitTechLvl()
     local UnitLayer = obj.layerCategory
@@ -269,16 +263,16 @@ function ExplosionLand(obj)
     obj:PlayUnitSound('Killed')
 
     if UnitLayer == 'NAVAL' then
-        obj.CreateEffects(obj, SDEffectTemplate.AddNothing, Army, 0)
+        obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, 0)
     else
         if (toggle == 1) then
-            obj.CreateEffects(obj, SDExplosion, Army, Number)
+            obj.CreateEffects(obj, SDExplosion, obj.Army, Number)
         else
-            obj.CreateEffects(obj, SDEffectTemplate.AddNothing, Army, Number)
+            obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, Number)
         end
     end
 
-    CreateFlash(obj, -1, Number/1.65/1.3, Army) 
+    CreateFlash(obj, -1, Number/1.65/1.3, obj.Army) 
 
     if toggle == 1 then
         obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -286,7 +280,7 @@ function ExplosionLand(obj)
         obj:ShakeCamera(0, 0, 0, 0) --Stock explosions handle shaking in CreateScalableUnitExplosion
     end
 
-    DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, ScaleForScorch , army)
+    DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, ScaleForScorch , obj.Army)
 end
 
 ---------
@@ -294,7 +288,6 @@ end
 ---------
 function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
     local bp = obj:GetBlueprint()
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
 
     local partamounts = (math.min(GetRandomInt(1 + (volume * 50), (volume * 100)) ,250)) / 10
@@ -332,7 +325,6 @@ end
 function CreateInheritedVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
     local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
     local bp = obj:GetBlueprint()
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
 
     local vx, vy, vz = unpack(speed)
@@ -360,7 +352,6 @@ end
 function CreateUpwardsVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
     local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
     local bp = obj:GetBlueprint()
-    local Army = obj:GetArmy()
     local Faction = obj:GetFaction()
 
     local vx, vy, vz = unpack(speed)
@@ -390,9 +381,8 @@ end
 --OnBone Underwater Flash Explosion 
 -----------------------------------
 function CreateGenericFlashExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).AddNothing)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).AddNothing)
 end
 
 
@@ -400,84 +390,73 @@ end
 --OnBone Varied Explosion 
 -------------------------
 function CreateFactionalExplosionAtBone(obj, boneName, scale, EXPLOSION)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, EXPLOSION)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, EXPLOSION)
 end
 
 -----------------------------------------------------
 -- OnBone UEF Explosions (Very Large/Large/Med/Small)
 -----------------------------------------------------
 function CreateUEFSmallHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionSmallSD)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionSmallSD)
 end
 
 function CreateUEFMediumHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionMediumSD)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionMediumSD)
 end
 
 function CreateUEFLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke)
-    -- CreateBoneEffects(obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke)
+    -- CreateBoneEffects(obj, boneName, obj.Army, EffectTemplate.ExplosionEffectsLrg02)
 end
 
 function CreateUEFLargeShortDurSmokeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke)
-    -- CreateBoneEffects(obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionLargeShortDurSmoke)
+    -- CreateBoneEffects(obj, boneName, obj.Army, EffectTemplate.ExplosionEffectsLrg02)
 end
 
 function CreateUEFVeryLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionVeryLarge)
-    -- CreateBoneEffects(obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionVeryLarge)
+    -- CreateBoneEffects(obj, boneName, obj.Army, EffectTemplate.ExplosionEffectsLrg02)
 end
 
 function CreateUEFVeryLargeShortDurSmokeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionVeryLargeShortDurSmoke)
-    -- CreateBoneEffects(obj, boneName, army, EffectTemplate.ExplosionEffectsLrg02)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionVeryLargeShortDurSmoke)
+    -- CreateBoneEffects(obj, boneName, obj.Army, EffectTemplate.ExplosionEffectsLrg02)
 end
 
 --------------------------------------------------------
 -- OnBone Cybran Explosions (Very Large/Large/Med/Small)
 --------------------------------------------------------
 function CreateCybranSmallHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.2, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPSmallCybran) -- :ScaleEmitter(1)
+<<<<<<< HEAD
+    CreateFlash(obj, boneName, scale * 0.2, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPSmallCybran) -- :ScaleEmitter(1)
 end
 
 function CreateCybranMediumHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.3, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran) -- :ScaleEmitter(2.5)
+    CreateFlash(obj, boneName, scale * 0.3, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran) -- :ScaleEmitter(2.5)
 end
 
 function CreateCybranLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.35, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeCybran) -- :ScaleEmitter(5)
+    CreateFlash(obj, boneName, scale * 0.35, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeCybran) -- :ScaleEmitter(5)
 end
 
 function CreateCybranVeryLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPMediumCybran) -- :ScaleEmitter(10)
 end
 
 function CreateCybranFinalLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
     CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPFinalLargeCybran) -- :ScaleEmitter(10)
 end
 
@@ -485,32 +464,27 @@ end
 -- OnBone Aeon Explosions (Very Large/Large/Med/Small)
 ------------------------------------------------------
 function CreateAeonSmallHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPSmallAeon) -- :ScaleEmitter(1)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPSmallAeon) -- :ScaleEmitter(1)
 end
 
 function CreateAeonMediumHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumAeon) -- :ScaleEmitter(2.5)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPMediumAeon) -- :ScaleEmitter(2.5)
 end
 
 function CreateAeonLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon) -- :ScaleEmitter(5)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon) -- :ScaleEmitter(5)
 end
 function CreateAeonLargeInitialHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeInitialAeon) -- :ScaleEmitter(5)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeInitialAeon) -- :ScaleEmitter(5)
 end
 
 function CreateAeonVeryLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon) -- :ScaleEmitter(10)
 end
 
 function CreateGCFinalLargeHitExplosionAtBone(obj, boneName, scale)
@@ -520,40 +494,34 @@ function CreateGCFinalLargeHitExplosionAtBone(obj, boneName, scale)
 end
 
 function CreateAeonFinalLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPVeryLargeAeon) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPVeryLargeAeon) -- :ScaleEmitter(10)
 end
 
 ------------------------------------------------------
 -- OnBone Sera Explosions (Very Large/Large/Med/Small)
 ------------------------------------------------------
 function CreateSeraSmallHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera) -- :ScaleEmitter(1)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera) -- :ScaleEmitter(1)
 end
 
 function CreateSeraMediumHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera) -- :ScaleEmitter(2.5)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPMediumSera) -- :ScaleEmitter(2.5)
 end
 
 function CreateSeraLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(5)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(5)
 end
 
 function CreateSeraVeryLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(10)
 end
 
 function CreateSeraFinalLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPLargeSera) -- :ScaleEmitter(10)
 end
