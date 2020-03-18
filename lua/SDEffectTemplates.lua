@@ -1281,6 +1281,7 @@ Ahwassa_Engine_PreFail_Electricity = {
 }
 Ahwassa_Engine_PreFail_Smoke = {
     ModPath .. 'Ahwassa_PreFail_Smoke.bp',
+	ModPath .. 'Ahwassa_PreFail_Smoke_Electrified.bp',
 }
 Ahwassa_Engine_Critical_Explosion_Flashes = {
 	ModPath .. 'Ahwassa_Critical_Damage_Explosion_Electricity.bp',
@@ -1291,6 +1292,7 @@ Ahwassa_Engine_Critical_Explosion_Sparks = {
 }
 Ahwassa_Engine_Critical_Smoke = {
 	ModPath .. 'Ahwassa_Critical_Damage_Smoke_Electrified.bp',
+	ModPath .. 'Ahwassa_Critical_Damage_Smoke_Electrified_2.bp',
 	ModPath .. 'Ahwassa_Fall_Down_Electricity.bp',
 	ModPath .. 'Ahwassa_Critical_Damage_Smoke.bp',
 }
