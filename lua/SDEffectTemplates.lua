@@ -1060,28 +1060,12 @@ ExplosionEXPMediumCybran = {
 #####################Cyb Generic Experimental Large Boom###############################
 ExplosionEXPLargeCybran = {
 	ModPath .. 'CybT4_long_thin_smoke.bp',
-<<<<<<< HEAD
-=======
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
 }
-
-#####################Cyb Generic Experimental FinalLarge Boom###############################
-ExplosionEXPFinalLargeCybran = {
-	ModPath .. 'CybT4_long_thin_smoke.bp',
->>>>>>> origin/master
-        ModPath .. 'CybEXPLRG_charge.bp',
-        ModPath .. 'CybEXPLRG_chargelong.bp',
-        ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Large_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_4.bp',
-	ModPath .. 'CybT3_smoke.bp',
-	ModPath .. 'CybT4_long_smoke.bp',
-}
-<<<<<<< HEAD
 
 #####################Cyb Generic Experimental FinalLarge Boom###############################
 ExplosionEXPFinalLargeCybran = {
@@ -1095,8 +1079,6 @@ ExplosionEXPFinalLargeCybran = {
 	ModPath .. 'CybT4_long_smoke.bp',
 	ModPath .. 'SoulRipper_smoke.bp',
 }
-=======
->>>>>>> origin/master
 #####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {
 	##ModPath .. 'CybT3_smoke.bp',

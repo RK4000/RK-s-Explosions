@@ -95,7 +95,7 @@ Unit = Class(oldUnit) {
             self:ForkThread(SDExplosions.ExplosionLand)
         end
 
-        -- return oldUnit.OnKilled(self, instigator, type, overkillRatio) not needed, says speed2 :D
+        --return oldUnit.OnKilled(self, instigator, type, overkillRatio) not needed, says speed2 :D
     end,
 
     SinkDestructionEffects = function(self)
