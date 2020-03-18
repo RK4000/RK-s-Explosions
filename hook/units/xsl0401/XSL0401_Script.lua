@@ -59,6 +59,10 @@ XSL0401 = Class(oldXSL0401) {
             end
         end
 
+        if self:GetFractionComplete() == 1 then
+            self:SpawnElectroStorm()
+        end
+
         self:PlayUnitSound('Destroyed')
         self:Destroy()
     end,
