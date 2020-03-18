@@ -74,8 +74,6 @@ AirUnit = Class(oldAirUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        local bp = self:GetBlueprint()
-
         -- A completed, flying plane expects an OnImpact event due to air crash.
         -- An incomplete unit in the factory still reports as being in layer "Air", so needs this
         -- stupid check.
@@ -200,7 +198,6 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -230,7 +227,6 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
@@ -524,7 +520,6 @@ SubUnit = Class(oldSubUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH4')
@@ -536,7 +531,6 @@ SubUnit = Class(oldSubUnit) {
 
         local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
-        local bp = self:GetBlueprint()
 
         if layer == 'Sub' or layer == 'Seabed' then
             if toggle == 1 then
@@ -741,7 +735,6 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateTimedFactionalStuctureUnitExplosion = function(self)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
@@ -767,7 +760,6 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateFactionalHitExplosionOffset = function(self, scale, xOffset, yOffset, zOffset)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
@@ -787,7 +779,6 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
@@ -822,7 +813,6 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
     end,
 
     CreateDestructionEffects = function(self, overKillRatio)
-        local bp = self:GetBlueprint()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvlBuilding(UnitTechLvl or 'TECH1')
@@ -852,7 +842,6 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
                 self.CreateEffects(self, NExplosion, self.Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
             end
         else
-           -- LOG(' STARTING BOOM PROCESS ON: ', bp.General.UnitName)
            -- LOG(' Building Size: ', self:GetSizeOfBuilding())
            -- LOG(' Building Tech: ', self:GetUnitTechLvl())
             --LOG(' Global Building Boom Divider: ', 4.5)
