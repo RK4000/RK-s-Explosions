@@ -1,0 +1,33 @@
+UnitBlueprint {
+    Merge = true,
+    BlueprintId = 'url0401',
+	Audio = {
+        DestroyedStep2 = Sound {
+            Bank = 'URLDestroy',
+            Cue = 'URL_Destroy_Land',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        DestroyedStep3 = Sound {
+            Bank = 'XRL_Destroy',
+            Cue = 'XRL0403_Death',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+		DestroyedStep3alt = Sound {
+            Bank = 'UELDestroy',
+            Cue = 'UEL_Destroy_Huge',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+    },
+    Display = {
+        Mesh = {
+            LODs = {
+                {
+                    LODCutoff = 400,
+                },
+                {
+                    LODCutoff = 800,
+                },
+            },
+        },
+    },
+}

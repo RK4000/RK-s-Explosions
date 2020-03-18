@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black_transparent.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]], ##RampTexture = [[/textures/particles/ramp_white_27.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_long_thin_smoke.dds]], ##RampTexture = [[/textures/particles/ramp_white_27.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=40.000,z=0.000 },
+			{ x=25.000,y=37.500,z=0.000 },
 		},
 	},
 	LifetimeCurve = {

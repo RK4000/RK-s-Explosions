@@ -1,6 +1,6 @@
 EmitterBlueprint {
-	BlueprintId = 'CybT3_smoke',
-	Lifetime = 2.00,
+	BlueprintId = 'CybT4_long_thin_smoke',
+	Lifetime = 1.00,
 	Repeattime = 50.00,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_long_thin_smoke.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
@@ -46,7 +46,7 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=4.000*2,z=0.000 },
+			{ x=25.000,y=2.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
@@ -58,7 +58,7 @@ EmitterBlueprint {
 	VelocityCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=1.950,z=0.000 },
+			{ x=25.000,y=2.950,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -118,7 +118,7 @@ EmitterBlueprint {
 	EndSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=3.000,z=1.000 },
+			{ x=25.000,y=10.000,z=3.000 },
 		},
 	},
 	InitialRotationCurve = {

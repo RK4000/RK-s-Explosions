@@ -1,9 +1,9 @@
 #****************************************************************************
 #**
-#**  File     :  SDEffectTemplates
+#**  File     :  NEffectTemplates
 #**  Author(s):  RK4000
 #**
-#**  Summary  :  Generic templates for commonly used effects for the explosions mod. (in other words, this is where the magic happens)
+#**  Summary  :  Generic templates for default looking effects when disabling the explosions mod.
 #**
 #**  Copyright © 2014 RK Powered Games, Inc.  All rights reserved.
 #****************************************************************************
@@ -775,7 +775,14 @@ seraphimSubExplosionUnderWater = {
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Cyb)
 
-#####################Cyb Generic Experimental  Medium Boom###############################
+#####################Cyb Generic Experimental Small Boom###############################
+ExplosionEXPSmallCybran = {
+	ModPath .. 'small_test_sonic.bp',
+	ModPath .. 'small_test_fire.bp',
+	ModPath .. 'small_test_smoke.bp',
+}
+
+#####################Cyb Generic Experimental Medium Boom###############################
 ExplosionEXPMediumCybran = {
 	ModPath .. 'small_test_sonic.bp',
 	ModPath .. 'small_test_fire.bp',
@@ -788,6 +795,15 @@ ExplosionEXPLargeCybran = {
 	ModPath .. 'medium_test_fire.bp',
 	ModPath .. 'medium_test_smoke.bp',
 }
+
+#####################Cyb Generic Experimental FinalLarge Boom###############################
+ExplosionEXPFinalLargeCybran = {
+	ModPath .. 'medium_test_sonic.bp',
+	ModPath .. 'medium_test_fire.bp',
+	ModPath .. 'medium_test_smoke.bp',
+}
+
+#####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {
 	ModPath .. 'medium_test_sonic.bp',
 	ModPath .. 'medium_test_fire.bp',

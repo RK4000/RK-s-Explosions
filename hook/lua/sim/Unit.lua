@@ -90,12 +90,12 @@ Unit = Class(oldUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if EntityCategoryContains(categories.AIR, self) then
-            self:ForkThread(SDExplosions.AirImpactWater)
+            self:ForkThread(SDExplosions.ExplosionAirImpact)
         else
             self:ForkThread(SDExplosions.ExplosionLand)
         end
 
-        return oldUnit.OnKilled(self, instigator, type, overkillRatio)
+        -- return oldUnit.OnKilled(self, instigator, type, overkillRatio) not needed, says speed2 :D
     end,
 
     SinkDestructionEffects = function(self)

@@ -32,7 +32,7 @@ XRL0403 = Class(oldXRL0403) {
 
     DeathThreadLand = function(self)
         local army = self:GetArmy()
-        self:PlayUnitSound('Destroyed')
+        self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
@@ -71,10 +71,11 @@ XRL0403 = Class(oldXRL0403) {
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'MegalithDeathMedBigBoom' then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+				self:PlayUnitSound('DestroyedStep2')
                 break
             end
         end
-        WaitSeconds(2.95/1.5)
+        WaitSeconds(1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg01_B01', 0.25)
 
@@ -85,7 +86,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Right_Leg02_B01', 0.25)
 
@@ -96,7 +97,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg01_B01', 0.25)
 
@@ -107,7 +108,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.75/1.5)
+        WaitSeconds(0.3)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Right_Leg02_B01', 0.25)
 
@@ -118,7 +119,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(1.0/1.5)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg02_B02', 0.25)
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Flare_Muzzle06', 0.25)
@@ -131,7 +132,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
         
-        WaitSeconds(2.5/1.5)
+        WaitSeconds(1.0)
         self:PlayUnitSound('DestroyedStep3')
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
@@ -147,7 +148,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(3.2/1.5)
+        WaitSeconds(0.7)
         self:PlayUnitSound('DestroyedStep2')
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
@@ -163,7 +164,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(2.05/1.5)
+        WaitSeconds(1.0)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'AA_Turret', 2.25)
 
@@ -174,7 +175,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.2)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Right_Leg02_B01', 2.25)
 
@@ -185,7 +186,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg02_B02', 2.25)
 
@@ -196,7 +197,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.1)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Torpedo_Muzzle03', 2.25)
 
@@ -207,7 +208,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.5)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'AA_Muzzle', 2.25)
 
@@ -218,7 +219,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Torpedo_Muzzle12', 2.25)
 
@@ -229,7 +230,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.85/1.5)
+        WaitSeconds(0.25)
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg01_B01', 2.25)
 
@@ -240,7 +241,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(2.85)
+        WaitSeconds(0.6)
         self:PlayUnitSound('DestroyedStep3')
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'AA_Turret', 2.25)
 
@@ -251,34 +252,34 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
 
-        WaitSeconds(0.15/1)
-        self:PlayUnitSound('DestroyedStep3')
-        sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'Right_Leg02_B02', 2.25)
-
-        for i, numWeapons in bp.Weapon do
-            if bp.Weapon[i].Label == 'MegalithDeathBigBoom' then
-                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
-                break
-            end
-        end
-
-        WaitSeconds(0.15/1.5)
-        self:PlayUnitSound('DestroyedStep3')
-        sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'Right_Leg01_B02', 2.25)
-
-        for i, numWeapons in bp.Weapon do
-            if bp.Weapon[i].Label == 'MegalithDeathBigBoom' then
-                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
-                break
-            end
-        end
-
         WaitSeconds(0.15)
+        self:PlayUnitSound('DestroyedStep3')
+        sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Right_Leg02_B02', 2.25)
+
+        for i, numWeapons in bp.Weapon do
+            if bp.Weapon[i].Label == 'MegalithDeathBigBoom' then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+
+        WaitSeconds(0.015)
+        self:PlayUnitSound('DestroyedStep3')
+        sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Right_Leg01_B02', 2.25)
+
+        for i, numWeapons in bp.Weapon do
+            if bp.Weapon[i].Label == 'MegalithDeathBigBoom' then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
+
+        WaitSeconds(0.035)
         self:PlayUnitSound('DestroyedStep3')
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
         CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
-        sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
+        sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
 
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'MegalithDeathBigBoom' then
@@ -287,7 +288,7 @@ XRL0403 = Class(oldXRL0403) {
             end
         end
         
-        WaitSeconds(0.15)
+        WaitSeconds(0.025)
         RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
         self:PlayUnitSound('DestroyedStep3')
         CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)

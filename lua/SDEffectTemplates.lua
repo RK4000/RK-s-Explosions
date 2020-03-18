@@ -1037,29 +1037,50 @@ seraphimSubExplosionUnderWater = {
 ######################################################################################################### 
 ######################################################################################################### EXP BOOMS (Cyb)
 
-#####################Cyb Generic Experimental  Medium Boom###############################
+#####################Cyb Generic Experimental Small Boom###############################
+ExplosionEXPSmallCybran = {
+	ModPath .. 'CybT4_long_thin_smoke.bp',
+        ModPath .. 'CybEXPSMALL_charge.bp',
+        ModPath .. 'CybEXPSMALL_chargelong.bp',
+        ModPath .. 'CybEXPSMALL_chargering.bp',
+	ModPath .. 'Small_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_1.bp',
+}
+
+#####################Cyb Generic Experimental Medium Boom###############################
 ExplosionEXPMediumCybran = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT2_smoke.bp',
+	ModPath .. 'CybT4_long_thin_smoke.bp',
         ModPath .. 'CybEXPMED_charge.bp',
         ModPath .. 'CybEXPMED_chargelong.bp',
         ModPath .. 'CybEXPMED_chargering.bp',
 	ModPath .. 'Medium_test_sonic.bp',
-	ModPath .. 'Cyb_Flash_3.bp',
+	ModPath .. 'Cyb_Flash_2.bp',
 }
 
 #####################Cyb Generic Experimental Large Boom###############################
 ExplosionEXPLargeCybran = {
-	ModPath .. 'dust_emit.bp',
-	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_thin_smoke.bp',
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
 }
+
+#####################Cyb Generic Experimental FinalLarge Boom###############################
+ExplosionEXPFinalLargeCybran = {
+	ModPath .. 'CybT4_long_thin_smoke.bp',
+        ModPath .. 'CybEXPLRG_charge.bp',
+        ModPath .. 'CybEXPLRG_chargelong.bp',
+        ModPath .. 'CybEXPLRG_chargering.bp',
+	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'Cyb_Flash_4.bp',
+	ModPath .. 'CybT3_smoke.bp',
+	ModPath .. 'CybT4_long_smoke.bp',
+	ModPath .. 'SoulRipper_smoke.bp',
+}
+#####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {
-	ModPath .. 'dust_emit.bp',
 	##ModPath .. 'CybT3_smoke.bp',
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
@@ -1079,7 +1100,6 @@ SoulRipper_Final_Boom = {
 	ModPath .. 'Very_Large_test_sonic.bp',
 }
 SoulRipper_First_Series_Booms = {
-	ModPath .. 'dust_emit.bp',
 	##ModPath .. 'CybT2_smoke.bp',
         ModPath .. 'CybEXPMED_charge.bp',
         ModPath .. 'CybEXPMED_chargelong.bp',
@@ -1088,7 +1108,6 @@ SoulRipper_First_Series_Booms = {
 	ModPath .. 'Cyb_Flash_3.bp',
 }
 SoulRipper_Second_Series_Booms = {
-	ModPath .. 'dust_emit.bp',
 	##ModPath .. 'CybT2_smoke.bp',
         ModPath .. 'CybT2_charge.bp',
         ModPath .. 'CybT2_chargering.bp',
@@ -1096,7 +1115,6 @@ SoulRipper_Second_Series_Booms = {
 	ModPath .. 'Medium_test_sonic.bp',
 }
 SoulRipper_Third_Series_Booms = {
-	ModPath .. 'dust_emit.bp',
 	##ModPath .. 'CybT3_smoke.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargelong.bp',

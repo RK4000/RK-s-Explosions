@@ -47,10 +47,21 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(1.1)
+        WaitSeconds(0.55)
         sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
-        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Left_Projectile01', 2)
+        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Left_Projectile01', 0.45)
+		self:PlayUnitSound('DestroyedStep2')
+        for i, numWeapons in bp.Weapon do
+            if bp.Weapon[i].Label == 'SmallDeathBoom' then
+                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
+                break
+            end
+        end
 
+        WaitSeconds(0.25)
+        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
+        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Projectile01', 0.45)
+		self:PlayUnitSound('DestroyedStep2')
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'SmallDeathBoom' then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
@@ -59,21 +70,10 @@ URL0402 = Class(oldURL0402) {
         end
 
         WaitSeconds(0.5)
-        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
-        sdexplosion.CreateCybranSmallHitExplosionAtBone(self, 'Right_Projectile01', 2)
-
-        for i, numWeapons in bp.Weapon do
-            if bp.Weapon[i].Label == 'SmallDeathBoom' then
-                DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
-                break
-            end
-        end
-
-        WaitSeconds(1.0)
         self:PlayUnitSound('DestroyedStep2')
         
         # Create damage effects on turret bone
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Center_Turret', 1.5)
+        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Center_Turret', 0.5)
         self:CreateDamageEffects('Center_Turret_B01', army)
         self:CreateDamageEffects('Center_Turret_Barrel', army)
 
@@ -85,7 +85,7 @@ URL0402 = Class(oldURL0402) {
         end
 
 
-        WaitSeconds(0.6)
+        WaitSeconds(0.3)
         self:PlayUnitSound('DestroyedStep2')
         self:CreateFirePlumes(army, {'Right_Leg01_B01','Right_Leg03_B01','Left_Leg03_B01',}, 0.5)
 
@@ -96,7 +96,7 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.6)
+        WaitSeconds(0.3)
         self:PlayUnitSound('DestroyedStep2')
         self:CreateDeathExplosionDustRing()
 
@@ -107,15 +107,14 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.7)
+        WaitSeconds(0.35)
 
 
         # When the spider bot impacts with the ground
         # Effects: Explosion on turret, dust effects on the muzzle tip, large dust ring around unit
         # Other: Damage force ring to force trees over and camera shake
-        self:ShakeCamera(50, 5, 0, 1)
         self:PlayUnitSound('DestroyedStep2')
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Turret_Muzzle', 1)
+        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Turret_Muzzle', 0.65)
         for k, v in EffectTemplate.FootFall01 do
             CreateAttachedEmitter(self,'Center_Turret_Muzzle',army, v):ScaleEmitter(2)          
             CreateAttachedEmitter(self,'Center_Turret_Muzzle',army, v):ScaleEmitter(2) 
@@ -136,16 +135,16 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.7)
+        WaitSeconds(0.35)
         self:PlayUnitSound('DestroyedStep2')
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Center_Turret', 5)
+        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Center_Turret', 1)
 
         # Finish up force ring to push trees
         DamageRing(self, {x,y,z}, 0.1, 3, 1, 'Force', true)
 
         # Explosion on and damage fire on various bones
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Right_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 2)
+        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 0.45)
         self:CreateFirePlumes(army, {'Left_Projectile01'}, -1)
         self:CreateDamageEffects('Right_Turret', army)
 
@@ -156,7 +155,7 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.7)
+        WaitSeconds(0.35)
         self:PlayUnitSound('DestroyedStep2')
         
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
@@ -169,7 +168,7 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.7)
+        WaitSeconds(0.35)
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Turret_Muzzle', 1)
         self:CreateExplosionDebris(army)
         self:PlayUnitSound('DestroyedStep2')
@@ -184,12 +183,12 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.6)
+        WaitSeconds(0.3)
         self:PlayUnitSound('DestroyedStep2')
         self:PlayUnitSound('DestroyedStep2')
         
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 2)
+        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 0.45)
         self:CreateDamageEffects('Left_Leg03_B03', army)
 
         for i, numWeapons in bp.Weapon do
@@ -199,9 +198,9 @@ URL0402 = Class(oldURL0402) {
             end
         end
 
-        WaitSeconds(0.8)
+        WaitSeconds(0.4)
         self:PlayUnitSound('DestroyedStep3')
-        sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'URL0402', 9)
+        sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'URL0402', 9)
 
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'BigDeathBoom' then
