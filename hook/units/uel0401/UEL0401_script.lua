@@ -11,7 +11,7 @@ UEL0401 = Class(oldUEL0401) {
     DeathThreadLand = function(self)
         local army = self:GetArmy()
         local bp = self:GetBlueprint()
-        local NumberForShake = (Util.GetRandomFloat(0.5, 0.5 + 1))/3.5
+        local NumberForShake = (Util.GetRandomFloat(0.5, 0.5 + 1))/8
 
         self:PlayUnitSound('Destroyed')
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -26,7 +26,7 @@ UEL0401 = Class(oldUEL0401) {
             end
         end
 
-        WaitSeconds(2.855/2)
+        WaitSeconds(0.7)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Left01', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -38,7 +38,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.45/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Right02', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -50,7 +50,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.55/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Attachpoint01', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -62,7 +62,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.35/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Bay_Cover', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -75,7 +75,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.65/2)
+        WaitSeconds(0.2)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Ramp', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -87,7 +87,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.55/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Attachpoint03', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -99,7 +99,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.8/2)
+        WaitSeconds(0.2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Bay_Cover', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -112,7 +112,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.35/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Ramp', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -124,7 +124,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.45/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Attachpoint03', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -136,7 +136,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.8/2)
+        WaitSeconds(0.2)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Turret_Left01', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -149,7 +149,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(1.855/2)
+        WaitSeconds(0.5)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Front_Core', 2/2) -- sdexplosion.CreateUEFLargeShortDurSmokeHitExplosionAtBone(self, 'Front_Core', 0.25)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -161,7 +161,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(3.875/2)
+        WaitSeconds(1)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Turret_Right02', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -174,7 +174,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.95/2)
+        WaitSeconds(0.2)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Attachpoint01', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -186,7 +186,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(1.35/2)
+        WaitSeconds(0.3)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'UEL0401', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -198,7 +198,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.45/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Front_Core', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -210,7 +210,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.25/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Rear_Core', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -223,7 +223,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.25/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Right01', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -235,7 +235,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(1.15/2)
+        WaitSeconds(0.3)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Turret_Right02', 2/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -247,7 +247,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(1.35/2)
+        WaitSeconds(0.4)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Turret_Left01', 2.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -259,7 +259,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.25/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Left02', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -271,7 +271,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.45/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Ramp', 2*1.5/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -284,7 +284,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.35/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Front_Core', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -296,7 +296,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.45/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Attachpoint03', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -308,7 +308,7 @@ UEL0401 = Class(oldUEL0401) {
         end
 
         self:PlayUnitSound('DestroyedStep2')
-        WaitSeconds(0.25/2)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Right01', 1.25/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
 
@@ -329,21 +329,21 @@ UEL0401 = Class(oldUEL0401) {
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'UEL0401', 5/2)
         self:ShakeCamera(30 * NumberForShake*4.5, NumberForShake*4.5, 0, NumberForShake*1.55 / 1.375)
         self:PlayUnitSound('DestroyedStep4')
-        WaitSeconds(0.05)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Right01', 2.25/2)
         self:PlayUnitSound('DestroyedStep4')
-        WaitSeconds(0.05)
+        WaitSeconds(0)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Right02', 2.25/2)
         self:PlayUnitSound('DestroyedStep4')
-        WaitSeconds(0.05)
+        WaitSeconds(0.1)
         sdexplosion.CreateUEFMediumHitExplosionAtBone(self, 'Turret_Left01', 5/2)
         self:PlayUnitSound('DestroyedStep4')
-        WaitSeconds(0.05)
+        WaitSeconds(0)
         sdexplosion.CreateUEFSmallHitExplosionAtBone(self, 'Turret_Left02', 2.25/2/2)
         sdexplosion.CreateUEFLargeHitExplosionAtBone(self, 'UEL0401', 17/2/2)
         self:PlayUnitSound('DestroyedStep4')
         self:ShakeCamera(30 * NumberForShake*9.5, NumberForShake*9.5, 0, NumberForShake*7.55 / 1.375)
-        WaitSeconds(0.05)
+        WaitSeconds(0.1)
 
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'BigDeathBoom' then
