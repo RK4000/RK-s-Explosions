@@ -24,26 +24,24 @@ local sdexplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local oldXRL0403 = XRL0403
 XRL0403 = Class(oldXRL0403) {
     DeathThreadWater = function(self)
-        local army = self:GetArmy()
         self:PlayUnitSound('Destroyed')
-        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
-        explosion.CreateFlash(self, 'AA_Turret', 7, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, self.Army)
+        explosion.CreateFlash(self, 'AA_Turret', 7, self.Army)
     end,
 
     DeathThreadLand = function(self)
-        local army = self:GetArmy()
         self:PlayUnitSound('DestroyedStep2')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
-        self:CreateFirePlumes(army, {'XRL0403'}, 0)
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
+        self:CreateFirePlumes(self.Army, {'XRL0403'}, 0)
 
-        self:CreateFirePlumes(army, {'Right_Leg01_B01','Right_Leg02_B01','Left_Leg02_B01',}, 0.5)
+        self:CreateFirePlumes(self.Army, {'Right_Leg01_B01','Right_Leg02_B01','Left_Leg02_B01',}, 0.5)
 
-        self:CreateExplosionDebris(army)
-        self:CreateExplosionDebris(army)
-        self:CreateExplosionDebris(army)
+        self:CreateExplosionDebris(self.Army)
+        self:CreateExplosionDebris(self.Army)
+        self:CreateExplosionDebris(self.Army)
 
         local bp = self:GetBlueprint()
         for i, numWeapons in bp.Weapon do
@@ -56,16 +54,16 @@ XRL0403 = Class(oldXRL0403) {
         WaitSeconds(0.15)
         self:PlayUnitSound('Destroyed')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Right_Leg01_B02', 2.25)
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
-        self:CreateFirePlumes(army, {'XRL0403'}, 0)
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
+        self:CreateFirePlumes(self.Army, {'XRL0403'}, 0)
 
-        self:CreateFirePlumes(army, {'Right_Leg01_B01','Right_Leg02_B01','Left_Leg02_B01',}, 0.5)
+        self:CreateFirePlumes(self.Army, {'Right_Leg01_B01','Right_Leg02_B01','Left_Leg02_B01',}, 0.5)
 
-        self:CreateExplosionDebris(army)
-        self:CreateExplosionDebris(army)
-        self:CreateExplosionDebris(army)
+        self:CreateExplosionDebris(self.Army)
+        self:CreateExplosionDebris(self.Army)
+        self:CreateExplosionDebris(self.Army)
 
 
         for i, numWeapons in bp.Weapon do
@@ -134,9 +132,9 @@ XRL0403 = Class(oldXRL0403) {
         
         WaitSeconds(1.0)
         self:PlayUnitSound('DestroyedStep3')
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
         sdexplosion.CreateCybranVeryLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
         sdexplosion.CreateCybranVeryLargeHitExplosionAtBone(self, 'Flare_Muzzle01', 2.25)
         sdexplosion.CreateCybranVeryLargeHitExplosionAtBone(self, 'Right_Leg01_B02', 2.25)
@@ -150,9 +148,9 @@ XRL0403 = Class(oldXRL0403) {
 
         WaitSeconds(0.7)
         self:PlayUnitSound('DestroyedStep2')
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Left_Leg02_B02', 2.25)
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Flare_Muzzle06', 2.25)
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'Torpedo_Muzzle07', 2.25)
@@ -276,9 +274,9 @@ XRL0403 = Class(oldXRL0403) {
 
         WaitSeconds(0.035)
         self:PlayUnitSound('DestroyedStep3')
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
         sdexplosion.CreateCybranLargeHitExplosionAtBone(self, 'AA_Turret', 2.25)
 
         for i, numWeapons in bp.Weapon do
@@ -289,11 +287,11 @@ XRL0403 = Class(oldXRL0403) {
         end
         
         WaitSeconds(0.025)
-        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, self.Army)
         self:PlayUnitSound('DestroyedStep3')
-        CreateAttachedEmitter(self, 'XRL0403', army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
-        CreateAttachedEmitter(self,'XRL0403', army, '/effects/emitters/distortion_ring_01_emit.bp')
+        CreateAttachedEmitter(self, 'XRL0403', self.Army, '/effects/emitters/destruction_explosion_concussion_ring_03_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/explosion_fire_sparks_02_emit.bp'):OffsetEmitter(0, 5, 0)
+        CreateAttachedEmitter(self,'XRL0403', self.Army, '/effects/emitters/distortion_ring_01_emit.bp')
         sdexplosion.CreateCybranFinalLargeHitExplosionAtBone(self, 'Left_Leg01_B02', 2.25)
 
         for i, numWeapons in bp.Weapon do

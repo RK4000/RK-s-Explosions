@@ -102,7 +102,6 @@ Unit = Class(oldUnit) {
         local Util = utilities
         local sx, sy, sz = self:GetUnitSizes()
         local vol = sx * sy * sz
-        local army = self:GetArmy()
         local numBones = self:GetBoneCount() - 1
         local pos = self:GetPosition()
         local surfaceHeight = GetSurfaceHeight(pos[1], pos[3])
@@ -119,8 +118,8 @@ Unit = Class(oldUnit) {
 
             self:DestroyAllDamageEffects()
             if toSurface < 1 then
-                CreateAttachedEmitter(self, randBone, army,'/effects/emitters/destruction_water_sinking_ripples_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
-                CreateAttachedEmitter(self, randBone, army, '/effects/emitters/destruction_water_sinking_wash_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
+                CreateAttachedEmitter(self, randBone, self.Army,'/effects/emitters/destruction_water_sinking_ripples_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
+                CreateAttachedEmitter(self, randBone, self.Army, '/effects/emitters/destruction_water_sinking_wash_01_emit.bp'):OffsetEmitter(rx, y, rz):ScaleEmitter(scale)
             end
 
             if toSurface < 0 then
@@ -129,14 +128,14 @@ Unit = Class(oldUnit) {
                 local lifetime = Util.GetRandomInt(50, 200)
 
                 if(toSurface > 1) then
-                    CreateEmitterAtBone(self, randBone, army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
+                    CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
                         :ScaleEmitter(scale)
                         :SetEmitterParam('LIFETIME', lifetime)
 
-                    CreateAttachedEmitter(self, -1, army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                    CreateAttachedEmitter(self, -1, self.Army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
                 end
-                CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
-                CreateEmitterAtBone(self, randBone, army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
+                CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
             end
             local rd = Util.GetRandomFloat(0.4, 1.0)
             WaitSeconds(i + rd)

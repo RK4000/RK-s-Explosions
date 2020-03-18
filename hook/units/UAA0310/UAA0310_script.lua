@@ -110,7 +110,6 @@ UAA0310 = Class(oldUAA0310) {
             return false
         end
 
-        local Army = self:GetArmy()
         -- LOG('*DEBUG: ManageDamageEffects, New: ', repr(newHealth), ' Old: ', repr(oldHealth))
  
         if newHealth < oldHealth then
@@ -127,10 +126,10 @@ UAA0310 = Class(oldUAA0310) {
                     self:PlayDamageEffect(self.FxDamage3, self.DamageEffectsBag[3])
                 end
             elseif oldHealth > 0.10 then
-                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach01, 3.15, 'CoreBreachEffects1')  
-                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach02, 3, 'CoreBreachEffects1') 
-                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'UAA0310', Army, GetEffectTemplateFile(toggle).CZAR_Air_Rushing_In, 1, 'CoreBreachEffects2') 
-                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', Army, GetEffectTemplateFile(toggle).CZAR_Core_Rupture, 3, 'CoreBreachEffects1')
+                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', self.Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach01, 3.15, 'CoreBreachEffects1')  
+                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', self.Army, GetEffectTemplateFile(toggle).CZAR_Center_Core_Breach02, 3, 'CoreBreachEffects1') 
+                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'UAA0310', self.Army, GetEffectTemplateFile(toggle).CZAR_Air_Rushing_In, 1, 'CoreBreachEffects2') 
+                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Attachpoint05', self.Army, GetEffectTemplateFile(toggle).CZAR_Core_Rupture, 3, 'CoreBreachEffects1')
                 PlaySubBoomSound('CZARCoreDestroyed')  
                 -- PlaySubBoomSound('CZARCoreDestroyed' -- speed2:commented out, is it inteded to play twice?
             -- elseif oldHealth > 0.05 then
@@ -193,7 +192,6 @@ UAA0310 = Class(oldUAA0310) {
     OnKilled = function(self, instigator, type, overkillRatio)
         if self:GetCurrentLayer() == 'Air' then 
             --[[
-            local army = self:GetArmy()  
             local wep = self:GetWeaponByLabel('QuantumBeamGeneratorWeapon')
             local bp = wep:GetBlueprint()
             if bp.Audio.BeamStop then
@@ -241,10 +239,9 @@ UAA0310 = Class(oldUAA0310) {
             -- sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint06', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )
             -- sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint08', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )
 
-            local Army = self:GetArmy()
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, Army, 1 )
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Aura, Army, 1 )
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_Charge, Army, 4 )
+            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, self.Army, 1 )
+            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Aura, self.Army, 1 )
+            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_Charge, self.Army, 4 )
             RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/CZAR_Debris/CZAR_Debris_proj.bp'))
             self:CreateDeathExplosionTareThroughEffect()
             sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, GetEffectTemplateFile(toggle).CZAR_Initial_Center_Explosion )    
@@ -255,16 +252,14 @@ UAA0310 = Class(oldUAA0310) {
         oldUAA0310.OnKilled(self, instigator, type, overkillRatio)
     end,
     
-    OnImpact = function(self, with, other)
-        local Army = self:GetArmy()  
-    
+    OnImpact = function(self, with, other)    
         -- Damage the area we have impacted with.
         local bp = self:GetBlueprint()
         local i = 1
         local numWeapons = table.getn(bp.Weapon)
 
         self:PlayUnitSound('Destroyed')
-        RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 50, Army)
+        RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 50, self.Army)
         for i, numWeapons in bp.Weapon do
             if(bp.Weapon[i].Label == 'DeathImpact') then
                 DamageArea(self, self:GetPosition(), bp.Weapon[i].DamageRadius, bp.Weapon[i].Damage, bp.Weapon[i].DamageType, bp.Weapon[i].DamageFriendly)
@@ -275,9 +270,9 @@ UAA0310 = Class(oldUAA0310) {
         if with == 'Water' then
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
-            self.CreateEffects(self, EffectTemplate.Splashy, Army, 12 )
-            DefaultExplosionsStock.CreateFlash(self, -1, 1, Army)
-            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, Army, 7)
+            self.CreateEffects(self, EffectTemplate.Splashy, self.Army, 12 )
+            DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
+            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, self.Army, 7)
             self:ForkThread(self.DeathThread, self.OverKillRatio)   
         else
             -- This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly

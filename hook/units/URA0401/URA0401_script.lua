@@ -47,15 +47,14 @@ URA0401 = Class(oldURA0401) {
                 end
             end  
 
-            local Army = self:GetArmy()
             local numBones = self:GetBoneCount() - 1
 
             for i = 1, 14, 1 do
-                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt(0, numBones), Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage') 
+                RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, Util.GetRandomInt(0, numBones), self.Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity, 0.40/2, 'HullDamage') 
             end
 
-            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity_Upper, 0.60/2, 'HullDamage') 
-            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', Army, GetEffectTemplateFile(toggle).SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
+            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', self.Army, GetEffectTemplateFile(toggle).SoulRipper_Ambient_Electricity_Upper, 0.60/2, 'HullDamage') 
+            RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'URA0401', self.Army, GetEffectTemplateFile(toggle).SoulRipper_Fall_Down_Smoke, 1, 'FallDown1')
             
             self:ForkThread(self.DeathThreadFn)
         end
@@ -94,8 +93,8 @@ URA0401 = Class(oldURA0401) {
         end
         -- Final boom
         WaitSeconds(4/3)
-        local Army = self:GetArmy()
-        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, Army)
+
+        RKExplosion.CreateScorchMarkDecalRKSExpCyb(self, 19, self.Army)
         RKExplosion.CreateUpwardsVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/SR_Debris/SR_Debris_proj.bp'))
         RKExplosion.CreateFactionalExplosionAtBone(self, 'URA0401', Util.GetRandomFloat(1, 7.5), GetEffectTemplateFile(toggle).SoulRipper_Final_Boom)
         self:PlayUnitSound('FinalBoom')
@@ -104,8 +103,7 @@ URA0401 = Class(oldURA0401) {
     end,
 
     OnImpact = function(self, with, other)
-        local bp = self:GetBlueprint()
-        local Army = self:GetArmy()   
+        local bp = self:GetBlueprint()  
         self:PlayUnitSound('Destroyed')
 
         -- Damage the area we have impacted with.
@@ -127,9 +125,9 @@ URA0401 = Class(oldURA0401) {
         if with == 'Water' then
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
-            self.CreateEffects(self, EffectTemplate.Splashy, Army, 12 )
-            DefaultExplosionsStock.CreateFlash(self, -1, 1, Army)
-            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, Army, 14)
+            self.CreateEffects(self, EffectTemplate.Splashy, self.Army, 12 )
+            DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
+            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, self.Army, 14)
             
             --self:Destroy()
             self:ForkThread(self.DeathThread, self.OverKillRatio)    
@@ -141,7 +139,7 @@ URA0401 = Class(oldURA0401) {
                 self.DeathBounce = 1
             end
             RKExplosion.CreateFactionalExplosionAtBone(self, 'URA0401', 3.5, GetEffectTemplateFile(toggle).SoulRipper_Impact_Explosion)
-            CreateLightParticle(self, -1, Army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
+            CreateLightParticle(self, -1, self.Army, 10*2, 30*2, 'glow_02', 'ramp_quantum_warhead_flash_01')
         end
     end,  
 }

@@ -124,19 +124,18 @@ UAL0401 = Class(oldUAL0401) {
     end,
     
     DeathThreadLand = function(self, overkillratio, instigator) -- LAND BOOM
-        local army = self:GetArmy()
         local NumberForShake = (Util.GetRandomFloat(1.5, 1.5 + 1))/3.5
 
         self:ShakeCamera(30 * NumberForShake*1.5, NumberForShake*1.5, 0, NumberForShake*1.5 / 1.375)
         self:PlayUnitSound('DestroyedStep2')
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Torso', army, GetEffectTemplateFile(toggle).GC_Core_Breach02, 2.15, 'CoreBreach') 
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'B01', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath') 
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'B02', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Right_Arm_B02', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Left_Arm_B02', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Torso', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Right_Arm_Muzzle01', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath') 
-        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Left_Leg_B02', army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Torso', self.Army, GetEffectTemplateFile(toggle).GC_Core_Breach02, 2.15, 'CoreBreach') 
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'B01', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath') 
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'B02', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Right_Arm_B02', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Left_Arm_B02', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Torso', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Right_Arm_Muzzle01', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath') 
+        RKEffectUtil.CreateBoneEffectsAttachedWithBag(self, 'Left_Leg_B02', self.Army, GetEffectTemplateFile(toggle).GC_Body_Part_Damage, 0.15, 'SmokingDeath')
 
         sdexplosion.CreateAeonLargeInitialHitExplosionAtBone(self, 'Torso', 5.0)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()}) 
@@ -237,7 +236,6 @@ UAL0401 = Class(oldUAL0401) {
     end,
         
     DeathThread = function(self, overkillRatio, instigator)
-        local army = self:GetArmy()
         local layer = self:GetCurrentLayer() 
         
         if layer == 'Water' or layer == 'Seabed' then
@@ -270,7 +268,7 @@ UAL0401 = Class(oldUAL0401) {
         end
 
         self:PlayUnitSound('DestroyedFinal')
-        RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 20, army)
+        RKExplosion.CreateScorchMarkDecalRKSExpAeon(self, 20, self.Army)
         self:Destroy()
     end,
 }
