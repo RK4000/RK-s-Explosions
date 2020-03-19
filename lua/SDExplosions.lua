@@ -513,6 +513,12 @@ function CreateAeonVeryLargeHitExplosionAtBone(obj, boneName, scale)
     CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPLargeAeon) -- :ScaleEmitter(10)
 end
 
+function CreateGCFinalLargeHitExplosionAtBone(obj, boneName, scale)
+    local army = obj:GetArmy()
+    CreateFlash(obj, boneName, scale * 0.5, army)
+    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPGCFinalAeon) -- :ScaleEmitter(10)
+end
+
 function CreateAeonFinalLargeHitExplosionAtBone(obj, boneName, scale)
     local army = obj:GetArmy()
     CreateFlash(obj, boneName, scale * 0.5, army)

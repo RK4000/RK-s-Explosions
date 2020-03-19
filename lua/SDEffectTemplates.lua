@@ -93,8 +93,20 @@ Heart_Debris_Trail = {
 
 #####################AddNothing Boom###############################
 AddNothing = {}
+
+
+
+
+
+##############################################################################################################################################################################################################################
+##############################################################################################################################################################################################################################
+##############################################################################################################################################################################################################################
+
+
+
+
+
 ######################################################################################################################### MAIN FACTIONAL DEATH FX
-######################################################################################################### OTHER FX
 ######################################################################################################### 
 ######################################################################################################### LAND BOOMS 
 
@@ -1073,11 +1085,11 @@ ExplosionEXPFinalLargeCybran = {
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
 	ModPath .. 'CybT3_smoke.bp',
 	ModPath .. 'CybT4_long_smoke.bp',
 	ModPath .. 'SoulRipper_smoke.bp',
+	ModPath .. 'Very_Large_test_sonic.bp',
 }
 #####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {
@@ -1097,7 +1109,7 @@ SoulRipper_Final_Boom = {
         ModPath .. 'CybEXPLRG_chargering.bp',
 	ModPath .. 'Cyb_Flash_4_EXP.bp',
 	ModPath .. 'SoulRipper_smoke.bp',
-	ModPath .. 'Very_Large_test_sonic.bp',
+	--ModPath .. 'Very_Large_test_sonic.bp',
 }
 SoulRipper_First_Series_Booms = {
 	##ModPath .. 'CybT2_smoke.bp',
@@ -1171,9 +1183,20 @@ ExplosionEXPLargeInitialAeon = {
 	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'AuraWaveT4_Med.bp',
 }
-#####################Aeon GC Very Large Boom###############################
+#####################Aeon Exp Very Large Boom###############################
 ExplosionEXPVeryLargeAeon = {
     ModPath .. 'Aeon_Spark_BIG.bp',
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'AeonEXPVLRG_aura.bp',
+	ModPath .. 'AeonEXPVLRG2D_aura.bp',
+	ModPath .. 'Large_test_sonic.bp',
+	ModPath .. 'Very_Large_test_sonic.bp',
+	ModPath .. 'AuraWaveT4_Big.bp',
+	ModPath .. 'Aeon_GC_Death_smoke.bp',
+}
+#####################Aeon GC Final Boom###############################
+ExplosionEXPGCFinalAeon = {
+    ModPath .. 'Aeon_Spark_BIG_GC.bp',
 	ModPath .. 'AeonT3_smoke.bp',
 	ModPath .. 'AeonEXPVLRG_aura.bp',
 	ModPath .. 'AeonEXPVLRG2D_aura.bp',
@@ -1316,8 +1339,75 @@ Ahwassa_Impact_Explosion = {
 }
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 
-######################################################################################################### OTHER FX
+######################################################################################################### NUKE EFFECTS (UEF)
+
+AddNothing = {}
+
+######################################################################################################### NUKE EFFECTS (UEF)
+######################################################################################################### 
+######################################################################################################### NUKE EFFECTS (CYBRAN)
+
+
+
+######################################################################################################### NUKE EFFECTS (CYBRAN)
+######################################################################################################### 
+######################################################################################################### NUKE EFFECTS (AEON)
+
+#####################Basic Nuke Boom (Land, Unit, Shield...)###############################
+AeonNuke = {
+	ModPath .. 'AeonNuke_longsmoke_ground.bp', -- lingering smoke, at ground level
+	ModPath .. 'AeonNuke_longsmoke_upwards.bp', -- lingering smoke, rising
+	ModPath .. 'AeonNuke_Fast_Initial_Aura.bp', -- initial flash of quantum aura
+	ModPath .. 'AeonNuke_Blinking_Aura.bp', -- spreading, blinking quantum aura
+	ModPath .. 'AeonNuke_Blinking_Aura_Residue.bp', -- cover a smooth transition from spreading, blinking quantum aura
+	ModPath .. 'AeonNuke_Fast_Sparks.bp', -- initial explosion sparks
+	ModPath .. 'Very_Large_test_sonic_nuke.bp', -- sonic pulse
+	ModPath .. 'AeonNuke_Air_Quantum_Pull.bp', -- air ring pulled inwards
+}
+
+#####################Water Nuke Boom############################### --No rising smoke effect on water, should maybe add some water wake effect... Maybe for V11 :D
+AeonNukeWater = { 
+	ModPath .. 'AeonNuke_longsmoke_ground.bp', -- lingering smoke, at ground level
+	ModPath .. 'AeonNuke_Fast_Initial_Aura.bp', -- initial flash of quantum aura
+	ModPath .. 'AeonNuke_Blinking_Aura.bp', -- spreading, blinking quantum aura
+	ModPath .. 'AeonNuke_Blinking_Aura_Residue.bp', -- cover a smooth transition from spreading, blinking quantum aura
+	ModPath .. 'AeonNuke_Fast_Sparks.bp', -- initial explosion sparks
+	ModPath .. 'Very_Large_test_sonic_nuke.bp', -- sonic pulse
+	ModPath .. 'AeonNuke_Air_Quantum_Pull.bp', -- air ring pulled inwards
+}
+
+#####################Nuke Intercepted (By SMD)###############################
+AeonNukeKilled = {
+	ModPath .. 'AeonT3_smoke.bp',
+	ModPath .. 'Very_Large_test_sonic_nukeDeath.bp',
+	ModPath .. 'AeonNukeDeath_Sparks.bp',
+	ModPath .. 'AeonNukeDeath_Residue.bp',
+}
+######################################################################################################### NUKE EFFECTS (AEON)
+######################################################################################################### 
+######################################################################################################### NUKE EFFECTS (SERAPHIM)
+
+AddNothing = {}
+
+######################################################################################################### 
+######################################################################################################### NUKE EFFECTS (SERAPHIM)
 ######################################################################################################################### MAIN FACTIONAL FX
+
+
+
+
+
+##############################################################################################################################################################################################################################
+##############################################################################################################################################################################################################################
+##############################################################################################################################################################################################################################
+
+
+
+
+
+######################################################################################################################### MISC. FX 
+######################################################################################################### DEBRIS, OIL SLICKS...
+######################################################################################################### 
 
 OilSlick = {
        ModPath .. 'OilSlick.bp',
