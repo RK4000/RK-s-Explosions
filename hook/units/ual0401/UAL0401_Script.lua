@@ -221,7 +221,7 @@ UAL0401 = Class(oldUAL0401) {
         end
         
         WaitSeconds(4)
-        sdexplosion.CreateAeonFinalLargeHitExplosionAtBone(self, 'Torso', 6.5)
+        sdexplosion.CreateGCFinalLargeHitExplosionAtBone(self, 'Torso', 6.5)
         self:ShakeCamera(30*2.5 * NumberForShake*2.5, NumberForShake*2.5, 0, NumberForShake*3.5)    
 
         for i, numWeapons in bp.Weapon do
