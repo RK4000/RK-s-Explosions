@@ -291,33 +291,12 @@ SeaUnit = Class(oldSeaUnit) {
                 self.CreateEffects(self, NEffectTemplate.OilSlick, Army, ((BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             end
         end
-        self:ForkThread(function()
-            WaitSeconds(2)
-            -- LOG("Sinker thread created")
-            local pos = self:GetPosition()
-            local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
-            while self:GetPosition(watchBone)[2] > seafloor do
-                WaitSeconds(0.1)
-                -- LOG("Sinker: ", repr(self:GetPosition()))
-            end
-            --CreateScaledBoom(self, overkillRatio, watchBone) --Removing generic explosion
-            self:CreateWreckage(overkillRatio, instigator)
-            self:Destroy()
-        end)
 
         local layer = self:GetCurrentLayer()
-        self:DestroyIdleEffects()
         self:CreateUnitSeaDestructionEffects(self, 1.0)
 
         if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-            self.SinkThread = self:ForkThread(self.SinkingThread)
-        end
-
-        local layer = self:GetCurrentLayer()
-        self:DestroyIdleEffects()
-
-        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
             self.SinkThread = self:ForkThread(self.SinkingThread)
         end
 
@@ -610,9 +589,6 @@ SubUnit = Class(oldSubUnit) {
         local sx, sy, sz = self:GetUnitSizes()
         local vol = sx * sy * sz
         local army = self:GetArmy()
-        local pos = self:GetPosition()
-        local seafloor = GetTerrainHeight(pos[1], pos[3]) + GetTerrainTypeOffset(pos[1], pos[3])
-        local DaveyJones = (seafloor - pos[2])*20
         local numBones = self:GetBoneCount()-1
         self:ForkThread(function()
             local i = 0
@@ -636,14 +612,8 @@ SubUnit = Class(oldSubUnit) {
                 i = i + 0.3
             end
         end)
-        local slider = CreateSlider(self, 0)
-        slider:SetGoal(0, DaveyJones+5, 0)
-        slider:SetSpeed(8)
-        WaitFor(slider)
 
-        slider:Destroy()
-        self:CreateWreckage(overkillRatio, instigator)
-        self:Destroy()
+        MobileUnit.DeathThread(self, overkillRatio, instigator)
     end,
 }
 
