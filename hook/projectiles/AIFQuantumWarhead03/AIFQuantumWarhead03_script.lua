@@ -1,11 +1,7 @@
 ------------------------------------------------------------------------------
 --Nuke Script 3
 ------------------------------------------------------------------------------
-local NullShell = import('/lua/sim/defaultprojectiles.lua').NullShell
-local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-local EffectTemplate = import('/lua/EffectTemplates.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-local AQuantumWarheadProjectile = import('/lua/aeonprojectiles.lua').AQuantumWarheadProjectile
 
 local oldAIFQuantumWarhead03 = AIFQuantumWarhead03
 AIFQuantumWarhead03 = Class(oldAIFQuantumWarhead03) { 
