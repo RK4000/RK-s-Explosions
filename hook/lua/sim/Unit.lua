@@ -12,6 +12,14 @@ local AnimationMultiplierTbl = {
     ['TECH1'] = 2.0,
     ['TECH2'] = 2.3,
     ['TECH3'] = 2.875,
+    -- 3
+}
+
+local TechLevelMultiplierTbl = {
+    ['TECH1'] = 0.425,
+    ['TECH2'] = 0.707,
+    ['TECH3'] = 0.872,
+    -- 1
 }
 
 local oldUnit = Unit
@@ -21,9 +29,10 @@ Unit = Class(oldUnit) {
 
         -- Save commonly used variables
         self.AnimationMultiplier = AnimationMultiplierTbl[self.techCategory] or 3
+        self.TechLevelMultiplier = TechLevelMultiplierTbl[self.techCategory] or 1
 
         -- Currently only TECH1 - TECH3 is supported in the code
-        if StringStartsWith(self.techCategory, "TECH") then
+        if self.TechLevel and StringStartsWith(self.techCategory, "TECH") then
             self.TechLevel = self.techCategory
         else
             self.TechLevel = 'TECH1'
@@ -42,18 +51,6 @@ Unit = Class(oldUnit) {
 
     GetFaction = function(self)
         return string.lower(self.factionCategory)
-    end,
-
-    GetNumberByTechLvl = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 0.425
-        elseif UnitTechLvl == 'TECH2' then
-            return 0.76/1.075
-        elseif UnitTechLvl == 'TECH3' then
-            return 1.025/1.175
-        else
-            return 1
-        end
     end,
 
     CreateDestructionEffects = function(self, overKillRatio)
