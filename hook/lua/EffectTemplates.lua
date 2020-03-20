@@ -43,6 +43,24 @@ ExplosionMediumWater = {
     ModPath .. 'Watersplash_m.bp',
 }
 
+ExplosionSmallUnderWater = {
+    ModPath .. 'Watertower_s.bp',
+    ModPath .. 'Water_pie_s.bp',
+    ModPath .. 'Watersplash_s.bp',
+}
+
+ExplosionMediumUnderWater = {
+    ModPath .. 'Watertower_m.bp',
+    ModPath .. 'Water_pie.bp',
+    ModPath .. 'Watersplash_m.bp',
+}
+
+ExplosionLargeUnderWater = {
+    ModPath .. 'Watertower_m.bp',
+    ModPath .. 'Water_pie.bp',
+    ModPath .. 'Watersplash_m.bp',
+}
+
 ExplosionLarge = {
     ModPath .. 'Large_test_smoke.bp',
     ModPath .. 'Large_test_fire.bp',
