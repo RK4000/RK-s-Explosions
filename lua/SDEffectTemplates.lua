@@ -1344,6 +1344,7 @@ UEFNukeKilled = {
 	ModPath .. 'Very_Large_test_smoke.bp',
 	ModPath .. 'Very_Large_test_fire.bp',
 	ModPath .. 'Very_Large_test_random.bp',
+	ModPath .. 'Very_Large_test_sonic_nukeDeath.bp',
 }
 
 ######################################################################################################### NUKE EFFECTS (UEF) --UEF do not need anything extra with their nuke for now, just death effects.
