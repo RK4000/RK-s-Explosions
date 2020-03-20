@@ -18,7 +18,16 @@ local oldUnit = Unit
 Unit = Class(oldUnit) {
     OnCreate = function (self)
         oldUnit.OnCreate(self)
+
+        -- Save commonly used variables
         self.AnimationMultiplier = AnimationMultiplierTbl[self.techCategory] or 3
+
+        -- Currently only TECH1 - TECH3 is supported in the code
+        if StringStartsWith(self.techCategory, "TECH") then
+            self.TechLevel = self.techCategory
+        else
+            self.TechLevel = 'TECH1'
+        end
     end,
 
     CreateEffects = function(self, EffectTable, army, scale)
@@ -33,15 +42,6 @@ Unit = Class(oldUnit) {
 
     GetFaction = function(self)
         return string.lower(self.factionCategory)
-    end,
-
-    -- Currently only TECH1 - TECH3 is supported in the code
-    GetUnitTechLvl = function(self)
-        if self.techCategory and StringStartsWith(self.techCategory, "TECH") then
-            return self.techCategory
-        else
-            return 'TECH1'
-        end
     end,
 
     GetNumberByTechLvl = function(self, UnitTechLvl)
