@@ -189,48 +189,76 @@ SeaUnit = Class(oldSeaUnit) {
             self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
         end
     end,
+	
+	--Check if bone is underwater
+	IsBoneAboveWater = function(self, boneName)
+		local pos = self:GetPosition(boneName)
+		if pos[2] > GetSurfaceHeight(pos[1], pos[3]) then
+			return true
+		end
+		return false
+	end,
 
-    CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local army = self:GetArmy()
-        local bp = self:GetBlueprint()
-        local Army = self:GetArmy()
-        local Faction = self:GetFaction()
-        local UnitTechLvl = self:GetUnitTechLvl()
-        local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
-        local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
-        local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
-        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
-        local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
-
-        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75, Army)
-        self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
-        if toggle == 1 then
-            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms)
-        else
-            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms)
-        end
-    end,
+	CreateFactionalExplosionAtBone = function(self, boneName, scale)
+		local army = self:GetArmy()
+		local Faction = self:GetFaction()
+		local UnitTechLvl = self:GetUnitTechLvl()
+		local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
+		local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
+		local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
+		local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl.. 'Underwater']
+		local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl.. 'Underwater']
+		local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
+		local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
+    
+		DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75, army)
+		self:ShakeCamera(30 * NumberForShake/3, NumberForShake/3, 0, NumberForShake / 3)
+		
+		if toggle == 1 then
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosionUW, ScaleForSubBooms)
+			end
+		else
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosionUW, ScaleForSubBooms)
+			end
+		end
+	end,
 
     CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
         local army = self:GetArmy()
         local bp = self:GetBlueprint()
-        local Army = self:GetArmy()
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
         local Number = self:GetNumberByTechLvl(UnitTechLvl or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl]
+		local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl.. 'Underwater']
+        local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..UnitTechLvl.. 'Underwater']
         local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(UnitTechLvl or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75*5, Army)
+        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75*5, army)
         self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
+		
         if toggle == 1 then
-            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*4)
-        else
-            RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms*4)
-        end
-    end,
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*4)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*4)
+			end
+		else
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosion, ScaleForSubBooms)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, NFactionalShipSubExplosionUW, ScaleForSubBooms)
+			end
+		end
+	end,
 
     CreateUnitSeaDestructionEffects = function(self, scale)
         local Faction = self:GetFaction()

@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_dmgsmoke_40pctmax.dds]],
 	XDirectionCurve = {
 		XRange = 15.00,
 		Keys = {
@@ -46,13 +46,13 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=6.266,y=2.250,z=0.000 },
+			{ x=6.266,y=6.250,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=7.560,y=6.500,z=3.000 },
+			{ x=7.560,y=6.500,z=1.000 },
 		},
 	},
 	VelocityCurve = {
@@ -70,7 +70,7 @@ EmitterBlueprint {
 	YAccelCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=3.978,y=0.010,z=0.000 },
+			{ x=3.978,y=0.005,z=0.000 },
 		},
 	},
 	ZAccelCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=3.978,y=1.210,z=0.000 },
+			{ x=3.978,y=0.210,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,13 +112,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=7.467,y=0.565,z=0.030 },
+			{ x=7.467,y=0.365,z=0.030 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 15.00,
 		Keys = {
-			{ x=4.096,y=0.750,z=0.065 },
+			{ x=4.096,y=0.550,z=0.105 },
 		},
 	},
 	InitialRotationCurve = {

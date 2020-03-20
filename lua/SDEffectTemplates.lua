@@ -613,17 +613,17 @@ TECH3seraphimFallDownTrail = {
 
 #####################T1 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH1uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPath .. 'AircraftDamageSmoke01_small.bp',
 }
 
 #####################T2 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH2uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPath .. 'AircraftDamageSmoke01_small.bp',
 }
 
 #####################T3 UEF Plane Light DMG###############################
 SmallAirUnitSmokeTECH3uef = { 
-        ModPath .. 'AircraftDamageSmoke01.bp',
+        ModPath .. 'AircraftDamageSmoke01_small.bp',
 }
 
 #####################T1 Cybran Plane Light DMG###############################
@@ -829,7 +829,7 @@ BigAirUnitFireSmokeTECH3seraphim = {
 
 ######################################################################################################### HVY AIR DMG FX 
 ######################################################################################################### 
-######################################################################################################### Ship Sub-Booms 
+######################################################################################################### Ship Sub-Booms (Above water)
 
 #####################UEF T1 Ship Sub-Boom###############################
 uefShipSubExplTECH1 = {
@@ -968,7 +968,74 @@ seraphimShipSubExplTECH3 = {
 	ModPath .. 'Sera_Afterhue.bp',
 }
 
-######################################################################################################### Ship Sub-Booms
+######################################################################################################### Ship Sub-Booms (Above water) 
+######################################################################################################### 
+######################################################################################################### Ship Sub-Booms (Below water)
+
+#####################UEF T1 Ship Sub-Boom (Underwater)###############################
+uefShipSubExplTECH1Underwater = {
+	ModPath .. 'UEF_Underwater_Fire_T1.bp',
+}
+
+#####################UEF T2 Ship Sub-Boom (Underwater)###############################
+uefShipSubExplTECH2Underwater = {
+	ModPath .. 'UEF_Underwater_Fire_T1.bp',
+}
+
+#####################UEF T3 Ship Sub-Boom (Underwater)###############################
+uefShipSubExplTECH3Underwater = {
+	ModPath .. 'UEF_Underwater_Fire_T1.bp',
+}
+
+#####################Cyb T1 Ship Sub-Boom (Underwater)###############################
+cybranShipSubExplTECH1Underwater = {
+	ModPath .. 'CybT3_Underwater_charge.bp',
+}
+
+#####################Cyb T2 Ship Sub-Boom (Underwater)###############################
+cybranShipSubExplTECH2Underwater = {
+	ModPath .. 'CybT3_Underwater_charge.bp',
+}
+
+#####################Cyb T3 Ship Sub-Boom (Underwater)###############################
+cybranShipSubExplTECH3Underwater = {
+	ModPath .. 'CybT3_Underwater_charge.bp',
+}
+
+#####################Aeon T1 Ship Sub-Boom (Underwater)###############################
+aeonShipSubExplTECH1Underwater = {
+	ModPath .. 'AeonT3_aura_underwater.bp',
+}
+
+#####################Aeon T2 Ship Sub-Boom (Underwater)###############################
+aeonShipSubExplTECH2Underwater = {
+	ModPath .. 'AeonT3_aura_underwater.bp',
+}
+
+#####################Aeon T3 Ship Sub-Boom (Underwater)###############################
+aeonShipSubExplTECH3Underwater = {
+	ModPath .. 'AeonT3_aura_underwater.bp',
+}
+
+#####################Sera T1 Ship Sub-Boom (Underwater)###############################
+seraphimShipSubExplTECH1Underwater = {
+    ModPath .. 'Seraphim_underwater_spark_T3.bp',
+	ModPath .. 'Sera_T3_chargering_underwater.bp',
+}
+
+#####################Sera T2 Ship Sub-Boom (Underwater)###############################
+seraphimShipSubExplTECH2Underwater = {
+    ModPath .. 'Seraphim_underwater_spark_T3.bp',
+	ModPath .. 'Sera_T3_chargering_underwater.bp',
+}
+
+#####################Sera T3 Ship Sub-Boom (Underwater)###############################
+seraphimShipSubExplTECH3Underwater = {
+    ModPath .. 'Seraphim_underwater_spark_T3.bp',
+	ModPath .. 'Sera_T3_chargering_underwater.bp',
+}
+
+######################################################################################################### Ship Sub-Booms (Below Water)
 ######################################################################################################### 
 ######################################################################################################### Sub Booms (surface)
 
