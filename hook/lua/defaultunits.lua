@@ -243,8 +243,6 @@ SeaUnit = Class(oldSeaUnit) {
 	end,
 
     CreateUnitSeaDestructionEffects = function(self, scale)
-        local Faction = self:GetFaction()
-
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -283,8 +281,6 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     OnKilled = function(self, instigator, type, overkillRatio)
-        local nrofBones = self:GetBoneCount() -1
-        local watchBone = self:GetBlueprint().WatchBone or 0
         local BoomScale2 = self:GetSizeOfUnit()
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))
         --LOG(' Oil slick scale multiplier (tech): ', self.ShipTechLevelMultiplier)
@@ -401,10 +397,6 @@ SeaUnit = Class(oldSeaUnit) {
         WaitSeconds(2)
         while true do
             if i > 0 then
-                local rx, ry, rz = self:GetRandomOffset(1)
-                local rs = Random(vol/2, vol*2) / (vol*2)
-                local UnitSize = self:GetSizeOfUnit()
-
                 -- Make faction boom
                 self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
                 RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
@@ -534,7 +526,6 @@ SubUnit = Class(oldSubUnit) {
     end,
 
     ExplosionThread = function(self)
-        local maxcount = Random(17,20) -- Max number of above surface explosions. timed to animation
         local d = 0 -- Delay offset after surface explosions cease
         local sx, sy, sz = self:GetUnitSizes()
         local vol = sx * sy * sz
@@ -701,9 +692,7 @@ StructureHelperfunctions = Class() {
     CreateTimedFactionalStuctureUnitExplosion = function(self)
         local Faction = self:GetFaction()
         local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
-        local ExplosionMultiplierTech = self:GetNumberByTechLvlBuilding2(self.TechLevel or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NumExplFaction = self:GetNumberBasedOffFaction()
         local TECHMULT = self:GetMultTechLvl(self.TechLevel or 'TECH1')
 
@@ -724,7 +713,6 @@ StructureHelperfunctions = Class() {
 
     CreateFactionalHitExplosionOffset = function(self, scale, xOffset, yOffset, zOffset)
         local Faction = self:GetFaction()
-        local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
@@ -742,7 +730,6 @@ StructureHelperfunctions = Class() {
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
         local Faction = self:GetFaction()
-        local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
         local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
