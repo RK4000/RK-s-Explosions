@@ -1093,11 +1093,9 @@ ExplosionEXPFinalLargeCybran = {
 }
 #####################Cyb SR Explosion Stuff###############################
 SoulRipper_Impact_Explosion = {
-	##ModPath .. 'CybT3_smoke.bp',
         ModPath .. 'CybEXPLRG_charge.bp',
         ModPath .. 'CybEXPLRG_chargelong.bp',
         ModPath .. 'CybEXPLRG_chargering.bp',
-	ModPath .. 'Large_test_sonic.bp',
 	ModPath .. 'Cyb_Flash_4.bp',
 	ModPath .. 'SoulRipper_smoke.bp',
 	ModPath .. 'Large_test_sonic.bp',
@@ -1339,15 +1337,57 @@ Ahwassa_Impact_Explosion = {
 }
 ######################################################################################################### EXP BOOMS (Seraphim)
 ######################################################################################################### 
-######################################################################################################### NUKE EFFECTS (UEF)
+######################################################################################################### NUKE EFFECTS (UEF) --UEF do not need anything extra with their nuke for now, just death effects.
 
-AddNothing = {}
+UEFNukeKilled = {        
+	ModPath .. 'residue_Very_Large_test_smoke.bp',
+	ModPath .. 'Very_Large_test_smoke.bp',
+	ModPath .. 'Very_Large_test_fire.bp',
+	ModPath .. 'Very_Large_test_random.bp',
+}
 
-######################################################################################################### NUKE EFFECTS (UEF)
+######################################################################################################### NUKE EFFECTS (UEF) --UEF do not need anything extra with their nuke for now, just death effects.
 ######################################################################################################### 
 ######################################################################################################### NUKE EFFECTS (CYBRAN)
 
+#####################Basic Nuke Boom (Land, Unit, Shield...)###############################
+CybranNuke = {
+	ModPath .. 'CybranNuke_Flash.bp', --2D Lense flare big -> small
+	ModPath .. 'CybranNuke_Flash_2.bp', --2D Lense flare small -> big
+	ModPath .. 'CybranNuke_3DFlash.bp', --3D Lense flare big -> small
+	ModPath .. 'CybranNuke_3DFlash_2.bp', --DD Lense flare small -> big
+	ModPath .. 'CybranNuke_Impact_Electricity.bp', --Small amount of electricity rushing from initial boom
+	ModPath .. 'CybranNuke_Electrified_Storm.bp', --Initial electrical storm, biggest size and intensity, lasts the least time 
+	ModPath .. 'CybranNuke_Electrified_Residue.bp', --Electrical storm residue, medium size and intensity, lasts somewhat longer
+	ModPath .. 'CybranNuke_Electrified_Residue_Long.bp', --Electrical storm low-charged particles, smallest size and intensity, lasts a while, slowly rises with smoke
+	ModPath .. 'CybranNuke_Electrified_Residue_Long_Ground.bp', --Electrical storm low-charged particles that stick to ground nevel
+	ModPath .. 'CybranNuke_Ground_Smoke.bp', --Ground smoke
+	ModPath .. 'CybranNuke_NonElectrified_Smoke.bp', --Rising smoke, non electrified
+	ModPath .. 'Very_Large_test_sonic_Cnuke.bp', --Sonic pulse
+}
 
+#####################Water Nuke Boom###############################  -- No rising smoke over water
+CybranNukeWater = { 
+	ModPath .. 'CybranNuke_Flash.bp', 
+	ModPath .. 'CybranNuke_Flash_2.bp',
+	ModPath .. 'CybranNuke_3DFlash.bp',
+	ModPath .. 'CybranNuke_3DFlash_2.bp',
+	ModPath .. 'CybranNuke_Impact_Electricity.bp',
+	ModPath .. 'CybranNuke_Electrified_Storm.bp',
+	ModPath .. 'CybranNuke_Electrified_Residue.bp',
+	ModPath .. 'CybranNuke_Electrified_Residue_Long.bp',
+	ModPath .. 'CybranNuke_Electrified_Residue_Long_Ground.bp',
+	ModPath .. 'CybranNuke_Ground_Smoke.bp',
+	ModPath .. 'Very_Large_test_sonic_Cnuke.bp',
+}
+
+#####################Nuke Intercepted (By SMD)###############################
+CybranNukeKilled = {
+	ModPath .. 'Cyb_Flash_4.bp',
+	ModPath .. 'CybranNukeKilled_Electrified_Residue_Small.bp',
+	ModPath .. 'CybranNukeKilled_Smoke.bp',
+	ModPath .. 'Very_Large_test_sonic_nukeDeath.bp',
+}
 
 ######################################################################################################### NUKE EFFECTS (CYBRAN)
 ######################################################################################################### 
@@ -1367,13 +1407,13 @@ AeonNuke = {
 
 #####################Water Nuke Boom############################### --No rising smoke effect on water, should maybe add some water wake effect... Maybe for V11 :D
 AeonNukeWater = { 
-	ModPath .. 'AeonNuke_longsmoke_ground.bp', -- lingering smoke, at ground level
-	ModPath .. 'AeonNuke_Fast_Initial_Aura.bp', -- initial flash of quantum aura
-	ModPath .. 'AeonNuke_Blinking_Aura.bp', -- spreading, blinking quantum aura
-	ModPath .. 'AeonNuke_Blinking_Aura_Residue.bp', -- cover a smooth transition from spreading, blinking quantum aura
-	ModPath .. 'AeonNuke_Fast_Sparks.bp', -- initial explosion sparks
-	ModPath .. 'Very_Large_test_sonic_nuke.bp', -- sonic pulse
-	ModPath .. 'AeonNuke_Air_Quantum_Pull.bp', -- air ring pulled inwards
+	ModPath .. 'AeonNuke_longsmoke_ground.bp', 
+	ModPath .. 'AeonNuke_Fast_Initial_Aura.bp', 
+	ModPath .. 'AeonNuke_Blinking_Aura.bp', 
+	ModPath .. 'AeonNuke_Blinking_Aura_Residue.bp', 
+	ModPath .. 'AeonNuke_Fast_Sparks.bp', 
+	ModPath .. 'Very_Large_test_sonic_nuke.bp', 
+	ModPath .. 'AeonNuke_Air_Quantum_Pull.bp', 
 }
 
 #####################Nuke Intercepted (By SMD)###############################
@@ -1383,14 +1423,21 @@ AeonNukeKilled = {
 	ModPath .. 'AeonNukeDeath_Sparks.bp',
 	ModPath .. 'AeonNukeDeath_Residue.bp',
 }
+
 ######################################################################################################### NUKE EFFECTS (AEON)
 ######################################################################################################### 
-######################################################################################################### NUKE EFFECTS (SERAPHIM)
+######################################################################################################### NUKE EFFECTS (SERAPHIM) --Seraphim do not need anything extra with their nuke for now, just death effects.
 
-AddNothing = {}
+SeraNukeKilled = {
+	ModPath .. 'Ahwassa_Crash_Flash1.bp',
+	ModPath .. 'Ahwassa_Crash_Flash2.bp',
+	ModPath .. 'Ahwassa_Impact_Glow01.bp',
+	ModPath .. 'Ahwassa_Impact_Glow02.bp',
+	ModPath .. 'Ahwassa_Impact_Electricity.bp',
+}
 
 ######################################################################################################### 
-######################################################################################################### NUKE EFFECTS (SERAPHIM)
+######################################################################################################### NUKE EFFECTS (SERAPHIM) --Seraphim do not need anything extra with their nuke for now, just death effects.
 ######################################################################################################################### MAIN FACTIONAL FX
 
 
