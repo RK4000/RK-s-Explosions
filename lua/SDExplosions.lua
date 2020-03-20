@@ -141,45 +141,43 @@ ScorchDecalTexturesSera = {
 ---------------------------------
 function AddFalldownTrail(obj)
     local Faction = obj:GetFaction()
-    local Number = obj:GetNumberByTechLvl(self.TechLevel or 'TECH1')
 
-    local SDFallDownTrail = SDEffectTemplate[self.TechLevel .. Faction .. 'FallDownTrail']
-    local NFallDownTrail = NEffectTemplate[self.TechLevel .. Faction .. 'FallDownTrail']
+    local SDFallDownTrail = SDEffectTemplate[obj.TechLevel .. Faction .. 'FallDownTrail']
+    local NFallDownTrail = NEffectTemplate[obj.TechLevel .. Faction .. 'FallDownTrail']
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (Number * GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
+        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (obj.TechLevelMultiplier * GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
     else
-        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (Number * GlobalExplosionScaleValue)) -- No falling-down trail
+        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (obj.TechLevelMultiplier * GlobalExplosionScaleValue)) -- No falling-down trail
     end
 end
 
 function ExplosionAirMidAir(obj)
     local Faction = obj:GetFaction()
-    local Number = obj:GetNumberByTechLvl(self.TechLevel or 'TECH1')
 
-    local SDExplosion = SDEffectTemplate['AirExplosion'.. self.TechLevel ..Faction]
-    local SDFallDownTrail = SDEffectTemplate[self.TechLevel.. Faction..'FallDownTrail']
+    local SDExplosion = SDEffectTemplate['AirExplosion'.. obj.TechLevel ..Faction]
+    local SDFallDownTrail = SDEffectTemplate[obj.TechLevel.. Faction..'FallDownTrail']
 
-    local NExplosion = NEffectTemplate['AirExplosion'.. self.TechLevel ..Faction]
-    local NFallDownTrail = NEffectTemplate[self.TechLevel.. Faction..'FallDownTrail']
+    local NExplosion = NEffectTemplate['AirExplosion'.. obj.TechLevel ..Faction]
+    local NFallDownTrail = NEffectTemplate[obj.TechLevel.. Faction..'FallDownTrail']
 
-    local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/4.5
+    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/4.5
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDExplosion, obj.Army, (Number/1.95*GlobalExplosionScaleValue)) -- Custom explosion when unit is in the air
-        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (Number*GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
+        obj.CreateEffects(obj, SDExplosion, obj.Army, (obj.TechLevelMultiplier/1.95*GlobalExplosionScaleValue)) -- Custom explosion when unit is in the air
+        obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (obj.TechLevelMultiplier*GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
     else
-        obj.CreateEffects(obj, NExplosion, obj.Army, (Number/1.95*GlobalExplosionScaleValue)) -- Default explosion when unit is in the air
-        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (Number*GlobalExplosionScaleValue)) -- No falling-down trail
+        obj.CreateEffects(obj, NExplosion, obj.Army, (obj.TechLevelMultiplier/1.95*GlobalExplosionScaleValue)) -- Default explosion when unit is in the air
+        obj.CreateEffects(obj, NFallDownTrail, obj.Army, (obj.TechLevelMultiplier*GlobalExplosionScaleValue)) -- No falling-down trail
     end
 
-    if self.TechLevel == 'TECH1' then
-        CreateFlash(obj, -1, (Number)/2.5/2.5*2, obj.Army)
-    elseif self.TechLevel == 'TECH2' then
-        CreateFlash(obj, -1, (Number)/2.15/2*2, obj.Army)
+    if obj.TechLevel == 'TECH1' then
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.5/2.5*2, obj.Army)
+    elseif obj.TechLevel == 'TECH2' then
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.15/2*2, obj.Army)
     else
-        CreateFlash(obj, -1, (Number)/2.75/1.85*2, obj.Army)
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.75/1.85*2, obj.Army)
     end
 
     --obj.ForkThread(AddFalldownTrail) For some reason, when this was added, the unit exploded twice upon impact with ground.
@@ -187,35 +185,34 @@ end
 
 function ExplosionAirImpact(obj)
     local Faction = obj:GetFaction()
-    local Number = obj:GetNumberByTechLvl(self.TechLevel or 'TECH1')
 
-    local SDExplosionImpact = SDEffectTemplate['Explosion'.. self.TechLevel ..Faction]  
-    local NExplosionImpact = NEffectTemplate['Explosion'.. self.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/3.5
+    local SDExplosionImpact = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]  
+    local NExplosionImpact = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
+    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
 
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
     obj:PlayUnitSound('Destroyed')
 
     if toggle == 1 then
-        obj.CreateEffects(obj, SDExplosionImpact, obj.Army, (Number / 1.95 * GlobalExplosionScaleValue)) --Custom explosion when unit is in the air         
+        obj.CreateEffects(obj, SDExplosionImpact, obj.Army, (obj.TechLevelMultiplier / 1.95 * GlobalExplosionScaleValue)) --Custom explosion when unit is in the air         
     else
         obj.CreateEffects(obj, NExplosionImpact, obj.Army, 1) --Default explosion when unit is in the air
     end
             
-    if self.TechLevel == 'TECH1' then
-        CreateFlash(obj, -1, (Number)/2.5/2.5*2, obj.Army)
-    elseif self.TechLevel == 'TECH2' then
-        CreateFlash(obj, -1, (Number)/2.15/2*2, obj.Army)
+    if obj.TechLevel == 'TECH1' then
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.5/2.5*2, obj.Army)
+    elseif obj.TechLevel == 'TECH2' then
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.15/2*2, obj.Army)
     else
-        CreateFlash(obj, -1, (Number)/2.75/1.85*2, obj.Army)
+        CreateFlash(obj, -1, (obj.TechLevelMultiplier)/2.75/1.85*2, obj.Army)
     end
     
     local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.3333
-    if self.TechLevel == 'TECH1' then
+    if obj.TechLevel == 'TECH1' then
         DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 0.875, obj.Army)
-    elseif self.TechLevel == 'TECH2' then
+    elseif obj.TechLevel == 'TECH2' then
         DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.3, obj.Army)
-    elseif self.TechLevel == 'TECH3' then 
+    elseif obj.TechLevel == 'TECH3' then 
         DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 1.6, obj.Army)
     else 
         DefaultExplosionsStock.CreateScorchMarkDecalRKS(obj, 5, obj.Army)
@@ -224,18 +221,17 @@ end
 
 function AirImpactWater(obj)
     local Faction = obj:GetFaction()
-    local Number = obj:GetNumberByTechLvl(self.TechLevel or 'TECH1')
     
-    local SDExplosionImpact = SDEffectTemplate['Explosion'.. self.TechLevel ..Faction]  
-    local NExplosionImpact = NEffectTemplate['Explosion'.. self.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/3.5
+    local SDExplosionImpact = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]  
+    local NExplosionImpact = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
+    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
     
     EfctUtil.CreateEffects(obj, obj.Army, EffectTemplate.Splashy)
-    CreateFlash(obj, -1, (Number)/3, obj.Army)
+    CreateFlash(obj, -1, (obj.TechLevelMultiplier)/3, obj.Army)
     if (toggle == 1) then 
-        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, obj.Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(Util.GetRandomInt(0.7, 1.5)))
     else 
-        obj.CreateEffects(obj, NEffectTemplate.OilSlick, obj.Army, 0.3*Number*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, NEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(Util.GetRandomInt(0.7, 1.5)))
     end
 end
 
@@ -247,12 +243,11 @@ function ExplosionLand(obj)
     local BaseEffectTable = {}
     local EnvironmentalEffectTable = {}
     local EffectTable = {}
-    local Number = obj:GetNumberByTechLvl(self.TechLevel or 'TECH1')
     local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
     local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')     
-    local SDExplosion = SDEffectTemplate['Explosion'.. self.TechLevel ..Faction]
-    local NExplosion = NEffectTemplate['Explosion'.. self.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
+    local SDExplosion = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
+    local NExplosion = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
+    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/2.5
 	
     obj:PlayUnitSound('Destroyed')
     obj:PlayUnitSound('Killed')
@@ -261,13 +256,13 @@ function ExplosionLand(obj)
         obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, 0)
     else
         if (toggle == 1) then
-            obj.CreateEffects(obj, SDExplosion, obj.Army, Number)
+            obj.CreateEffects(obj, SDExplosion, obj.Army, obj.TechLevelMultiplier)
         else
-            obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, Number)
+            obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, obj.TechLevelMultiplier)
         end
     end
 
-    CreateFlash(obj, -1, Number/1.65/1.3, obj.Army) 
+    CreateFlash(obj, -1, obj.TechLevelMultiplier/1.65/1.3, obj.Army) 
 
     if toggle == 1 then
         obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
@@ -430,7 +425,6 @@ end
 -- OnBone Cybran Explosions (Very Large/Large/Med/Small)
 --------------------------------------------------------
 function CreateCybranSmallHitExplosionAtBone(obj, boneName, scale)
-<<<<<<< HEAD
     CreateFlash(obj, boneName, scale * 0.2, obj.Army)
     CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPSmallCybran) -- :ScaleEmitter(1)
 end

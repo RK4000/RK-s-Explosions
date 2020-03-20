@@ -14,21 +14,15 @@ local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
+local AirTechLevelMultiplierTbl = {
+    ['TECH1'] = 0.665,
+    ['TECH2'] = 1.125,
+    ['TECH3'] = 1.515,
+    -- 0
+}
+
 local oldAirUnit = AirUnit
 AirUnit = Class(oldAirUnit) {
-    -- Get explosion scale based off Tech number
-    GetNumberByTechLvl = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 0.665
-        elseif UnitTechLvl == 'TECH2' then
-            return 1.125
-        elseif UnitTechLvl == 'TECH3' then
-            return 1.515
-        else
-            return 0
-        end
-    end,
-
     -- Needed for custom booms
     CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
@@ -46,6 +40,10 @@ AirUnit = Class(oldAirUnit) {
     -- Make sure we use factional damage effects
     OnCreate = function(self)
         oldAirUnit.OnCreate(self)
+
+        -- Get explosion scale based off Tech number
+        self.TechLevelMultiplier = AirTechLevelMultiplierTbl[self.techCategory] or 0
+
         if self.RKEmitters == nil then
             self.RKEmitters = {}
         end
@@ -159,21 +157,14 @@ AirUnit = Class(oldAirUnit) {
     end,
 }
 
+local ShipTechLevelMultiplierTbl = {
+    ['TECH1'] = 1.5665,
+    ['TECH2'] = 1.9,
+    ['TECH3'] = 2.515,
+    -- 6
+}
 local oldSeaUnit = SeaUnit
 SeaUnit = Class(oldSeaUnit) {
-    -- Get explosion scale based off Tech number
-    GetNumberByTechLvlShip = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 1.5665
-        elseif UnitTechLvl == 'TECH2' then
-            return 1.9
-        elseif UnitTechLvl == 'TECH3' then
-            return 2.515
-        else
-            return 6.0
-        end
-    end,
-
     -- Get size of unit
     GetSizeOfUnit = function(self)
         local bp = self:GetBlueprint()
@@ -198,15 +189,14 @@ SeaUnit = Class(oldSeaUnit) {
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
         local Faction = self:GetFaction()
-        local Number = self:GetNumberByTechLvl(self.TechLevel or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
         local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
         local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75, self.Army)
+        DefaultExplosionsStock.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75, self.Army)
         self:ShakeCamera(30 * NumberForShake/3, NumberForShake/3, 0, NumberForShake / 3)
 
         if toggle == 1 then
@@ -226,15 +216,14 @@ SeaUnit = Class(oldSeaUnit) {
 
     CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
         local Faction = self:GetFaction()
-        local Number = self:GetNumberByTechLvl(self.TechLevel or 'TECH1')
         local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
         local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
         local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
         local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash(self, boneName, (Number)/4.75*5, self.Army)
+        DefaultExplosionsStock.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*5, self.Army)
 
         self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
         
@@ -276,7 +265,10 @@ SeaUnit = Class(oldSeaUnit) {
     -- Needed for the custom booms
     -- Make sure we use factional damage effects
     OnCreate = function(self)
-        MobileUnit.OnCreate(self)
+        oldSeaUnit.OnCreate(self)
+
+        -- Get explosion scale based off Tech number
+        self.ShipTechLevelMultiplier = ShipTechLevelMultiplierTbl[self.techCategory] or 6.0
 
         local Faction = self:GetFaction()
         local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. self.TechLevel ..Faction]
@@ -293,19 +285,17 @@ SeaUnit = Class(oldSeaUnit) {
     OnKilled = function(self, instigator, type, overkillRatio)
         local nrofBones = self:GetBoneCount() -1
         local watchBone = self:GetBlueprint().WatchBone or 0
-        local BoomScale = self:GetNumberByTechLvlShip(self.TechLevel or 'TECH1')
         local BoomScale2 = self:GetSizeOfUnit()
-        local Number = self:GetNumberByTechLvl(self.TechLevel or 'TECH1')
-        local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))
-        --LOG(' Oil slick scale multiplier (tech): ', self:GetNumberByTechLvlShip(self.TechLevel or 'TECH1'))
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))
+        --LOG(' Oil slick scale multiplier (tech): ', self.ShipTechLevelMultiplier)
         --LOG(' Oil slick scale multiplier (scale): ', self:GetSizeOfUnit())
 
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
         if self:GetFractionComplete() == 1 then
             if toggle == 1 then
-                self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, ((BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+                self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             else
-                self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, ((BoomScale)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+                self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             end
         end
 
@@ -491,19 +481,6 @@ AircraftCarrier = Class(SeaUnit, BaseTransport) {
 
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
-    -- Get explosion scale based off Tech number
-    GetNumberByTechLvlShip = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 1.5665
-        elseif UnitTechLvl == 'TECH2' then
-            return 1.9
-        elseif UnitTechLvl == 'TECH3' then
-            return 2.515
-        elseif UnitTechLvl == 'TECH4' then
-            return 6.0
-        end
-    end,
-
     -- Needed for the custom booms
     CreateEffects = function(self, EffectTable, army, scale)
         for k, v in EffectTable do
@@ -513,7 +490,6 @@ SubUnit = Class(oldSubUnit) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         local Faction = self:GetFaction()
-        local Number = self:GetNumberByTechLvl(self.TechLevel or 'TECH4')
         local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
         local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
 
@@ -525,32 +501,32 @@ SubUnit = Class(oldSubUnit) {
 
         if layer == 'Sub' or layer == 'Seabed' then
             if toggle == 1 then
-                self.CreateEffects(self, SDFactionalSubBoomUnderWater, self.Army, (Number*GlobalExplosionScaleValue))
+                self.CreateEffects(self, SDFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             else
-                self.CreateEffects(self, NFactionalSubBoomUnderWater, self.Army, (Number*GlobalExplosionScaleValue))
+                self.CreateEffects(self, NFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
             if self:GetFractionComplete() == 1 then
                 if toggle == 1 then
-                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (Number*GlobalExplosionScaleValue))
+                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 else
-                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (Number*GlobalExplosionScaleValue))
+                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 end
             end
         elseif (layer == 'Water') then
             if toggle == 1 then
-                self.CreateEffects(self, SDFactionalSubBoomAboveWater, self.Army, (Number*GlobalExplosionScaleValue))
+                self.CreateEffects(self, SDFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             else
-                self.CreateEffects(self, NFactionalSubBoomAboveWater, self.Army, (Number*GlobalExplosionScaleValue))
+                self.CreateEffects(self, NFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
             if self:GetFractionComplete() == 1 then
                 if toggle == 1 then
-                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (Number*GlobalExplosionScaleValue))
+                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 else
-                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (Number*GlobalExplosionScaleValue))
+                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 end
             end
         end
