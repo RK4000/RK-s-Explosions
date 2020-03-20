@@ -239,10 +239,6 @@ function ExplosionLand(obj)
     local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.333
     local ScaleForScorch = (scale - 0.2)*1.5
     local Faction = obj:GetFaction()
-    local UnitLayer = obj.layerCategory
-    local BaseEffectTable = {}
-    local EnvironmentalEffectTable = {}
-    local EffectTable = {}
     local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
     local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')     
     local SDExplosion = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
@@ -252,7 +248,7 @@ function ExplosionLand(obj)
     obj:PlayUnitSound('Destroyed')
     obj:PlayUnitSound('Killed')
 
-    if UnitLayer == 'NAVAL' then
+    if obj.layerCategory == 'NAVAL' then
         obj.CreateEffects(obj, SDEffectTemplate.AddNothing, obj.Army, 0)
     else
         if (toggle == 1) then
@@ -277,9 +273,6 @@ end
 -- Debris
 ---------
 function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
-    local bp = obj:GetBlueprint()
-    local Faction = obj:GetFaction()
-
     local partamounts = (math.min(GetRandomInt(1 + (volume * 50), (volume * 100)) ,250)) / 10
     local sx, sy, sz = unpack(dimensions)
     local vector = obj.Spec.OverKillRatio.debris_Vector
@@ -300,13 +293,13 @@ function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
             rand = 10
         end
 
-        if Faction == 'uef' then
+        if self.factionCategory == 'UEF' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif Faction == 'cybran' then
+        elseif self.factionCategory == 'CYBRAN' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif Faction == 'aeon' then
+        elseif self.factionCategory == 'AEON' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif Faction == 'seraphim' then
+        elseif self.factionCategory == 'SERAPHIM' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
         end
     end
@@ -314,8 +307,6 @@ end
 
 function CreateInheritedVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
     local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-    local bp = obj:GetBlueprint()
-    local Faction = obj:GetFaction()
 
     local vx, vy, vz = unpack(speed)
     -- Create several other projectiles in a dispersal pattern
@@ -341,8 +332,6 @@ end
 
 function CreateUpwardsVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
     local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-    local bp = obj:GetBlueprint()
-    local Faction = obj:GetFaction()
 
     local vx, vy, vz = unpack(speed)
 
