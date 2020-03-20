@@ -81,9 +81,9 @@ FlashTransparent = {
 }
 
 function CreateFlash(obj, bone, scale, army)
-    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale/1.575, GetRandomFloat(10.5*1.65, 14.5*1.65), FlashTransparent, 'ramp_flare_02')
-    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), FlashTransparent, 'ramp_flare_02')
-    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale*1.575, GetRandomFloat(10.5/4.15, 14.5/4.15), FlashTransparent, 'ramp_flare_02')
+    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale/1.575/1.5, GetRandomFloat(10.5*1.65, 14.5*1.65), FlashTransparent, 'ramp_flare_02')
+    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale/1.5, GetRandomFloat(10.5, 14.5), FlashTransparent, 'ramp_flare_02')
+    CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale*1.575/1.5, GetRandomFloat(10.5/4.15, 14.5/4.15), FlashTransparent, 'ramp_flare_02')
 end
 
 function CreateFlashShort(obj, bone, scale, army, mult)
@@ -264,7 +264,7 @@ function ExplosionLand(obj)
     local SDExplosion = SDEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
     local NExplosion = NEffectTemplate['Explosion'.. UnitTechLvl ..Faction]
     local NumberForShake = (Util.GetRandomFloat(Number, Number + 1))/2.5
-
+	
     obj:PlayUnitSound('Destroyed')
     obj:PlayUnitSound('Killed')
 
