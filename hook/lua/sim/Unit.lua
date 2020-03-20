@@ -8,8 +8,19 @@ local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
+local AnimationMultiplierTbl = {
+    ['TECH1'] = 2.0,
+    ['TECH2'] = 2.3,
+    ['TECH3'] = 2.875,
+}
+
 local oldUnit = Unit
 Unit = Class(oldUnit) {
+    OnCreate = function (self)
+        oldUnit.OnCreate(self)
+        self.AnimationMultiplier = AnimationMultiplierTbl[self.techCategory] or 3
+    end,
+
     CreateEffects = function(self, EffectTable, army, scale)
         self.RKEmitters = self.RKEmitters or {}
 
@@ -50,22 +61,8 @@ Unit = Class(oldUnit) {
         SDModifiedExplosion.CreateScalableUnitExplosion(self, overKillRatio)
     end,
 
-    GetAnimMultNumberByTechLvl = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 2.0
-        elseif UnitTechLvl == 'TECH2' then
-            return 2.3
-        elseif UnitTechLvl == 'TECH3' then
-            return 2.875
-        else
-            return 3.0
-        end
-    end,
-
     PlayAnimationThreadShips = function(self, anim, rate)
         local bp = self:GetBlueprint().Display[anim]
-        local TechLvl = self:GetUnitTechLvl()
-        local AnimMultNumber = self:GetAnimMultNumberByTechLvl(TechLvl or 'TECH1')
 
         if bp then
             local animBlock = self:ChooseAnimBlock(bp)
@@ -81,7 +78,7 @@ Unit = Class(oldUnit) {
                 if animBlock.AnimationRateMax and animBlock.AnimationRateMin then
                     rate = Random(animBlock.AnimationRateMin * 10, animBlock.AnimationRateMax * 10) / 10
                 end
-                sinkAnim:SetRate(rate/AnimMultNumber)
+                sinkAnim:SetRate(rate/AnimationMultiplier)
                 self.Trash:Add(sinkAnim)
                 WaitFor(sinkAnim)
             end
