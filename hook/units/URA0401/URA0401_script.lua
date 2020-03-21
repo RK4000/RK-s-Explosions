@@ -32,15 +32,6 @@ URA0401 = Class(oldURA0401) {
                 end
             end
 
-            CreateEffects = function(self, EffectTable, army, scale)
-                for k, v in EffectTable do
-                    if self.RKEmitters == nil then self.RKEmitters = {} end
-                    local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-                    table.insert(self.RKEmitters, emitter)
-                    self.Trash:Add(emitter)
-                end
-            end
-
             if self.EngineFailing1 ~= nil then
                 for k, v in self.EngineFailing1 do
                     v:Destroy()
@@ -125,9 +116,9 @@ URA0401 = Class(oldURA0401) {
         if with == 'Water' then
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
-            self.CreateEffects(self, EffectTemplate.Splashy, self.Army, 12 )
+            self:CreateEffects(EffectTemplate.Splashy, self.Army, 12 )
             DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
-            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, self.Army, 14)
+            self:CreateEffects(GetEffectTemplateFile(toggle).OilSlick, self.Army, 14)
             
             --self:Destroy()
             self:ForkThread(self.DeathThread, self.OverKillRatio)    
