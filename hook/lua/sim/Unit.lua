@@ -58,30 +58,6 @@ Unit = Class(oldUnit) {
         SDModifiedExplosion.CreateScalableUnitExplosion(self, overKillRatio)
     end,
 
-    PlayAnimationThreadShips = function(self, anim, rate)
-        local bp = self:GetBlueprint().Display[anim]
-
-        if bp then
-            local animBlock = self:ChooseAnimBlock(bp)
-            if animBlock.Mesh then
-                self:SetMesh(animBlock.Mesh)
-            end
-            if animBlock.Animation then
-                local sinkAnim = CreateAnimator(self)
-                self:StopRocking()
-                self.DeathAnimManip = sinkAnim
-                sinkAnim:PlayAnim(animBlock.Animation)
-                rate = rate or 1
-                if animBlock.AnimationRateMax and animBlock.AnimationRateMin then
-                    rate = Random(animBlock.AnimationRateMin * 10, animBlock.AnimationRateMax * 10) / 10
-                end
-                sinkAnim:SetRate(rate/AnimationMultiplier)
-                self.Trash:Add(sinkAnim)
-                WaitFor(sinkAnim)
-            end
-        end
-    end,
-
     OnKilled = function(self, instigator, type, overkillRatio)
         if EntityCategoryContains(categories.AIR, self) then
             self:ForkThread(SDExplosions.ExplosionAirImpact)
