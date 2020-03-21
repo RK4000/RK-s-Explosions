@@ -241,6 +241,9 @@ UAA0310 = Class(oldUAA0310) {
             self:CreateEffects(EffectTemplate.Splashy, self.Army, 12 )
             DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
             self:CreateEffects(GetEffectTemplateFile(toggle).OilSlick, self.Army, 7)
+            self.shallSink = true
+            self.colliderProj:Destroy()
+            self.colliderProj = nil
             self:ForkThread(self.DeathThread, self.OverKillRatio)   
         else
             -- This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly

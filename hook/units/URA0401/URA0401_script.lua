@@ -84,7 +84,6 @@ URA0401 = Class(oldURA0401) {
     end,
 
     OnImpact = function(self, with, other)
-        local bp = self:GetBlueprint()  
         self:PlayUnitSound('Destroyed')
 
         -- Damage the area we have impacted with.
@@ -109,8 +108,9 @@ URA0401 = Class(oldURA0401) {
             self:CreateEffects(EffectTemplate.Splashy, self.Army, 12 )
             DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
             self:CreateEffects(GetEffectTemplateFile(toggle).OilSlick, self.Army, 14)
-            
-            --self:Destroy()
+            self.shallSink = true
+            self.colliderProj:Destroy()
+            self.colliderProj = nil
             self:ForkThread(self.DeathThread, self.OverKillRatio)    
         else
             -- This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
