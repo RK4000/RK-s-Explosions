@@ -1,7 +1,7 @@
 EmitterBlueprint {
-	BlueprintId = 'UEFMedium_test_smoke',
-	Lifetime = 2.00,
-	Repeattime = 50.00,
+	BlueprintId = 'AircraftDamageSmoke01',
+	Lifetime = -1,
+	Repeattime = 1,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
 	LocalVelocity = false,
@@ -10,145 +10,145 @@ EmitterBlueprint {
 	AlignRotation = false,
 	AlignToBone = false,
 	Flat = false,
-	LODCutoff = 800.00,
+	LODCutoff = 800000000000.00,
 	EmitIfVisible = true,
 	CatchupEmit = true,
 	CreateIfVisible = false,
 	SnapToWaterline = false,
 	OnlyEmitOnWater = false,
-	ParticleResistance = true,
+	ParticleResistance = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = -0.05,
+	SortOrder = 0,
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/cloud_smoke_alpha_black.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_65pctmax.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_dmgsmoke_20pctmax_late.dds]],
 	XDirectionCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=7.520,y=0.000,z=0.010 },
 		},
 	},
 	YDirectionCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.005,z=0.030 },
+			{ x=7.550,y=0.020,z=0.030 },
 		},
 	},
 	ZDirectionCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.020 },
+			{ x=3.030,y=0.000,z=0.010 },
 		},
 	},
 	EmitRateCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=6.000*2,z=0.000 },
+			{ x=6.266,y=2.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=80.000,z=40.000 },
+			{ x=7.560,y=15.000,z=5.500 },
 		},
 	},
 	VelocityCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=2.750,z=0.000 },
+			{ x=2.414,y=1.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=7.500,y=0.000,z=0.000 },
 		},
 	},
 	YAccelCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.002,z=0.002 },
+			{ x=3.978,y=0.007,z=0.002 },
 		},
 	},
 	ZAccelCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=4.240,y=0.000,z=0.000 },
 		},
 	},
 	ResistanceCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.011,z=0.011 },
+			{ x=7.500,y=0.000,z=0.000 },
 		},
 	},
 	SizeCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=6.000,z=0.000 },
+			{ x=3.978,y=0.110,z=0.000 },
 		},
 	},
 	XPosCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=7.500,y=0.000,z=0.000 },
 		},
 	},
 	YPosCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=7.400,y=0.000,z=0.000 },
 		},
 	},
 	ZPosCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=7.500,y=0.000,z=0.000 },
 		},
 	},
 	StartSizeCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=7.467,y=0.065,z=0.030 },
 		},
 	},
 	EndSizeCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=3.000,z=1.000 },
+			{ x=4.096,y=0.350,z=0.125 },
 		},
 	},
 	InitialRotationCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=180.000,z=360.000 },
+			{ x=7.500,y=180.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=10.000 },
+			{ x=7.500,y=0.000,z=10.000 },
 		},
 	},
 	FrameRateCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=1.000,z=0.000 },
+			{ x=7.500,y=1.000,z=0.000 },
 		},
 	},
 	TextureSelectionCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=4.235,y=2.000,z=4.000 },
 		},
 	},
 	RampSelectionCurve = {
-		XRange = 50.00,
+		XRange = 15.00,
 		Keys = {
-			{ x=25.000,y=0.000,z=0.000 },
+			{ x=7.500,y=0.000,z=0.000 },
 		},
 	},
 }

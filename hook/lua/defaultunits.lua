@@ -247,9 +247,9 @@ SeaUnit = Class(oldSeaUnit) {
 		
         if toggle == 1 then
 			if self:IsBoneAboveWater(boneName) then
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*4)
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosion, ScaleForSubBooms*2.5)
 			else
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*4)
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*2.5)
 			end
 		else
 			if self:IsBoneAboveWater(boneName) then
@@ -288,12 +288,12 @@ SeaUnit = Class(oldSeaUnit) {
 
         local Faction = self:GetFaction()
         local UnitTechLvl = self:GetUnitTechLvl()
-        local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. UnitTechLvl ..Faction]     -- Using airplane damage effects
-        local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. UnitTechLvl ..Faction]       -- for now, yea, i know, it's cheap,
-        local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. UnitTechLvl ..Faction] -- so sue me, i don't care :P
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. UnitTechLvl ..Faction]     
+        local SDFactionalSmallFire = SDEffectTemplate['MediumNavalUnitDmg'.. UnitTechLvl ..Faction]       
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyNavalUnitDmg'.. UnitTechLvl ..Faction] 
 
         -- Sea unit factional-specific damage effects and smoke
-        self.FxDamage1 = {SDFactionalSmallSmoke, EffectTemplate.DamageSparks01} -- 75% HP
+        self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
         self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
         self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
         -- Sea unit factional-specific damage effects and smoke
