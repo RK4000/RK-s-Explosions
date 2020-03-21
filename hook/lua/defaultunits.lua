@@ -243,12 +243,11 @@ SeaUnit = Class(oldSeaUnit) {
 	end,
 
     CreateUnitSeaDestructionEffects = function(self, scale)
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
-        RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
+        local unitSize = {self:GetUnitSizes()}
+        for i = 1, 3 do
+            explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+            RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+        end
     end,
 
     PlaySubBoomSound = function(self, sound)
@@ -289,9 +288,9 @@ SeaUnit = Class(oldSeaUnit) {
         self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
         if self:GetFractionComplete() == 1 then
             if toggle == 1 then
-                self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+                self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             else
-                self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+                self:CreateEffects(NEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
             end
         end
 
@@ -493,32 +492,32 @@ SubUnit = Class(oldSubUnit) {
 
         if layer == 'Sub' or layer == 'Seabed' then
             if toggle == 1 then
-                self.CreateEffects(self, SDFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                self:CreateEffects(SDFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             else
-                self.CreateEffects(self, NFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                self:CreateEffects(NFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
             if self:GetFractionComplete() == 1 then
                 if toggle == 1 then
-                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                    self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 else
-                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                    self:CreateEffects(NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 end
             end
         elseif (layer == 'Water') then
             if toggle == 1 then
-                self.CreateEffects(self, SDFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                self:CreateEffects(SDFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             else
-                self.CreateEffects(self, NFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                self:CreateEffects(NFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
             self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
             self.SinkThread = self:ForkThread(self.SinkingThread)
             if self:GetFractionComplete() == 1 then
                 if toggle == 1 then
-                    self.CreateEffects(self, SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                    self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 else
-                    self.CreateEffects(self, NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+                    self:CreateEffects(NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
                 end
             end
         end
@@ -784,9 +783,9 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 
         if(self:GetSizeOfBuilding(self) < 1.45) then
             if toggle == 1 then
-                self.CreateEffects(self, SDExplosion, self.Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
+                self:CreateEffects(SDExplosion, self.Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
             else
-                self.CreateEffects(self, NExplosion, self.Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
+                self:CreateEffects(NExplosion, self.Army, ((BoomScale*(BoomScale2/2)) /GlobalBuildingBoomScaleDivider*3)) --Custom explosion for smaller buildings.
             end
         else
            -- LOG(' Building Size: ', self:GetSizeOfBuilding())
@@ -798,9 +797,9 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
             WaitSeconds(0.5)
             DefaultExplosionsStock.CreateFlash(self, -1, Number/3, self.Army)
             if toggle == 1 then
-                self.CreateEffects(self, SDExplosion, self.Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3)
+                self:CreateEffects(SDExplosion, self.Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3)
             else
-                self.CreateEffects(self, NExplosion, self.Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3*4)
+                self:CreateEffects(NExplosion, self.Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3*4)
             end
 
             self:PlayUnitSound('DeathExplosion')
@@ -809,9 +808,9 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
             DefaultExplosionsStock.CreateFlash(self, -1, Number/1.85, self.Army)
             self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
             if toggle == 1 then
-                self.CreateEffects(self, SDExplosion, self.Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier))
+                self:CreateEffects(SDExplosion, self.Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier))
             else
-                self.CreateEffects(self, NExplosion, self.Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier)*2)
+                self:CreateEffects(NExplosion, self.Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier)*2)
             end
 
 
