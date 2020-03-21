@@ -7,15 +7,11 @@
 --#**
 --#**  Copyright © 2011 RL Powered Games, Inc.  All rights reserved.
 --#****************************************************************************
-
-local Entity = import('/lua/sim/entity.lua').Entity
 local EffectTemplate = import('/lua/EffectTemplates.lua')
-local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-local util = import('/lua/utilities.lua')
 local Util = import('/lua/utilities.lua')
-local GetRandomFloat = util.GetRandomFloat
-local GetRandomInt = util.GetRandomInt
-local GetRandomOffset = util.GetRandomOffset
+local GetRandomFloat = Util.GetRandomFloat
+local GetRandomInt = Util.GetRandomInt
+local GetRandomOffset = Util.GetRandomOffset
 local EfctUtil = import('/lua/EffectUtilities.lua')
 local CreateEffects = EfctUtil.CreateEffects
 local CreateEffectsWithOffset = EfctUtil.CreateEffectsWithOffset
@@ -31,7 +27,7 @@ local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 
 local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
-WARN('      Global Explosion Scale:     ', GlobalExplosionScaleValue)
+LOG('      Global Explosion Scale:     ', GlobalExplosionScaleValue)
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 
@@ -161,7 +157,7 @@ function ExplosionAirMidAir(obj)
     local NExplosion = NEffectTemplate['AirExplosion'.. obj.TechLevel ..Faction]
     local NFallDownTrail = NEffectTemplate[obj.TechLevel.. Faction..'FallDownTrail']
 
-    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/4.5
+    local NumberForShake = (GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/4.5
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
 
     if toggle == 1 then
@@ -188,7 +184,7 @@ function ExplosionAirImpact(obj)
 
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]  
     local NExplosionImpact = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
+    local NumberForShake = (GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
 
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
     obj:PlayUnitSound('Destroyed')
@@ -224,26 +220,24 @@ function AirImpactWater(obj)
     
     local SDExplosionImpact = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]  
     local NExplosionImpact = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
+    local NumberForShake = (GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/3.5
     
     EfctUtil.CreateEffects(obj, obj.Army, EffectTemplate.Splashy)
     CreateFlash(obj, -1, (obj.TechLevelMultiplier)/3, obj.Army)
     if (toggle == 1) then 
-        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, SDEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(GetRandomInt(0.7, 1.5)))
     else 
-        obj.CreateEffects(obj, NEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(Util.GetRandomInt(0.7, 1.5)))
+        obj.CreateEffects(obj, NEffectTemplate.OilSlick, obj.Army, 0.3*obj.TechLevelMultiplier*(GetRandomInt(0.7, 1.5)))
     end
 end
 
 function ExplosionLand(obj)
     local scale = (DefaultExplosionsStock.GetAverageBoundingXYZRadius(obj)) / 0.333
     local ScaleForScorch = (scale - 0.2)*1.5
-    local Faction = obj:GetFaction()
-    local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-    local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')     
+    local Faction = obj:GetFaction()   
     local SDExplosion = SDEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
     local NExplosion = NEffectTemplate['Explosion'.. obj.TechLevel ..Faction]
-    local NumberForShake = (Util.GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/2.5
+    local NumberForShake = (GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/2.5
 	
     obj:PlayUnitSound('Destroyed')
     obj:PlayUnitSound('Killed')
@@ -279,7 +273,7 @@ function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
 
     for i = 1, partamounts do
         local xpos, xpos, zpos = GetRandomOffset(sx, sy, sz, 1)
-        local xdir,ydir,zdir = GetRandomOffset(sx, sy, sz, 3) ##sx, sy, sz, 
+        local xdir,ydir,zdir = GetRandomOffset(sx, sy, sz, 3)
         if vector then
             xdir = (vector[1] * 5) + 0 -- + GetRandomOffset2(sx, sy, sz, 3)
             ydir = math.abs((vector[2] * 5)) + 0 -- + GetRandomOffset(sx, sy, sz, 3)
@@ -306,12 +300,10 @@ function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
 end
 
 function CreateInheritedVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
-    local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-
     local vx, vy, vz = unpack(speed)
     -- Create several other projectiles in a dispersal pattern
     local angle = (2*math.pi) / numOfDebris
-    local angleInitial = RandomFloat(0, angle)
+    local angleInitial = GetRandomFloat(0, angle)
     
     -- Randomization of the spread
     local angleVariation = angle * spread -- Adjusts angle variance spread       
@@ -322,22 +314,20 @@ function CreateInheritedVelocityDebrisProjectiles(obj, numOfDebris, speed, preVe
 
     -- Launch projectiles at semi-random angles away from split location
     for i = 0, (numOfDebris -1) do
-        local velocity = util.GetRandomFloat(preVelocity / 2, preVelocity * 2)
-        xVec = vx + (GetRandomInt(0.6, 1.3) * ((math.sin(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3)
-        zVec = vz + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3)
-        yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(0, 0.5) --Eject upward a bit more
+        local velocity = GetRandomFloat(preVelocity / 2, preVelocity * 2)
+        xVec = vx + (GetRandomInt(0.6, 1.3) * ((math.sin(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3)
+        zVec = vz + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3)
+        yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3) + GetRandomFloat(0, 0.5) --Eject upward a bit more
         obj:CreateProjectile(debris):SetVelocity(xVec,yVec,zVec):SetVelocity(velocity)        
     end
 end
 
 function CreateUpwardsVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelocity, spreadMul, spread, debris)
-    local RandomFloat = import('/lua/utilities.lua').GetRandomFloat
-
     local vx, vy, vz = unpack(speed)
 
     -- Create several other projectiles in a dispersal pattern
     local angle = (2 * math.pi) / numOfDebris
-    local angleInitial = RandomFloat(0, angle)
+    local angleInitial = GetRandomFloat(0, angle)
 
     -- Randomization of the spread
     local angleVariation = angle * spread -- Adjusts angle variance spread       
@@ -348,10 +338,10 @@ function CreateUpwardsVelocityDebrisProjectiles(obj, numOfDebris, speed, preVelo
 
     -- Launch projectiles at semi-random angles away from split location
     for i = 0, (numOfDebris -1) do
-        local velocity = util.GetRandomFloat(preVelocity / 2, preVelocity * 2)
-        xVec = vx + (GetRandomInt(0.6, 1.3) * ((math.sin(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
-        zVec = vz + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
-        yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + RandomFloat(-angleVariation, angleVariation))) * spreadMul)) + util.GetRandomFloat(-0.3, 0.3) + util.GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
+        local velocity = GetRandomFloat(preVelocity / 2, preVelocity * 2)
+        xVec = vx + (GetRandomInt(0.6, 1.3) * ((math.sin(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3) + GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
+        zVec = vz + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3) + GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
+        yVec = vy + (GetRandomInt(0.6, 1.3) * ((math.cos(angleInitial + (i * angle) + GetRandomFloat(-angleVariation, angleVariation))) * spreadMul)) + GetRandomFloat(-0.3, 0.3) + GetRandomFloat(-2.0, 2.5) --Eject upward a bit more
         obj:CreateProjectile(debris):SetVelocity(xVec,yVec,zVec):SetVelocity(velocity)        
     end
 end
