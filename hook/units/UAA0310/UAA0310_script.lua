@@ -213,15 +213,6 @@ UAA0310 = Class(oldUAA0310) {
                     self.Trash:Add(emitter)
                 end
             end
-            
-            CreateEffects = function( self, EffectTable, army, scale)
-                for k, v in EffectTable do
-                    if self.RKEmitters == nil then self.RKEmitters = {} end
-                    local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-                    table.insert(self.RKEmitters, emitter)
-                    self.Trash:Add(emitter)
-                end
-            end
 
             if self.CoreBreachEffects1 ~= nil then
                 for k, v in self.CoreBreachEffects1 do
