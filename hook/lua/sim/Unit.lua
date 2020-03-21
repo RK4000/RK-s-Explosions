@@ -24,6 +24,8 @@ local TechLevelMultiplierTbl = {
 
 local oldUnit = Unit
 Unit = Class(oldUnit) {
+    RKEmitters = {},
+
     OnCreate = function (self)
         oldUnit.OnCreate(self)
 
@@ -40,8 +42,6 @@ Unit = Class(oldUnit) {
     end,
 
     CreateEffects = function(self, EffectTable, army, scale)
-        self.RKEmitters = self.RKEmitters or {}
-
         for k, v in EffectTable do
             local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
             table.insert(self.RKEmitters, emitter)

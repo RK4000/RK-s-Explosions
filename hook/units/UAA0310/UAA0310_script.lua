@@ -239,9 +239,9 @@ UAA0310 = Class(oldUAA0310) {
             -- sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint06', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )
             -- sdexplosion.CreateFactionalExplosionAtBone( self, 'Attachpoint08', 0.5, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke )
 
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, self.Army, 1 )
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Aura, self.Army, 1 )
-            self.CreateEffects( self, GetEffectTemplateFile(toggle).CZAR_Center_Charge, self.Army, 4 )
+            self:CreateEffects(GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Smoke, self.Army, 1 )
+            self:CreateEffects(GetEffectTemplateFile(toggle).CZAR_Center_FallDown_Aura, self.Army, 1 )
+            self:CreateEffects(GetEffectTemplateFile(toggle).CZAR_Center_Charge, self.Army, 4 )
             RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 150, {self:GetVelocity()}, 12.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/CZAR_Debris/CZAR_Debris_proj.bp'))
             self:CreateDeathExplosionTareThroughEffect()
             sdexplosion.CreateFactionalExplosionAtBone( self, 'UAA0310', 0.5, GetEffectTemplateFile(toggle).CZAR_Initial_Center_Explosion )    
@@ -270,9 +270,9 @@ UAA0310 = Class(oldUAA0310) {
         if with == 'Water' then
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
             self:PlayUnitSound('AirUnitWaterImpact')
-            self.CreateEffects(self, EffectTemplate.Splashy, self.Army, 12 )
+            self:CreateEffects(EffectTemplate.Splashy, self.Army, 12 )
             DefaultExplosionsStock.CreateFlash(self, -1, 1, self.Army)
-            self.CreateEffects(self, GetEffectTemplateFile(toggle).OilSlick, self.Army, 7)
+            self:CreateEffects(GetEffectTemplateFile(toggle).OilSlick, self.Army, 7)
             self:ForkThread(self.DeathThread, self.OverKillRatio)   
         else
             -- This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly

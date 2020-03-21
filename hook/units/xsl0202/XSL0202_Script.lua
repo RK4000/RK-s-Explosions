@@ -15,16 +15,7 @@ local heartExplosionOwners = {
 }
 
 local oldXSL0202 = XSL0202
-XSL0202 = Class(oldXSL0202) {
-    CreateEffects = function(self, EffectTable, army, scale)
-        for k, v in EffectTable do
-        if self.RKEmitters == nil then self.RKEmitters = {} end
-            local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-            table.insert(self.RKEmitters, emitter)
-            self.Trash:Add(emitter)
-        end
-    end,
-    
+XSL0202 = Class(oldXSL0202) {    
     CreateFluffyHeartShockwave = function(self)
         local blanketSides = 18/2
         local blanketAngle = (2*math.pi) / blanketSides
@@ -46,7 +37,7 @@ XSL0202 = Class(oldXSL0202) {
         local ID = ScenarioInfo.ArmySetup['ARMY_' .. self.Army].OwnerID
         if ID and heartExplosionOwners[ID] then
             self:CreateFluffyHeartShockwave()
-            self.CreateEffects(self, SDEffectsTemplate.LuXy_Heart, self.Army, 1)-- Heart explosion goes here
+            self:CreateEffects(SDEffectsTemplate.LuXy_Heart, self.Army, 1)-- Heart explosion goes here
             -- RKExplosion.CreateInheritedVelocityDebrisProjectiles(self, 4, {self:GetVelocity()}, 7.75, 0.23, 50.35, ('/mods/rks_explosions/effects/entities/Heart_Debris/Heart_Debris_proj.bp'))
         end
     end

@@ -23,16 +23,6 @@ local AirTechLevelMultiplierTbl = {
 
 local oldAirUnit = AirUnit
 AirUnit = Class(oldAirUnit) {
-    -- Needed for custom booms
-    CreateEffects = function(self, EffectTable, army, scale)
-        for k, v in EffectTable do
-        if self.RKEmitters == nil then self.RKEmitters = {} end
-            local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-            table.insert(self.RKEmitters, emitter)
-            self.Trash:Add(emitter)
-        end
-    end,
-
     CreateUnitAirDestructionEffects = function(self, scale)
         SDExplosions.ExplosionAirMidAir(self)
     end,
@@ -44,10 +34,6 @@ AirUnit = Class(oldAirUnit) {
 
         -- Get explosion scale based off Tech number
         self.TechLevelMultiplier = AirTechLevelMultiplierTbl[self.techCategory] or 0
-
-        if self.RKEmitters == nil then
-            self.RKEmitters = {}
-        end
 
         local Faction = self:GetFaction()
         local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. self.TechLevel ..Faction]
@@ -120,13 +106,6 @@ SeaUnit = Class(oldSeaUnit) {
     GetSizeOfUnit = function(self)
         local bp = self:GetBlueprint()
         return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
-    end,
-
-    -- Needed for the custom booms
-    CreateEffects = function(self, EffectTable, army, scale)
-        for _, v in EffectTable do
-            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
-        end
     end,
 
     --Check if bone is underwater
@@ -423,13 +402,6 @@ AircraftCarrier = Class(SeaUnit, BaseTransport) {
 
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
-    -- Needed for the custom booms
-    CreateEffects = function(self, EffectTable, army, scale)
-        for k, v in EffectTable do
-            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
-        end
-    end,
-
     OnKilled = function(self, instigator, type, overkillRatio)
         local Faction = self:GetFaction()
         local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
@@ -701,14 +673,6 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
          local bp = self:GetBlueprint()
          return (bp.SizeX) or 0, (bp.SizeY-(bp.SizeY/2.20)) or 0, (bp.SizeZ) or 0
      end,
-
-    --overrides definition in Unit.lua
-    --Needed for the custom booms
-    CreateEffects = function(self, EffectTable, army, scale)
-        for k, v in EffectTable do
-            self.Trash:Add(CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale))
-        end
-    end,
 
     CreateDestructionEffects = function(self, overKillRatio)
         local Faction = self:GetFaction()
