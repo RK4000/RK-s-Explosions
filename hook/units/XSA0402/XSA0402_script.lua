@@ -138,16 +138,6 @@ XSA0402 = Class(oldXSA0402) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if self:GetCurrentLayer() == 'Air' then
-            -- Needed for custom booms
-            CreateAlmostDeadEffects = function( self, EffectTable, army, scale)
-                for k, v in EffectTable do
-                    if self.RKEmittersAlmostDead == nil then self.RKEmittersAlmostDead = {} end
-                    local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-                    table.insert(self.RKEmittersAlmostDead, emitter)
-                    self.Trash:Add(emitter)
-                end
-            end
-
             if self.EngineFailing1 ~= nil then
                 for k, v in self.EngineFailing1 do
                     v:Destroy()
