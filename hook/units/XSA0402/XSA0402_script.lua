@@ -157,9 +157,7 @@ XSA0402 = Class(oldXSA0402) {
         oldXSA0402.OnKilled(self, instigator, type, overkillRatio)
     end,
 
-    OnImpact = function(self, with, other)
-        local Faction = self:GetFaction()
-   
+    OnImpact = function(self, with, other)   
         self:PlayUnitSound('Destroyed')
         self:PlayUnitSound('Killed3')
         -- Damage the area we have impacted with.
@@ -184,7 +182,9 @@ XSA0402 = Class(oldXSA0402) {
             self:CreateEffects(EffectTemplate.Splashy, self.Army, 12  )
             DefaultExplosionsStock.CreateFlash( self, -1, 1, self.Army )
             self:CreateEffects(GetEffectTemplateFile(toggle).OilSlick, self.Army, 7 )
-            -- self:Destroy()
+            self.shallSink = true
+            self.colliderProj:Destroy()
+            self.colliderProj = nil
             self:ForkThread(self.DeathThread, self.OverKillRatio )    
         else
             -- This is a bit of safety to keep us from calling the death thread twice in case we bounce twice quickly
