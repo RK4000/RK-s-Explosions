@@ -8,13 +8,6 @@ local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 
-local AnimationMultiplierTbl = {
-    ['TECH1'] = 2.0,
-    ['TECH2'] = 2.3,
-    ['TECH3'] = 2.875,
-    -- 3
-}
-
 local TechLevelMultiplierTbl = {
     ['TECH1'] = 0.425,
     ['TECH2'] = 0.707,
@@ -30,7 +23,6 @@ Unit = Class(oldUnit) {
         oldUnit.OnCreate(self)
 
         -- Save commonly used variables
-        self.AnimationMultiplier = AnimationMultiplierTbl[self.techCategory] or 3
         self.TechLevelMultiplier = TechLevelMultiplierTbl[self.techCategory] or 1
 
         -- Currently only TECH1 - TECH3 is supported in the code
