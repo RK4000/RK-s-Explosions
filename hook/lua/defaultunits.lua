@@ -79,8 +79,6 @@ AirUnit = Class(oldAirUnit) {
             self:Destroy()
         end
 
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-
         -- Only call this code once
         self.GroundImpacted = true
 
