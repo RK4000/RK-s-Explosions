@@ -191,29 +191,6 @@ UAA0310 = Class(oldUAA0310) {
 
     OnKilled = function(self, instigator, type, overkillRatio)
         if self:GetCurrentLayer() == 'Air' then 
-            --[[
-            local wep = self:GetWeaponByLabel('QuantumBeamGeneratorWeapon')
-            local bp = wep:GetBlueprint()
-            if bp.Audio.BeamStop then
-                wep:PlaySound(bp.Audio.BeamStop)
-            end
-            if bp.Audio.BeamLoop and wep.Beams[1].Beam then
-                wep.Beams[1].Beam:SetAmbientSound(nil, nil)
-            end
-            for k, v in wep.Beams do
-                v.Beam:Disable()
-            end
-            --]]
-            -- ####Needed for custom booms####
-            CreateAlmostDeadEffects = function( self, EffectTable, army, scale)
-                for k, v in EffectTable do
-                    if self.RKEmittersAlmostDead == nil then self.RKEmittersAlmostDead = {} end
-                    local emitter = CreateAttachedEmitter(self, -1, army, v):ScaleEmitter(scale)
-                    table.insert(self.RKEmittersAlmostDead, emitter)
-                    self.Trash:Add(emitter)
-                end
-            end
-
             if self.CoreBreachEffects1 ~= nil then
                 for k, v in self.CoreBreachEffects1 do
                     v:Destroy()
