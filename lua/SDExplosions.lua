@@ -293,13 +293,13 @@ function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
             rand = 10
         end
 
-        if self.factionCategory == 'UEF' then
+        if obj.factionCategory == 'UEF' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif self.factionCategory == 'CYBRAN' then
+        elseif obj.factionCategory == 'CYBRAN' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif self.factionCategory == 'AEON' then
+        elseif obj.factionCategory == 'AEON' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
-        elseif self.factionCategory == 'SERAPHIM' then
+        elseif obj.factionCategory == 'SERAPHIM' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
         end
     end
