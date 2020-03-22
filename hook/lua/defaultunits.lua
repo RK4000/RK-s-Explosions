@@ -384,41 +384,35 @@ SubUnit = Class(oldSubUnit) {
         local NFactionalSubBoomAboveWater = NEffectTemplate[Faction ..'SubExplosionAboveWater']
         local NFactionalSubBoomUnderWater = NEffectTemplate[Faction ..'SubExplosionUnderWater']
 
-        local layer = self:GetCurrentLayer()
         self:DestroyIdleEffects()
 
-        if layer == 'Sub' or layer == 'Seabed' then
-            if toggle == 1 then
-                self:CreateEffects(SDFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-            else
-                self:CreateEffects(NFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-            end
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-            self.SinkThread = self:ForkThread(self.SinkingThread)
-            if self:GetFractionComplete() == 1 then
-                if toggle == 1 then
-                    self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-                else
-                    self:CreateEffects(NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-                end
-            end
-        elseif (layer == 'Water') then
+        -- Different boom effect for above and under water
+        local layer = self:GetCurrentLayer()
+        if layer == 'Water' then
             if toggle == 1 then
                 self:CreateEffects(SDFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             else
                 self:CreateEffects(NFactionalSubBoomAboveWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-            self.SinkThread = self:ForkThread(self.SinkingThread)
-            if self:GetFractionComplete() == 1 then
-                if toggle == 1 then
-                    self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-                else
-                    self:CreateEffects(NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
-                end
+        else
+            if toggle == 1 then
+                self:CreateEffects(SDFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+            else
+                self:CreateEffects(NFactionalSubBoomUnderWater, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
             end
         end
-        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
+        -- Create Oil Slick if the unit is complete
+        if self:GetFractionComplete() == 1 then
+            if toggle == 1 then
+                self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+            else
+                self:CreateEffects(NEffectTemplate.OilSlick, self.Army, (self.TechLevelMultiplier*GlobalExplosionScaleValue))
+            end
+        end
+        self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+        self.SinkThread = self:ForkThread(self.SinkingThread)
+
+        oldSubUnit.OnKilled(self, instigator, type, overkillRatio)
     end,
 
     ExplosionThread = function(self)
@@ -462,27 +456,27 @@ SubUnit = Class(oldSubUnit) {
         self:ForkThread(function()
             local i = 0
             while true do
-            local rx, ry, rz = self:GetRandomOffset(0.25)
-            local rs = Random(vol/2, vol*2) / (vol*2)
-            local randBone = Util.GetRandomInt(0, numBones)
+                local rx, ry, rz = self:GetRandomOffset(0.25)
+                local rs = Random(vol/2, vol*2) / (vol*2)
+                local randBone = Util.GetRandomInt(0, numBones)
 
-            CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp')
-                    :ScaleEmitter(sx)
-                    :OffsetEmitter(rx, ry, rz)
-            CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
-                    :ScaleEmitter(sx/2)
-                    :OffsetEmitter(rx, ry, rz)
-            CreateEmitterAtBone(self, 0, self.Army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
-                    :ScaleEmitter(sx)
-                    :OffsetEmitter(rx, ry, rz)
+                CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp')
+                        :ScaleEmitter(sx)
+                        :OffsetEmitter(rx, ry, rz)
+                CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+                        :ScaleEmitter(sx/2)
+                        :OffsetEmitter(rx, ry, rz)
+                CreateEmitterAtBone(self, 0, self.Army, '/effects/emitters/destruction_underwater_sinking_wash_01_emit.bp')
+                        :ScaleEmitter(sx)
+                        :OffsetEmitter(rx, ry, rz)
 
-            local rd = Util.GetRandomFloat(0.4+i, 1.0+i)
-            WaitSeconds(rd)
+                local rd = Util.GetRandomFloat(0.4+i, 1.0+i)
+                WaitSeconds(rd)
                 i = i + 0.3
             end
         end)
 
-        MobileUnit.DeathThread(self, overkillRatio, instigator)
+        oldSubUnit.DeathThread(self, overkillRatio, instigator)
     end,
 }
 
