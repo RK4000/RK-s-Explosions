@@ -7,6 +7,7 @@
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
 local Util = import('/lua/utilities.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
+local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 
 local TechLevelMultiplierTbl = {
     ['TECH1'] = 0.425,
@@ -21,7 +22,7 @@ Unit = Class(oldUnit) {
 
     OnCreate = function (self)
         oldUnit.OnCreate(self)
-
+        
         -- Save commonly used variables
         self.TechLevelMultiplier = TechLevelMultiplierTbl[self.techCategory] or 1
 
@@ -30,6 +31,30 @@ Unit = Class(oldUnit) {
             self.TechLevel = self.techCategory
         else
             self.TechLevel = 'TECH1'
+        end
+        
+        if EntityCategoryContains(categories.STRUCTURE, self) then
+            local Faction = self:GetFaction()
+            local SDFactionalSmallSmoke = SDEffectTemplate['LightStructureUnitDmg'.. self.TechLevel ..Faction]
+            local SDFactionalSmallFire = SDEffectTemplate['MediumStructureUnitDmg'.. self.TechLevel ..Faction]
+            local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyStructureUnitDmg'.. self.TechLevel ..Faction]
+
+            -- Structure unit factional-specific damage effects and smoke
+            self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
+            self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+            self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
+            -- Structure unit factional-specific damage effects and smoke
+        else
+            local Faction = self:GetFaction()
+            local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..Faction]
+            local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..Faction]
+            local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..Faction]
+
+            -- Land unit factional-specific damage effects and smoke
+            self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
+            self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+            self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
+            -- Land unit factional-specific damage effects and smoke
         end
     end,
 

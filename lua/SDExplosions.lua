@@ -425,7 +425,7 @@ end
 
 function CreateCybranFinalLargeHitExplosionAtBone(obj, boneName, scale)
     CreateFlash(obj, boneName, scale * 0.5, obj.Army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPFinalLargeCybran) -- :ScaleEmitter(10)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPFinalLargeCybran) -- :ScaleEmitter(10)
 end
 
 ------------------------------------------------------
@@ -456,9 +456,8 @@ function CreateAeonVeryLargeHitExplosionAtBone(obj, boneName, scale)
 end
 
 function CreateGCFinalLargeHitExplosionAtBone(obj, boneName, scale)
-    local army = obj:GetArmy()
-    CreateFlash(obj, boneName, scale * 0.5, army)
-    CreateBoneEffects(obj, boneName, army, GetEffectTemplateFile(toggle).ExplosionEXPGCFinalAeon) -- :ScaleEmitter(10)
+    CreateFlash(obj, boneName, scale * 0.5, obj.Army)
+    CreateBoneEffects(obj, boneName, obj.Army, GetEffectTemplateFile(toggle).ExplosionEXPGCFinalAeon) -- :ScaleEmitter(10)
 end
 
 function CreateAeonFinalLargeHitExplosionAtBone(obj, boneName, scale)

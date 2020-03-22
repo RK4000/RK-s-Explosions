@@ -600,447 +600,6 @@ TECH3seraphimFallDownTrail = {
 
 
 -- FALLDOWN FX 
--- LIGHT AIR DMG FX 
-
--- T1 UEF Plane Light DMG
-SmallAirUnitSmokeTECH1uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T2 UEF Plane Light DMG
-SmallAirUnitSmokeTECH2uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T3 UEF Plane Light DMG
-SmallAirUnitSmokeTECH3uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T1 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH1cybran = { 
-    ModPath .. 'CybranAircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T2 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH2cybran = { 
-    ModPath .. 'CybranAircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T3 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH3cybran = { 
-    ModPath .. 'CybranT3AircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T1 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH1aeon = { 
-    ModPath .. 'AeonAircraftLightDmgSmokeTrail.bp',
-}
-
--- T2 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH2aeon = { 
-    ModPath .. 'AeonAircraftLightDmgSmokeTrail.bp',
-}
-
--- T3 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH3aeon = { 
-    --ModPath .. 'AeonT3AircraftLightDmgSmokeTrail.bp',
-}
-
--- T1 Sera Plane Light DMG
-SmallAirUnitSmokeTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2LightDmgSmokeTrail.bp',
-}
-
--- T2 Sera Plane Light DMG
-SmallAirUnitSmokeTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2LightDmgSmokeTrail.bp',
-}
-
--- T3 Sera Plane Light DMG
-SmallAirUnitSmokeTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3LightDmgSmokeTrail.bp',
-}
-
-
-
--- LIGHT AIR DMG FX 
--- MED AIR DMG FX 
-
--- T1 UEF Plane Med DMG
-SmallAirUnitFireTECH1uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'AircraftDamageSmoke01.bp',
-}
-
--- T2 UEF Plane Med DMG
-SmallAirUnitFireTECH2uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'AircraftDamageSmoke01.bp',
-}
-
--- T3 UEF Plane Med DMG
-SmallAirUnitFireTECH3uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'AircraftDamageSmoke01.bp',
-}
-
--- T1 Cybran Plane Med DMG
-SmallAirUnitFireTECH1cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    ModPath .. 'CybranAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T2 Cybran Plane Med DMG
-SmallAirUnitFireTECH2cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    ModPath .. 'CybranAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T3 Cybran Plane Med DMG
-SmallAirUnitFireTECH3cybran = { 
-    ModPath .. 'CybranT3AircraftMediumDmgFire.bp',
-    ModPath .. 'CybranT3AircraftMediumDmgSmokeTrail.bp',
-}
-
--- T1 Aeon Plane Med DMG
-SmallAirUnitFireTECH1aeon = { 
-    ModPath .. 'AeonAircraftMediumDmgFire.bp',
-    ModPath .. 'AeonAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T2 Aeon Plane Med DMG
-SmallAirUnitFireTECH2aeon = { 
-    ModPath .. 'AeonAircraftMediumDmgFire.bp',
-    ModPath .. 'AeonAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T3 Aeon Plane Med DMG
-SmallAirUnitFireTECH3aeon = { 
-    ModPath .. 'AeonT3AircraftMediumDmgFire.bp',
-    ModPath .. 'AeonT3AircraftMediumDmgSmokeTrail.bp',
-}
-
--- T1 Sera Plane Med DMG
-SmallAirUnitFireTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2MediumDmgSmokeTrail.bp',
-}
-
--- T2 Sera Plane Med DMG
-SmallAirUnitFireTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2MediumDmgSmokeTrail.bp',
-}
-
--- T3 Sera Plane Med DMG
-SmallAirUnitFireTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT3MediumDmgSmokeTrail.bp',
-}
-
-
-
--- MED AIR DMG FX 
--- HVY AIR DMG FX 
-
--- T1 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH1uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'AircraftDamageSmokeBig01.bp',
-}
-
--- T2 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH2uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'AircraftDamageSmokeBig01.bp',
-}
-
--- T3 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH3uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'AircraftDamageSmokeBig01.bp',
-}
-
--- T1 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH1cybran = { 
-    ModPath .. 'CybranAircraftHeavyDmgFire.bp',
-    ModPath .. 'CybranAircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T2 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH2cybran = { 
-    ModPath .. 'CybranAircraftHeavyDmgFire.bp',
-    ModPath .. 'CybranAircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T3 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH3cybran = { 
-    ModPath .. 'CybranT3AircraftHeavyDmgFire.bp',
-    ModPath .. 'CybranT3AircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T1 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH1aeon = { 
-    ModPath .. 'AeonAircraftHeavyDmgFire.bp',
-    ModPath .. 'AeonAircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T2 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH2aeon = { 
-    ModPath .. 'AeonAircraftHeavyDmgFire.bp',
-    ModPath .. 'AeonAircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T3 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH3aeon = { 
-    ModPath .. 'AeonT3AircraftHeavyDmgFire.bp',
-    --ModPath .. 'AeonT3AircraftHeavyDmgSmokeTrail.bp',
-}
-
--- T1 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2HeavyDmgSmokeTrail.bp',
-}
-
--- T2 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2HeavyDmgSmokeTrail.bp',
-}
-
--- T3 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT3HeavyDmgSmokeTrail.bp',
-}
-
-
-
--- HVY AIR DMG FX  
--- LIGHT NAVAL DMG FX 
-
--- T1 UEF Naval Light DMG
-LightNavalUnitDmgTECH1uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T2 UEF Naval Light DMG
-LightNavalUnitDmgTECH2uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T3 UEF Naval Light DMG
-LightNavalUnitDmgTECH3uef = { 
-    ModPath .. 'AircraftDamageSmoke01_small.bp',
-}
-
--- T1 Cybran Naval Light DMG
-LightNavalUnitDmgTECH1cybran = { 
-    --ModPath .. 'CybranAircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T2 Cybran Naval Light DMG
-LightNavalUnitDmgTECH2cybran = { 
-    --ModPath .. 'CybranAircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T3 Cybran Naval Light DMG
-LightNavalUnitDmgTECH3cybran = { 
-    --ModPath .. 'CybranT3AircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-}
-
--- T1 Aeon Naval Light DMG
-LightNavalUnitDmgTECH1aeon = { 
-    ModPath .. 'AeonNavalDamageFireSmall.bp',
-}
-
--- T2 Aeon Naval Light DMG
-LightNavalUnitDmgTECH2aeon = { 
-    ModPath .. 'AeonNavalDamageFireSmall.bp',
-}
-
--- T3 Aeon Naval Light DMG
-LightNavalUnitDmgTECH3aeon = { 
-    ModPath .. 'AeonNavalDamageFireSmall.bp',
-}
-
--- T1 Sera Naval Light DMG
-LightNavalUnitDmgTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2LightDmgSmokeTrail.bp',
-}
-
--- T2 Sera Naval Light DMG
-LightNavalUnitDmgTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2LightDmgSmokeTrail.bp',
-}
-
--- T3 Sera Naval Light DMG
-LightNavalUnitDmgTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3LightDmgSmokeTrail.bp',
-}
-
-
-
--- LIGHT NAVAL DMG FX
--- MED NAVAL DMG FX 
-
--- T1 UEF Naval Med DMG
-MediumNavalUnitDmgTECH1uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'UEFNavalDamageSmokeSmall.bp',
-}
-
--- T2 UEF Naval Med DMG
-MediumNavalUnitDmgTECH2uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'UEFNavalDamageSmokeSmall.bp',
-}
-
--- T3 UEF Naval Med DMG
-MediumNavalUnitDmgTECH3uef = { 
-    ModPath .. 'AircraftDamageFireSmall01.bp',
-    ModPath .. 'UEFNavalDamageSmokeSmall.bp',
-}
-
--- T1 Cybran Naval Med DMG
-MediumNavalUnitDmgTECH1cybran = { 
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-    --ModPath .. 'CybranAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T2 Cybran Naval Med DMG
-MediumNavalUnitDmgTECH2cybran = { 
-    ModPath .. 'CybranAircraftLightDmgFire.bp',
-    --ModPath .. 'CybranAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T3 Cybran Naval Med DMG
-MediumNavalUnitDmgTECH3cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    ModPath .. 'CybranNavalDamageSmoke.bp',
-}
-
--- T1 Aeon Naval Med DMG
-MediumNavalUnitDmgTECH1aeon = { 
-    ModPath .. 'AeonNavalDamageFireSmall.bp',
-    --ModPath .. 'AeonAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T2 Aeon Naval Med DMG
-MediumNavalUnitDmgTECH2aeon = { 
-    ModPath .. 'AeonNavalDamageFireSmall.bp',
-    --ModPath .. 'AeonAircraftMediumDmgSmokeTrail.bp',
-}
-
--- T3 Aeon Naval Med DMG
-MediumNavalUnitDmgTECH3aeon = { 
-    ModPath .. 'AeonNavalDamageFire.bp',
-    --ModPath .. 'AeonT3AircraftMediumDmgSmokeTrail.bp',
-}
-
--- T1 Sera Naval Med DMG
-MediumNavalUnitDmgTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT3HeavyDmgSmokeTrail.bp',
-}
-
--- T2 Sera Naval Med DMG
-MediumNavalUnitDmgTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT3HeavyDmgSmokeTrail.bp',
-}
-
--- T3 Sera Naval Med DMG
-MediumNavalUnitDmgTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3MediumDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2HeavyDmgSmokeTrail.bp',
-}
-
-
-
--- MED NAVAL DMG FX 
--- HVY NAVAL DMG FX 
-
--- T1 UEF Naval Hvy DMG
-HeavyNavalUnitDmgTECH1uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'UEFNavalDamageSmokeBig.bp',
-}
-
--- T2 UEF Naval Hvy DMG
-HeavyNavalUnitDmgTECH2uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'UEFNavalDamageSmokeBig.bp',
-}
-
--- T3 UEF Naval Hvy DMG
-HeavyNavalUnitDmgTECH3uef = { 
-    ModPath .. 'AircraftDamageFireBig01.bp',
-    ModPath .. 'UEFNavalDamageSmokeBig.bp',
-}
-
--- T1 Cybran Naval Hvy DMG
-HeavyNavalUnitDmgTECH1cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    --ModPath .. 'CybranAircraftLightDmgSmokeTrail.bp',
-}
-
--- T2 Cybran Naval Hvy DMG
-HeavyNavalUnitDmgTECH2cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    ModPath .. 'CybranNavalDamageSmoke.bp',
-}
-
--- T3 Cybran Naval Hvy DMG
-HeavyNavalUnitDmgTECH3cybran = { 
-    ModPath .. 'CybranAircraftMediumDmgFire.bp',
-    ModPath .. 'CybranNavalDamageSmokeBig.bp',
-}
-
--- T1 Aeon Naval Hvy DMG
-HeavyNavalUnitDmgTECH1aeon = { 
-    ModPath .. 'AeonNavalDamageFire.bp',
-}
-
--- T2 Aeon Naval Hvy DMG
-HeavyNavalUnitDmgTECH2aeon = { 
-    ModPath .. 'AeonNavalDamageFire.bp',
-}
-
--- T3 Aeon Naval Hvy DMG
-HeavyNavalUnitDmgTECH3aeon = { 
-    ModPath .. 'AeonNavalDamageFireBig.bp',
-}
-
--- T1 Sera Naval Hvy DMG
-HeavyNavalUnitDmgTECH1seraphim = { 
-    ModPath .. 'SeraAircraftT1T2HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2HeavyDmgSmokeTrail.bp',
-}
-
--- T2 Sera Naval Hvy DMG
-HeavyNavalUnitDmgTECH2seraphim = { 
-    ModPath .. 'SeraAircraftT1T2HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT1T2HeavyDmgSmokeTrail.bp',
-}
-
--- T3 Sera Naval Hvy DMG
-HeavyNavalUnitDmgTECH3seraphim = { 
-    ModPath .. 'SeraAircraftT3HeavyDmgFire.bp',
-    ModPath .. 'SeraAircraftT3HeavyDmgSmokeTrail.bp',
-}
-
-
-
--- HVY NAVAL DMG FX 
 -- Ship Sub-Booms (Above water)
 
 -- UEF T1 Ship Sub-Boom
@@ -1822,3 +1381,1173 @@ AsswasherDebrisImpact = {
     ModPath .. 'Medium_test_random.bp',
     ModPath .. 'Medium_test_sonic.bp',
 }
+
+
+
+-- DAMAGE FX
+
+
+-- UEF Air DMG FX 
+
+
+-- T1 UEF
+
+
+-- T1 UEF Plane Light DMG
+SmallAirUnitSmokeTECH1uef = { 
+    ModPath .. 'UEFT1AircraftLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T1 UEF Plane Med DMG
+SmallAirUnitFireTECH1uef = { 
+    ModPath .. 'UEFT1AircraftMediumDmgFire.bp',
+    ModPath .. 'UEFT1AircraftMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT1AircraftMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1AircraftMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T1 UEF Plane Hvy DMG
+BigAirUnitFireSmokeTECH1uef = { 
+    ModPath .. 'UEFT1AircraftHeavyDmgFire.bp',
+    ModPath .. 'UEFT1AircraftHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT1AircraftHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1AircraftHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T2 UEF
+
+
+-- T2 UEF Plane Light DMG
+SmallAirUnitSmokeTECH2uef = { 
+    ModPath .. 'UEFT2AircraftLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T2 UEF Plane Med DMG
+SmallAirUnitFireTECH2uef = { 
+    ModPath .. 'UEFT2AircraftMediumDmgFire.bp',
+    ModPath .. 'UEFT2AircraftMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT2AircraftMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2AircraftMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T2 UEF Plane Hvy DMG
+BigAirUnitFireSmokeTECH2uef = { 
+    ModPath .. 'UEFT2AircraftHeavyDmgFire.bp',
+    ModPath .. 'UEFT2AircraftHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT2AircraftHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2AircraftHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T3 UEF
+
+
+-- T3 UEF Plane Light DMG
+SmallAirUnitSmokeTECH3uef = { 
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T3 UEF Plane Med DMG
+SmallAirUnitFireTECH3uef = { 
+    ModPath .. 'UEFT3AircraftMediumDmgFire.bp',
+    ModPath .. 'UEFT3AircraftMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT3AircraftMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3AircraftMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T3 UEF Plane Hvy DMG
+BigAirUnitFireSmokeTECH3uef = { 
+    ModPath .. 'UEFT3AircraftHeavyDmgFire.bp',
+    ModPath .. 'UEFT3AircraftHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT3AircraftHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3AircraftHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+
+-- UEF Air DMG FX  
+-- Cybran Air DMG FX 
+
+
+-- T1 Cybran
+
+
+-- T1 Cybran Plane Light DMG
+SmallAirUnitSmokeTECH1cybran = { 
+    ModPath .. 'CybranT1AircraftLightDmgFire.bp',
+}
+
+-- T1 Cybran Plane Med DMG
+SmallAirUnitFireTECH1cybran = { 
+    ModPath .. 'CybranT1AircraftMediumDmgFire.bp',
+    ModPath .. 'CybranT1AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Cybran Plane Hvy DMG
+BigAirUnitFireSmokeTECH1cybran = { 
+    ModPath .. 'CybranT1AircraftHeavyDmgFire.bp',
+    ModPath .. 'CybranT1AircraftHeavyDmgFire2.bp',
+    ModPath .. 'CybranT1AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Cybran
+
+
+-- T2 Cybran Plane Light DMG
+SmallAirUnitSmokeTECH2cybran = { 
+    ModPath .. 'CybranT2AircraftLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT2AircraftLightDmgFire.bp',
+}
+
+-- T2 Cybran Plane Med DMG
+SmallAirUnitFireTECH2cybran = { 
+    ModPath .. 'CybranT2AircraftMediumDmgFire.bp',
+    ModPath .. 'CybranT2AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Cybran Plane Hvy DMG
+BigAirUnitFireSmokeTECH2cybran = { 
+    ModPath .. 'CybranT2AircraftHeavyDmgFire.bp',
+    ModPath .. 'CybranT2AircraftHeavyDmgFire2.bp',
+    ModPath .. 'CybranT2AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Cybran
+
+
+-- T3 Cybran Plane Light DMG
+SmallAirUnitSmokeTECH3cybran = { 
+    ModPath .. 'CybranT3AircraftLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT3AircraftLightDmgFire.bp',
+}
+
+-- T3 Cybran Plane Med DMG
+SmallAirUnitFireTECH3cybran = { 
+    ModPath .. 'CybranT3AircraftMediumDmgFire.bp',
+    ModPath .. 'CybranT3AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Cybran Plane Hvy DMG
+BigAirUnitFireSmokeTECH3cybran = { 
+    ModPath .. 'CybranT3AircraftHeavyDmgFire.bp',
+    ModPath .. 'CybranT3AircraftHeavyDmgFire2.bp',
+    ModPath .. 'CybranT3AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Cybran Air DMG FX  
+-- Aeon Air DMG FX 
+
+
+-- T1 Aeon
+
+
+-- T1 Aeon Plane Light DMG
+SmallAirUnitSmokeTECH1aeon = { 
+    ModPath .. 'AeonT1AircraftLightDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Plane Med DMG
+SmallAirUnitFireTECH1aeon = { 
+    ModPath .. 'AeonT1AircraftMediumDmgFire.bp',
+    ModPath .. 'AeonT1AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Plane Hvy DMG
+BigAirUnitFireSmokeTECH1aeon = { 
+    ModPath .. 'AeonT1AircraftHeavyDmgFire.bp',
+    ModPath .. 'AeonT1AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Aeon
+
+
+-- T2 Aeon Plane Light DMG
+SmallAirUnitSmokeTECH2aeon = { 
+    ModPath .. 'AeonT2AircraftLightDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Plane Med DMG
+SmallAirUnitFireTECH2aeon = { 
+    ModPath .. 'AeonT2AircraftMediumDmgFire.bp',
+    ModPath .. 'AeonT2AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Plane Hvy DMG
+BigAirUnitFireSmokeTECH2aeon = { 
+    ModPath .. 'AeonT2AircraftHeavyDmgFire.bp',
+    ModPath .. 'AeonT2AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Aeon
+
+
+-- T3 Aeon Plane Light DMG
+SmallAirUnitSmokeTECH3aeon = { 
+    --ModPath .. 'AeonT3AircraftLightDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Plane Med DMG
+SmallAirUnitFireTECH3aeon = { 
+    ModPath .. 'AeonT3AircraftMediumDmgFire.bp',
+    ModPath .. 'AeonT3AircraftMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Plane Hvy DMG
+BigAirUnitFireSmokeTECH3aeon = { 
+    ModPath .. 'AeonT3AircraftHeavyDmgFire.bp',
+    ModPath .. 'AeonT3AircraftHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Aeon Air DMG FX  
+-- Sera Air DMG FX  
+
+
+-- T1 Sera
+
+
+-- T1 Sera Plane Light DMG
+SmallAirUnitSmokeTECH1seraphim = { 
+    ModPath .. 'SeraAircraftT1LightDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Plane Med DMG
+SmallAirUnitFireTECH1seraphim = { 
+    ModPath .. 'SeraAircraftT1MediumDmgFire.bp',
+    ModPath .. 'SeraAircraftT1MediumDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Plane Hvy DMG
+BigAirUnitFireSmokeTECH1seraphim = { 
+    ModPath .. 'SeraAircraftT1HeavyDmgFire.bp',
+    ModPath .. 'SeraAircraftT1HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Sera
+
+
+-- T2 Sera Plane Light DMG
+SmallAirUnitSmokeTECH2seraphim = { 
+    ModPath .. 'SeraAircraftT2LightDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Plane Med DMG
+SmallAirUnitFireTECH2seraphim = { 
+    ModPath .. 'SeraAircraftT2MediumDmgFire.bp',
+    ModPath .. 'SeraAircraftT2MediumDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Plane Hvy DMG
+BigAirUnitFireSmokeTECH2seraphim = { 
+    ModPath .. 'SeraAircraftT2HeavyDmgFire.bp',
+    ModPath .. 'SeraAircraftT2HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Sera
+
+
+-- T3 Sera Plane Light DMG
+SmallAirUnitSmokeTECH3seraphim = { 
+    ModPath .. 'SeraAircraftT3LightDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Plane Med DMG
+SmallAirUnitFireTECH3seraphim = { 
+    ModPath .. 'SeraAircraftT3MediumDmgFire.bp',
+    ModPath .. 'SeraAircraftT3MediumDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Plane Hvy DMG
+BigAirUnitFireSmokeTECH3seraphim = { 
+    ModPath .. 'SeraAircraftT3HeavyDmgFire.bp',
+    ModPath .. 'SeraAircraftT3HeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Sera Air DMG FX  
+-- UEF Naval DMG FX  
+
+
+-- T1 UEF
+
+
+-- T1 UEF Ship Light DMG
+LightNavalUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1ShipLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T1 UEF Ship Med DMG
+MediumNavalUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1ShipMediumDmgFire.bp',
+    ModPath .. 'UEFT1ShipMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT1ShipMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1ShipMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T1 UEF Ship Hvy DMG
+HeavyNavalUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1ShipHeavyDmgFire.bp',
+    ModPath .. 'UEFT1ShipHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT1ShipHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1ShipHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T2 UEF
+
+
+-- T2 UEF Ship Light DMG
+LightNavalUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2ShipLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T2 UEF Ship Med DMG
+MediumNavalUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2ShipMediumDmgFire.bp',
+    ModPath .. 'UEFT2ShipMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT2ShipMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2ShipMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T2 UEF Ship Hvy DMG
+HeavyNavalUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2ShipHeavyDmgFire.bp',
+    ModPath .. 'UEFT2ShipHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT2ShipHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2ShipHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T3 UEF
+
+
+-- T3 UEF Ship Light DMG
+LightNavalUnitDmgTECH3uef = { 
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T3 UEF Ship Med DMG
+MediumNavalUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3ShipMediumDmgFire.bp',
+    ModPath .. 'UEFT3ShipMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT3ShipMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3ShipMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T3 UEF Ship Hvy DMG
+HeavyNavalUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3ShipHeavyDmgFire.bp',
+    ModPath .. 'UEFT3ShipHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT3ShipHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3ShipHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+
+-- UEF Naval DMG FX  
+-- Cybran Naval DMG FX 
+
+
+-- T1 Cybran
+
+
+-- T1 Cybran Ship Light DMG
+LightNavalUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1ShipLightDmgFire.bp',
+}
+
+-- T1 Cybran Ship Med DMG
+MediumNavalUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1ShipMediumDmgFire.bp',
+    ModPath .. 'CybranT1ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Cybran Ship Hvy DMG
+HeavyNavalUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1ShipHeavyDmgFire.bp',
+    ModPath .. 'CybranT1ShipHeavyDmgFire2.bp',
+    ModPath .. 'CybranT1ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Cybran
+
+
+-- T2 Cybran Ship Light DMG
+LightNavalUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2ShipLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT2ShipLightDmgFire.bp',
+}
+
+-- T2 Cybran Ship Med DMG
+MediumNavalUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2ShipMediumDmgFire.bp',
+    ModPath .. 'CybranT2ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Cybran Ship Hvy DMG
+HeavyNavalUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2ShipHeavyDmgFire.bp',
+    ModPath .. 'CybranT2ShipHeavyDmgFire2.bp',
+    ModPath .. 'CybranT2ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Cybran
+
+
+-- T3 Cybran Ship Light DMG
+LightNavalUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3ShipLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT3ShipLightDmgFire.bp',
+}
+
+-- T3 Cybran Ship Med DMG
+MediumNavalUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3ShipMediumDmgFire.bp',
+    ModPath .. 'CybranT3ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Cybran Ship Hvy DMG
+HeavyNavalUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3ShipHeavyDmgFire.bp',
+    ModPath .. 'CybranT3ShipHeavyDmgFire2.bp',
+    ModPath .. 'CybranT3ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Cybran Naval DMG FX  
+-- Aeon Naval DMG FX 
+
+
+-- T1 Aeon
+
+
+-- T1 Aeon Ship Light DMG
+LightNavalUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1ShipLightDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Ship Med DMG
+MediumNavalUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1ShipMediumDmgFire.bp',
+    ModPath .. 'AeonT1ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Ship Hvy DMG
+HeavyNavalUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1ShipHeavyDmgFire.bp',
+    ModPath .. 'AeonT1ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Aeon
+
+
+-- T2 Aeon Ship Light DMG
+LightNavalUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2ShipLightDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Ship Med DMG
+MediumNavalUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2ShipMediumDmgFire.bp',
+    ModPath .. 'AeonT2ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Ship Hvy DMG
+HeavyNavalUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2ShipHeavyDmgFire.bp',
+    ModPath .. 'AeonT2ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Aeon
+
+
+-- T3 Aeon Ship Light DMG
+LightNavalUnitDmgTECH3aeon = { 
+    --ModPath .. 'AeonT3ShipLightDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Ship Med DMG
+MediumNavalUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3ShipMediumDmgFire.bp',
+    ModPath .. 'AeonT3ShipMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Ship Hvy DMG
+HeavyNavalUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3ShipHeavyDmgFire.bp',
+    ModPath .. 'AeonT3ShipHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Aeon Naval DMG FX  
+-- Sera Naval DMG FX  
+
+
+-- T1 Sera
+
+
+-- T1 Sera Ship Light DMG
+LightNavalUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraShipT1LightDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Ship Med DMG
+MediumNavalUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraShipT1MediumDmgFire.bp',
+    ModPath .. 'SeraShipT1MediumDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Ship Hvy DMG
+HeavyNavalUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraShipT1HeavyDmgFire.bp',
+    ModPath .. 'SeraShipT1HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Sera
+
+
+-- T2 Sera Ship Light DMG
+LightNavalUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraShipT2LightDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Ship Med DMG
+MediumNavalUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraShipT2MediumDmgFire.bp',
+    ModPath .. 'SeraShipT2MediumDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Ship Hvy DMG
+HeavyNavalUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraShipT2HeavyDmgFire.bp',
+    ModPath .. 'SeraShipT2HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Sera
+
+
+-- T3 Sera Ship Light DMG
+LightNavalUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraShipT3LightDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Ship Med DMG
+MediumNavalUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraShipT3MediumDmgFire.bp',
+    ModPath .. 'SeraShipT3MediumDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Ship Hvy DMG
+HeavyNavalUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraShipT3HeavyDmgFire.bp',
+    ModPath .. 'SeraShipT3HeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Sera Naval DMG FX 
+-- UEF Structure DMG FX  
+
+
+-- T1 UEF
+
+
+-- T1 UEF Structure Light DMG
+LightStructureUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1StructureLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T1 UEF Structure Med DMG
+MediumStructureUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1StructureMediumDmgFire.bp',
+    ModPath .. 'UEFT1StructureMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT1StructureMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1StructureMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T1 UEF Structure Hvy DMG
+HeavyStructureUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1StructureHeavyDmgFire.bp',
+    ModPath .. 'UEFT1StructureHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT1StructureHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1StructureHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T2 UEF
+
+
+-- T2 UEF Structure Light DMG
+LightStructureUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2StructureLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T2 UEF Structure Med DMG
+MediumStructureUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2StructureMediumDmgFire.bp',
+    ModPath .. 'UEFT2StructureMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT2StructureMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2StructureMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T2 UEF Structure Hvy DMG
+HeavyStructureUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2StructureHeavyDmgFire.bp',
+    ModPath .. 'UEFT2StructureHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT2StructureHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2StructureHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T3 UEF
+
+
+-- T3 UEF Structure Light DMG
+LightStructureUnitDmgTECH3uef = { 
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T3 UEF Structure Med DMG
+MediumStructureUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3StructureMediumDmgFire.bp',
+    ModPath .. 'UEFT3StructureMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT3StructureMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3StructureMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T3 UEF Structure Hvy DMG
+HeavyStructureUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3StructureHeavyDmgFire.bp',
+    ModPath .. 'UEFT3StructureHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT3StructureHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3StructureHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+
+-- UEF Structure DMG FX  
+-- Cybran Structure DMG FX 
+
+
+-- T1 Cybran
+
+
+-- T1 Cybran Structure Light DMG
+LightStructureUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1StructureLightDmgFire.bp',
+}
+
+-- T1 Cybran Structure Med DMG
+MediumStructureUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1StructureMediumDmgFire.bp',
+    ModPath .. 'CybranT1StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Cybran Structure Hvy DMG
+HeavyStructureUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1StructureHeavyDmgFire.bp',
+    ModPath .. 'CybranT1StructureHeavyDmgFire2.bp',
+    ModPath .. 'CybranT1StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Cybran
+
+
+-- T2 Cybran Structure Light DMG
+LightStructureUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2StructureLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT2StructureLightDmgFire.bp',
+}
+
+-- T2 Cybran Structure Med DMG
+MediumStructureUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2StructureMediumDmgFire.bp',
+    ModPath .. 'CybranT2StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Cybran Structure Hvy DMG
+HeavyStructureUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2StructureHeavyDmgFire.bp',
+    ModPath .. 'CybranT2StructureHeavyDmgFire2.bp',
+    ModPath .. 'CybranT2StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Cybran
+
+
+-- T3 Cybran Structure Light DMG
+LightStructureUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3StructureLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT3StructureLightDmgFire.bp',
+}
+
+-- T3 Cybran Structure Med DMG
+MediumStructureUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3StructureMediumDmgFire.bp',
+    ModPath .. 'CybranT3StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Cybran Structure Hvy DMG
+HeavyStructureUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3StructureHeavyDmgFire.bp',
+    ModPath .. 'CybranT3StructureHeavyDmgFire2.bp',
+    ModPath .. 'CybranT3StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Cybran Structure DMG FX  
+-- Aeon Structure DMG FX 
+
+
+-- T1 Aeon
+
+
+-- T1 Aeon Structure Light DMG
+LightStructureUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1StructureLightDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Structure Med DMG
+MediumStructureUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1StructureMediumDmgFire.bp',
+    ModPath .. 'AeonT1StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Structure Hvy DMG
+HeavyStructureUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1StructureHeavyDmgFire.bp',
+    ModPath .. 'AeonT1StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Aeon
+
+
+-- T2 Aeon Structure Light DMG
+LightStructureUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2StructureLightDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Structure Med DMG
+MediumStructureUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2StructureMediumDmgFire.bp',
+    ModPath .. 'AeonT2StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Structure Hvy DMG
+HeavyStructureUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2StructureHeavyDmgFire.bp',
+    ModPath .. 'AeonT2StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Aeon
+
+
+-- T3 Aeon Structure Light DMG
+LightStructureUnitDmgTECH3aeon = { 
+    --ModPath .. 'AeonT3StructureLightDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Structure Med DMG
+MediumStructureUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3StructureMediumDmgFire.bp',
+    ModPath .. 'AeonT3StructureMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Structure Hvy DMG
+HeavyStructureUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3StructureHeavyDmgFire.bp',
+    ModPath .. 'AeonT3StructureHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Aeon Structure DMG FX  
+-- Sera Structure DMG FX  
+
+
+-- T1 Sera
+
+
+-- T1 Sera Structure Light DMG
+LightStructureUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraStructureT1LightDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Structure Med DMG
+MediumStructureUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraStructureT1MediumDmgFire.bp',
+    ModPath .. 'SeraStructureT1MediumDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Structure Hvy DMG
+HeavyStructureUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraStructureT1HeavyDmgFire.bp',
+    ModPath .. 'SeraStructureT1HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Sera
+
+
+-- T2 Sera Structure Light DMG
+LightStructureUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraStructureT2LightDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Structure Med DMG
+MediumStructureUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraStructureT2MediumDmgFire.bp',
+    ModPath .. 'SeraStructureT2MediumDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Structure Hvy DMG
+HeavyStructureUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraStructureT2HeavyDmgFire.bp',
+    ModPath .. 'SeraStructureT2HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Sera
+
+
+-- T3 Sera Structure Light DMG
+LightStructureUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraStructureT3LightDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Structure Med DMG
+MediumStructureUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraStructureT3MediumDmgFire.bp',
+    ModPath .. 'SeraStructureT3MediumDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Structure Hvy DMG
+HeavyStructureUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraStructureT3HeavyDmgFire.bp',
+    ModPath .. 'SeraStructureT3HeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Sera Structure DMG FX  
+-- UEF Land DMG FX  
+
+
+-- T1 UEF
+
+
+-- T1 UEF Land Light DMG
+LightLandUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1LandLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T1 UEF Land Med DMG
+MediumLandUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1LandMediumDmgFire.bp',
+    ModPath .. 'UEFT1LandMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT1LandMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1LandMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T1 UEF Land Hvy DMG
+HeavyLandUnitDmgTECH1uef = { 
+    ModPath .. 'UEFT1LandHeavyDmgFire.bp',
+    ModPath .. 'UEFT1LandHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT1LandHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT1LandHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T2 UEF
+
+
+-- T2 UEF Land Light DMG
+LightLandUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2LandLightDmgSmokeTrail.bp',
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T2 UEF Land Med DMG
+MediumLandUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2LandMediumDmgFire.bp',
+    ModPath .. 'UEFT2LandMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT2LandMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2LandMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T2 UEF Land Hvy DMG
+HeavyLandUnitDmgTECH2uef = { 
+    ModPath .. 'UEFT2LandHeavyDmgFire.bp',
+    ModPath .. 'UEFT2LandHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT2LandHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT2LandHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+-- T3 UEF
+
+
+-- T3 UEF Land Light DMG
+LightLandUnitDmgTECH3uef = { 
+    ModPath .. 'destruction_damaged_sparks_rks.bp',
+}
+
+-- T3 UEF Land Med DMG
+MediumLandUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3LandMediumDmgFire.bp',
+    ModPath .. 'UEFT3LandMediumDmgHeatDistort.bp',
+    ModPath .. 'UEFT3LandMediumDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3LandMediumDmgSmokeTrailCarry.bp',
+}
+
+-- T3 UEF Land Hvy DMG
+HeavyLandUnitDmgTECH3uef = { 
+    ModPath .. 'UEFT3LandHeavyDmgFire.bp',
+    ModPath .. 'UEFT3LandHeavyDmgHeatDistort.bp',
+    ModPath .. 'UEFT3LandHeavyDmgSmokeTrail.bp',
+    ModPath .. 'UEFT3LandHeavyDmgSmokeTrailCarry.bp',
+}
+
+
+
+-- UEF Land DMG FX  
+-- Cybran Land DMG FX 
+
+
+-- T1 Cybran
+
+
+-- T1 Cybran Land Light DMG
+LightLandUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1LandLightDmgFire.bp',
+}
+
+-- T1 Cybran Land Med DMG
+MediumLandUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1LandMediumDmgFire.bp',
+    ModPath .. 'CybranT1LandMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Cybran Land Hvy DMG
+HeavyLandUnitDmgTECH1cybran = { 
+    ModPath .. 'CybranT1LandHeavyDmgFire.bp',
+    ModPath .. 'CybranT1LandHeavyDmgFire2.bp',
+    ModPath .. 'CybranT1LandHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Cybran
+
+
+-- T2 Cybran Land Light DMG
+LightLandUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2LandLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT2LandLightDmgFire.bp',
+}
+
+-- T2 Cybran Land Med DMG
+MediumLandUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2LandMediumDmgFire.bp',
+    ModPath .. 'CybranT2LandMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Cybran Land Hvy DMG
+HeavyLandUnitDmgTECH2cybran = { 
+    ModPath .. 'CybranT2LandHeavyDmgFire.bp',
+    ModPath .. 'CybranT2LandHeavyDmgFire2.bp',
+    ModPath .. 'CybranT2LandHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Cybran
+
+
+-- T3 Cybran Land Light DMG
+LightLandUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3LandLightDmgSmokeTrail.bp',
+    ModPath .. 'CybranT3LandLightDmgFire.bp',
+}
+
+-- T3 Cybran Land Med DMG
+MediumLandUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3LandMediumDmgFire.bp',
+    ModPath .. 'CybranT3LandMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Cybran Land Hvy DMG
+HeavyLandUnitDmgTECH3cybran = { 
+    ModPath .. 'CybranT3LandHeavyDmgFire.bp',
+    ModPath .. 'CybranT3LandHeavyDmgFire2.bp',
+    ModPath .. 'CybranT3LandHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Cybran Land DMG FX  
+-- Aeon Land DMG FX 
+
+
+-- T1 Aeon
+
+
+-- T1 Aeon Land Light DMG
+LightLandUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1LandLightDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Land Med DMG
+MediumLandUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1LandMediumDmgFire.bp',
+    ModPath .. 'AeonT1LandMediumDmgSmokeTrail.bp',
+}
+
+-- T1 Aeon Land Hvy DMG
+HeavyLandUnitDmgTECH1aeon = { 
+    ModPath .. 'AeonT1LandHeavyDmgFire.bp',
+    ModPath .. 'AeonT1LandHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Aeon
+
+
+-- T2 Aeon Land Light DMG
+LightLandUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2LandLightDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Land Med DMG
+MediumLandUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2LandMediumDmgFire.bp',
+    ModPath .. 'AeonT2LandMediumDmgSmokeTrail.bp',
+}
+
+-- T2 Aeon Land Hvy DMG
+HeavyLandUnitDmgTECH2aeon = { 
+    ModPath .. 'AeonT2LandHeavyDmgFire.bp',
+    ModPath .. 'AeonT2LandHeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Aeon
+
+
+-- T3 Aeon Land Light DMG
+LightLandUnitDmgTECH3aeon = { 
+    --ModPath .. 'AeonT3LandLightDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Land Med DMG
+MediumLandUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3LandMediumDmgFire.bp',
+    ModPath .. 'AeonT3LandMediumDmgSmokeTrail.bp',
+}
+
+-- T3 Aeon Land Hvy DMG
+HeavyLandUnitDmgTECH3aeon = { 
+    ModPath .. 'AeonT3LandHeavyDmgFire.bp',
+    ModPath .. 'AeonT3LandHeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Aeon Land DMG FX  
+-- Sera Land DMG FX  
+
+
+-- T1 Sera
+
+
+-- T1 Sera Land Light DMG
+LightLandUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraLandT1LightDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Land Med DMG
+MediumLandUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraLandT1MediumDmgFire.bp',
+    ModPath .. 'SeraLandT1MediumDmgSmokeTrail.bp',
+}
+
+-- T1 Sera Land Hvy DMG
+HeavyLandUnitDmgTECH1seraphim = { 
+    ModPath .. 'SeraLandT1HeavyDmgFire.bp',
+    ModPath .. 'SeraLandT1HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T2 Sera
+
+
+-- T2 Sera Land Light DMG
+LightLandUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraLandT2LightDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Land Med DMG
+MediumLandUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraLandT2MediumDmgFire.bp',
+    ModPath .. 'SeraLandT2MediumDmgSmokeTrail.bp',
+}
+
+-- T2 Sera Land Hvy DMG
+HeavyLandUnitDmgTECH2seraphim = { 
+    ModPath .. 'SeraLandT2HeavyDmgFire.bp',
+    ModPath .. 'SeraLandT2HeavyDmgSmokeTrail.bp',
+}
+
+
+-- T3 Sera
+
+
+-- T3 Sera Land Light DMG
+LightLandUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraLandT3LightDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Land Med DMG
+MediumLandUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraLandT3MediumDmgFire.bp',
+    ModPath .. 'SeraLandT3MediumDmgSmokeTrail.bp',
+}
+
+-- T3 Sera Land Hvy DMG
+HeavyLandUnitDmgTECH3seraphim = { 
+    ModPath .. 'SeraLandT3HeavyDmgFire.bp',
+    ModPath .. 'SeraLandT3HeavyDmgSmokeTrail.bp',
+}
+
+
+
+-- Sera Land DMG FX 

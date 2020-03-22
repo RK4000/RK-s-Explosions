@@ -43,7 +43,7 @@ AirUnit = Class(oldAirUnit) {
 
         if toggle == 1 then
             -- Air unit factional-specific damage effects and smoke
-            self.FxDamage1 = {SDFactionalSmallSmoke, EffectTemplate.DamageSparks01} -- 75% HP
+            self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
             self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
             self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
             -- Air unit factional-specific damage effects and smoke

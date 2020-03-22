@@ -187,13 +187,8 @@ URL0402 = Class(oldURL0402) {
         self:PlayUnitSound('DestroyedStep2')
         
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Leg0' .. Random(1,3) .. '_B0' .. Random(1,3), 0.25)
-<<<<<<< HEAD
         sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 0.45)
-        self:CreateDamageEffects('Left_Leg03_B03', army)
-=======
-        sdexplosion.CreateCybranMediumHitExplosionAtBone(self, 'Left_Projectile01', 2)
         self:CreateDamageEffects('Left_Leg03_B03', self.Army)
->>>>>>> Remove :GetArmy calls
 
         for i, numWeapons in bp.Weapon do
             if bp.Weapon[i].Label == 'MedDeathBoom' then
