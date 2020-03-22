@@ -1,11 +1,8 @@
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
-local EffectUtil = import('/lua/EffectUtilities.lua')
 local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
-local BlueprintUtil = import('/lua/system/Blueprints.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
-local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local Util = import('/lua/utilities.lua')
@@ -100,7 +97,7 @@ SeaUnit = Class(oldSeaUnit) {
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75, self.Army)
+        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75, self.Army)
         self:ShakeCamera(30 * NumberForShake/3, NumberForShake/3, 0, NumberForShake / 3)
 
         if toggle == 1 then
@@ -127,7 +124,7 @@ SeaUnit = Class(oldSeaUnit) {
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
-        DefaultExplosionsStock.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*5, self.Army)
+        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*5, self.Army)
 
         self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
         
@@ -678,7 +675,7 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
            -- LOG(' Size Scale: ', self:GetSizeOfBuilding())
             self.CreateTimedFactionalStuctureUnitExplosion(self)
             WaitSeconds(0.5)
-            DefaultExplosionsStock.CreateFlash(self, -1, Number/3, self.Army)
+            explosion.CreateFlash(self, -1, Number/3, self.Army)
             if toggle == 1 then
                 self:CreateEffects(SDExplosion, self.Army, (((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue*self:GetFinalBoomMultBasedOffFactionCyb()*self:GetFinalBoomMultBasedOffFactionCybT1Fac())*1.3)
             else
@@ -689,7 +686,7 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
             local unitSize = {self:GetUnitSizes()}
             RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             WaitSeconds(1.15)
-            DefaultExplosionsStock.CreateFlash(self, -1, Number/1.85, self.Army)
+            explosion.CreateFlash(self, -1, Number/1.85, self.Army)
             self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
             if toggle == 1 then
                 self:CreateEffects(SDExplosion, self.Army, ((((BoomScale*BoomScale2/2) /GlobalBuildingBoomScaleDivider)*GlobalExplosionScaleValue)*FinalBoomMultiplier))
