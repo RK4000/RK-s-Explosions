@@ -1,6 +1,4 @@
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
-local RKExplosion = import('/mods/rks_explosions/lua/SDExplosions.lua')
-local RKEffectsUtil = import('/mods/rks_explosions/lua/SDEffectUtilities.lua')
 local RKEffectUtil = import('/mods/rks_explosions/lua/RKEffectUtilities.lua')
 local BoomSoundBP = import('/mods/rks_explosions/boomsounds/BoomSounds.bp')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua')
@@ -147,7 +145,7 @@ SeaUnit = Class(oldSeaUnit) {
         local unitSize = {self:GetUnitSizes()}
         for i = 1, 3 do
             explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-            RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
         end
     end,
 
@@ -299,7 +297,7 @@ SeaUnit = Class(oldSeaUnit) {
             if i > 0 then
                 -- Make faction boom
                 self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
                 self:PlaySubBoomSound('SubBoomSound'..Faction)
             else
                 d = d + 1 -- If submerged, increase delay offset
@@ -575,9 +573,7 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateTimedFactionalStuctureUnitExplosion = function(self)
-        local Faction = self:GetFaction()
         local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local NumExplFaction = self:GetNumberBasedOffFaction()
         local TECHMULT = self:GetMultTechLvl(self.TechLevel or 'TECH1')
 
@@ -598,7 +594,6 @@ StructureHelperfunctions = Class() {
 
     CreateFactionalHitExplosionOffset = function(self, scale, xOffset, yOffset, zOffset)
         local Faction = self:GetFaction()
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
 
@@ -615,7 +610,6 @@ StructureHelperfunctions = Class() {
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
         local Faction = self:GetFaction()
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
 
@@ -627,7 +621,6 @@ StructureHelperfunctions = Class() {
     end,
 }
 
---local Unit = import('/lua/sim/Unit.lua').Unit
 local oldStructureUnit = StructureUnit
 StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 
@@ -640,7 +633,6 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
     CreateDestructionEffects = function(self, overKillRatio)
         local Faction = self:GetFaction()
         local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
-        local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
         local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
         local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
 
@@ -682,7 +674,7 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 
             self:PlayUnitSound('DeathExplosion')
             local unitSize = {self:GetUnitSizes()}
-            RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             WaitSeconds(1.15)
             explosion.CreateFlash(self, -1, Number/1.85, self.Army)
             self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.775)
@@ -694,14 +686,14 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 
 
             if self.TechLevel == 'TECH1' then
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             elseif self.TechLevel == 'TECH2' then
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             elseif self.TechLevel == 'TECH3' then
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-                RKExplosion.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             end
             self:PlayUnitSound('Killed')
             self:PlayUnitSound('Destroyed')
