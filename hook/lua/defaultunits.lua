@@ -58,39 +58,13 @@ AirUnit = Class(oldAirUnit) {
     end,
 
     OnImpact = function(self, with)
-        if self.GroundImpacted then return end
-
-        -- Immediately destroy units outside the map
-        if not ScenarioFramework.IsUnitInPlayableArea(self) then
-            self:Destroy()
-        end
-
-        -- Only call this code once
-        self.GroundImpacted = true
-
-        -- Damage the area we hit. For damage, use the value which may have been adjusted by a shield impact
-        if not self.deathWep or not self.DeathCrashDamage then -- Bail if stuff is missing
-            WARN('defaultunits.lua OnImpact: did not find a deathWep on the plane! Is the weapon defined in the blueprint? ' .. self:GetUnitId())
-        elseif self.DeathCrashDamage > 0 then -- It was completely absorbed by a shield!
-            local deathWep = self.deathWep -- Use a local copy for speed and easy reading
-            DamageArea(self, self:GetPosition(), deathWep.DamageRadius, self.DeathCrashDamage, deathWep.DamageType, deathWep.DamageFriendly)
-        end
-
+        oldAirUnit.OnImpact(self, with)
         if with == 'Water' then
             for k,v in self.RKEmitters do v:ScaleEmitter(0) end
-            self:PlayUnitSound('AirUnitWaterImpact')
-            self:ForkThread(SDExplosions.AirImpactWater(self))
-            EffectUtil.CreateEffects(self, self.Army, EffectTemplate.DefaultProjectileWaterImpact)
-            self.shallSink = true
-            self.colliderProj:Destroy()
-            self.colliderProj = nil
+            SDExplosions.AirImpactWater(self)
         else
-            self:ForkThread(SDExplosions.ExplosionAirImpact)
+            SDExplosions.ExplosionAirImpact(self)
         end
-
-        self:DisableUnitIntel('Killed')
-        self:DisableIntel('Vision') -- Disable vision seperately, it's not handled in DisableUnitIntel
-        self:ForkThread(self.DeathThread, self.OverKillRatio)
     end,
 }
 
