@@ -7,56 +7,52 @@
 --#**
 --#**  Copyright © 2014 RK Powered Games, Inc.  All rights reserved.
 --#****************************************************************************
-TableCat = import('/lua/utilities.lua').TableCat
-EmtBpPath = '/mods/rks_explosions/effects/emitters/stock/'
-EmtBpPathAlt = '/mods/rks_explosions/effects/emitters/stock/'
-EmitterTempEmtBpPath = '/mods/rks_explosions/effects/emitters/temp/'
-ModPath = '/mods/rks_explosions/effects/emitters/stock/'
-ModPathrk = '/mods/rks_explosions/effects/emitters/'
+local ModPath = '/mods/rks_explosions/effects/emitters/stock/'
+local ModPathrk = '/mods/rks_explosions/effects/emitters/'
 
 -- WEAPON EXPLOSIONS
 T2RocketBotMissileHitGround = {
-    EmtBpPath .. 'dust_emit.bp',
-    EmtBpPath .. 'small_test_sonic.bp',
-    EmtBpPath .. 'small_test_fire.bp',
-    EmtBpPath .. 'small_test_random.bp',
-    EmtBpPath .. 'small_test_smoke.bp',
+    ModPath .. 'dust_emit.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 T2RocketBotMissileHit = {
-    EmtBpPath .. 'small_test_sonic.bp',
-    EmtBpPath .. 'small_test_fire.bp',
-    EmtBpPath .. 'small_test_random.bp',
-    EmtBpPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 AeonRestorerMissileHit01 = {
-    EmtBpPath .. 'small_test_sonic.bp',
-    EmtBpPath .. 'small_test_fire.bp',
-    EmtBpPath .. 'small_test_random.bp',
-    EmtBpPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- HUGE EXP. EXPLOSIONS
 ExplosionSmallest = {
-    EmtBpPath .. 'dust_emit.bp',
-    EmtBpPath .. 'small_test_sonic.bp',
-    EmtBpPath .. 'small_test_fire.bp',
-    EmtBpPath .. 'small_test_random.bp',
-    EmtBpPath .. 'small_test_smoke.bp', 
+    ModPath .. 'dust_emit.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp', 
 }
 ExplosionSmaller = {
-    EmtBpPath .. 'dust_emit.bp',
-    EmtBpPath .. 'small_test_sonic.bp',
-    EmtBpPath .. 'small_test_fire.bp',
-    EmtBpPath .. 'small_test_random.bp',
-    EmtBpPath .. 'small_test_smoke.bp', 
+    ModPath .. 'dust_emit.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_random.bp',
+    ModPath .. 'small_test_smoke.bp', 
 }
 ExplosionSmall = {
-    EmtBpPath .. 'dust_emit.bp',
-    EmtBpPath .. 'Medium_test_smoke.bp',
-    EmtBpPath .. 'Medium_test_fire.bp',
-    EmtBpPath .. 'Medium_test_random.bp',
-    EmtBpPath .. 'Medium_test_sonic.bp',
+    ModPath .. 'dust_emit.bp',
+    ModPath .. 'Medium_test_smoke.bp',
+    ModPath .. 'Medium_test_fire.bp',
+    ModPath .. 'Medium_test_random.bp',
+    ModPath .. 'Medium_test_sonic.bp',
 }
 ExplosionSmallSD = {
     --ModPath .. 'small_test_sonic.bp',
@@ -947,18 +943,18 @@ ExplosionEXPLargeInitialAeon = {
 }
 -- Aeon GC Very Large Boom
 ExplosionEXPVeryLargeAeon = {
-    EmtBpPath .. 'medium_test_smoke.bp',
-    EmtBpPath .. 'medium_test_fire.bp',
-    EmtBpPath .. 'medium_test_random.bp',
-    EmtBpPath .. 'medium_test_sonic.bp',
+    ModPath .. 'medium_test_smoke.bp',
+    ModPath .. 'medium_test_fire.bp',
+    ModPath .. 'medium_test_random.bp',
+    ModPath .. 'medium_test_sonic.bp',
 }
 -- Aeon GC Core Breach
 GC_Core_Breach02 = {
-    EmtBpPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 -- Aeon GC Smoking Limbs
 GC_Body_Part_Damage = {
-    EmtBpPath .. 'small_test_smoke.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 -- Aeon CZAR Stuff
 CZAR_Initial_Center_Explosion = {}
@@ -1030,10 +1026,10 @@ Ahwassa_Engine_Critical_Breach = {  ModPath .. 'small_test_smoke.bp',}
 Ahwassa_Engine_Critical_Breach_Electricity = {  ModPath .. 'small_test_smoke.bp',}
 
 Ahwassa_Impact_Explosion = {
-    EmtBpPath .. 'Large_test_smoke.bp',
-    EmtBpPath .. 'Large_test_fire.bp',
-    EmtBpPath .. 'Large_test_random.bp',
-    EmtBpPath .. 'Large_test_sonic.bp',
+    ModPath .. 'Large_test_smoke.bp',
+    ModPath .. 'Large_test_fire.bp',
+    ModPath .. 'Large_test_random.bp',
+    ModPath .. 'Large_test_sonic.bp',
 }
 
 
@@ -1079,8 +1075,8 @@ AhwassaFlamingDebrisTrail  = {
     --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
 DebrisSplashyWater = {
-    --EmtBpPath .. 'Splashy_Ripples_ring_01_emit.bp',
-    --EmtBpPath .. 'Splashy_Plume_01_emit.bp',
+    --ModPath .. 'Splashy_Ripples_ring_01_emit.bp',
+    --ModPath .. 'Splashy_Plume_01_emit.bp',
 }
 SRDebrisImpact = {}
 CZARDebrisImpact = {}
