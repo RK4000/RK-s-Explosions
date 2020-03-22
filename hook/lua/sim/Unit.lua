@@ -26,7 +26,7 @@ Unit = Class(oldUnit) {
         self.TechLevelMultiplier = TechLevelMultiplierTbl[self.techCategory] or 1
 
         -- Currently only TECH1 - TECH3 is supported in the code
-        if self.TechLevel and StringStartsWith(self.techCategory, "TECH") then
+        if self.techCategory and StringStartsWith(self.techCategory, "TECH") then
             self.TechLevel = self.techCategory
         else
             self.TechLevel = 'TECH1'
