@@ -104,8 +104,9 @@ local ScorchDecalTexturesShortLasting = {
 }
 
 function CreateScorchMarkDecalRKSExpAeon(obj, scale, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0,2*math.pi),ScorchDecalTexturesShortLasting[GetRandomInt(1,table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0,2*math.pi),ScorchDecalTexturesAeon[GetRandomInt(1,table.getn(ScorchDecalTexturesAeon))], '', 'Albedo', scale*2, scale*2, 1000000000, 1000000000, army)
+    local pos = obj:GetPosition()
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesAeon[GetRandomInt(1, table.getn(ScorchDecalTexturesAeon))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
 local ScorchDecalTexturesAeon = {
@@ -113,8 +114,9 @@ local ScorchDecalTexturesAeon = {
 }
 
 function CreateScorchMarkDecalRKSExpCyb(obj, scale, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi),ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi),ScorchDecalTexturesCyb[GetRandomInt(1, table.getn(ScorchDecalTexturesCyb))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
+    local pos = obj:GetPosition()
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesCyb[GetRandomInt(1, table.getn(ScorchDecalTexturesCyb))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
 local ScorchDecalTexturesCyb = {
@@ -122,8 +124,9 @@ local ScorchDecalTexturesCyb = {
 }
 
 function CreateScorchMarkDecalRKSExpSera(obj, scale, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
-    CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesSera[GetRandomInt(1, table.getn(ScorchDecalTexturesSera))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
+    local pos = obj:GetPosition()
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
+    CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesSera[GetRandomInt(1, table.getn(ScorchDecalTexturesSera))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
 local ScorchDecalTexturesSera = {
