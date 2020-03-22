@@ -520,8 +520,7 @@ StructureHelperfunctions = Class() {
 
     -- For speeding up Seraphim building explosions, they call the destruction thread twice, so I'm halving the number of explosions.
     GetNumberBasedOffFaction = function(self)
-        local Faction = self:GetFaction()
-        if Faction == 'seraphim' then
+        if self.factionCategory == 'SERAPHIM' then
             return 0.65
         else
             return 0.65
@@ -530,10 +529,9 @@ StructureHelperfunctions = Class() {
 
     -- For final boom semi-final scale tweaking, based off faction
     GetFinalBoomMultBasedOffFaction = function(self)
-        local Faction = self:GetFaction()
-        if Faction == 'seraphim' then
+        if self.factionCategory == 'SERAPHIM' then
             return 1.25
-        elseif Faction == 'cybran' then
+        elseif self.factionCategory == 'CYBRAN' then
             return 1.425
         else
             return 1
@@ -542,8 +540,7 @@ StructureHelperfunctions = Class() {
 
     -- For final boom final scale tweaking, for cyb
     GetFinalBoomMultBasedOffFactionCyb = function(self)
-        local Faction = self:GetFaction()
-        if ((Faction == 'cybran') and (self.TechLevel == 'TECH3') and (self:GetBlueprint().Categories == 'FACTORY'))  then
+        if self.factionCategory == 'CYBRAN' and self.TechLevel == 'TECH3' and self:GetBlueprint().Categories == 'FACTORY' then
             return 1
         else
             return 0.8
@@ -552,8 +549,7 @@ StructureHelperfunctions = Class() {
 
     -- For final boom final scale tweaking, for cyb
     GetFinalBoomMultBasedOffFactionCybT1Fac = function(self)
-        local Faction = self:GetFaction()
-        if Faction == 'cybran' and self.TechLevel == 'TECH1' then
+        if self.factionCategory == 'CYBRAN' and self.TechLevel == 'TECH1' then
             return 0.75
         else
             return 1
