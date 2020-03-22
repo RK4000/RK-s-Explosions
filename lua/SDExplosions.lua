@@ -72,7 +72,7 @@ function QuatFromRotation(rotation, x, y, z)
     return qx, qy, qz, qw
 end
 
-FlashTransparent = {
+local FlashTransparent = {
     '/mods/rks_explosions/textures/particles/glow_03_transparent.dds'
 }
 
@@ -98,7 +98,7 @@ function CreateFlashOffset(obj, bone, scale, army)
     CreateLightParticle(obj, bone, army, GetRandomFloat(6,10) * scale, GetRandomFloat(10.5, 14.5), 'glow_03', 'ramp_flare_02')
 end
 
-ScorchDecalTexturesShortLasting = {
+local ScorchDecalTexturesShortLasting = {
     'scorch_006_albedo',
     'scorch_007_albedo',
 }
@@ -108,7 +108,7 @@ function CreateScorchMarkDecalRKSExpAeon(obj, scale, army)
     CreateDecal(obj:GetPosition(),GetRandomFloat(0,2*math.pi),ScorchDecalTexturesAeon[GetRandomInt(1,table.getn(ScorchDecalTexturesAeon))], '', 'Albedo', scale*2, scale*2, 1000000000, 1000000000, army)
 end
 
-ScorchDecalTexturesAeon = {
+local ScorchDecalTexturesAeon = {
     '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_aeon.dds',
 }
 
@@ -117,7 +117,7 @@ function CreateScorchMarkDecalRKSExpCyb(obj, scale, army)
     CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi),ScorchDecalTexturesCyb[GetRandomInt(1, table.getn(ScorchDecalTexturesCyb))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
-ScorchDecalTexturesCyb = {
+local ScorchDecalTexturesCyb = {
     '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_cyb.dds',
 }
 
@@ -126,7 +126,7 @@ function CreateScorchMarkDecalRKSExpSera(obj, scale, army)
     CreateDecal(obj:GetPosition(),GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesSera[GetRandomInt(1, table.getn(ScorchDecalTexturesSera))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
-ScorchDecalTexturesSera = {
+local ScorchDecalTexturesSera = {
     '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_sera.dds',
 }
 
