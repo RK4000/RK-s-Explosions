@@ -7,11 +7,7 @@
 --#**
 --#**  Copyright © 2014 RK Powered Games, Inc.  All rights reserved.
 --#****************************************************************************
-TableCat = import('/lua/utilities.lua').TableCat
-EmtBpPath = '/mods/rks_explosions/effects/emitters/'
-EmtBpPathAlt = '/mods/rks_explosions/effects/emitters/'
-EmitterTempEmtBpPath = '/mods/rks_explosions/effects/emitters/temp/'
-ModPath = '/mods/rks_explosions/effects/emitters/'
+local ModPath = '/mods/rks_explosions/effects/emitters/'
 
 -- WEAPON EXPLOSIONS
 T2RocketBotMissileHitGround = {
@@ -106,8 +102,8 @@ ExplosionTECH1uef = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    EmtBpPath .. 'SDantimatter_ring_01_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_02_emit.bp',
+    ModPath .. 'SDantimatter_ring_01_emit.bp',
+    ModPath .. 'SDantimatter_ring_02_emit.bp',
     ModPath .. 'small_UEF_test_fire.bp',
 }
 
@@ -118,8 +114,8 @@ ExplosionTECH2uef = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_01_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_02_emit.bp',
+    ModPath .. 'SDantimatter_ring_01_emit.bp',
+    ModPath .. 'SDantimatter_ring_02_emit.bp',
     --ModPath .. 'UEF_Outward_Spark_Small.bp',
     ModPath .. 'small_UEF_test_fire.bp',
 }
@@ -131,9 +127,9 @@ ExplosionTECH3uef = {
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
-    EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
     ModPath .. 'UEF_Outward_Spark.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
 }
@@ -255,7 +251,7 @@ AirExplosionTECH1uef = {
     ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    --EmtBpPath .. 'SDantimatter_ring_01_air.bp',
+    --ModPath .. 'SDantimatter_ring_01_air.bp',
 }
 
 -- T2 UEF Air Unit Boom
@@ -263,7 +259,7 @@ AirExplosionTECH2uef = {
     ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
 }
 
 -- T3 UEF Air Unit Boom
@@ -271,7 +267,7 @@ AirExplosionTECH3uef = {
     --ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
-    EmtBpPath .. 'SDantimatter_ring_01_air.bp',
+    ModPath .. 'SDantimatter_ring_01_air.bp',
     ModPath .. 'UEF_Outward_Spark_Air.bp', 
 }
 
@@ -385,7 +381,7 @@ BuildingExplosionTECH1uef = {
     ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --EmtBpPath .. 'SDantimatter_ring_01_building.bp',
+    --ModPath .. 'SDantimatter_ring_01_building.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
 }
 
@@ -394,9 +390,9 @@ BuildingExplosionTECH2uef = {
     ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --EmtBpPath .. 'SDantimatter_ring_01_building.bp',
+    --ModPath .. 'SDantimatter_ring_01_building.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
 }
 
 -- T3 UEF Building Unit Boom
@@ -404,10 +400,10 @@ BuildingExplosionTECH3uef = {
     ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --EmtBpPath .. 'SDantimatter_ring_01_building.bp',
+    --ModPath .. 'SDantimatter_ring_01_building.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
     ModPath .. 'UEF_Outward_Spark_Building.bp',
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
     
 }
 
@@ -608,8 +604,8 @@ uefShipSubExplTECH1 = {
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
 }
 
@@ -619,10 +615,10 @@ uefShipSubExplTECH2 = {
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
+    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
 }
 
 -- UEF T3 Ship Sub-Boom
@@ -631,11 +627,11 @@ uefShipSubExplTECH3 = {
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
+    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
+    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
     ModPath .. 'small_UEF_test_fire_T3.bp',
     ModPath .. 'UEF_Outward_Spark_Building.bp', 
-    EmtBpPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom
@@ -818,8 +814,8 @@ uefSubExplosionAboveWater = {
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    EmtBpPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    EmtBpPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
+    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
+    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
     ModPath .. 'small_UEF_test_fire_T3.bp', 
 }
 
@@ -1354,8 +1350,8 @@ AhwassaFlamingDebrisTrail  = {
     --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
 DebrisSplashyWater = {
-    --EmtBpPath .. 'Splashy_Ripples_ring_01_emit.bp',
-    --EmtBpPath .. 'Splashy_Plume_01_emit.bp',
+    --ModPath .. 'Splashy_Ripples_ring_01_emit.bp',
+    --ModPath .. 'Splashy_Plume_01_emit.bp',
 }
 SRDebrisImpact = {
     ModPath .. 'CybT2_smoke.bp',
