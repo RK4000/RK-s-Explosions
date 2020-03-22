@@ -66,6 +66,11 @@ Unit = Class(oldUnit) {
         end
     end,
 
+    GetUnitVolume = function(unit)
+        local x, y, z = self:GetUnitSizes()
+        return x * y * z
+    end,
+
     GetFaction = function(self)
         return string.lower(self.factionCategory)
     end,
