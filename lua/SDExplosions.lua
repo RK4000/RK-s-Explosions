@@ -41,16 +41,6 @@ function GetEffectTemplateFile(toggle)
 end
 
 ----------------------------------------NECCESARY STUFF----------------------------------------
-function GetUnitSizes(unit)
-    local bp = unit:GetBlueprint()
-    return bp.SizeX or 0, bp.SizeY or 0, bp.SizeZ or 0
-end
-
-function GetUnitVolume(unit)
-    local x, y, z = GetUnitSizes(unit)
-    return x * y * z
-end
-
 function GetAverageBoundingXZRadius(unit)
     local bp = unit:GetBlueprint()
     return ((bp.SizeX or 0 + bp.SizeZ or 0) * 0.5)

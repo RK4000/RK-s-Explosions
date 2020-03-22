@@ -337,8 +337,7 @@ SeaUnit = Class(oldSeaUnit) {
 
    SinkingThread = function(self) -- Well i guess we need to sink too, while exploding... fine with me! :D
         local i = 8 -- Initializing the above surface counter
-        local sx, sy, sz = self:GetUnitSizes()
-        local vol = sx * sy * sz
+        local vol = self:GetUnitVolume()
 
         WaitSeconds(3)
         while true do
@@ -414,8 +413,7 @@ SubUnit = Class(oldSubUnit) {
 
     ExplosionThread = function(self)
         local d = 0 -- Delay offset after surface explosions cease
-        local sx, sy, sz = self:GetUnitSizes()
-        local vol = sx * sy * sz
+        local vol = self:GetUnitVolume()
 
         local volmin = 1.5
         local volmax = 15
