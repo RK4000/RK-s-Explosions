@@ -118,10 +118,10 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local SDFactionalShipSubExplosion = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
-        local NFactionalShipSubExplosion = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NFactionalShipSubExplosionUW = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
@@ -144,10 +144,10 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
-        local SDFactionalShipSubExplosion = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
-        local NFactionalShipSubExplosion = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NFactionalShipSubExplosionUW = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
@@ -398,11 +398,11 @@ AircraftCarrier = Class(SeaUnit, BaseTransport) {
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
     OnKilled = function(self, instigator, type, overkillRatio)
-        local SDFactionalSubBoomAboveWater = SDEffectTemplate[self.factionCategory ..'SubExplosionAboveWater']
-        local SDFactionalSubBoomUnderWater = SDEffectTemplate[self.factionCategory ..'SubExplosionUnderWater']
+        local SDFactionalSubBoomAboveWater = SDEffectTemplate['SubExplosionAboveWater' .. self.factionCategory]
+        local SDFactionalSubBoomUnderWater = SDEffectTemplate['SubExplosionUnderWater' .. self.factionCategory]
 
-        local NFactionalSubBoomAboveWater = NEffectTemplate[self.factionCategory ..'SubExplosionAboveWater']
-        local NFactionalSubBoomUnderWater = NEffectTemplate[self.factionCategory ..'SubExplosionUnderWater']
+        local NFactionalSubBoomAboveWater = NEffectTemplate['SubExplosionAboveWater' .. self.factionCategory]
+        local NFactionalSubBoomUnderWater = NEffectTemplate['SubExplosionUnderWater' .. self.factionCategory]
 
         self:DestroyIdleEffects()
 

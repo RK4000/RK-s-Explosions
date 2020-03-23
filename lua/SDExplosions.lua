@@ -93,14 +93,18 @@ local ScorchDecalTexturesShortLasting = {
     'scorch_007_albedo',
 }
 
+local ScorchDecalTexturesAeon = {
+    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_aeon.dds',
+}
+
 function CreateScorchMarkDecalRKSExpAeon(obj, scale, army)
     local pos = obj:GetPosition()
     CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesShortLasting[GetRandomInt(1, table.getn(ScorchDecalTexturesShortLasting))], '', 'Albedo', scale, scale, 10000000, 500, army)
     CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesAeon[GetRandomInt(1, table.getn(ScorchDecalTexturesAeon))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
-local ScorchDecalTexturesAeon = {
-    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_aeon.dds',
+local ScorchDecalTexturesCyb = {
+    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_cyb.dds',
 }
 
 function CreateScorchMarkDecalRKSExpCyb(obj, scale, army)
@@ -109,8 +113,8 @@ function CreateScorchMarkDecalRKSExpCyb(obj, scale, army)
     CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesCyb[GetRandomInt(1, table.getn(ScorchDecalTexturesCyb))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
-local ScorchDecalTexturesCyb = {
-    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_cyb.dds',
+local ScorchDecalTexturesSera = {
+    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_sera.dds',
 }
 
 function CreateScorchMarkDecalRKSExpSera(obj, scale, army)
@@ -119,18 +123,14 @@ function CreateScorchMarkDecalRKSExpSera(obj, scale, army)
     CreateDecal(pos, GetRandomFloat(0, 2 * math.pi), ScorchDecalTexturesSera[GetRandomInt(1, table.getn(ScorchDecalTexturesSera))], '', 'Albedo', scale * 2, scale * 2, 1000000000, 1000000000, army)
 end
 
-local ScorchDecalTexturesSera = {
-    '/mods/rks_explosions/env/common/decals/Hi_Res_Scorch_Black.dds', -- '/mods/rks_explosions/env/common/decals/scorch_rk_01_sera.dds',
-}
-
 ----------------------------------------(end of) NECCESARY STUFF--------------------------------------
 
 ---------------------------------
 -- Air/Land Unit explosion thread
 ---------------------------------
 function AddFalldownTrail(obj)
-    local SDFallDownTrail = SDEffectTemplate[obj.TechLevel .. obj.factionCategory .. 'FallDownTrail']
-    local NFallDownTrail = NEffectTemplate[obj.TechLevel .. obj.factionCategory .. 'FallDownTrail']
+    local SDFallDownTrail = SDEffectTemplate['FallDownTrail' .. obj.TechLevel .. obj.factionCategory]
+    local NFallDownTrail = NEffectTemplate['FallDownTrail' .. obj.TechLevel .. obj.factionCategory]
 
     if toggle == 1 then
         obj.CreateEffects(obj, SDFallDownTrail, obj.Army, (obj.TechLevelMultiplier * GlobalExplosionScaleValue/1.85)) -- Custom falling-down trail
@@ -140,11 +140,11 @@ function AddFalldownTrail(obj)
 end
 
 function ExplosionAirMidAir(obj)
-    local SDExplosion = SDEffectTemplate['AirExplosion'.. obj.TechLevel ..obj.factionCategory]
-    local SDFallDownTrail = SDEffectTemplate[obj.TechLevel.. obj.factionCategory..'FallDownTrail']
+    local SDExplosion = SDEffectTemplate['AirExplosion' .. obj.TechLevel .. obj.factionCategory]
+    local SDFallDownTrail = SDEffectTemplate['FallDownTrail' .. obj.TechLevel .. obj.factionCategory]
 
-    local NExplosion = NEffectTemplate['AirExplosion'.. obj.TechLevel ..obj.factionCategory]
-    local NFallDownTrail = NEffectTemplate[obj.TechLevel.. obj.factionCategory..'FallDownTrail']
+    local NExplosion = NEffectTemplate['AirExplosion'.. obj.TechLevel .. obj.factionCategory]
+    local NFallDownTrail = NEffectTemplate['FallDownTrail' .. obj.TechLevel .. obj.factionCategory]
 
     local NumberForShake = (GetRandomFloat(obj.TechLevelMultiplier, obj.TechLevelMultiplier + 1))/4.5
     obj:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 1.375)
