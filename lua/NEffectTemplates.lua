@@ -370,40 +370,40 @@ BuildingExplosionTECH3SERAPHIM = {
 -- FALLDOWN FX
 
 -- T1 UEF Plane Fall Down
-TECH1UEFFallDownTrail = {}
+FallDownTrailTECH1UEF = {}
 
 -- T2 UEF Plane Fall Down
-TECH2UEFFallDownTrail = {}
+FallDownTrailTECH2UEF = {}
 
 -- T3 UEF Plane Fall Down
-TECH3UEFFallDownTrail = {}
+FallDownTrailTECH3UEF = {}
 
 -- T1 Cybran Plane Fall Down
-TECH1CYBRANFallDownTrail = {}
+FallDownTrailTECH1CYBRAN = {}
 
 -- T2 Cybran Plane Fall Down
-TECH2CYBRANFallDownTrail = {}
+FallDownTrailTECH2CYBRAN = {}
 
 -- T3 Cybran Plane Fall Down
-TECH3CYBRANFallDownTrail = {}
+FallDownTrailTECH3CYBRAN = {}
 
 -- T1 Aeon Plane Fall Down
-TECH1AEONFallDownTrail = {}
+FallDownTrailTECH1AEON = {}
 
 -- T2 Aeon Plane Fall Down
-TECH2AEONFallDownTrail = {}
+FallDownTrailTECH2AEON = {}
 
 -- T3 Aeon Plane Fall Down
-TECH3AEONFallDownTrail = {}
+FallDownTrailTECH3AEON = {}
 
 -- T1 Sera Plane Fall Down
-TECH1SERAPHIMFallDownTrail = {}
+FallDownTrailTECH1SERAPHIM = {}
 
 -- T2 Sera Plane Fall Down
-TECH2SERAPHIMFallDownTrail = {}
+FallDownTrailTECH2SERAPHIM = {}
 
 -- T3 Sera Plane Fall Down
-TECH3SERAPHIMFallDownTrail = {}
+FallDownTrailTECH3SERAPHIM = {}
 
 
 
@@ -630,84 +630,84 @@ BigAirUnitFireSmokeTECH3SERAPHIM = {
 -- Ship Sub-Booms 
 
 -- UEF T1 Ship Sub-Boom
-UEFShipSubExplTECH1 = {
+ShipSubExplTECH1UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',   
 }
 
 -- UEF T2 Ship Sub-Boom
-UEFShipSubExplTECH2 = {
+ShipSubExplTECH2UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- UEF T3 Ship Sub-Boom
-UEFShipSubExplTECH3 = {
+ShipSubExplTECH3UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom
-CYBRANShipSubExplTECH1 = {
+ShipSubExplTECH1CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T2 Ship Sub-Boom
-CYBRANShipSubExplTECH2 = {
+ShipSubExplTECH2CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T3 Ship Sub-Boom
-CYBRANShipSubExplTECH3 = {
+ShipSubExplTECH3CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T1 Ship Sub-Boom
-AEONShipSubExplTECH1 = {
+ShipSubExplTECH1AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T2 Ship Sub-Boom
-AEONShipSubExplTECH2 = {
+ShipSubExplTECH2AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T3 Ship Sub-Boom
-AEONShipSubExplTECH3 = {
+ShipSubExplTECH3AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T1 Ship Sub-Boom
-SERAPHIMShipSubExplTECH1 = {
+ShipSubExplTECH1SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T2 Ship Sub-Boom
-SERAPHIMShipSubExplTECH2 = {
+ShipSubExplTECH2SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T3 Ship Sub-Boom
-SERAPHIMShipSubExplTECH3 = {
+ShipSubExplTECH3SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -719,64 +719,64 @@ SERAPHIMShipSubExplTECH3 = {
 -- Ship Sub-Booms (Below water)
 
 -- UEF T1 Ship Sub-Boom (Underwater)
-UEFShipSubExplTECH1Underwater = {
+ShipSubExplUnderwaterTECH1UEF = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- UEF T2 Ship Sub-Boom (Underwater)
-UEFShipSubExplTECH2Underwater = {
+ShipSubExplUnderwaterTECH2UEF = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- UEF T3 Ship Sub-Boom (Underwater)
-UEFShipSubExplTECH3Underwater = {
+ShipSubExplUnderwaterTECH3UEF = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom (Underwater)
-CYBRANShipSubExplTECH1Underwater = {
+ShipSubExplUnderwaterTECH1CYBRAN = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Cyb T2 Ship Sub-Boom (Underwater)
-CYBRANShipSubExplTECH2Underwater = {
+ShipSubExplUnderwaterTECH2CYBRAN = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Cyb T3 Ship Sub-Boom (Underwater)
-CYBRANShipSubExplTECH3Underwater = {
+ShipSubExplUnderwaterTECH3CYBRAN = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Aeon T1 Ship Sub-Boom (Underwater)
-AEONShipSubExplTECH1Underwater = {
+ShipSubExplUnderwaterTECH1AEON = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Aeon T2 Ship Sub-Boom (Underwater)
-AEONShipSubExplTECH2Underwater = {
+ShipSubExplUnderwaterTECH2AEON = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Aeon T3 Ship Sub-Boom (Underwater)
-AEONShipSubExplTECH3Underwater = {
+ShipSubExplUnderwaterTECH3AEON = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Sera T1 Ship Sub-Boom (Underwater)
-SERAPHIMShipSubExplTECH1Underwater = {
+ShipSubExplUnderwaterTECH1SERAPHIM = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
 
 -- Sera T2 Ship Sub-Boom (Underwater)
-SERAPHIMShipSubExplTECH2Underwater = {
+ShipSubExplUnderwaterTECH2SERAPHIM = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
 
 -- Sera T3 Ship Sub-Boom (Underwater)
-SERAPHIMShipSubExplTECH3Underwater = {
+ShipSubExplUnderwaterTECH3SERAPHIM = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
@@ -787,28 +787,28 @@ SERAPHIMShipSubExplTECH3Underwater = {
 -- Sub Booms (surface)
 
 -- UEF Sub Boom (Surface)
-UEFSubExplosionAboveWater = {
+SubExplosionAboveWaterUEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cybran Sub Boom (Surface)
-CYBRANSubExplosionAboveWater = {
+SubExplosionAboveWaterCYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon Sub Boom (Surface)
-AEONSubExplosionAboveWater = {
+SubExplosionAboveWaterAEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera Sub Boom (Surface)
-SERAPHIMSubExplosionAboveWater = {
+SubExplosionAboveWaterSERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -820,25 +820,25 @@ SERAPHIMSubExplosionAboveWater = {
 -- Sub Booms (Underwater)
 
 -- UEF Sub Boom (Underwater)
-UEFSubExplosionUnderWater = {
+SubExplosionUnderWaterUEF = {
     ModPathrk .. 'UEF_Underwater_Fire_T1.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Cybran Sub Boom (Underwater)
-CYBRANSubExplosionUnderWater = {
+SubExplosionUnderWaterCYBRAN = {
     ModPathrk  .. 'CybT3_Underwater_charge.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Aeon Sub Boom (Underwater)
-AEONSubExplosionUnderWater = {
+SubExplosionUnderWaterAEON = {
     ModPathrk  .. 'AeonT3_aura_underwater.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Sera Sub Boom (Underwater)
-SERAPHIMSubExplosionUnderWater = {
+SubExplosionUnderWaterSERAPHIM = {
     ModPathrk  .. 'Seraphim_underwater_spark_T3.bp',
     ModPathrk  .. 'Sera_T3_chargering_underwater.bp',
 }
