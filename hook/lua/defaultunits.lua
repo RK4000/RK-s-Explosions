@@ -63,6 +63,40 @@ AirUnit = Class(oldAirUnit) {
     end,
 }
 
+local oldLandUnit = LandUnit
+LandUnit = Class(oldLandUnit) {
+    OnCreate = function(self)
+        oldLandUnit.OnCreate(self)
+
+        local Faction = self:GetFaction()
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..Faction]
+
+        -- Land unit factional-specific damage effects and smoke
+        self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
+        self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+        self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
+    end,
+}
+
+local oldWalkingLandUnit = WalkingLandUnit
+WalkingLandUnit = Class(oldWalkingLandUnit) {
+    OnCreate = function(self)
+        oldWalkingLandUnit.OnCreate(self)
+
+        local Faction = self:GetFaction()
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..Faction]
+
+        -- Land unit factional-specific damage effects and smoke
+        self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
+        self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+        self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
+    end,
+}
+
 local ShipTechLevelMultiplierTbl = {
     ['TECH1'] = 1.5665,
     ['TECH2'] = 1.9,
