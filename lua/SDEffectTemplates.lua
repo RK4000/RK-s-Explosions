@@ -1045,10 +1045,6 @@ ExplosionEXPGCFinalAeon = {
 }
 -- Aeon GC Core Breach
 GC_Core_Breach02 = {
-    --ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_01.bp',
-    --ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_02.bp',
-    --ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_03.bp',
-    --ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_04.bp',
     ModPath .. 'Aeon_GC_Reactor_Breach_Critical_AuraGlow.bp',
 }
 -- Aeon GC Smoking Limbs
@@ -1059,7 +1055,6 @@ GC_Body_Part_Damage = {
 }
 -- Aeon CZAR Stuff
 CZAR_Initial_Center_Explosion = {
-    --ModPath .. 'Very_Large_test_sonic.bp',
     ModPath .. 'AuraWaveT4_Big_CZAR.bp',
 }
 CZARShockwaveEdge = {
