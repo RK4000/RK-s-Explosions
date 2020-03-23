@@ -103,84 +103,84 @@ AddNothing = {}
 -- LAND BOOMS 
 
 -- T1 UEF Unit Boom
-ExplosionTECH1uef = {
+ExplosionTECH1UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',    
 }
 
 -- T2 UEF Unit Boom
-ExplosionTECH2uef = {
+ExplosionTECH2UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 UEF Unit Boom
-ExplosionTECH3uef = {
+ExplosionTECH3UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Cyb Unit Boom
-ExplosionTECH1cybran = {
+ExplosionTECH1CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Cyb Unit Boom
-ExplosionTECH2cybran = {
+ExplosionTECH2CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Cyb Unit Boom
-ExplosionTECH3cybran = {
+ExplosionTECH3CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Aeon Unit Boom
-ExplosionTECH1aeon = {
+ExplosionTECH1AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Aeon Unit Boom
-ExplosionTECH2aeon = {
+ExplosionTECH2AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Aeon Unit Boom
-ExplosionTECH3aeon = {
+ExplosionTECH3AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Sera Unit Boom
-ExplosionTECH1seraphim = {
+ExplosionTECH1SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Sera Unit Boom
-ExplosionTECH2seraphim = {
+ExplosionTECH2SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Sera Unit Boom
-ExplosionTECH3seraphim = {
+ExplosionTECH3SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -192,84 +192,84 @@ ExplosionTECH3seraphim = {
 -- AIR BOOMS 
 
 -- T1 UEF Air Unit Boom
-AirExplosionTECH1uef = {         
+AirExplosionTECH1UEF = {         
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 UEF Air Unit Boom
-AirExplosionTECH2uef = {
+AirExplosionTECH2UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 UEF Air Unit Boom
-AirExplosionTECH3uef = {
+AirExplosionTECH3UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Cyb Air Unit Boom
-AirExplosionTECH1cybran = {
+AirExplosionTECH1CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Cyb Air Unit Boom
-AirExplosionTECH2cybran = {
+AirExplosionTECH2CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Cyb Air Unit Boom
-AirExplosionTECH3cybran = {
+AirExplosionTECH3CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Aeon Air Unit Boom
-AirExplosionTECH1aeon = {
+AirExplosionTECH1AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Aeon Air Unit Boom
-AirExplosionTECH2aeon = {
+AirExplosionTECH2AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Aeon Air Unit Boom
-AirExplosionTECH3aeon = {
+AirExplosionTECH3AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Sera Air Unit Boom
-AirExplosionTECH1seraphim = {
+AirExplosionTECH1SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Sera Air Unit Boom
-AirExplosionTECH2seraphim = {
+AirExplosionTECH2SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Sera Air Unit Boom
-AirExplosionTECH3seraphim = {
+AirExplosionTECH3SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -281,84 +281,84 @@ AirExplosionTECH3seraphim = {
 -- BUILDING BOOMS 
 
 -- T1 UEF Building Unit Boom
-BuildingExplosionTECH1uef = {         
+BuildingExplosionTECH1UEF = {         
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',   
 }
 
 -- T2 UEF Building Unit Boom
-BuildingExplosionTECH2uef = {
+BuildingExplosionTECH2UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 UEF Building Unit Boom
-BuildingExplosionTECH3uef = {
+BuildingExplosionTECH3UEF = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Cyb Building Unit Boom
-BuildingExplosionTECH1cybran = {
+BuildingExplosionTECH1CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Cyb Building Unit Boom
-BuildingExplosionTECH2cybran = {
+BuildingExplosionTECH2CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Cyb Building Unit Boom
-BuildingExplosionTECH3cybran = {
+BuildingExplosionTECH3CYBRAN = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Aeon Building Unit Boom
-BuildingExplosionTECH1aeon = {
+BuildingExplosionTECH1AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Aeon Building Unit Boom
-BuildingExplosionTECH2aeon = {
+BuildingExplosionTECH2AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Aeon Building Unit Boom
-BuildingExplosionTECH3aeon = {
+BuildingExplosionTECH3AEON = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T1 Sera Building Unit Boom
-BuildingExplosionTECH1seraphim = {
+BuildingExplosionTECH1SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 Sera Building Unit Boom
-BuildingExplosionTECH2seraphim = {
+BuildingExplosionTECH2SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 Sera Building Unit Boom
-BuildingExplosionTECH3seraphim = {
+BuildingExplosionTECH3SERAPHIM = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -370,40 +370,40 @@ BuildingExplosionTECH3seraphim = {
 -- FALLDOWN FX
 
 -- T1 UEF Plane Fall Down
-TECH1uefFallDownTrail = {}
+TECH1UEFFallDownTrail = {}
 
 -- T2 UEF Plane Fall Down
-TECH2uefFallDownTrail = {}
+TECH2UEFFallDownTrail = {}
 
 -- T3 UEF Plane Fall Down
-TECH3uefFallDownTrail = {}
+TECH3UEFFallDownTrail = {}
 
 -- T1 Cybran Plane Fall Down
-TECH1cybranFallDownTrail = {}
+TECH1CYBRANFallDownTrail = {}
 
 -- T2 Cybran Plane Fall Down
-TECH2cybranFallDownTrail = {}
+TECH2CYBRANFallDownTrail = {}
 
 -- T3 Cybran Plane Fall Down
-TECH3cybranFallDownTrail = {}
+TECH3CYBRANFallDownTrail = {}
 
 -- T1 Aeon Plane Fall Down
-TECH1aeonFallDownTrail = {}
+TECH1AEONFallDownTrail = {}
 
 -- T2 Aeon Plane Fall Down
-TECH2aeonFallDownTrail = {}
+TECH2AEONFallDownTrail = {}
 
 -- T3 Aeon Plane Fall Down
-TECH3aeonFallDownTrail = {}
+TECH3AEONFallDownTrail = {}
 
 -- T1 Sera Plane Fall Down
-TECH1seraphimFallDownTrail = {}
+TECH1SERAPHIMFallDownTrail = {}
 
 -- T2 Sera Plane Fall Down
-TECH2seraphimFallDownTrail = {}
+TECH2SERAPHIMFallDownTrail = {}
 
 -- T3 Sera Plane Fall Down
-TECH3seraphimFallDownTrail = {}
+TECH3SERAPHIMFallDownTrail = {}
 
 
 
@@ -411,62 +411,62 @@ TECH3seraphimFallDownTrail = {}
 -- LIGHT AIR DMG FX 
 
 -- T1 UEF Plane Light DMG
-SmallAirUnitSmokeTECH1uef = { 
+SmallAirUnitSmokeTECH1UEF = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 UEF Plane Light DMG
-SmallAirUnitSmokeTECH2uef = { 
+SmallAirUnitSmokeTECH2UEF = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 UEF Plane Light DMG
-SmallAirUnitSmokeTECH3uef = { 
+SmallAirUnitSmokeTECH3UEF = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH1cybran = { 
+SmallAirUnitSmokeTECH1CYBRAN = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH2cybran = { 
+SmallAirUnitSmokeTECH2CYBRAN = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Cybran Plane Light DMG
-SmallAirUnitSmokeTECH3cybran = { 
+SmallAirUnitSmokeTECH3CYBRAN = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH1aeon = { 
+SmallAirUnitSmokeTECH1AEON = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH2aeon = { 
+SmallAirUnitSmokeTECH2AEON = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Aeon Plane Light DMG
-SmallAirUnitSmokeTECH3aeon = { 
+SmallAirUnitSmokeTECH3AEON = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Sera Plane Light DMG
-SmallAirUnitSmokeTECH1seraphim = { 
+SmallAirUnitSmokeTECH1SERAPHIM = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Sera Plane Light DMG
-SmallAirUnitSmokeTECH2seraphim = { 
+SmallAirUnitSmokeTECH2SERAPHIM = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Sera Plane Light DMG
-SmallAirUnitSmokeTECH3seraphim = { 
+SmallAirUnitSmokeTECH3SERAPHIM = { 
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
@@ -476,73 +476,73 @@ SmallAirUnitSmokeTECH3seraphim = {
 -- MED AIR DMG FX 
 
 -- T1 UEF Plane Med DMG
-SmallAirUnitFireTECH1uef = { 
+SmallAirUnitFireTECH1UEF = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 UEF Plane Med DMG
-SmallAirUnitFireTECH2uef = { 
+SmallAirUnitFireTECH2UEF = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 UEF Plane Med DMG
-SmallAirUnitFireTECH3uef = { 
+SmallAirUnitFireTECH3UEF = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Cybran Plane Med DMG
-SmallAirUnitFireTECH1cybran = { 
+SmallAirUnitFireTECH1CYBRAN = { 
     ModPath .. 'AircraftDamageFireSmall01.bp',
     ModPath .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Cybran Plane Med DMG
-SmallAirUnitFireTECH2cybran = { 
+SmallAirUnitFireTECH2CYBRAN = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Cybran Plane Med DMG
-SmallAirUnitFireTECH3cybran = { 
+SmallAirUnitFireTECH3CYBRAN = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Aeon Plane Med DMG
-SmallAirUnitFireTECH1aeon = { 
+SmallAirUnitFireTECH1AEON = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Aeon Plane Med DMG
-SmallAirUnitFireTECH2aeon = { 
+SmallAirUnitFireTECH2AEON = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Aeon Plane Med DMG
-SmallAirUnitFireTECH3aeon = { 
+SmallAirUnitFireTECH3AEON = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T1 Sera Plane Med DMG
-SmallAirUnitFireTECH1seraphim = { 
+SmallAirUnitFireTECH1SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T2 Sera Plane Med DMG
-SmallAirUnitFireTECH2seraphim = { 
+SmallAirUnitFireTECH2SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
 
 -- T3 Sera Plane Med DMG
-SmallAirUnitFireTECH3seraphim = { 
+SmallAirUnitFireTECH3SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireSmall01.bp',
     ModPathrk .. 'AircraftDamageSmoke01.bp',
 }
@@ -553,73 +553,73 @@ SmallAirUnitFireTECH3seraphim = {
 -- HVY AIR DMG FX 
 
 -- T1 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH1uef = { 
+BigAirUnitFireSmokeTECH1UEF = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T2 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH2uef = { 
+BigAirUnitFireSmokeTECH2UEF = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T3 UEF Plane Hvy DMG
-BigAirUnitFireSmokeTECH3uef = { 
+BigAirUnitFireSmokeTECH3UEF = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T1 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH1cybran = { 
+BigAirUnitFireSmokeTECH1CYBRAN = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T2 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH2cybran = { 
+BigAirUnitFireSmokeTECH2CYBRAN = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T3 Cybran Plane Hvy DMG
-BigAirUnitFireSmokeTECH3cybran = { 
+BigAirUnitFireSmokeTECH3CYBRAN = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T1 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH1aeon = { 
+BigAirUnitFireSmokeTECH1AEON = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T2 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH2aeon = { 
+BigAirUnitFireSmokeTECH2AEON = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T3 Aeon Plane Hvy DMG
-BigAirUnitFireSmokeTECH3aeon = { 
+BigAirUnitFireSmokeTECH3AEON = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T1 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH1seraphim = { 
+BigAirUnitFireSmokeTECH1SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T2 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH2seraphim = { 
+BigAirUnitFireSmokeTECH2SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
 
 -- T3 Sera Plane Hvy DMG
-BigAirUnitFireSmokeTECH3seraphim = { 
+BigAirUnitFireSmokeTECH3SERAPHIM = { 
     ModPathrk .. 'AircraftDamageFireBig01.bp',
     ModPathrk .. 'AircraftDamageSmokeBig01.bp',
 }
@@ -630,84 +630,84 @@ BigAirUnitFireSmokeTECH3seraphim = {
 -- Ship Sub-Booms 
 
 -- UEF T1 Ship Sub-Boom
-uefShipSubExplTECH1 = {
+UEFShipSubExplTECH1 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',   
 }
 
 -- UEF T2 Ship Sub-Boom
-uefShipSubExplTECH2 = {
+UEFShipSubExplTECH2 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- UEF T3 Ship Sub-Boom
-uefShipSubExplTECH3 = {
+UEFShipSubExplTECH3 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom
-cybranShipSubExplTECH1 = {
+CYBRANShipSubExplTECH1 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T2 Ship Sub-Boom
-cybranShipSubExplTECH2 = {
+CYBRANShipSubExplTECH2 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cyb T3 Ship Sub-Boom
-cybranShipSubExplTECH3 = {
+CYBRANShipSubExplTECH3 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T1 Ship Sub-Boom
-aeonShipSubExplTECH1 = {
+AEONShipSubExplTECH1 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T2 Ship Sub-Boom
-aeonShipSubExplTECH2 = {
+AEONShipSubExplTECH2 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon T3 Ship Sub-Boom
-aeonShipSubExplTECH3 = {
+AEONShipSubExplTECH3 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T1 Ship Sub-Boom
-seraphimShipSubExplTECH1 = {
+SERAPHIMShipSubExplTECH1 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T2 Ship Sub-Boom
-seraphimShipSubExplTECH2 = {
+SERAPHIMShipSubExplTECH2 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera T3 Ship Sub-Boom
-seraphimShipSubExplTECH3 = {
+SERAPHIMShipSubExplTECH3 = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -719,64 +719,64 @@ seraphimShipSubExplTECH3 = {
 -- Ship Sub-Booms (Below water)
 
 -- UEF T1 Ship Sub-Boom (Underwater)
-uefShipSubExplTECH1Underwater = {
+UEFShipSubExplTECH1Underwater = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- UEF T2 Ship Sub-Boom (Underwater)
-uefShipSubExplTECH2Underwater = {
+UEFShipSubExplTECH2Underwater = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- UEF T3 Ship Sub-Boom (Underwater)
-uefShipSubExplTECH3Underwater = {
+UEFShipSubExplTECH3Underwater = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom (Underwater)
-cybranShipSubExplTECH1Underwater = {
+CYBRANShipSubExplTECH1Underwater = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Cyb T2 Ship Sub-Boom (Underwater)
-cybranShipSubExplTECH2Underwater = {
+CYBRANShipSubExplTECH2Underwater = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Cyb T3 Ship Sub-Boom (Underwater)
-cybranShipSubExplTECH3Underwater = {
+CYBRANShipSubExplTECH3Underwater = {
     ModPath .. 'CybT3_Underwater_charge.bp',
 }
 
 -- Aeon T1 Ship Sub-Boom (Underwater)
-aeonShipSubExplTECH1Underwater = {
+AEONShipSubExplTECH1Underwater = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Aeon T2 Ship Sub-Boom (Underwater)
-aeonShipSubExplTECH2Underwater = {
+AEONShipSubExplTECH2Underwater = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Aeon T3 Ship Sub-Boom (Underwater)
-aeonShipSubExplTECH3Underwater = {
+AEONShipSubExplTECH3Underwater = {
     ModPath .. 'AeonT3_aura_underwater.bp',
 }
 
 -- Sera T1 Ship Sub-Boom (Underwater)
-seraphimShipSubExplTECH1Underwater = {
+SERAPHIMShipSubExplTECH1Underwater = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
 
 -- Sera T2 Ship Sub-Boom (Underwater)
-seraphimShipSubExplTECH2Underwater = {
+SERAPHIMShipSubExplTECH2Underwater = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
 
 -- Sera T3 Ship Sub-Boom (Underwater)
-seraphimShipSubExplTECH3Underwater = {
+SERAPHIMShipSubExplTECH3Underwater = {
     ModPath .. 'Seraphim_underwater_spark_T3.bp',
     ModPath .. 'Sera_T3_chargering_underwater.bp',
 }
@@ -787,28 +787,28 @@ seraphimShipSubExplTECH3Underwater = {
 -- Sub Booms (surface)
 
 -- UEF Sub Boom (Surface)
-uefSubExplosionAboveWater = {
+UEFSubExplosionAboveWater = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Cybran Sub Boom (Surface)
-cybranSubExplosionAboveWater = {
+CYBRANSubExplosionAboveWater = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Aeon Sub Boom (Surface)
-aeonSubExplosionAboveWater = {
+AEONSubExplosionAboveWater = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
 }
 
 -- Sera Sub Boom (Surface)
-seraphimSubExplosionAboveWater = {
+SERAPHIMSubExplosionAboveWater = {
     ModPath .. 'small_test_sonic.bp',
     ModPath .. 'small_test_fire.bp',
     ModPath .. 'small_test_smoke.bp',
@@ -820,25 +820,25 @@ seraphimSubExplosionAboveWater = {
 -- Sub Booms (Underwater)
 
 -- UEF Sub Boom (Underwater)
-uefSubExplosionUnderWater = {
+UEFSubExplosionUnderWater = {
     ModPathrk .. 'UEF_Underwater_Fire_T1.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Cybran Sub Boom (Underwater)
-cybranSubExplosionUnderWater = {
+CYBRANSubExplosionUnderWater = {
     ModPathrk  .. 'CybT3_Underwater_charge.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Aeon Sub Boom (Underwater)
-aeonSubExplosionUnderWater = {
+AEONSubExplosionUnderWater = {
     ModPathrk  .. 'AeonT3_aura_underwater.bp',
     --ModPath .. 'Medium_test_sonic.bp',
 }
 
 -- Sera Sub Boom (Underwater)
-seraphimSubExplosionUnderWater = {
+SERAPHIMSubExplosionUnderWater = {
     ModPathrk  .. 'Seraphim_underwater_spark_T3.bp',
     ModPathrk  .. 'Sera_T3_chargering_underwater.bp',
 }
