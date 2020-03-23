@@ -53,7 +53,7 @@ Unit = Class(oldUnit) {
         end
     end,
 
-    GetUnitVolume = function(unit)
+    GetUnitVolume = function(self)
         local x, y, z = self:GetUnitSizes()
         return x * y * z
     end,
