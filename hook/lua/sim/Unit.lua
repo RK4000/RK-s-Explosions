@@ -5,7 +5,7 @@
 -- explosion, since it's replaced by the factional ones.
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
-local Util = import('/lua/utilities.lua')
+local SDModifiedExplosion = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
 local SDExplosions = import('/mods/rks_explosions/lua/SDExplosions.lua')
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 
@@ -64,7 +64,6 @@ Unit = Class(oldUnit) {
     end,
 
     CreateDestructionEffects = function(self, overKillRatio)
-        local SDModifiedExplosion = import('/mods/rks_explosions/hook/lua/defaultexplosions.lua')
         SDModifiedExplosion.CreateScalableUnitExplosion(self, overKillRatio)
     end,
 
@@ -79,22 +78,20 @@ Unit = Class(oldUnit) {
     end,
 
     SinkDestructionEffects = function(self)
-        local Util = utilities
-        local sx, sy, sz = self:GetUnitSizes()
-        local vol = sx * sy * sz
+        local vol = self:GetUnitVolume()
         local numBones = self:GetBoneCount() - 1
         local pos = self:GetPosition()
         local surfaceHeight = GetSurfaceHeight(pos[1], pos[3])
         local i = 0
 
         while i < 1 do
-            local randBone = Util.GetRandomInt(0, numBones)
+            local randBone = utilities.GetRandomInt(0, numBones)
             local boneHeight = self:GetPosition(randBone)[2]
             local toSurface = surfaceHeight - boneHeight
             local y = toSurface
             local rx, ry, rz = self:GetRandomOffset(0.3)
             local rs = math.max(math.min(2.5, vol / 20), 0.5)
-            local scale = Util.GetRandomFloat(rs/2, rs)
+            local scale = utilities.GetRandomFloat(rs/2, rs)
 
             self:DestroyAllDamageEffects()
             if toSurface < 1 then
@@ -105,7 +102,7 @@ Unit = Class(oldUnit) {
             if toSurface < 0 then
                 --explosion.CreateDefaultHitExplosionAtBone(self, randBone, scale*1.5)
             else
-                local lifetime = Util.GetRandomInt(50, 200)
+                local lifetime = utilities.GetRandomInt(50, 200)
 
                 if(toSurface > 1) then
                     CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/underwater_bubbles_01_emit.bp'):OffsetEmitter(rx, ry, rz)
@@ -117,7 +114,7 @@ Unit = Class(oldUnit) {
                 CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_flash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
                 CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(scale)
             end
-            local rd = Util.GetRandomFloat(0.4, 1.0)
+            local rd = utilities.GetRandomFloat(0.4, 1.0)
             WaitSeconds(i + rd)
             i = i + 0.3
         end
