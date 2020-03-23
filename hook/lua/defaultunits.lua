@@ -30,14 +30,13 @@ AirUnit = Class(oldAirUnit) {
         -- Get explosion scale based off Tech number
         self.TechLevelMultiplier = AirTechLevelMultiplierTbl[self.techCategory] or 0
 
-        local Faction = self:GetFaction()
-        local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. self.TechLevel ..Faction]
-        local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. self.TechLevel ..Faction]
-        local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. self.TechLevel ..Faction]
+        local SDFactionalSmallSmoke = SDEffectTemplate['SmallAirUnitSmoke'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalSmallFire = SDEffectTemplate['SmallAirUnitFire'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['BigAirUnitFireSmoke'.. self.TechLevel ..self.factionCategory]
 
-        local NFactionalSmallSmoke = NEffectTemplate['SmallAirUnitSmoke'.. self.TechLevel ..Faction]
-        local NFactionalSmallFire = NEffectTemplate['SmallAirUnitFire'.. self.TechLevel ..Faction]
-        local NFactionalBigFireSmoke = NEffectTemplate['BigAirUnitFireSmoke'.. self.TechLevel ..Faction]
+        local NFactionalSmallSmoke = NEffectTemplate['SmallAirUnitSmoke'.. self.TechLevel ..self.factionCategory]
+        local NFactionalSmallFire = NEffectTemplate['SmallAirUnitFire'.. self.TechLevel ..self.factionCategory]
+        local NFactionalBigFireSmoke = NEffectTemplate['BigAirUnitFireSmoke'.. self.TechLevel ..self.factionCategory]
 
         if toggle == 1 then
             -- Air unit factional-specific damage effects and smoke
@@ -68,10 +67,9 @@ LandUnit = Class(oldLandUnit) {
     OnCreate = function(self)
         oldLandUnit.OnCreate(self)
 
-        local Faction = self:GetFaction()
-        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..self.factionCategory]
 
         -- Land unit factional-specific damage effects and smoke
         self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
@@ -85,10 +83,9 @@ WalkingLandUnit = Class(oldWalkingLandUnit) {
     OnCreate = function(self)
         oldWalkingLandUnit.OnCreate(self)
 
-        local Faction = self:GetFaction()
-        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightLandUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumLandUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyLandUnitDmg'.. self.TechLevel ..self.factionCategory]
 
         -- Land unit factional-specific damage effects and smoke
         self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
@@ -121,11 +118,10 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local Faction = self:GetFaction()
-        local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
-        local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local SDFactionalShipSubExplosion = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
+        local NFactionalShipSubExplosion = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local NFactionalShipSubExplosionUW = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
@@ -148,11 +144,10 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 
     CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
-        local Faction = self:GetFaction()
-        local SDFactionalShipSubExplosion = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
-        local NFactionalShipSubExplosion = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
-        local NFactionalShipSubExplosionUW = NEffectTemplate[Faction.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local SDFactionalShipSubExplosion = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
+        local NFactionalShipSubExplosion = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
+        local NFactionalShipSubExplosionUW = NEffectTemplate[self.factionCategory.. 'ShipSubExpl' ..self.TechLevel.. 'Underwater']
         local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
         local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
 
@@ -200,10 +195,9 @@ SeaUnit = Class(oldSeaUnit) {
         -- Get explosion scale based off Tech number
         self.ShipTechLevelMultiplier = ShipTechLevelMultiplierTbl[self.techCategory] or 6.0
 
-        local Faction = self:GetFaction()
-        local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalSmallFire = SDEffectTemplate['MediumNavalUnitDmg'.. self.TechLevel ..Faction]
-        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyNavalUnitDmg'.. self.TechLevel ..Faction]
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
 
         -- Sea unit factional-specific damage effects and smoke
         self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
@@ -308,23 +302,22 @@ SeaUnit = Class(oldSeaUnit) {
         local sx, sy, sz = self:GetUnitSizes()
         local vol = sx * sy * sz
         local numBones = self:GetBoneCount() - 1
-        local Faction = self:GetFaction()
         local UnitSize = self:GetSizeOfUnit()
 
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-        self:PlaySubBoomSound('SubBoomSound'..Faction)
+        self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
         WaitSeconds(0.1)
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-        self:PlaySubBoomSound('SubBoomSound'..Faction)
+        self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
         WaitSeconds(0.1)
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-        self:PlaySubBoomSound('SubBoomSound'..Faction)
+        self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
         WaitSeconds(0.1)
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-        self:PlaySubBoomSound('SubBoomSound'..Faction)
+        self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
         WaitSeconds(0.1)
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-        self:PlaySubBoomSound('SubBoomSound'..Faction)
+        self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
 
         WaitSeconds(2)
         while true do
@@ -332,7 +325,7 @@ SeaUnit = Class(oldSeaUnit) {
                 -- Make faction boom
                 self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
                 SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
-                self:PlaySubBoomSound('SubBoomSound'..Faction)
+                self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
             else
                 d = d + 1 -- If submerged, increase delay offset
                 self:DestroyAllDamageEffects()
@@ -343,7 +336,7 @@ SeaUnit = Class(oldSeaUnit) {
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 WaitSeconds(0.2)
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
-                self:PlaySubBoomSound('DeathBoomSound'..Faction)
+                self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
             end
 
             local rx, ry, rz = self:GetRandomOffset(0.25)
@@ -363,7 +356,7 @@ SeaUnit = Class(oldSeaUnit) {
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             WaitSeconds(0.2)
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
-            self:PlaySubBoomSound('DeathBoomSound'..Faction)
+            self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
         end
     end,
 
@@ -405,12 +398,11 @@ AircraftCarrier = Class(SeaUnit, BaseTransport) {
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
     OnKilled = function(self, instigator, type, overkillRatio)
-        local Faction = self:GetFaction()
-        local SDFactionalSubBoomAboveWater = SDEffectTemplate[Faction ..'SubExplosionAboveWater']
-        local SDFactionalSubBoomUnderWater = SDEffectTemplate[Faction ..'SubExplosionUnderWater']
+        local SDFactionalSubBoomAboveWater = SDEffectTemplate[self.factionCategory ..'SubExplosionAboveWater']
+        local SDFactionalSubBoomUnderWater = SDEffectTemplate[self.factionCategory ..'SubExplosionUnderWater']
 
-        local NFactionalSubBoomAboveWater = NEffectTemplate[Faction ..'SubExplosionAboveWater']
-        local NFactionalSubBoomUnderWater = NEffectTemplate[Faction ..'SubExplosionUnderWater']
+        local NFactionalSubBoomAboveWater = NEffectTemplate[self.factionCategory ..'SubExplosionAboveWater']
+        local NFactionalSubBoomUnderWater = NEffectTemplate[self.factionCategory ..'SubExplosionUnderWater']
 
         self:DestroyIdleEffects()
 
@@ -623,9 +615,8 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateFactionalHitExplosionOffset = function(self, scale, xOffset, yOffset, zOffset)
-        local Faction = self:GetFaction()
-        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
-        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
+        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
 
         if self:BeenDestroyed() then
             return
@@ -639,9 +630,8 @@ StructureHelperfunctions = Class() {
     end,
 
     CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local Faction = self:GetFaction()
-        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
-        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
+        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
 
         if toggle == 1 then
             EffectUtil.CreateBoneEffects(self, boneName, self.Army, SDExplosion)-- :ScaleEmitter(scale) --<-- if added, returns an error that "scale" is a nil value...
@@ -661,10 +651,9 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
      end,
 
     CreateDestructionEffects = function(self, overKillRatio)
-        local Faction = self:GetFaction()
         local Number = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')
-        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
-        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..Faction]
+        local SDExplosion = SDEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
+        local NExplosion = NEffectTemplate['BuildingExplosion'.. self.TechLevel ..self.factionCategory]
 
         local BoomScale = self:GetSizeOfBuilding() + 0.125
         local BoomScale2 = self:GetNumberByTechLvlBuilding(self.TechLevel or 'TECH1')

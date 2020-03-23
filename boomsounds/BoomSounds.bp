@@ -4,22 +4,22 @@ Audio = {
         Cue = 'UEB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    SubBoomSounduef = Sound {
+    SubBoomSoundUEF = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    SubBoomSoundcybran = Sound {
+    SubBoomSoundCYBRAN = Sound {
         Bank = 'URLDestroy',
         Cue = 'URB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    SubBoomSoundaeon = Sound {
+    SubBoomSoundAEON = Sound {
         Bank = 'UALDestroy',
         Cue = 'UAB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    SubBoomSoundseraphim = Sound {
+    SubBoomSoundSERAPHIM = Sound {
         Bank = 'XSL_Destroy',
         Cue = 'XSB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
@@ -29,22 +29,22 @@ Audio = {
         Cue = 'UAB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    DeathBoomSounduef = Sound {
+    DeathBoomSoundUEF = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    DeathBoomSoundcybran = Sound {
+    DeathBoomSoundCYBRAN = Sound {
         Bank = 'URLDestroy',
         Cue = 'URB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-DeathBoomSoundaeon = Sound {
+DeathBoomSoundAEON = Sound {
         Bank = 'UALDestroy',
         Cue = 'UAB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    DeathBoomSoundseraphim = Sound {
+    DeathBoomSoundSERAPHIM = Sound {
         Bank = 'XSL_Destroy',
         Cue = 'XSB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',

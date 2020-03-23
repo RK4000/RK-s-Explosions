@@ -34,10 +34,9 @@ Unit = Class(oldUnit) {
         end
         
         if EntityCategoryContains(categories.STRUCTURE, self) then
-            local Faction = self:GetFaction()
-            local SDFactionalSmallSmoke = SDEffectTemplate['LightStructureUnitDmg'.. self.TechLevel ..Faction]
-            local SDFactionalSmallFire = SDEffectTemplate['MediumStructureUnitDmg'.. self.TechLevel ..Faction]
-            local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyStructureUnitDmg'.. self.TechLevel ..Faction]
+            local SDFactionalSmallSmoke = SDEffectTemplate['LightStructureUnitDmg'.. self.TechLevel ..self.factionCategory]
+            local SDFactionalSmallFire = SDEffectTemplate['MediumStructureUnitDmg'.. self.TechLevel ..self.factionCategory]
+            local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyStructureUnitDmg'.. self.TechLevel ..self.factionCategory]
 
             -- Structure unit factional-specific damage effects and smoke
             self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
@@ -57,10 +56,6 @@ Unit = Class(oldUnit) {
     GetUnitVolume = function(unit)
         local x, y, z = self:GetUnitSizes()
         return x * y * z
-    end,
-
-    GetFaction = function(self)
-        return string.lower(self.factionCategory)
     end,
 
     CreateDestructionEffects = function(self, overKillRatio)
