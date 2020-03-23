@@ -114,4 +114,31 @@ Unit = Class(oldUnit) {
             i = i + 0.3
         end
     end,
+
+    -- Disable damage effects on unfinished units
+    ManageDamageEffects = function(self, newHealth, oldHealth)
+        if not self.isFinishedUnit then return end
+
+        oldUnit.ManageDamageEffects(self, newHealth, oldHealth)
+    end,
+
+    -- Because there are no damaged effects on unfinished buildings, we have to set them up when the unit is completed.
+    OnStopBeingBuilt = function(self, builder, layer)
+        if not oldUnit.OnStopBeingBuilt(self, builder, layer) then
+            return false
+        else
+            -- The effects are spawned in 3 stages, 75%, 50%, 25% and then removed one by one as the unit heals.
+            local healthRatio =  self:GetHealth() / self:GetMaxHealth()
+            if healthRatio < 0.75 then
+                self:ManageDamageEffects(0.75, 1)
+            end
+            if healthRatio < 0.5 then
+                self:ManageDamageEffects(0.5, 0.75)
+            end
+            if healthRatio < 0.25 then
+                self:ManageDamageEffects(0.25, 0.5)
+            end
+            return true
+        end
+    end,
 }
