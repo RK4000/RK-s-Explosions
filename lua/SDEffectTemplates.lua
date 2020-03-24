@@ -1097,7 +1097,7 @@ CZAR_Center_Core_Breach02 = {
     ModPath .. 'Aeon_CZAR_Reactor_Breach_Critical_04.bp',
 }
 CZAR_Air_Rushing_In = {
-    ModPath .. 'Aeon_CZAR_Air_Rushing_In.bp',
+    --ModPath .. 'Aeon_CZAR_Air_Rushing_In.bp', Causes lag. Don't know how to make a similar effect without FPS killing. Keeping this here to remind me to do so sometime.
 }
 CZAR_Core_Rupture = {
     ModPath .. 'Aeon_CZAR_Core_Rupture_Aura.bp',

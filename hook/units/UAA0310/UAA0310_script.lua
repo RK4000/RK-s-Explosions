@@ -183,7 +183,7 @@ UAA0310 = Class(oldUAA0310) {
     
     DeathThreadFn = function(self)
         WaitSeconds(0.35)
-        sdexplosion.CreateFactionalExplosionAtBone(self, 'UAA0310', 13.5, GetEffectTemplateFile(toggle).ExplosionTECH2aeon) 
+        sdexplosion.CreateFactionalExplosionAtBone(self, 'UAA0310', 13.5, GetEffectTemplateFile(toggle).ExplosionTECH2AEON) 
         local NumberForShake = (Util.GetRandomFloat(1.5, 1.5 + 1))/3.5
         self:ShakeCamera(30 * NumberForShake*7.5, NumberForShake*7.5, 0, NumberForShake*7.5 / 1.375)
         self:PlayUnitSound('Killed')
@@ -260,7 +260,7 @@ UAA0310 = Class(oldUAA0310) {
     OnAnimTerrainCollision = function(self, bone,x,y,z)
         self:PlayUnitSound('TerrainImpact')
         DamageArea(self, {x,y,z}, 5, 1000, 'Default', true, false)
-        sdexplosion.CreateFactionalExplosionAtBone(self, bone, 3.0, GetEffectTemplateFile(toggle).ExplosionTECH3aeon)
+        sdexplosion.CreateFactionalExplosionAtBone(self, bone, 3.0, GetEffectTemplateFile(toggle).ExplosionTECH3AEON)
         explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {self:GetUnitSizes()})
     end,
 }
