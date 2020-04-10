@@ -132,7 +132,7 @@ SeaUnit = Class(oldSeaUnit) {
             if self:IsBoneAboveWater(boneName) then
                 RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, ScaleForSubBooms)
             else
-                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms)
+                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*1.5)
             end
         else
             if self:IsBoneAboveWater(boneName) then
@@ -159,7 +159,7 @@ SeaUnit = Class(oldSeaUnit) {
 			if self:IsBoneAboveWater(boneName) then
 				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, ScaleForSubBooms*2.5)
 			else
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*2.5)
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*3.5)
 			end
 		else
 			if self:IsBoneAboveWater(boneName) then

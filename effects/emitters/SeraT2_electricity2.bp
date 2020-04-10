@@ -18,7 +18,7 @@ EmitterBlueprint {
 	OnlyEmitOnWater = false,
 	ParticleResistance = false,
 	InterpolateEmission = true,
-	TextureStripcount = 2.00,
+	TextureStripcount = 1.00,
 	SortOrder = 0.00,
 	LowFidelity = true,
 	MedFidelity = true,
