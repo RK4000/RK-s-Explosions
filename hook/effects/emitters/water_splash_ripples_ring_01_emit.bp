@@ -18,7 +18,7 @@ EmitterBlueprint {
 	OnlyEmitOnWater = false,
 	InterpolateEmission = true,
 	TextureStripcount = 1.00,
-	SortOrder = -990000000000000.00,
+	SortOrder = -9900000000.00,
 	Texture = [[/textures/particles/water_ripple_alpha_01.dds]],
 	RampTexture = [[/textures/particles/ramp_water_02.dds]],
 	XDirectionCurve = {

@@ -8,6 +8,8 @@
 --#**  Copyright © 2014 RK Powered Games, Inc.  All rights reserved.
 --#****************************************************************************
 local ModPath = '/mods/rks_explosions/effects/emitters/stock/'
+local ModPathDmgFX = '/mods/rks_explosions/effects/emitters/dmgfx/'
+local ModPathNomads = '/mods/rks_explosions/effects/emitters/nomads'
 local ModPathrk = '/mods/rks_explosions/effects/emitters/'
 
 -- WEAPON EXPLOSIONS

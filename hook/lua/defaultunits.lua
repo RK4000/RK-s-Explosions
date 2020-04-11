@@ -173,7 +173,7 @@ SeaUnit = Class(oldSeaUnit) {
     CreateUnitSeaDestructionEffects = function(self, scale)
         local unitSize = {self:GetUnitSizes()}
         for i = 1, 3 do
-            explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+            --explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
             SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
         end
     end,
@@ -334,9 +334,12 @@ SeaUnit = Class(oldSeaUnit) {
 
             if i == 0 then
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
-                WaitSeconds(0.2)
+                self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
+                WaitSeconds(Util.GetRandomFloat(0.2,0.4))
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
+                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
             end
 
             local rx, ry, rz = self:GetRandomOffset(0.25)
@@ -353,8 +356,11 @@ SeaUnit = Class(oldSeaUnit) {
         end
 
         if i == 0 then
+            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self)*3, {sx, sy, sz})
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
-            WaitSeconds(0.2)
+            self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
+            WaitSeconds(Util.GetRandomFloat(0.2,0.4))
+            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self)*3, {sx, sy, sz})
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
         end

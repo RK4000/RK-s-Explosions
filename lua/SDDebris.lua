@@ -14,53 +14,80 @@ function GetEffectTemplateFile(toggle)
 	end
 end
 
-UEFFlamingDebris = Class( BaseGenericDebris ){
+local Projectile = import('/lua/sim/Projectile.lua').Projectile
+
+FDEmitterProjectile = Class(Projectile) {
+    FxTrailScale = 1,
+    FxTrailOffset = 0,
+
+    OnCreate = function(self)
+        Projectile.OnCreate(self)
+        for i in self.FxTrails do
+            CreateEmitterOnEntity(self, self.Army, self.FxTrails[i]):ScaleEmitter(self.FxTrailScale):OffsetEmitter(0, 0, self.FxTrailOffset)
+        end
+    end,
+}
+
+FactionalDebris = Class(FDEmitterProjectile){
+    FxUnitHitScale = 0.25,
+    FxImpactWater = false,
+    FxWaterHitScale = 0.25,
+    FxImpactUnderWater = true,
+    FxUnderWaterHitScale = 0.25,
+    FxNoneHitScale = 0.25,
+    FxImpactLand = true,
+    FxLandHitScale = 0.5,
+    FxTrails = true,
+    FxTrailScale = 1,
+}
+
+UEFFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).UEFFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).UEFFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 
-CybranFlamingDebris = Class( BaseGenericDebris ){
+CybranFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).CybranFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).CybranFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 
-AeonFlamingDebris = Class( BaseGenericDebris ){
+AeonFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).AeonFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).AeonFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 
-SeraFlamingDebris = Class( BaseGenericDebris ){
+SeraFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).SeraFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).SeraFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 
-AhwassaFlamingDebris = Class( BaseGenericDebris ){
+AhwassaFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).AsswasherDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).AhwassaFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
-CZAR_Debris= Class( BaseGenericDebris ){
+CZAR_Debris= Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).CZARDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).AeonFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 } 
-SR_Debris= Class( BaseGenericDebris ){
+SR_Debris= Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).SRDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).CybranFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
-Heart_Debris = Class( BaseGenericDebris ){
+Heart_Debris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).Heart_Debris_Boom,
     FxTrails = GetEffectTemplateFile(toggle).Heart_Debris_Trail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
