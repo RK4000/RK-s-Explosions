@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/fire_damage_flame_add_01_air.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/fire_damage_flame_add_01.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_fade_to_red.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
@@ -52,7 +52,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=6.000,y=3.243,z=3.241 },
+			{ x=6.000,y=6.243,z=5.241 },
 		},
 	},
 	VelocityCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.815,z=0.000 },
+			{ x=25.000,y=1.215,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,7 +112,7 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.550,z=0.000 },
+			{ x=25.000,y=0.850,z=0.500 },
 		},
 	},
 	EndSizeCurve = {

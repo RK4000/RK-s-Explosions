@@ -9,7 +9,7 @@
 --#****************************************************************************
 local ModPath = '/mods/rks_explosions/effects/emitters/'
 local ModPathDmgFX = '/mods/rks_explosions/effects/emitters/dmgfx/'
-local ModPathNomads = '/mods/rks_explosions/effects/emitters/nomads'
+local ModPathNomads = '/mods/rks_explosions/effects/emitters/nomads/'
 
 -- WEAPON EXPLOSIONS
 T2RocketBotMissileHitGround = {
@@ -2552,14 +2552,10 @@ HeavyLandUnitDmgTECH3SERAPHIM = {
 
 -- T1 NOMADS Unit Boom
 ExplosionTECH1NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit.bp',
-    ModPath .. 'SDantimatter_ring_02_emit.bp',
-    ModPath .. 'small_UEF_test_fire.bp',
+    ModPathNomads .. 'Plasma_BurstT1.bp',
+    ModPathNomads .. 'Plasma_FireT1.bp',
 }
 
 -- T2 NOMADS Unit Boom
