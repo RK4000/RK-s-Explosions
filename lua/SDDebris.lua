@@ -69,6 +69,13 @@ SeraFlamingDebris = Class( FactionalDebris ){
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }
 
+NomadsFlamingDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).NOMADSFlamingDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).NOMADSFlamingDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
 AhwassaFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).AsswasherDebrisImpact,
     FxTrails = GetEffectTemplateFile(toggle).AhwassaFlamingDebrisTrail,

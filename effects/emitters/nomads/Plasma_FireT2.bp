@@ -52,13 +52,13 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=10.000,z=5.000 },
+			{ x=25.000,y=25.000,z=15.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=2.000,z=0.000 },
+			{ x=25.000,y=1.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=2.215,z=0.000 },
+			{ x=25.000,y=1.215,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,7 +112,7 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 50.00,
 		Keys = {
-			{ x=25.000,y=0.500,z=0.300 },
+			{ x=25.000,y=0.000,z=0.000 },
 		},
 	},
 	EndSizeCurve = {

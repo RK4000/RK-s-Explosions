@@ -279,6 +279,8 @@ function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
         elseif obj.factionCategory == 'SERAPHIM' then
             obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
+        elseif obj.factionCategory == 'NOMADS' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,xpos,zpos,xdir,ydir,zdir)
         end
     end
 end

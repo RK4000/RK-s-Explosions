@@ -2560,29 +2560,24 @@ ExplosionTECH1NOMADS = {
 
 -- T2 NOMADS Unit Boom
 ExplosionTECH2NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit.bp',
-    ModPath .. 'SDantimatter_ring_02_emit.bp',
-    --ModPath .. 'UEF_Outward_Spark_Small.bp',
-    ModPath .. 'small_UEF_test_fire.bp',
+    ModPathNomads .. 'Plasma_BurstT2.bp',
+    ModPathNomads .. 'Plasma_FireT2.bp',
+    ModPathNomads .. 'Plasma_GlowT2.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
 }
 
 -- T3 NOMADS Unit Boom
 ExplosionTECH3NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smokeT3.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'UEF_Outward_Spark.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
+    ModPath .. 'UEFMedium_test_sonic.bp',
+    ModPathNomads .. 'Plasma_BurstT3.bp',
+    ModPathNomads .. 'Plasma_FireT3.bp',
+    ModPathNomads .. 'Plasma_GlowT3.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_Implosion.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D.bp',
 }
 
 
@@ -2592,25 +2587,19 @@ ExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Air Unit Boom
 AirExplosionTECH1NOMADS = {             
-    ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    --ModPath .. 'SDantimatter_ring_01_air.bp',
 }
 
 -- T2 NOMADS Air Unit Boom
 AirExplosionTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
     ModPath .. 'SDantimatter_ring_03_Land.bp',
 }
 
 -- T3 NOMADS Air Unit Boom
 AirExplosionTECH3NOMADS = {
-    --ModPath .. 'UEFMedium_test_smoke.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
+    ModPath .. 'SDantimatter_ring_03_Land.bp',
     ModPath .. 'SDantimatter_ring_01_air.bp',
     ModPath .. 'UEF_Outward_Spark_Air.bp', 
 }
@@ -2622,32 +2611,32 @@ AirExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Building Unit Boom
 BuildingExplosionTECH1NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPathNomads .. 'Plasma_BurstT1.bp',
+    ModPathNomads .. 'Plasma_FireT1.bp',
 }
 
 -- T2 NOMADS Building Unit Boom
 BuildingExplosionTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPathNomads .. 'Plasma_BurstT2.bp',
+    ModPathNomads .. 'Plasma_FireT2.bp',
+    ModPathNomads .. 'Plasma_GlowT2.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
 }
 
 -- T3 NOMADS Building Unit Boom
 BuildingExplosionTECH3NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'UEF_Outward_Spark_Building.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPathNomads .. 'Plasma_BurstT3.bp',
+    ModPathNomads .. 'Plasma_FireT3.bp',
+    ModPathNomads .. 'Plasma_GlowT3.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_Implosion.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D.bp',
     
 }
 
@@ -2658,20 +2647,20 @@ BuildingExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Plane Fall Down
 FallDownTrailTECH1NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
+    ModPathNomads .. 'AircraftFallDownPlasma.bp',
+    ModPathNomads .. 'AircraftFallDownHeat.bp',
 }
 
 -- T2 NOMADS Plane Fall Down
 FallDownTrailTECH2NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
+    ModPathNomads .. 'AircraftFallDownPlasma.bp',
+    ModPathNomads .. 'AircraftFallDownHeat.bp',
 }
 
 -- T3 NOMADS Plane Fall Down
 FallDownTrailTECH3NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
+    ModPathNomads .. 'AircraftFallDownPlasma.bp',
+    ModPathNomads .. 'AircraftFallDownHeat.bp',
 }
 
 
@@ -2681,38 +2670,34 @@ FallDownTrailTECH3NOMADS = {
 
 -- NOMADS T1 Ship Sub-Boom
 ShipSubExplTECH1NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
+    ModPath .. 'UEFMedium_test_sonic.bp',
+    ModPathNomads .. 'Plasma_BurstT2.bp',
+    ModPathNomads .. 'Plasma_FireT2.bp',
+    ModPathNomads .. 'Plasma_GlowT2.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
 }
 
 -- NOMADS T2 Ship Sub-Boom
 ShipSubExplTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
+    ModPath .. 'UEFMedium_test_sonic.bp',
+    ModPathNomads .. 'Plasma_BurstT2.bp',
+    ModPathNomads .. 'Plasma_FireT2.bp',
+    ModPathNomads .. 'Plasma_GlowT2.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
 }
 
 -- NOMADS T3 Ship Sub-Boom
 ShipSubExplTECH3NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'UEF_Outward_Spark_Building.bp', 
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'UEFMedium_test_random.bp',
+    ModPath .. 'UEFMedium_test_sonic.bp',
+    ModPathNomads .. 'Plasma_BurstT3.bp',
+    ModPathNomads .. 'Plasma_FireT3.bp',
+    ModPathNomads .. 'Plasma_GlowT3.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_Implosion.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D.bp',
 }
 
 
@@ -2742,13 +2727,14 @@ ShipSubExplUnderwaterTECH3NOMADS = {
 
 -- NOMADS Sub Boom (Surface)
 SubExplosionAboveWaterNOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
-    ModPath .. 'small_UEF_test_fire_T3.bp', 
+    ModPath .. 'UEFMedium_test_random.bp',
+    ModPath .. 'UEFMedium_test_sonic.bp',
+    ModPathNomads .. 'Plasma_BurstT3.bp',
+    ModPathNomads .. 'Plasma_FireT3.bp',
+    ModPathNomads .. 'Plasma_GlowT3.bp',
+    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_Implosion.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D.bp',
 }
 
 
@@ -2759,7 +2745,6 @@ SubExplosionAboveWaterNOMADS = {
 -- NOMADS Sub Boom (Underwater)
 SubExplosionUnderWaterNOMADS = {
     ModPath .. 'UEF_Underwater_Fire_T1.bp',
-    --ModPath .. 'Medium_test_sonic.bp',
 }
 
 
@@ -2782,8 +2767,8 @@ NOMADSFlamingDebrisLandImpact = {
 }
 
 NOMADSFlamingDebrisTrail = {
-    ModPath .. 'UEFFlamingDebrisFire.bp',
-    ModPath .. 'UEFFlamingDebrisSmoke.bp',
+    ModPathNomads .. 'NomadsDebrisPlasma.bp',
+    ModPathNomads .. 'NomadsDebrisHeat.bp',
 }
 
 
@@ -2799,24 +2784,24 @@ NOMADSFlamingDebrisTrail = {
 
 -- T1 NOMADS Plane Light DMG
 SmallAirUnitSmokeTECH1NOMADS = { 
-    ModPath .. 'UEFT1AircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT1AircraftLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T1 NOMADS Plane Med DMG
 SmallAirUnitFireTECH1NOMADS = { 
-    ModPath .. 'UEFT1AircraftMediumDmgFire.bp',
-    ModPath .. 'UEFT1AircraftMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT1AircraftMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1AircraftMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1AircraftMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1AircraftMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1AircraftMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1AircraftMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T1 NOMADS Plane Hvy DMG
 BigAirUnitFireSmokeTECH1NOMADS = { 
-    ModPath .. 'UEFT1AircraftHeavyDmgFire.bp',
-    ModPath .. 'UEFT1AircraftHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT1AircraftHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1AircraftHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1AircraftHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1AircraftHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1AircraftHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1AircraftHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2825,24 +2810,24 @@ BigAirUnitFireSmokeTECH1NOMADS = {
 
 -- T2 NOMADS Plane Light DMG
 SmallAirUnitSmokeTECH2NOMADS = { 
-    ModPath .. 'UEFT2AircraftLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT2AircraftLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T2 NOMADS Plane Med DMG
 SmallAirUnitFireTECH2NOMADS = { 
-    ModPath .. 'UEFT2AircraftMediumDmgFire.bp',
-    ModPath .. 'UEFT2AircraftMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT2AircraftMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2AircraftMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2AircraftMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2AircraftMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2AircraftMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2AircraftMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T2 NOMADS Plane Hvy DMG
 BigAirUnitFireSmokeTECH2NOMADS = { 
-    ModPath .. 'UEFT2AircraftHeavyDmgFire.bp',
-    ModPath .. 'UEFT2AircraftHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT2AircraftHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2AircraftHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2AircraftHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2AircraftHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2AircraftHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2AircraftHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2851,23 +2836,23 @@ BigAirUnitFireSmokeTECH2NOMADS = {
 
 -- T3 NOMADS Plane Light DMG
 SmallAirUnitSmokeTECH3NOMADS = { 
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T3 NOMADS Plane Med DMG
 SmallAirUnitFireTECH3NOMADS = { 
-    ModPath .. 'UEFT3AircraftMediumDmgFire.bp',
-    ModPath .. 'UEFT3AircraftMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT3AircraftMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3AircraftMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3AircraftMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3AircraftMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3AircraftMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3AircraftMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T3 NOMADS Plane Hvy DMG
 BigAirUnitFireSmokeTECH3NOMADS = { 
-    ModPath .. 'UEFT3AircraftHeavyDmgFire.bp',
-    ModPath .. 'UEFT3AircraftHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT3AircraftHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3AircraftHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3AircraftHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3AircraftHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3AircraftHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3AircraftHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2881,24 +2866,24 @@ BigAirUnitFireSmokeTECH3NOMADS = {
 
 -- T1 NOMADS Ship Light DMG
 LightNavalUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1ShipLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT1ShipLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T1 NOMADS Ship Med DMG
 MediumNavalUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1ShipMediumDmgFire.bp',
-    ModPath .. 'UEFT1ShipMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT1ShipMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1ShipMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1ShipMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1ShipMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1ShipMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1ShipMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T1 NOMADS Ship Hvy DMG
 HeavyNavalUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1ShipHeavyDmgFire.bp',
-    ModPath .. 'UEFT1ShipHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT1ShipHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1ShipHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1ShipHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1ShipHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1ShipHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1ShipHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2907,24 +2892,24 @@ HeavyNavalUnitDmgTECH1NOMADS = {
 
 -- T2 NOMADS Ship Light DMG
 LightNavalUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2ShipLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT2ShipLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T2 NOMADS Ship Med DMG
 MediumNavalUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2ShipMediumDmgFire.bp',
-    ModPath .. 'UEFT2ShipMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT2ShipMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2ShipMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2ShipMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2ShipMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2ShipMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2ShipMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T2 NOMADS Ship Hvy DMG
 HeavyNavalUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2ShipHeavyDmgFire.bp',
-    ModPath .. 'UEFT2ShipHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT2ShipHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2ShipHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2ShipHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2ShipHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2ShipHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2ShipHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2933,23 +2918,23 @@ HeavyNavalUnitDmgTECH2NOMADS = {
 
 -- T3 NOMADS Ship Light DMG
 LightNavalUnitDmgTECH3NOMADS = { 
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T3 NOMADS Ship Med DMG
 MediumNavalUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3ShipMediumDmgFire.bp',
-    ModPath .. 'UEFT3ShipMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT3ShipMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3ShipMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3ShipMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3ShipMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3ShipMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3ShipMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T3 NOMADS Ship Hvy DMG
 HeavyNavalUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3ShipHeavyDmgFire.bp',
-    ModPath .. 'UEFT3ShipHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT3ShipHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3ShipHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3ShipHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3ShipHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3ShipHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3ShipHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2963,24 +2948,24 @@ HeavyNavalUnitDmgTECH3NOMADS = {
 
 -- T1 NOMADS Structure Light DMG
 LightStructureUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1StructureLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT1StructureLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T1 NOMADS Structure Med DMG
 MediumStructureUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1StructureMediumDmgFire.bp',
-    ModPath .. 'UEFT1StructureMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT1StructureMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1StructureMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1StructureMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1StructureMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1StructureMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1StructureMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T1 NOMADS Structure Hvy DMG
 HeavyStructureUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1StructureHeavyDmgFire.bp',
-    ModPath .. 'UEFT1StructureHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT1StructureHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1StructureHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1StructureHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1StructureHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1StructureHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1StructureHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -2989,24 +2974,24 @@ HeavyStructureUnitDmgTECH1NOMADS = {
 
 -- T2 NOMADS Structure Light DMG
 LightStructureUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2StructureLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT2StructureLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T2 NOMADS Structure Med DMG
 MediumStructureUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2StructureMediumDmgFire.bp',
-    ModPath .. 'UEFT2StructureMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT2StructureMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2StructureMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2StructureMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2StructureMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2StructureMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2StructureMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T2 NOMADS Structure Hvy DMG
 HeavyStructureUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2StructureHeavyDmgFire.bp',
-    ModPath .. 'UEFT2StructureHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT2StructureHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2StructureHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2StructureHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2StructureHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2StructureHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2StructureHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -3015,23 +3000,23 @@ HeavyStructureUnitDmgTECH2NOMADS = {
 
 -- T3 NOMADS Structure Light DMG
 LightStructureUnitDmgTECH3NOMADS = { 
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T3 NOMADS Structure Med DMG
 MediumStructureUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3StructureMediumDmgFire.bp',
-    ModPath .. 'UEFT3StructureMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT3StructureMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3StructureMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3StructureMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3StructureMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3StructureMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3StructureMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T3 NOMADS Structure Hvy DMG
 HeavyStructureUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3StructureHeavyDmgFire.bp',
-    ModPath .. 'UEFT3StructureHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT3StructureHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3StructureHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3StructureHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3StructureHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3StructureHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3StructureHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -3045,24 +3030,24 @@ HeavyStructureUnitDmgTECH3NOMADS = {
 
 -- T1 NOMADS Land Light DMG
 LightLandUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1LandLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT1LandLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T1 NOMADS Land Med DMG
 MediumLandUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1LandMediumDmgFire.bp',
-    ModPath .. 'UEFT1LandMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT1LandMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1LandMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1LandMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1LandMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1LandMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1LandMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T1 NOMADS Land Hvy DMG
 HeavyLandUnitDmgTECH1NOMADS = { 
-    ModPath .. 'UEFT1LandHeavyDmgFire.bp',
-    ModPath .. 'UEFT1LandHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT1LandHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT1LandHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT1LandHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT1LandHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT1LandHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT1LandHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -3071,24 +3056,24 @@ HeavyLandUnitDmgTECH1NOMADS = {
 
 -- T2 NOMADS Land Light DMG
 LightLandUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2LandLightDmgSmokeTrail.bp',
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'UEFT2LandLightDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T2 NOMADS Land Med DMG
 MediumLandUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2LandMediumDmgFire.bp',
-    ModPath .. 'UEFT2LandMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT2LandMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2LandMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2LandMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2LandMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2LandMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2LandMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T2 NOMADS Land Hvy DMG
 HeavyLandUnitDmgTECH2NOMADS = { 
-    ModPath .. 'UEFT2LandHeavyDmgFire.bp',
-    ModPath .. 'UEFT2LandHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT2LandHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT2LandHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT2LandHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT2LandHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT2LandHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT2LandHeavyDmgSmokeTrailCarry.bp',
 }
 
 
@@ -3097,23 +3082,23 @@ HeavyLandUnitDmgTECH2NOMADS = {
 
 -- T3 NOMADS Land Light DMG
 LightLandUnitDmgTECH3NOMADS = { 
-    ModPath .. 'destruction_damaged_sparks_rks.bp',
+    ModPathDmgFX .. 'destruction_damaged_sparks_rks.bp',
 }
 
 -- T3 NOMADS Land Med DMG
 MediumLandUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3LandMediumDmgFire.bp',
-    ModPath .. 'UEFT3LandMediumDmgHeatDistort.bp',
-    ModPath .. 'UEFT3LandMediumDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3LandMediumDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3LandMediumDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3LandMediumDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3LandMediumDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3LandMediumDmgSmokeTrailCarry.bp',
 }
 
 -- T3 NOMADS Land Hvy DMG
 HeavyLandUnitDmgTECH3NOMADS = { 
-    ModPath .. 'UEFT3LandHeavyDmgFire.bp',
-    ModPath .. 'UEFT3LandHeavyDmgHeatDistort.bp',
-    ModPath .. 'UEFT3LandHeavyDmgSmokeTrail.bp',
-    ModPath .. 'UEFT3LandHeavyDmgSmokeTrailCarry.bp',
+    ModPathDmgFX .. 'UEFT3LandHeavyDmgFire.bp',
+    ModPathDmgFX .. 'UEFT3LandHeavyDmgHeatDistort.bp',
+    ModPathDmgFX .. 'UEFT3LandHeavyDmgSmokeTrail.bp',
+    ModPathDmgFX .. 'UEFT3LandHeavyDmgSmokeTrailCarry.bp',
 }
 
 
