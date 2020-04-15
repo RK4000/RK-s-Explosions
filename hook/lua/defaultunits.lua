@@ -18,8 +18,27 @@ local AirTechLevelMultiplierTbl = {
 
 local oldAirUnit = AirUnit
 AirUnit = Class(oldAirUnit) {
+
+    GetDebrisNum = function(self, UnitTechLvl)
+        if (UnitTechLvl == 'TECH1') then
+            return Util.GetRandomInt(2, 3)
+        elseif (UnitTechLvl == 'TECH2') then
+            return Util.GetRandomInt(3, 5)
+        elseif (UnitTechLvl == 'TECH3') then
+            return 0
+        else
+            return 0
+        end
+    end,
+    
     CreateUnitAirDestructionEffects = function(self, scale)
+        local FactionalPlaneDebris = ('/mods/rks_explosions/effects/entities/AAAPlane_Debris/PlaneDebris' .. self.factionCategory .. self.TechLevel .. '/PlaneDebris' .. self.factionCategory .. self.TechLevel .. '_proj.bp')
+        
+        local DebrisNum = self:GetDebrisNum(self.TechLevel or 'TECH3') 
+        
+        self:DestroyAllDamageEffects()
         SDExplosions.ExplosionAirMidAir(self)
+            SDExplosions.CreateInheritedVelocityDebrisProjectiles(self, DebrisNum, {self:GetVelocity()}, 15, 0.23, 50.35, FactionalPlaneDebris)
     end,
 
     -- Needed for custom booms
@@ -102,81 +121,6 @@ local ShipTechLevelMultiplierTbl = {
 }
 local oldSeaUnit = SeaUnit
 SeaUnit = Class(oldSeaUnit) {
-    -- Get size of unit
-    GetSizeOfUnit = function(self)
-        local bp = self:GetBlueprint()
-        return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
-    end,
-
-    --Check if bone is underwater
-    IsBoneAboveWater = function(self, boneName)
-        local pos = self:GetPosition(boneName)
-        if pos[2] > GetSurfaceHeight(pos[1], pos[3]) then
-            return true
-        end
-        return false
-    end,
-
-    CreateFactionalExplosionAtBone = function(self, boneName, scale)
-        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
-        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
-        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
-        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
-        local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
-
-        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75, self.Army)
-        self:ShakeCamera(30 * NumberForShake/3, NumberForShake/3, 0, NumberForShake / 3)
-
-        if toggle == 1 then
-            if self:IsBoneAboveWater(boneName) then
-                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, ScaleForSubBooms)
-            else
-                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*1.5)
-            end
-        else
-            if self:IsBoneAboveWater(boneName) then
-                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosion, ScaleForSubBooms)
-            else
-                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosionUW, ScaleForSubBooms)
-            end
-        end
-    end,
-
-    CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
-        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
-        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
-        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
-        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
-        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
-        local ScaleForSubBooms = self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1')
-
-        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*5, self.Army)
-
-        self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
-        
-        if toggle == 1 then
-			if self:IsBoneAboveWater(boneName) then
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, ScaleForSubBooms*2.5)
-			else
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*3.5)
-			end
-		else
-			if self:IsBoneAboveWater(boneName) then
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosion, ScaleForSubBooms)
-			else
-				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosionUW, ScaleForSubBooms)
-			end
-		end
-	end,
-
-    CreateUnitSeaDestructionEffects = function(self, scale)
-        local unitSize = {self:GetUnitSizes()}
-        for i = 1, 3 do
-            --explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
-        end
-    end,
 
     PlaySubBoomSound = function(self, sound)
         local bp = BoomSoundBP.Audio
@@ -186,50 +130,20 @@ SeaUnit = Class(oldSeaUnit) {
         end
         return false
     end,
-
-    -- Needed for the custom booms
-    -- Make sure we use factional damage effects
-    OnCreate = function(self)
-        oldSeaUnit.OnCreate(self)
-
-        -- Get explosion scale based off Tech number
-        self.ShipTechLevelMultiplier = ShipTechLevelMultiplierTbl[self.techCategory] or 6.0
-
-        local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
-        local SDFactionalSmallFire = SDEffectTemplate['MediumNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
-        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
-
-        -- Sea unit factional-specific damage effects and smoke
-        self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
-        self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
-        self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
-        -- Sea unit factional-specific damage effects and smoke
+    
+    -- Get size of unit
+    GetSizeOfUnit = function(self)
+        local bp = self:GetBlueprint()
+        return (math.abs(bp.SizeX or 0 + bp.SizeY or 0 + bp.SizeZ or 0))
     end,
-
-    OnKilled = function(self, instigator, type, overkillRatio)
-        local BoomScale2 = self:GetSizeOfUnit()
-        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))
-        --LOG(' Oil slick scale multiplier (tech): ', self.ShipTechLevelMultiplier)
-        --LOG(' Oil slick scale multiplier (scale): ', self:GetSizeOfUnit())
-
-        self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
-        if self:GetFractionComplete() == 1 then
-            if toggle == 1 then
-                self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
-            else
-                self:CreateEffects(NEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
-            end
+    
+    --Check if bone is underwater
+    IsBoneAboveWater = function(self, boneName)
+        local pos = self:GetPosition(boneName)
+        if pos[2] > GetSurfaceHeight(pos[1], pos[3]) then
+            return true
         end
-
-        local layer = self:GetCurrentLayer()
-        self:CreateUnitSeaDestructionEffects(self, 1.0)
-
-        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
-            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
-            self.SinkThread = self:ForkThread(self.SinkingThread)
-        end
-
-        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
+        return false
     end,
 
     GetSizeOfUnitForSubBooms = function(self)
@@ -261,6 +175,18 @@ SeaUnit = Class(oldSeaUnit) {
         end
     end,
 
+    GetSubBoomTimingNumber = function(self, UnitTechLvl)
+        if UnitTechLvl == 'TECH1' then
+            return 0.7
+        elseif UnitTechLvl == 'TECH2' then
+            return 0.65
+        elseif UnitTechLvl == 'TECH3' then
+            return 0.5
+        else
+            return 0.2
+        end
+    end,
+    
     GetSubBoomScaleNumber = function(self, UnitTechLvl)
         if UnitTechLvl == 'TECH1' then
             return 0.3
@@ -272,28 +198,167 @@ SeaUnit = Class(oldSeaUnit) {
             return 2
         end
     end,
-
-    GetSubBoomTimingNumber = function(self, UnitTechLvl)
-        if UnitTechLvl == 'TECH1' then
-            return 1
-        elseif UnitTechLvl == 'TECH2' then
-            return 0.8
-        elseif UnitTechLvl == 'TECH3' then
-            return 0.5
+    
+    GetMaxDebrisNum = function(self, UnitTechLvl)
+        if (UnitTechLvl == 'TECH1') then
+            return 2
+        elseif (UnitTechLvl == 'TECH2') then
+            return 5
+        elseif (UnitTechLvl == 'TECH3') then
+            return 6
         else
-            return 0.2
+            return 0
+        end
+    end,
+    
+    DebrisNumEqualizer = function(self, UnitTechLvl)
+        if UnitTechLvl == 'TECH1' then
+            return 3.25
+        elseif UnitTechLvl == 'TECH2' then
+            return 2.25
+        elseif UnitTechLvl == 'TECH3' then
+            return 1.3
+        else
+            return 0
+        end
+    end,
+    
+    GetDebrisVelocity = function(self, UnitTechLvl)
+        if UnitTechLvl == 'TECH1' then
+            return 12
+        elseif UnitTechLvl == 'TECH2' then
+            return 16
+        elseif UnitTechLvl == 'TECH3' then
+            return 20
+        else
+            return 2
+        end
+    end,
+    
+    CreateFactionalExplosionAtBone = function(self, boneName, scale)
+        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
+        local ScaleForSubBooms = (self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1'))
+        
+        local RandomScaleForSubBooms = (Util.GetRandomFloat(ScaleForSubBooms/2 , ScaleForSubBooms))
+        
+        local DebrisNumEqualizer = self:DebrisNumEqualizer(self.TechLevel)
+        local MaxDebris = self:GetMaxDebrisNum(self.TechLevel or 'TECH1') * RandomScaleForSubBooms * DebrisNumEqualizer
+       
+        local InitialVelocity = self:GetDebrisVelocity(self.TechLevel or 'TECH1') 
+        local Velocity = InitialVelocity * RandomScaleForSubBooms * DebrisNumEqualizer
+        
+        WARN(RandomScaleForSubBooms)
+        WARN(MaxDebris)
+        WARN(Velocity)
+        LOG('BREAK')
+        
+        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*RandomScaleForSubBooms, self.Army)
+        self:ShakeCamera(30 * NumberForShake/3, NumberForShake/3, 0, NumberForShake / 3)
+
+        if toggle == 1 then
+            if self:IsBoneAboveWater(boneName) then
+                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, RandomScaleForSubBooms)
+                SDExplosions.CreateGenericFactionalDebrisOnBone(self, MaxDebris, Velocity, boneName)
+            else
+                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, RandomScaleForSubBooms)
+            end
+        else
+            if self:IsBoneAboveWater(boneName) then
+                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosion, RandomScaleForSubBooms)
+                SDExplosions.CreateGenericFactionalDebrisOnBone(self, MaxDebris, Velocity, boneName)
+            else
+                RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosionUW, RandomScaleForSubBooms)
+            end
         end
     end,
 
+    CreateFactionalFinalExplosionAtBone = function(self, boneName, scale)
+        local SDFactionalShipSubExplosion = SDEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosion = NEffectTemplate['ShipSubExpl' .. self.TechLevel .. self.factionCategory]
+        local SDFactionalShipSubExplosionUW = SDEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        local NFactionalShipSubExplosionUW = NEffectTemplate['ShipSubExplUnderwater' .. self.TechLevel .. self.factionCategory]
+        
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))/2.5
+        local ScaleForSubBooms = (self:GetSubBoomScaleNumber(self.TechLevel or 'TECH1'))
+        
+        local MaxDebris = self:GetMaxDebrisNum(self.TechLevel or 'TECH1')
+        
+        explosion.CreateFlash(self, boneName, (self.TechLevelMultiplier)/4.75*5, self.Army)
+        self:ShakeCamera(30 * NumberForShake*4, NumberForShake*4, 0, NumberForShake / 1.375*6)
+        
+        if toggle == 1 then
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosion, ScaleForSubBooms*2.5)
+                SDExplosions.CreateGenericFactionalDebrisOnBone(self, MaxDebris*3, 15, boneName)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, SDFactionalShipSubExplosionUW, ScaleForSubBooms*3.5)
+			end
+		else
+			if self:IsBoneAboveWater(boneName) then
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosion, ScaleForSubBooms*2.5)
+                SDExplosions.CreateGenericFactionalDebrisOnBone(self, MaxDebris*3, 15, boneName)
+			else
+				RKEffectUtil.CreateBoneEffectsScaled(self, boneName, self.Army, NFactionalShipSubExplosionUW, ScaleForSubBooms)
+			end
+		end
+	end,
+
+    CreateUnitSeaDestructionEffects = function(self, scale)
+        local unitSize = {self:GetUnitSizes()}
+        for i = 1, 3 do
+            --explosion.CreateDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), unitSize)
+        end
+    end,
+
+    -- Make sure we use factional damage effects
+    OnCreate = function(self)
+        oldSeaUnit.OnCreate(self)
+
+        -- Get explosion scale based off Tech number
+        self.ShipTechLevelMultiplier = ShipTechLevelMultiplierTbl[self.techCategory] or 6.0
+
+        local SDFactionalSmallSmoke = SDEffectTemplate['LightNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalSmallFire = SDEffectTemplate['MediumNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
+        local SDFactionalBigFireSmoke = SDEffectTemplate['HeavyNavalUnitDmg'.. self.TechLevel ..self.factionCategory]
+
+        self.FxDamage1 = {SDFactionalSmallSmoke} -- 75% HP
+        self.FxDamage2 = {SDFactionalSmallFire} -- 50% HP
+        self.FxDamage3 = {SDFactionalBigFireSmoke} -- 25% HP
+    end,
+
+    OnKilled = function(self, instigator, type, overkillRatio)
+        local BoomScale2 = self:GetSizeOfUnit()
+        local NumberForShake = (Util.GetRandomFloat(self.TechLevelMultiplier, self.TechLevelMultiplier + 1))
+        --LOG(' Oil slick scale multiplier (tech): ', self.ShipTechLevelMultiplier)
+        --LOG(' Oil slick scale multiplier (scale): ', self:GetSizeOfUnit())
+
+        self:ShakeCamera(30 * NumberForShake, NumberForShake, 0, NumberForShake / 0.675)
+        if self:GetFractionComplete() == 1 then
+            if toggle == 1 then
+                self:CreateEffects(SDEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+            else
+                self:CreateEffects(NEffectTemplate.OilSlick, self.Army, ((self.ShipTechLevelMultiplier)*((BoomScale2)/2)) *GlobalExplosionScaleValue)
+            end
+        end
+
+        local layer = self:GetCurrentLayer()
+        self:CreateUnitSeaDestructionEffects(self, 1.0)
+
+        if (layer == 'Water' or layer == 'Seabed' or layer == 'Sub') then
+            self.SinkExplosionThread = self:ForkThread(self.ExplosionThread)
+            self.SinkThread = self:ForkThread(self.SinkingThread)
+        end
+
+        MobileUnit.OnKilled(self, instigator, type, overkillRatio)
+    end,
+
     ExplosionThread = function(self) --EXPLOSIONNNNNNNNN
-        --Kidding aside, this stock explosion code is scripted very clumsily... It assumes bigger ships have longer sinking animations, and that all animations put the ship below water at the same rate...
-        --All of this code will probably need to be rewritten as this offers me too little control. For now, it has just
-        --been modified to use factional sub-explosions, and nothing else... But as stated, needs a rewrite soon.
 
-        --local SubExplCountBasedOffSizeMax = (self:GetSizeOfUnitForSubBooms()-self:GetSizeOfUnit()) /1.15
-        --local SubExplCountBasedOffSizeMin = (self:GetSizeOfUnitForSubBooms()-(self:GetSizeOfUnit()-4)) /2.15
-
-        --local maxcount = Util.GetRandomInt(SubExplCountBasedOffSizeMin,SubExplCountBasedOffSizeMax)
         local maxcount = self:GetSubBoomExplCount2(self.TechLevel or 'TECH1')
         --LOG(maxcount)
 
@@ -319,12 +384,10 @@ SeaUnit = Class(oldSeaUnit) {
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
 
-        WaitSeconds(2)
+        WaitSeconds(Util.GetRandomFloat(0.5,1.5))
         while true do
             if i > 0 then
-                -- Make faction boom
                 self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
                 self:PlaySubBoomSound('SubBoomSound'..self.factionCategory)
             else
                 d = d + 1 -- If submerged, increase delay offset
@@ -335,11 +398,9 @@ SeaUnit = Class(oldSeaUnit) {
             if i == 0 then
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
-                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
                 WaitSeconds(Util.GetRandomFloat(0.2,0.4))
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
                 self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
-                SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self), {sx, sy, sz})
             end
 
             local rx, ry, rz = self:GetRandomOffset(0.25)
@@ -350,17 +411,13 @@ SeaUnit = Class(oldSeaUnit) {
             CreateEmitterAtBone(self, randBone, self.Army, '/effects/emitters/destruction_underwater_explosion_splash_01_emit.bp'):OffsetEmitter(rx, ry, rz):ScaleEmitter(rs)
 
             local rd = math.abs(Util.GetRandomFloat((self:GetSubBoomTimingNumber(self.TechLevel or 'TECH1')) - 0.4, (self:GetSubBoomTimingNumber(self.TechLevel or 'TECH1') + 0.6)))
-            --LOG(rd)
-            --local rd = Util.GetRandomFloat(0.3, 1)
             WaitSeconds(rd)
         end
 
         if i == 0 then
-            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self)*3, {sx, sy, sz})
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
             WaitSeconds(Util.GetRandomFloat(0.2,0.4))
-            SDExplosions.CreateShipFlamingDebrisProjectiles(self, explosion.GetAverageBoundingXYZRadius(self)*3, {sx, sy, sz})
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, 0), UnitSize)
             self:PlaySubBoomSound('DeathBoomSound'..self.factionCategory)
         end

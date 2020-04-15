@@ -539,6 +539,70 @@ FallDownTrailTECH3SERAPHIM = {
 
 
 -- FALLDOWN FX 
+-- FALLDOWN DEBRIS FX
+
+-- T1 UEF Plane DEBRIS
+PlaneDebrisTECH1UEF = { 
+    
+}
+
+-- T2 UEF Plane DEBRIS
+PlaneDebrisTECH2UEF = { 
+    
+}
+
+-- T3 UEF Plane DEBRIS
+PlaneDebrisTECH3UEF = { 
+    
+}
+
+-- T1 CYBRAN Plane DEBRIS
+PlaneDebrisTECH1CYBRAN = { 
+    
+}
+
+-- T2 CYBRAN Plane DEBRIS
+PlaneDebrisTECH2CYBRAN = { 
+    
+}
+
+-- T3 CYBRAN Plane DEBRIS
+PlaneDebrisTECH3CYBRAN = { 
+    
+}
+
+-- T1 AEON Plane DEBRIS
+PlaneDebrisTECH1AEON = { 
+    
+}
+
+-- T2 AEON Plane DEBRIS
+PlaneDebrisTECH2AEON = { 
+    
+}
+
+-- T3 AEON Plane DEBRIS
+PlaneDebrisTECH3AEON = { 
+    
+}
+
+-- T1 SERAPHIM Plane DEBRIS
+PlaneDebrisTECH1SERAPHIM = { 
+    
+}
+
+-- T2 SERAPHIM Plane DEBRIS
+PlaneDebrisTECH2SERAPHIM = { 
+    
+}
+
+-- T3 SERAPHIM Plane DEBRIS
+PlaneDebrisTECH3SERAPHIM = { 
+    
+}
+
+
+-- FALLDOWN DEBRIS FX
 -- Ship Sub-Booms (Above water)
 
 -- UEF T1 Ship Sub-Boom
@@ -2666,6 +2730,25 @@ FallDownTrailTECH3NOMADS = {
 
 
 -- FALLDOWN FX 
+-- FALLDOWN DEBRIS FX
+
+-- T1 NOMADS Plane DEBRIS
+PlaneDebrisTECH1NOMADS = { 
+    
+}
+
+-- T2 NOMADS Plane DEBRIS
+PlaneDebrisTECH2NOMADS = { 
+    
+}
+
+-- T3 NOMADS Plane DEBRIS
+PlaneDebrisTECH3NOMADS = { 
+    
+}
+
+
+-- FALLDOWN DEBRIS FX
 -- Ship Sub-Booms (Above water)
 
 -- NOMADS T1 Ship Sub-Boom
@@ -2762,8 +2845,6 @@ NOMADSFlamingDebrisLandImpact = {
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    --ModPath .. 'UEFDebrisImpactResidueFire.bp', 
-    --ModPath .. 'UEFDebrisImpactResidueSmoke.bp', 
 }
 
 NOMADSFlamingDebrisTrail = {

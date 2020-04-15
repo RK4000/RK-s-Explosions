@@ -1,0 +1,24 @@
+ProjectileBlueprint {
+    Display = {
+        ImpactEffects = {
+            Type = 'Small01',
+            Scale = 2.0,
+        },
+        MeshBlueprint = '/meshes/projectiles/debris_misc_04_mesh.bp',
+        UniformScale = 0.1,
+		LODCutoff = 200000000.00,
+    },
+    Physics = {
+        MinBounceCount = 0,
+        MaxBounceCount = 8,
+		BounceVelDamp = 0.20,
+        DestroyOnWater = true,
+        InitialSpeed = 60.5,
+        InitialSpeedRange = 60.5,
+        MaxSpeed = 1000,
+		Lifetime = 1000000,
+        RotationalVelocity = 0,
+        RotationalVelocityRange = 360,
+        VelocityAlign = true,
+    },
+}

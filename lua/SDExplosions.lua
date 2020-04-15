@@ -12,6 +12,7 @@ local Util = import('/lua/utilities.lua')
 local GetRandomFloat = Util.GetRandomFloat
 local GetRandomInt = Util.GetRandomInt
 local GetRandomOffset = Util.GetRandomOffset
+--local GetRandom = Util.GetRandom
 local EfctUtil = import('/lua/EffectUtilities.lua')
 local CreateEffects = EfctUtil.CreateEffects
 local CreateEffectsWithOffset = EfctUtil.CreateEffectsWithOffset
@@ -250,6 +251,40 @@ end
 ---------
 -- Debris
 ---------
+function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, velocity, boneName)
+
+    local numDebris = (GetRandomInt(maxNumOfDebris/1.5, maxNumOfDebris))
+    
+    local bonePos = obj:GetPosition(boneName)
+    local unitPos = obj:GetPosition(0)
+
+    for i = 0, (numDebris -1) do
+        
+        local xposB, yposB, zposB = unpack(bonePos) 
+        local xposU, yposU, zposU = unpack(unitPos)
+        
+        local xpos = xposB - xposU
+        local ypos = yposB - yposU + 0.5
+        local zpos = zposB - zposU
+        
+        local xdir = GetRandomFloat(-velocity, velocity) / 1.5
+        local ydir = GetRandomFloat(velocity/4, velocity) 
+        local zdir = GetRandomFloat(-velocity, velocity) / 1.5
+
+        if obj.factionCategory == 'UEF' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+        elseif obj.factionCategory == 'CYBRAN' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+        elseif obj.factionCategory == 'AEON' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+        elseif obj.factionCategory == 'SERAPHIM' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+        elseif obj.factionCategory == 'NOMADS' then
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+        end
+    end
+end
+
 function CreateShipFlamingDebrisProjectiles(obj, volume, dimensions)
     local partamounts = (math.min(GetRandomInt(1 + (volume * 50), (volume * 100)) ,250)) / 10
     local sx, sy, sz = unpack(dimensions)
