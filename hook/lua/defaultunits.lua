@@ -203,7 +203,7 @@ SeaUnit = Class(oldSeaUnit) {
         if (UnitTechLvl == 'TECH1') then
             return 2
         elseif (UnitTechLvl == 'TECH2') then
-            return 5
+            return 4
         elseif (UnitTechLvl == 'TECH3') then
             return 6
         else
@@ -288,7 +288,7 @@ SeaUnit = Class(oldSeaUnit) {
         
         local DebrisNumEqualizer = self:DebrisNumEqualizer(self.TechLevel)
         local MaxDebris = self:GetMaxDebrisNum(self.TechLevel or 'TECH1') * RandomScaleForSubBooms * DebrisNumEqualizer
-       
+        
         local InitialVelocity = self:GetDebrisVelocity(self.TechLevel or 'TECH1') 
         local Velocity = InitialVelocity * RandomScaleForSubBooms * DebrisNumEqualizer
         

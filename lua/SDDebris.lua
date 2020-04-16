@@ -43,6 +43,8 @@ FactionalDebris = Class(FDEmitterProjectile){
 
 -- Ship and Building debris
 
+-- LIGHT DEBRIS
+
 UEFFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).UEFFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).UEFFlamingDebrisTrail,
@@ -74,6 +76,43 @@ SeraFlamingDebris = Class( FactionalDebris ){
 NomadsFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).NOMADSFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).NOMADSFlamingDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+-- HEAVY DEBRIS
+
+UEFFlamingHeavyDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).UEFFlamingHeavyDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).UEFFlamingHeavyDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+CybranFlamingHeavyDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).CybranFlamingHeavyDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).CybranFlamingHeavyDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+AeonFlamingHeavyDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).AeonFlamingHeavyDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).AeonFlamingHeavyDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+SeraFlamingHeavyDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).SeraFlamingHeavyDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).SeraFlamingHeavyDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+NomadsFlamingHeavyDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).NOMADSFlamingHeavyDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).NOMADSFlamingHeavyDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 }

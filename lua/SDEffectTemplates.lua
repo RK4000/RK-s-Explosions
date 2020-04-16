@@ -1351,6 +1351,11 @@ OilSlick = {
     ModPath .. 'OilSlick.bp',
 }
 
+
+
+-- LIGHT BUILDING/SHIP DEBRIS
+
+
 UEFFlamingDebrisLandImpact = {
     ModPath .. 'dust_emit.bp',            
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
@@ -1358,8 +1363,6 @@ UEFFlamingDebrisLandImpact = {
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    --ModPath .. 'UEFDebrisImpactResidueFire.bp', 
-    --ModPath .. 'UEFDebrisImpactResidueSmoke.bp', 
 }
 
 UEFFlamingDebrisTrail = {
@@ -1368,37 +1371,81 @@ UEFFlamingDebrisTrail = {
 }
 
 CybranFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
     ModPath .. 'CybT1_charge.bp',
-    --ModPath .. 'CybT2_smoke.bp',
 }
 
 CybranFlamingDebrisTrail = {
     ModPath .. 'CybranFlamingDebrisFire.bp',
-    --ModPath .. 'CybranFlamingDebrisSmoke.bp',
+    ModPath .. 'CybranFlamingDebrisFire2.bp',
+    ModPath .. 'CybranFlamingDebrisFire3.bp',
+    ModPath .. 'UEFFlamingDebrisSmoke.bp',
 }
 
 AeonFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
     ModPath .. 'Debris_aura.bp',
-    --ModPath .. 'AeonT2_smoke.bp',
 }
 
 AeonFlamingDebrisTrail = {
     ModPath .. 'AeonFlamingDebrisFire.bp',
-    --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
 
 SeraFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
     ModPath .. 'SeraT2_electricity.bp',
-    --ModPath .. 'AeonT2_smoke.bp',
 }
 
 SeraFlamingDebrisTrail = {
     ModPath .. 'SeraFlamingDebrisFire.bp',
-    --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
+
+
+
+-- HEAVY BUILDING/SHIP DEBRIS
+
+
+UEFFlamingHeavyDebrisLandImpact = {
+    ModPath .. 'dust_emit.bp',            
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+}
+
+UEFFlamingHeavyDebrisTrail = {
+    ModPath .. 'UEFFlamingDebrisFireHeavy.bp',
+    ModPath .. 'UEFFlamingDebrisSmokeHeavy.bp',
+}
+
+CybranFlamingHeavyDebrisLandImpact = {
+    ModPath .. 'CybT1_charge.bp',
+}
+
+CybranFlamingHeavyDebrisTrail = {
+    ModPath .. 'CybranFlamingDebrisFire.bp',
+    ModPath .. 'CybranFlamingDebrisFire2.bp',
+    ModPath .. 'CybranFlamingDebrisFire3.bp',
+}
+
+AeonFlamingHeavyDebrisLandImpact = {
+    ModPath .. 'Debris_aura.bp',
+}
+
+AeonFlamingHeavyDebrisTrail = {
+    ModPath .. 'AeonFlamingDebrisFire.bp',
+}
+
+SeraFlamingHeavyDebrisLandImpact = {
+    ModPath .. 'SeraT2_electricity.bp',
+}
+
+SeraFlamingHeavyDebrisTrail = {
+    ModPath .. 'SeraFlamingDebrisFire.bp',
+}
+
+
+-- EXP DEBRIS
+
+
 AhwassaFlamingDebrisTrail  = {
     ModPath .. 'AhwassaFlamingDebrisFire.bp',
     --ModPath .. 'AeonFlamingDebrisSmoke.bp',
@@ -2848,6 +2895,20 @@ NOMADSFlamingDebrisLandImpact = {
 }
 
 NOMADSFlamingDebrisTrail = {
+    ModPathNomads .. 'NomadsDebrisPlasma.bp',
+    ModPathNomads .. 'NomadsDebrisHeat.bp',
+}
+
+NOMADSFlamingHeavyDebrisLandImpact = {
+    ModPath .. 'dust_emit.bp',            
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
+}
+
+NOMADSFlamingHeavyDebrisTrail = {
     ModPathNomads .. 'NomadsDebrisPlasma.bp',
     ModPathNomads .. 'NomadsDebrisHeat.bp',
 }

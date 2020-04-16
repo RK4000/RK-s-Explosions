@@ -252,7 +252,7 @@ end
 ---------
 function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName)
 
-    local numDebris = (GetRandomInt(maxNumOfDebris/1.5, maxNumOfDebris))
+    local numDebris = (GetRandomInt(maxNumOfDebris/1.5, maxNumOfDebris*1.5))
     
     local bonePos = obj:GetPosition(boneName)
     local unitPos = obj:GetPosition(0)
@@ -262,26 +262,42 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
         local xposB, yposB, zposB = unpack(bonePos) 
         local xposU, yposU, zposU = unpack(unitPos)
         
-        local xpos = xposB - xposU
-        local ypos = yposB - yposU
-        local zpos = zposB - zposU
+        local xpos = GetRandomFloat( (xposB - xposU) * 0.9 , (xposB - xposU) * 1.1 )
+        local ypos = (yposB - yposU) + 0.25
+        local zpos = GetRandomFloat( (zposB - zposU) * 0.9 , (zposB - zposU) * 1.1 )
         
         local xdir = GetRandomFloat(-speed, speed) 
         local ydir = GetRandomFloat(speed / 2, speed * 1.5)
         local zdir = GetRandomFloat(-speed, speed) 
         
         local velocity = GetRandomFloat(speed / 1.5, speed) /1.5
-            
-        if obj.factionCategory == 'UEF' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
-        elseif obj.factionCategory == 'CYBRAN' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
-        elseif obj.factionCategory == 'AEON' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
-        elseif obj.factionCategory == 'SERAPHIM' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
-        elseif obj.factionCategory == 'NOMADS' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+        
+        local lightDebris = GetRandomInt(0, 10)
+
+        if lightDebris > 1 then      -- Light debris that fizzle out
+            if obj.factionCategory == 'UEF' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+            elseif obj.factionCategory == 'CYBRAN' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+            elseif obj.factionCategory == 'AEON' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+            elseif obj.factionCategory == 'SERAPHIM' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+            elseif obj.factionCategory == 'NOMADS' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+            end
+        else                           -- Heavy debris that keep burning
+            if obj.factionCategory == 'UEF' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEFHeavy/DebrisFlamingUEFHeavy_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/1.75)
+            elseif obj.factionCategory == 'CYBRAN' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybranHeavy/DebrisFlamingCybranHeavy_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/2)
+            elseif obj.factionCategory == 'AEON' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeonHeavy/DebrisFlamingAeonHeavy_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/2)
+            elseif obj.factionCategory == 'SERAPHIM' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphimHeavy/DebrisFlamingSeraphimHeavy_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/2)
+            elseif obj.factionCategory == 'NOMADS' then
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomadsHeavy/DebrisFlamingNomadsHeavy_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/2)
+            end
         end
     end
 end

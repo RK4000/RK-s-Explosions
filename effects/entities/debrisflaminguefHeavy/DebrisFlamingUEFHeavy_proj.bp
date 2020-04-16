@@ -1,14 +1,13 @@
 ProjectileBlueprint {
     Display = {
         ImpactEffects = {
-            Type = 'Small01',
-            Scale = 1.0,
+            Type = 'Large01',
+            Scale = 1.5,
         },
         MeshBlueprint = '/meshes/projectiles/debris_misc_04_mesh.bp',
-        UniformScale = 0.1,
+        UniformScale = 0.4,
     },
     Physics = {
-        Lifetime = 4.5,
         MinBounceCount = 0,
         MaxBounceCount = 0,
         DestroyOnWater = true,

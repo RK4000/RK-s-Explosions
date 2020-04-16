@@ -1106,38 +1106,60 @@ Ahwassa_Impact_Explosion = {
 
 OilSlick = {}
 
-UEFFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',        
+--LightDebris
+
+UEFFlamingDebrisLandImpact = {       
 }
 
-UEFFlamingDebrisTrail = {}
+UEFFlamingDebrisTrail = {
+}
 
 CybranFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
-    --ModPath .. 'CybT2_smoke.bp',
 }
 
 CybranFlamingDebrisTrail = {
-    --ModPath .. 'CybranFlamingDebrisSmoke.bp',
 }
 
 AeonFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
-    --ModPath .. 'AeonT2_smoke.bp',
 }
 
 AeonFlamingDebrisTrail = {
-    --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
 
 SeraFlamingDebrisLandImpact = {
-    --ModPath .. 'dust_emit.bp',
-    --ModPath .. 'AeonT2_smoke.bp',
 }
 
 SeraFlamingDebrisTrail = {
-    --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
+
+--HvyDebris
+
+UEFFlamingHeavyDebrisLandImpact = {       
+}
+
+UEFFlamingHeavyDebrisTrail = {
+}
+
+CybranFlamingHeavyDebrisLandImpact = {
+}
+
+CybranFlamingHeavyDebrisTrail = {
+}
+
+AeonFlamingHeavyDebrisLandImpact = {
+}
+
+AeonFlamingHeavyDebrisTrail = {
+}
+
+SeraFlamingHeavyDebrisLandImpact = {
+}
+
+SeraFlamingHeavyDebrisTrail = {
+}
+
+--ExpDebris
+
 AhwassaFlamingDebrisTrail  = {
     --ModPath .. 'AeonFlamingDebrisSmoke.bp',
 }
@@ -1162,41 +1184,23 @@ AsswasherDebrisImpact = {}
 
 -- T1 NOMADS Unit Boom
 ExplosionTECH1NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_random.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit.bp',
-    ModPath .. 'SDantimatter_ring_02_emit.bp',
-    ModPath .. 'small_UEF_test_fire.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 NOMADS Unit Boom
 ExplosionTECH2NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_random.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit.bp',
-    ModPath .. 'SDantimatter_ring_02_emit.bp',
-    --ModPath .. 'UEF_Outward_Spark_Small.bp',
-    ModPath .. 'small_UEF_test_fire.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 NOMADS Unit Boom
 ExplosionTECH3NOMADS = {
-    ModPath .. 'dust_emit.bp',
-    ModPath .. 'UEFMedium_test_smokeT3.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'UEF_Outward_Spark.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 
@@ -1206,27 +1210,23 @@ ExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Air Unit Boom
 AirExplosionTECH1NOMADS = {             
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    --ModPath .. 'SDantimatter_ring_01_air.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 NOMADS Air Unit Boom
 AirExplosionTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 NOMADS Air Unit Boom
 AirExplosionTECH3NOMADS = {
-    --ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit_air.bp', 
-    ModPath .. 'SDantimatter_ring_01_air.bp',
-    ModPath .. 'UEF_Outward_Spark_Air.bp', 
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 
@@ -1236,33 +1236,23 @@ AirExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Building Unit Boom
 BuildingExplosionTECH1NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T2 NOMADS Building Unit Boom
 BuildingExplosionTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- T3 NOMADS Building Unit Boom
 BuildingExplosionTECH3NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    --ModPath .. 'SDantimatter_ring_01_building.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'UEF_Outward_Spark_Building.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
-    
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp', 
 }
 
 
@@ -1272,20 +1262,14 @@ BuildingExplosionTECH3NOMADS = {
 
 -- T1 NOMADS Plane Fall Down
 FallDownTrailTECH1NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
 }
 
 -- T2 NOMADS Plane Fall Down
 FallDownTrailTECH2NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
 }
 
 -- T3 NOMADS Plane Fall Down
 FallDownTrailTECH3NOMADS = { 
-    ModPath .. 'AircraftFallDownFireball.bp',
-    ModPath .. 'AircraftFallDownSmokeTrail.bp',
 }
 
 
@@ -1315,38 +1299,23 @@ PlaneDebrisTECH3NOMADS = {
 
 -- NOMADS T1 Ship Sub-Boom
 ShipSubExplTECH1NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- NOMADS T2 Ship Sub-Boom
 ShipSubExplTECH2NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp',
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp',
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp',
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 -- NOMADS T3 Ship Sub-Boom
 ShipSubExplTECH3NOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
-    ModPath .. 'small_UEF_test_fire_T3.bp',
-    ModPath .. 'UEF_Outward_Spark_Building.bp', 
-    ModPath .. 'SDantimatter_ring_03_Land.bp',
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 
@@ -1356,17 +1325,14 @@ ShipSubExplTECH3NOMADS = {
 
 -- NOMADS T1 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH1NOMADS = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- NOMADS T2 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH2NOMADS = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 -- NOMADS T3 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH3NOMADS = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
 }
 
 
@@ -1376,13 +1342,9 @@ ShipSubExplUnderwaterTECH3NOMADS = {
 
 -- NOMADS Sub Boom (Surface)
 SubExplosionAboveWaterNOMADS = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
-    ModPath .. 'UEFSmallMedium_test_random.bp',
-    ModPath .. 'UEFSmallMedium_test_sonic.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'SDantimatter_ring_01_emit_UEF_T3.bp', 
-    ModPath .. 'SDantimatter_ring_02_emit_UEF_T3.bp', 
-    ModPath .. 'small_UEF_test_fire_T3.bp', 
+    ModPath .. 'small_test_sonic.bp',
+    ModPath .. 'small_test_fire.bp',
+    ModPath .. 'small_test_smoke.bp',
 }
 
 
@@ -1392,8 +1354,6 @@ SubExplosionAboveWaterNOMADS = {
 
 -- NOMADS Sub Boom (Underwater)
 SubExplosionUnderWaterNOMADS = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
-    --ModPath .. 'Medium_test_sonic.bp',
 }
 
 
@@ -1405,17 +1365,15 @@ SubExplosionUnderWaterNOMADS = {
 -- DEBRIS
 
 NOMADSFlamingDebrisLandImpact = {
-    ModPath .. 'dust_emit.bp',            
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
-    ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
 }
 
 NOMADSFlamingDebrisTrail = {
-    ModPath .. 'UEFFlamingDebrisFire.bp',
-    ModPath .. 'UEFFlamingDebrisSmoke.bp',
+}
+
+NOMADSFlamingHeavyDebrisLandImpact = {
+}
+
+NOMADSFlamingHeavyDebrisTrail = {
 }
 
 
