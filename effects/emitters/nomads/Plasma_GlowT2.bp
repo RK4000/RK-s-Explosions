@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/Plasma_Glow.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_blinking_2_transparent_smooth_bright_redfade.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_blinking_2_transparent_smooth_dim_redfade.dds]],
 	XDirectionCurve = {
 		XRange = 1.00,
 		Keys = {
@@ -52,7 +52,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=27.500,z=5.000 },
+			{ x=0.500,y=18.500,z=5.000 },
 		},
 	},
 	VelocityCurve = {

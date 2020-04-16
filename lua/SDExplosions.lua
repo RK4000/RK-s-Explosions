@@ -3,16 +3,15 @@
 --#**  File     :  /lua/SDExplosions.lua
 --#**  Author(s):  RK4000
 --#**
---#**  Summary  : Explosions used by Supreme Destruction
+--#**  Summary  : Explosions used by Supreme Destruction/RK's Explosions
 --#**
---#**  Copyright © 2011 RL Powered Games, Inc.  All rights reserved.
+--#**  Copyright © 2011 RK Powered Games, Inc.  All rights reserved.
 --#****************************************************************************
 local EffectTemplate = import('/lua/EffectTemplates.lua')
 local Util = import('/lua/utilities.lua')
 local GetRandomFloat = Util.GetRandomFloat
 local GetRandomInt = Util.GetRandomInt
 local GetRandomOffset = Util.GetRandomOffset
---local GetRandom = Util.GetRandom
 local EfctUtil = import('/lua/EffectUtilities.lua')
 local CreateEffects = EfctUtil.CreateEffects
 local CreateEffectsWithOffset = EfctUtil.CreateEffectsWithOffset
@@ -21,17 +20,17 @@ local CreateBoneEffects = EfctUtil.CreateBoneEffects
 local CreateBoneEffectsOffset = EfctUtil.CreateBoneEffectsOffset
 local CreateRandomEffects = EfctUtil.CreateRandomEffects
 local ScaleEmittersParam = EfctUtil.ScaleEmittersParam
+local RKUtil = import('/mods/rks_explosions/lua/SDUtilities.lua')
+local GetRandomFloatWithAvoidMiddleFactor = RKUtil.GetRandomFloatWithAvoidMiddleFactor
 local SDEffectTemplate = import('/mods/rks_explosions/lua/SDEffectTemplates.lua')
 local NEffectTemplate = import('/mods/rks_explosions/lua/NEffectTemplates.lua') 
 local DefaultExplosionsStock = import('/lua/defaultexplosions.lua')
-
 
 local GlobalExplosionScaleValueMain = 1
 local GlobalExplosionScaleValue = 1 * GlobalExplosionScaleValueMain
 LOG('      Global Explosion Scale:     ', GlobalExplosionScaleValue)
 
 local toggle = import('/mods/rks_explosions/lua/Togglestuff.lua').toggle
-
 
 function GetEffectTemplateFile(toggle)
     if toggle == 1 then
@@ -251,36 +250,38 @@ end
 ---------
 -- Debris
 ---------
-function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, velocity, boneName)
+function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName)
 
     local numDebris = (GetRandomInt(maxNumOfDebris/1.5, maxNumOfDebris))
     
     local bonePos = obj:GetPosition(boneName)
     local unitPos = obj:GetPosition(0)
 
-    for i = 0, (numDebris -1) do
+    for i = 0, (numDebris - 1) do
         
         local xposB, yposB, zposB = unpack(bonePos) 
         local xposU, yposU, zposU = unpack(unitPos)
         
         local xpos = xposB - xposU
-        local ypos = yposB - yposU + 0.5
+        local ypos = yposB - yposU
         local zpos = zposB - zposU
         
-        local xdir = GetRandomFloat(-velocity, velocity) / 1.5
-        local ydir = GetRandomFloat(velocity/4, velocity) 
-        local zdir = GetRandomFloat(-velocity, velocity) / 1.5
-
+        local xdir = GetRandomFloat(-speed, speed) 
+        local ydir = GetRandomFloat(speed / 2, speed * 1.5)
+        local zdir = GetRandomFloat(-speed, speed) 
+        
+        local velocity = GetRandomFloat(speed / 1.5, speed) /1.5
+            
         if obj.factionCategory == 'UEF' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingUEF/DebrisFlamingUEF_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
         elseif obj.factionCategory == 'CYBRAN' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingCybran/DebrisFlamingCybran_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
         elseif obj.factionCategory == 'AEON' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
         elseif obj.factionCategory == 'SERAPHIM' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
         elseif obj.factionCategory == 'NOMADS' then
-            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir)--:SetVelocity(velocity)
+            obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
         end
     end
 end

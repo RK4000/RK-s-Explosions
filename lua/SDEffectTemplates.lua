@@ -749,17 +749,17 @@ ShipSubExplTECH3SERAPHIM = {
 
 -- UEF T1 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH1UEF = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
+    ModPath .. 'UEF_Underwater_Fire_SubExpl.bp',
 }
 
 -- UEF T2 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH2UEF = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
+    ModPath .. 'UEF_Underwater_Fire_SubExpl.bp',
 }
 
 -- UEF T3 Ship Sub-Boom (Underwater)
 ShipSubExplUnderwaterTECH3UEF = {
-    ModPath .. 'UEF_Underwater_Fire_T1.bp',
+    ModPath .. 'UEF_Underwater_Fire_SubExpl.bp',
 }
 
 -- Cyb T1 Ship Sub-Boom (Underwater)
@@ -2639,7 +2639,7 @@ ExplosionTECH3NOMADS = {
     ModPathNomads .. 'Plasma_BurstT3.bp',
     ModPathNomads .. 'Plasma_FireT3.bp',
     ModPathNomads .. 'Plasma_GlowT3.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3.bp',
     ModPathNomads .. 'Plasma_Implosion.bp',
     ModPathNomads .. 'Plasma_Implosion_2D.bp',
 }
