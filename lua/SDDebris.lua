@@ -45,6 +45,43 @@ FactionalDebris = Class(FDEmitterProjectile){
 
 -- LIGHT DEBRIS
 
+UEFFlamingLightDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).UEFFlamingLightDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).UEFFlamingLightDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+CybranFlamingLightDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).CybranFlamingLightDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).CybranFlamingLightDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+AeonFlamingLightDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).AeonFlamingLightDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).AeonFlamingLightDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+SeraFlamingLightDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+NomadsFlamingLightDebris = Class( FactionalDebris ){
+    FxImpactLand = GetEffectTemplateFile(toggle).NOMADSFlamingLightDebrisLandImpact,
+    FxTrails = GetEffectTemplateFile(toggle).NOMADSFlamingLightDebrisTrail,
+	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+}
+
+-- MEDIUM DEBRIS
+
 UEFFlamingDebris = Class( FactionalDebris ){
     FxImpactLand = GetEffectTemplateFile(toggle).UEFFlamingDebrisLandImpact,
     FxTrails = GetEffectTemplateFile(toggle).UEFFlamingDebrisTrail,

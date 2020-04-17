@@ -1108,6 +1108,32 @@ OilSlick = {}
 
 --LightDebris
 
+UEFFlamingLightDebrisLandImpact = {       
+}
+
+UEFFlamingLightDebrisTrail = {
+}
+
+CybranFlamingLightDebrisLandImpact = {
+}
+
+CybranFlamingLightDebrisTrail = {
+}
+
+AeonFlamingLightDebrisLandImpact = {
+}
+
+AeonFlamingLightDebrisTrail = {
+}
+
+SeraFlamingLightDebrisLandImpact = {
+}
+
+SeraFlamingLightDebrisTrail = {
+}
+
+--MediumDebris
+
 UEFFlamingDebrisLandImpact = {       
 }
 
@@ -1363,6 +1389,12 @@ SubExplosionUnderWaterNOMADS = {
 
 
 -- DEBRIS
+
+NOMADSFlamingLightDebrisLandImpact = {
+}
+
+NOMADSFlamingLightDebrisTrail = {
+}
 
 NOMADSFlamingDebrisLandImpact = {
 }

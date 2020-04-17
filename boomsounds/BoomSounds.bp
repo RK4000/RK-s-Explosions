@@ -1,62 +1,138 @@
 Audio = {
-    SubBoom1 = Sound {
-        Bank = 'UELDestroy',
-        Cue = 'UEB_Destroy_Lrg_PreDestroy',
-        LodCutoff = 'UnitMove_LodCutoff',
-    },
+
+                                                    ## SHIP SUB-BOOM SOUNDS (ABOVE WATER)
+    
     SubBoomSoundUEF = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     SubBoomSoundCYBRAN = Sound {
         Bank = 'URLDestroy',
         Cue = 'URB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     SubBoomSoundAEON = Sound {
         Bank = 'UALDestroy',
         Cue = 'UAB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     SubBoomSoundSERAPHIM = Sound {
         Bank = 'XSL_Destroy',
         Cue = 'XSB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     SubBoomSoundNOMADS = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Lrg_PreDestroy',
         LodCutoff = 'UnitMove_LodCutoff',
     },
-    CZARCoreDestroyed = Sound {
-        Bank = 'UALDestroy',
-        Cue = 'UAB_Destroy_Huge',
-        LodCutoff = 'UnitMove_LodCutoff',
-    },
+    
+                                                    ## SHIP DEATH BOOM SOUNDS (ABOVE WATER)
+    
     DeathBoomSoundUEF = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     DeathBoomSoundCYBRAN = Sound {
         Bank = 'URLDestroy',
         Cue = 'URB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     DeathBoomSoundAEON = Sound {
         Bank = 'UALDestroy',
         Cue = 'UAB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     DeathBoomSoundSERAPHIM = Sound {
         Bank = 'XSL_Destroy',
         Cue = 'XSB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
+    
     DeathBoomSoundNOMADS = Sound {
         Bank = 'UELDestroy',
         Cue = 'UEB_Destroy_Huge',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+                                                    ## SHIP SUB-BOOM SOUNDS (UNDER WATER)
+    
+    SubBoomSoundUWUEF = Sound {
+        Bank = 'UESDestroy',
+        Cue = 'UES0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    SubBoomSoundUWCYBRAN = Sound {
+        Bank = 'UESDestroy',
+        Cue = 'UES0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    SubBoomSoundUWAEON = Sound {
+        Bank = 'UESDestroy',
+        Cue = 'UES0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    SubBoomSoundUWSERAPHIM = Sound {
+        Bank = 'UESDestroy',
+        Cue = 'UES0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    SubBoomSoundUWNOMADS = Sound {
+        Bank = 'UESDestroy',
+        Cue = 'UES0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+                                                    ## SHIP DEATH SOUNDS (UNDER WATER)
+    
+    DeathBoomSoundUWUEF = Sound {
+        Bank = 'URSDestroy',
+        Cue = 'URS0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    DeathBoomSoundUWCYBRAN = Sound {
+        Bank = 'URSDestroy',
+        Cue = 'URS0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    DeathBoomSoundUWAEON = Sound {
+        Bank = 'URSDestroy',
+        Cue = 'URS0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    DeathBoomSoundUWSERAPHIM = Sound {
+        Bank = 'URSDestroy',
+        Cue = 'URS0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+    DeathBoomSoundUWNOMADS = Sound {
+        Bank = 'URSDestroy',
+        Cue = 'URS0203_Destroy',
+        LodCutoff = 'UnitMove_LodCutoff',
+    },
+    
+                                                    ## EXP SOUNDS
+    
+    CZARCoreDestroyed = Sound {
+        Bank = 'UALDestroy',
+        Cue = 'UAB_Destroy_Huge',
         LodCutoff = 'UnitMove_LodCutoff',
     },
 }

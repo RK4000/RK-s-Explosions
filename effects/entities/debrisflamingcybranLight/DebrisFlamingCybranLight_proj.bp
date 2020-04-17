@@ -2,10 +2,10 @@ ProjectileBlueprint {
     Display = {
         ImpactEffects = {
             Type = 'Small01',
-            Scale = 1.5,
+            Scale = 0.5,
         },
         MeshBlueprint = '/meshes/projectiles/debris_misc_04_mesh.bp',
-        UniformScale = 0.4,
+        UniformScale = 0.1,
     },
     Physics = {
         Lifetime = 100,

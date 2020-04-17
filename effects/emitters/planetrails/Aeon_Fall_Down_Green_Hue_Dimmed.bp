@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/aeon_explosion_aura.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/aeon_green_hue_air_dimmed.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 1.00,
@@ -46,37 +46,37 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=0.000,z=0.000 },
+			{ x=0.000,y=2.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=6.000/3.8,z=5.000/1.8 },
+			{ x=0.500,y=5.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.100,z=0.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	XAccelCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=1.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	YAccelCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=1.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	ZAccelCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=1.000 },
+			{ x=0.500,y=0.000,z=0.000 },
 		},
 	},
 	ResistanceCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=1.350,z=0.000 },
+			{ x=0.500,y=0.350,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -112,25 +112,25 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=2.497/4,y=3.000/3,z=2.900/3 },
+			{ x=2.497/4,y=3.000/1*2.0,z=0 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=1.947/3,y=2.000/2,z=1.0900/2 },
+			{ x=1.947/3,y=3.000/1*1.5,z=0 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=180.000,z=360.000 },
+			{ x=0.500,y=720.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.500,y=0.000,z=0.000 },
+			{ x=0.500,y=360.000,z=720.000 },
 		},
 	},
 	FrameRateCurve = {

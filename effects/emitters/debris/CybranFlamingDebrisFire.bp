@@ -1,6 +1,6 @@
 EmitterBlueprint {
 	BlueprintId = 'Cybran_Fall_Down_Charge_T1',
-	Lifetime = -30.00/3.377,
+	Lifetime = 60.00/3.377,
 	Repeattime = 30.00/3.377,
 	TextureFramecount = 1.00,
 	Blendmode = 3.00,
@@ -23,7 +23,7 @@ EmitterBlueprint {
 	LowFidelity = true,
 	MedFidelity = true,
 	HighFidelity = true,
-	Texture = [[/mods/rks_explosions/textures/particles/cybran_charge_dmg.dds]],
+	Texture = [[/mods/rks_explosions/textures/particles/cybran_charge_debris2.dds]],
 	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_dmgcharge.dds]],
 	XDirectionCurve = {
 		XRange = 30.00/3.377,
@@ -139,13 +139,13 @@ EmitterBlueprint {
 	StartSizeCurve = {
 		XRange = 30.00/3.377,
 		Keys = {
-			{ x=15.750/3.377,y=0.560,z=0.560 },
+			{ x=15.750/3.377,y=0.060,z=1.060 },
 		},
 	},
 	EndSizeCurve = {
 		XRange = 30.00/3.377,
 		Keys = {
-			{ x=15.000/3.377,y=0.510,z=0.510 },
+			{ x=15.000/3.377,y=0.010,z=1.010 },
 		},
 	},
 	InitialRotationCurve = {
