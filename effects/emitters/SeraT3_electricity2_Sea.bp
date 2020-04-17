@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/electricity_wild_sdempnuke.dds]],
-        RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_65pctmax.dds]],
+        RampTexture = [[/mods/rks_explosions/textures/particles/ramp_white_premod_01.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {
@@ -46,19 +46,19 @@ EmitterBlueprint {
 	EmitRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=20.000,y=37.000,z=0.000 },
+			{ x=20.000,y=18.000,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=2.040,y=1.000,z=0.000 },
+			{ x=2.040,y=2.000,z=0.000 },
 		},
 	},
 	VelocityCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=27.333,z=0.000 },
+			{ x=10.000,y=35.666,z=0.000 },
 		},
 	},
 	XAccelCurve = {
@@ -88,7 +88,7 @@ EmitterBlueprint {
 	SizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=0.050,z=0.000 },
+			{ x=10.000,y=2.050,z=0.000 },
 		},
 	},
 	XPosCurve = {
@@ -118,19 +118,19 @@ EmitterBlueprint {
 	EndSizeCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=10.000,y=3.000,z=2.000 },
+			{ x=20.000,y=4.750,z=1.000 },
 		},
 	},
 	InitialRotationCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=360.000,y=180.000,z=360.000 }, ##{ x=10.000,y=180.000,z=360.000 },
+			{ x=360.000,y=360.000,z=360.000 }, ##{ x=10.000,y=180.000,z=360.000 },
 		},
 	},
 	RotationRateCurve = {
 		XRange = 20.00,
 		Keys = {
-			{ x=3600.000,y=180.000,z=360.000 }, ##{ x=10.000,y=1.000,z=0.000 },
+			{ x=3600.000,y=360.000,z=360.000 }, ##{ x=10.000,y=1.000,z=0.000 },
 		},
 	},
 	FrameRateCurve = {

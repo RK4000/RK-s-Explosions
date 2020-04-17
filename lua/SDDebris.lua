@@ -71,6 +71,7 @@ SeraFlamingLightDebris = Class( FactionalDebris ){
     FxTrails = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+    FxImpactNone = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisLandImpact,
 }
 
 NomadsFlamingLightDebris = Class( FactionalDebris ){
@@ -108,6 +109,7 @@ SeraFlamingDebris = Class( FactionalDebris ){
     FxTrails = GetEffectTemplateFile(toggle).SeraFlamingDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+    FxImpactNone = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisLandImpact,
 }
 
 NomadsFlamingDebris = Class( FactionalDebris ){
@@ -145,6 +147,7 @@ SeraFlamingHeavyDebris = Class( FactionalDebris ){
     FxTrails = GetEffectTemplateFile(toggle).SeraFlamingHeavyDebrisTrail,
 	FxImpactWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
 	FxImpactUnderWater = GetEffectTemplateFile(toggle).DebrisSplashyWater,
+    FxImpactNone = GetEffectTemplateFile(toggle).SeraFlamingLightDebrisLandImpact,
 }
 
 NomadsFlamingHeavyDebris = Class( FactionalDebris ){

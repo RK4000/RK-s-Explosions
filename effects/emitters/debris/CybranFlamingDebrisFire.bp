@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/cybran_charge_debris2.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_dmgcharge.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency.dds]],
 	XDirectionCurve = {
 		XRange = 30.00/3.377,
 		Keys = {
@@ -79,7 +79,7 @@ EmitterBlueprint {
 	LifetimeCurve = {
 		XRange = 30.00/3.377,
 		Keys = {
-			{ x=18.008/3.377,y=0.25,z=0.25 },
+			{ x=00.000,y=1.000,z=1.000 },
 		},
 	},
 	VelocityCurve = {

@@ -283,7 +283,7 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
             elseif obj.factionCategory == 'AEON' then
                 obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeon/DebrisFlamingAeon_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
             elseif obj.factionCategory == 'SERAPHIM' then
-                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity*1.5)
             elseif obj.factionCategory == 'NOMADS' then
                 obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
             end
@@ -295,9 +295,9 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
             elseif obj.factionCategory == 'AEON' then
                 obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingAeonLight/DebrisFlamingAeonLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocityUL*1.3)
             elseif obj.factionCategory == 'SERAPHIM' then
-                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphimLight/DebrisFlamingSeraphimLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity*1.3)
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphimLight/DebrisFlamingSeraphimLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocityUL*1.3)
             elseif obj.factionCategory == 'NOMADS' then
-                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomadsLight/DebrisFlamingNomadsLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity*1.3)
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomadsLight/DebrisFlamingNomadsLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocityUL*1.3)
             end
         else                                                                    -- Heavy debris that fizzle out slower
             if obj.factionCategory == 'UEF' then

@@ -377,7 +377,7 @@ BuildingExplosionTECH3AEON = {
 -- T1 Sera Building Unit Boom
 BuildingExplosionTECH1SERAPHIM = {
     ModPath .. 'AeonT2_smoke.bp',
-    ModPath .. 'SeraT2_electricity.bp',
+    ModPath .. 'SeraT3_electricity_building.bp',
     ModPath .. 'SeraT3_electricity2.bp',
     ModPath .. 'SeraT3_electricity3_building.bp',
     ModPath .. 'Sera_Flash_2.bp',
@@ -389,7 +389,7 @@ BuildingExplosionTECH1SERAPHIM = {
 -- T2 Sera Building Unit Boom
 BuildingExplosionTECH2SERAPHIM = {
     ModPath .. 'AeonT2_smoke.bp',
-    ModPath .. 'SeraT2_electricity.bp',
+    ModPath .. 'SeraT3_electricity_building.bp',
     ModPath .. 'SeraT3_electricity2.bp',
     ModPath .. 'SeraT3_electricity3_building.bp',
     ModPath .. 'Sera_Flash_2.bp',
@@ -401,7 +401,7 @@ BuildingExplosionTECH2SERAPHIM = {
 -- T3 Sera Building Unit Boom
 BuildingExplosionTECH3SERAPHIM = {
     ModPath .. 'AeonT3_smoke.bp',
-    ModPath .. 'SeraT3_electricity.bp',
+    ModPath .. 'SeraT3_electricity_building.bp',
     ModPath .. 'SeraT3_electricity2.bp',
     ModPath .. 'SeraT3_electricity3_building.bp',
     ModPath .. 'Sera_Flash_2.bp',
@@ -665,9 +665,9 @@ ShipSubExplTECH3AEON = {
 -- Sera T1 Ship Sub-Boom
 ShipSubExplTECH1SERAPHIM = {
     ModPath .. 'AeonT3_smoke.bp',
-    ModPath .. 'SeraT3_electricity.bp',
-    ModPath .. 'SeraT3_electricity2.bp',
-    ModPath .. 'SeraT3_electricity3_building.bp',
+    ModPath .. 'SeraT3_electricity_Sea.bp',
+    ModPath .. 'SeraT3_electricity2_Sea.bp',
+    ModPath .. 'SeraT3_electricity3_Sea.bp',
     ModPath .. 'Sera_Flash_2.bp',
     ModPath .. 'Medium_test_random.bp',
     ModPath .. 'Medium_test_sonic.bp',
@@ -677,9 +677,9 @@ ShipSubExplTECH1SERAPHIM = {
 -- Sera T2 Ship Sub-Boom
 ShipSubExplTECH2SERAPHIM = {
     ModPath .. 'AeonT3_smoke.bp',
-    ModPath .. 'SeraT3_electricity.bp',
-    ModPath .. 'SeraT3_electricity2.bp',
-    ModPath .. 'SeraT3_electricity3_building.bp',
+    ModPath .. 'SeraT3_electricity_Sea.bp',
+    ModPath .. 'SeraT3_electricity2_Sea.bp',
+    ModPath .. 'SeraT3_electricity3_Sea.bp',
     ModPath .. 'Sera_Flash_2.bp',
     ModPath .. 'Medium_test_random.bp',
     ModPath .. 'Medium_test_sonic.bp',
@@ -689,9 +689,9 @@ ShipSubExplTECH2SERAPHIM = {
 -- Sera T3 Ship Sub-Boom
 ShipSubExplTECH3SERAPHIM = {
     ModPath .. 'AeonT3_smoke.bp',
-    ModPath .. 'SeraT3_electricity.bp',
-    ModPath .. 'SeraT3_electricity2.bp',
-    ModPath .. 'SeraT3_electricity3_building.bp',
+    ModPath .. 'SeraT3_electricity_Sea.bp',
+    ModPath .. 'SeraT3_electricity2_Sea.bp',
+    ModPath .. 'SeraT3_electricity3_Sea.bp',
     ModPath .. 'Sera_Flash_2.bp',
     ModPath .. 'Medium_test_random.bp',
     ModPath .. 'Medium_test_sonic.bp',
@@ -1310,7 +1310,6 @@ UEFFlamingLightDebrisLandImpact = {
 UEFFlamingLightDebrisTrail = {
     ModPathDebris .. 'UEFFlamingDebrisFireLight.bp',
     ModPathDebris .. 'UEFFlamingDebrisSmokeLight.bp',
-    ModPathDebris .. 'UEFFlamingDebrisSmokePersistent.bp',
 }
 
 CybranFlamingLightDebrisLandImpact = {
@@ -1329,11 +1328,12 @@ AeonFlamingLightDebrisLandImpact = {
 }
 
 AeonFlamingLightDebrisTrail = {
-    ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisFireLight.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmokeLight.bp',
 }
 
 SeraFlamingLightDebrisLandImpact = {
-    ModPath .. 'SeraT2_electricity.bp',
+    ModPathDebris .. 'SeraFlamingDebrisDetonation.bp',
 }
 
 SeraFlamingLightDebrisTrail = {
@@ -1357,7 +1357,6 @@ UEFFlamingDebrisLandImpact = {
 UEFFlamingDebrisTrail = {
     ModPathDebris .. 'UEFFlamingDebrisFire.bp',
     ModPathDebris .. 'UEFFlamingDebrisSmoke.bp',
-    ModPathDebris .. 'UEFFlamingDebrisSmokePersistent.bp',
 }
 
 CybranFlamingDebrisLandImpact = {
@@ -1377,10 +1376,11 @@ AeonFlamingDebrisLandImpact = {
 
 AeonFlamingDebrisTrail = {
     ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmoke.bp',
 }
 
 SeraFlamingDebrisLandImpact = {
-    ModPath .. 'SeraT2_electricity.bp',
+    ModPathDebris .. 'SeraFlamingDebrisDetonation.bp',
 }
 
 SeraFlamingDebrisTrail = {
@@ -1421,11 +1421,12 @@ AeonFlamingHeavyDebrisLandImpact = {
 }
 
 AeonFlamingHeavyDebrisTrail = {
-    ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisFireHeavy.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmokeHeavy.bp',
 }
 
 SeraFlamingHeavyDebrisLandImpact = {
-    ModPath .. 'SeraT2_electricity.bp',
+    ModPathDebris .. 'SeraFlamingDebrisDetonation.bp',
 }
 
 SeraFlamingHeavyDebrisTrail = {
@@ -1461,7 +1462,8 @@ CZARDebrisImpact = {
 AsswasherDebrisImpact = {
     ModPath .. 'AeonT2_smoke.bp',
     ModPath .. 'SeraT2_electricity.bp',
-    ModPath .. 'SeraT3_electricity2.bp',
+    ModPath .. 'SeraT3_electricity2.bp',   
+    ModPathDebris .. 'SeraFlamingDebrisDetonation.bp',
     ModPath .. 'Medium_test_random.bp',
     ModPath .. 'Medium_test_sonic.bp',
 }

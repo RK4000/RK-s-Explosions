@@ -368,7 +368,7 @@ SeaUnit = Class(oldSeaUnit) {
         WaitSeconds(Util.GetRandomFloat(0.2,0.4))
         self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
 
-        WaitSeconds(Util.GetRandomFloat(0.5,2))
+        WaitSeconds(Util.GetRandomFloat(0.5,1))
         while true do
             if i > 0 then
                 self.CreateFactionalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
@@ -379,10 +379,10 @@ SeaUnit = Class(oldSeaUnit) {
             i = i - 1
 
             if i == 0 then
+                self.CreateFactionalFinalExplosionAtBone(self, 0, UnitSize)
+                WaitSeconds(Util.GetRandomFloat(0.2,0.4))
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-                WaitSeconds(Util.GetRandomFloat(0.0,0.0))
-                self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-                WaitSeconds(Util.GetRandomFloat(0.0,0.0))
+                WaitSeconds(Util.GetRandomFloat(0.2,0.4))
                 self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
             end
 
@@ -398,10 +398,10 @@ SeaUnit = Class(oldSeaUnit) {
         end
 
         if i == 0 then
+            self.CreateFactionalFinalExplosionAtBone(self, 0, UnitSize)
+            WaitSeconds(Util.GetRandomFloat(0.2,0.4))
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-            WaitSeconds(Util.GetRandomFloat(0.0,0.0))
-            self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
-            WaitSeconds(Util.GetRandomFloat(0.0,0.0))
+            WaitSeconds(Util.GetRandomFloat(0.2,0.4))
             self.CreateFactionalFinalExplosionAtBone(self, Util.GetRandomInt(0, numBones), UnitSize)
         end
     end,
