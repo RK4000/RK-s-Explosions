@@ -2712,30 +2712,36 @@ AirExplosionTECH3NOMADS = {
 BuildingExplosionTECH1NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT1.bp',
-    ModPathNomads .. 'Plasma_FireT1.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Building.bp',
+    ModPathNomads .. 'Plasma_FireT3_Building.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Building.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Building.bp',
 }
 
 -- T2 NOMADS Building Unit Boom
 BuildingExplosionTECH2NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT2.bp',
-    ModPathNomads .. 'Plasma_FireT2.bp',
-    ModPathNomads .. 'Plasma_GlowT2.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Building.bp',
+    ModPathNomads .. 'Plasma_FireT3_Building.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Building.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Building.bp',
 }
 
 -- T3 NOMADS Building Unit Boom
 BuildingExplosionTECH3NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT3.bp',
-    ModPathNomads .. 'Plasma_FireT3.bp',
-    ModPathNomads .. 'Plasma_GlowT3.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
-    ModPathNomads .. 'Plasma_Implosion.bp',
-    ModPathNomads .. 'Plasma_Implosion_2D.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Building.bp',
+    ModPathNomads .. 'Plasma_FireT3_Building.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Building.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_Building.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Building.bp',
     
 }
 
@@ -2790,32 +2796,36 @@ PlaneDebrisTECH3NOMADS = {
 ShipSubExplTECH1NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT2.bp',
-    ModPathNomads .. 'Plasma_FireT2.bp',
-    ModPathNomads .. 'Plasma_GlowT2.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Sea.bp',
+    ModPathNomads .. 'Plasma_FireT3_Sea.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Sea.bp',
 }
 
 -- NOMADS T2 Ship Sub-Boom
 ShipSubExplTECH2NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT2.bp',
-    ModPathNomads .. 'Plasma_FireT2.bp',
-    ModPathNomads .. 'Plasma_GlowT2.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Sea.bp',
+    ModPathNomads .. 'Plasma_FireT3_Sea.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Sea.bp',
 }
 
 -- NOMADS T3 Ship Sub-Boom
 ShipSubExplTECH3NOMADS = {
     ModPath .. 'UEFMedium_test_random.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
-    ModPathNomads .. 'Plasma_BurstT3.bp',
-    ModPathNomads .. 'Plasma_FireT3.bp',
-    ModPathNomads .. 'Plasma_GlowT3.bp',
-    ModPathNomads .. 'Plasma_Heat_Distort.bp',
-    ModPathNomads .. 'Plasma_Implosion.bp',
-    ModPathNomads .. 'Plasma_Implosion_2D.bp',
+    ModPathNomads .. 'Plasma_BurstT3_Sea.bp',
+    ModPathNomads .. 'Plasma_FireT3_Sea.bp',
+    ModPathNomads .. 'Plasma_GlowT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Heat_DistortT3_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_Sea.bp',
+    ModPathNomads .. 'Plasma_Implosion_2D_Sea.bp',
 }
 
 
@@ -2885,8 +2895,8 @@ NOMADSFlamingLightDebrisLandImpact = {
 }
 
 NOMADSFlamingLightDebrisTrail = {
-    ModPathNomads .. 'NomadsDebrisPlasma.bp',
-    ModPathNomads .. 'NomadsDebrisHeat.bp',
+    ModPathNomads .. 'NomadsDebrisPlasmaLight.bp',
+    ModPathNomads .. 'NomadsDebrisHeatLight.bp',
 }
 
 --MED
@@ -2917,8 +2927,8 @@ NOMADSFlamingHeavyDebrisLandImpact = {
 }
 
 NOMADSFlamingHeavyDebrisTrail = {
-    ModPathNomads .. 'NomadsDebrisPlasma.bp',
-    ModPathNomads .. 'NomadsDebrisHeat.bp',
+    ModPathNomads .. 'NomadsDebrisPlasmaHeavy.bp',
+    ModPathNomads .. 'NomadsDebrisHeatHeavy.bp',
 }
 
 

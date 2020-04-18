@@ -268,6 +268,7 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
         
         local xdir = GetRandomFloat(-speed, speed) 
         local ydir = GetRandomFloat(speed / 2, speed * 1.5)
+        local ydirNomadsLightDebris = GetRandomFloat (-speed, speed)
         local zdir = GetRandomFloat(-speed, speed) 
         
         local velocity = GetRandomFloat(speed / 1.5, speed) /1.5
@@ -285,7 +286,7 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
             elseif obj.factionCategory == 'SERAPHIM' then
                 obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphim/DebrisFlamingSeraphim_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity*1.5)
             elseif obj.factionCategory == 'NOMADS' then
-                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity)
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomads/DebrisFlamingNomads_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocity/1.2)
             end
         elseif debrisTypeRandomizer >= 12 then                                  -- Ultralight debris that fizzle out very fast
             if obj.factionCategory == 'UEF' then
@@ -297,7 +298,7 @@ function CreateGenericFactionalDebrisOnBone(obj, maxNumOfDebris, speed, boneName
             elseif obj.factionCategory == 'SERAPHIM' then
                 obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingSeraphimLight/DebrisFlamingSeraphimLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocityUL*1.3)
             elseif obj.factionCategory == 'NOMADS' then
-                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomadsLight/DebrisFlamingNomadsLight_proj.bp',xpos,ypos,zpos,xdir,ydir,zdir):SetVelocity(velocityUL*1.3)
+                obj:CreateProjectile('/mods/rks_explosions/effects/entities/DebrisFlamingNomadsLight/DebrisFlamingNomadsLight_proj.bp',xpos,ypos,zpos,xdir,ydirNomadsLightDebris,zdir):SetVelocity(velocityUL*2.7)
             end
         else                                                                    -- Heavy debris that fizzle out slower
             if obj.factionCategory == 'UEF' then
