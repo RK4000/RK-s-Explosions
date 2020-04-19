@@ -481,6 +481,14 @@ AircraftCarrier = Class(SeaUnit, BaseTransport) {
 
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
+    TempestModifier = function(self) --Adjusts oil slick for Tempest
+        if EntityCategoryContains(categories.AEON, self) and EntityCategoryContains(categories.EXPERIMENTAL, self) then
+            return 0.20
+        else
+            return 1
+        end
+    end,
+    
     OnKilled = function(self, instigator, type, overkillRatio)
         local SDFactionalSubBoomAboveWater = SDEffectTemplate['SubExplosionAboveWater' .. self.factionCategory]
         local SDFactionalSubBoomUnderWater = SDEffectTemplate['SubExplosionUnderWater' .. self.factionCategory]

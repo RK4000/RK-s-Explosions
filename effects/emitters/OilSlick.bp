@@ -1,7 +1,7 @@
 EmitterBlueprint {
 	BlueprintId = 'OilSlick',
-	Lifetime = 1.00,
-	Repeattime = 1.00,
+	Lifetime = 0.10,
+	Repeattime = 0.10,
 	TextureFramecount = 1.00,
 	Blendmode = 0.00,
 	LocalVelocity = false,
