@@ -1,7 +1,7 @@
 EmitterBlueprint {
 	BlueprintId = 'AircraftFallDownHeat',
-	Lifetime = -1,
-	Repeattime = 1,
+	Lifetime = 30,
+	Repeattime = 30,
 	TextureFramecount = 1.00,
 	Blendmode = 5.00,
 	LocalVelocity = true,
@@ -44,15 +44,17 @@ EmitterBlueprint {
 		},
 	},
 	EmitRateCurve = {
-		XRange = 50.00,
+		XRange = 30.00,
 		Keys = {
-			{ x=25.000,y=7.500,z=0.000 },
+			{ x=0.000,y=7.500,z=0.000 },
+			{ x=30.000,y=3.500,z=0.000 },
 		},
 	},
 	LifetimeCurve = {
-		XRange = 50.00,
+		XRange = 30.00,
 		Keys = {
-			{ x=6.000,y=3.843,z=1.541 },
+			{ x=0.000,y=8.843,z=1.541 },
+			{ x=30.000,y=0.843,z=1.541 },
 		},
 	},
 	VelocityCurve = {

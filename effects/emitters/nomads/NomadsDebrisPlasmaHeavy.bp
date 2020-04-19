@@ -24,7 +24,7 @@ EmitterBlueprint {
 	MedFidelity = true,
 	HighFidelity = true,
 	Texture = [[/mods/rks_explosions/textures/particles/plasma_flame.dds]],
-	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_fade_to_red.dds]],
+	RampTexture = [[/mods/rks_explosions/textures/particles/ramp_transparency_fade_to_red_madsdebris.dds]],
 	XDirectionCurve = {
 		XRange = 50.00,
 		Keys = {

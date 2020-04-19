@@ -288,7 +288,8 @@ AirExplosionTECH3SERAPHIM = {
 
 -- T1 UEF Building Unit Boom
 BuildingExplosionTECH1UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
@@ -296,7 +297,8 @@ BuildingExplosionTECH1UEF = {
 
 -- T2 UEF Building Unit Boom
 BuildingExplosionTECH2UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
@@ -305,7 +307,8 @@ BuildingExplosionTECH2UEF = {
 
 -- T3 UEF Building Unit Boom
 BuildingExplosionTECH3UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'UEFMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
     ModPath .. 'small_UEF_test_fire_T3.bp',
@@ -316,7 +319,8 @@ BuildingExplosionTECH3UEF = {
 
 -- T1 Cyb Building Unit Boom
 BuildingExplosionTECH1CYBRAN = {
-    ModPath .. 'CybT2_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'CybT2_charge.bp',
     ModPath .. 'CybT2_chargering.bp',
     ModPath .. 'Medium_test_random.bp',
@@ -326,7 +330,8 @@ BuildingExplosionTECH1CYBRAN = {
 
 -- T2 Cyb Building Unit Boom
 BuildingExplosionTECH2CYBRAN = {
-    ModPath .. 'CybT2_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'CybT2_charge.bp',
     ModPath .. 'CybT2_chargering.bp',
     ModPath .. 'Medium_test_random.bp',
@@ -336,7 +341,8 @@ BuildingExplosionTECH2CYBRAN = {
 
 -- T3 Cyb Building Unit Boom
 BuildingExplosionTECH3CYBRAN = {
-    ModPath .. 'CybT3_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Building.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising_Building.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargelong.bp',
     ModPath .. 'CybT3_chargering.bp',
@@ -502,61 +508,72 @@ FallDownTrailTECH3SERAPHIM = {
 
 -- T1 UEF Plane DEBRIS
 PlaneDebrisTECH1UEF = { 
-    
+    ModPathDebris .. 'UEFFlamingDebrisFire.bp',
+    ModPathDebris .. 'UEFFlamingDebrisSmoke.bp',
 }
 
 -- T2 UEF Plane DEBRIS
 PlaneDebrisTECH2UEF = { 
-    
+    ModPathDebris .. 'UEFFlamingDebrisFire.bp',
+    ModPathDebris .. 'UEFFlamingDebrisSmoke.bp',
 }
 
 -- T3 UEF Plane DEBRIS
 PlaneDebrisTECH3UEF = { 
-    
+    ModPathDebris .. 'UEFFlamingDebrisFire.bp',
+    ModPathDebris .. 'UEFFlamingDebrisSmoke.bp',
 }
 
 -- T1 CYBRAN Plane DEBRIS
 PlaneDebrisTECH1CYBRAN = { 
-    
+    ModPathDebris .. 'CybranFlamingDebrisSmoke.bp',
 }
 
 -- T2 CYBRAN Plane DEBRIS
 PlaneDebrisTECH2CYBRAN = { 
-    
+    ModPathDebris .. 'CybranFlamingDebrisSmoke.bp',
 }
 
 -- T3 CYBRAN Plane DEBRIS
 PlaneDebrisTECH3CYBRAN = { 
-    
+    ModPathDebris .. 'CybranFlamingDebrisSmoke.bp',
 }
 
 -- T1 AEON Plane DEBRIS
 PlaneDebrisTECH1AEON = { 
+    ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmoke.bp',
     
 }
 
 -- T2 AEON Plane DEBRIS
 PlaneDebrisTECH2AEON = { 
+    ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmoke.bp',
     
 }
 
 -- T3 AEON Plane DEBRIS
 PlaneDebrisTECH3AEON = { 
+    ModPathDebris .. 'AeonFlamingDebrisFire.bp',
+    ModPathDebris .. 'AeonFlamingDebrisSmoke.bp',
     
 }
 
 -- T1 SERAPHIM Plane DEBRIS
 PlaneDebrisTECH1SERAPHIM = { 
-    
+    ModPathDebris .. 'SeraFlamingDebrisFire.bp',  
 }
 
 -- T2 SERAPHIM Plane DEBRIS
 PlaneDebrisTECH2SERAPHIM = { 
+    ModPathDebris .. 'SeraFlamingDebrisFire.bp',  
     
 }
 
 -- T3 SERAPHIM Plane DEBRIS
 PlaneDebrisTECH3SERAPHIM = { 
+    ModPathDebris .. 'SeraFlamingDebrisFire.bp',  
     
 }
 
@@ -566,7 +583,9 @@ PlaneDebrisTECH3SERAPHIM = {
 
 -- UEF T1 Ship Sub-Boom
 ShipSubExplTECH1UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    --ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
@@ -577,7 +596,9 @@ ShipSubExplTECH1UEF = {
 
 -- UEF T2 Ship Sub-Boom
 ShipSubExplTECH2UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    --ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp',
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp',
@@ -589,7 +610,9 @@ ShipSubExplTECH2UEF = {
 
 -- UEF T3 Ship Sub-Boom
 ShipSubExplTECH3UEF = {
-    ModPath .. 'UEFMedium_test_smoke.bp',
+    --ModPath .. 'UEFMedium_test_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'UEFSmallMedium_test_random.bp',
     ModPath .. 'UEFSmallMedium_test_sonic.bp', 
     ModPath .. 'sdexplosion_fire_sparks_02_emit.bp', 
@@ -602,7 +625,9 @@ ShipSubExplTECH3UEF = {
 
 -- Cyb T1 Ship Sub-Boom
 ShipSubExplTECH1CYBRAN = {
-    ModPath .. 'CybT3_smoke.bp',
+    --ModPath .. 'CybT3_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargering.bp',
     ModPath .. 'Medium_test_random.bp',
@@ -612,7 +637,9 @@ ShipSubExplTECH1CYBRAN = {
 
 -- Cyb T2 Ship Sub-Boom
 ShipSubExplTECH2CYBRAN = {
-    ModPath .. 'CybT3_smoke.bp',
+    --ModPath .. 'CybT3_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargering.bp',
     ModPath .. 'Medium_test_random.bp',
@@ -623,7 +650,9 @@ ShipSubExplTECH2CYBRAN = {
 
 -- Cyb T3 Ship Sub-Boom
 ShipSubExplTECH3CYBRAN = {
-    ModPath .. 'CybT3_smoke.bp',
+    --ModPath .. 'CybT3_smoke.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting.bp',
+    ModPath .. 'UEFMedium_test_smoke_Longlasting_Rising.bp',
     ModPath .. 'CybT3_charge.bp',
     ModPath .. 'CybT3_chargering.bp',
     ModPath .. 'Medium_test_random.bp',
@@ -2754,18 +2783,21 @@ BuildingExplosionTECH3NOMADS = {
 FallDownTrailTECH1NOMADS = { 
     ModPathNomads .. 'AircraftFallDownPlasma.bp',
     ModPathNomads .. 'AircraftFallDownHeat.bp',
+    ModPathNomads .. 'AircraftFallDownPlasmaResidue.bp',
 }
 
 -- T2 NOMADS Plane Fall Down
 FallDownTrailTECH2NOMADS = { 
     ModPathNomads .. 'AircraftFallDownPlasma.bp',
     ModPathNomads .. 'AircraftFallDownHeat.bp',
+    ModPathNomads .. 'AircraftFallDownPlasmaResidue.bp',
 }
 
 -- T3 NOMADS Plane Fall Down
 FallDownTrailTECH3NOMADS = { 
     ModPathNomads .. 'AircraftFallDownPlasma.bp',
     ModPathNomads .. 'AircraftFallDownHeat.bp',
+    ModPathNomads .. 'AircraftFallDownPlasmaResidue.bp',
 }
 
 
@@ -2775,17 +2807,17 @@ FallDownTrailTECH3NOMADS = {
 
 -- T1 NOMADS Plane DEBRIS
 PlaneDebrisTECH1NOMADS = { 
-    
+    ModPathNomads .. 'AircraftFallDownPlasmaResidueDebris.bp',
 }
 
 -- T2 NOMADS Plane DEBRIS
 PlaneDebrisTECH2NOMADS = { 
-    
+    ModPathNomads .. 'AircraftFallDownPlasmaResidueDebris.bp',
 }
 
 -- T3 NOMADS Plane DEBRIS
 PlaneDebrisTECH3NOMADS = { 
-    
+    ModPathNomads .. 'AircraftFallDownPlasmaResidueDebris.bp',
 }
 
 

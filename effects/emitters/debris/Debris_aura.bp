@@ -100,7 +100,7 @@ EmitterBlueprint {
 	YPosCurve = {
 		XRange = 1.00,
 		Keys = {
-			{ x=0.000,y=0.995,z=0.000 },
+			{ x=0.000,y=0.000,z=0.000 },
 		},
 	},
 	ZPosCurve = {

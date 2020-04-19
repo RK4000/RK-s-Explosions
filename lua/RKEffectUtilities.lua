@@ -1,4 +1,4 @@
-##RKS_EXPLOSIONS
+--RKS_EXPLOSIONS
 function CreateBoneEffectsAttached( obj, bone, army, EffectTable )
     local emitters = {}
     for k, v in EffectTable do
@@ -28,4 +28,12 @@ function CreateBoneEffectsScaled( obj, bone, army, EffectTable, scale )
     return emitters
 end
 
-##RKS_EXPLOSIONS
+function CreateScaledBoneEffectsOffset( obj, bone, army, EffectTable, x, y, z, scale )
+    local emitters = {}
+    for k, v in EffectTable do
+        table.insert(emitters,CreateEmitterAtBone( obj, bone, army, v ):OffsetEmitter(x, y, z):ScaleEmitter(scale))
+    end
+    return emitters
+end
+
+--RKS_EXPLOSIONS
