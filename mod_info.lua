@@ -1,6 +1,6 @@
 name = "RK's Explosions"       
-uid = "90312bd2-6fbd-4aa6-874e-rksbooms-v12"
-version = 12
+uid = "90312bd2-6fbd-4aa6-874e-rksbooms-v13"
+version = 13
 description = "Replaces the default unit explosion effects with factionally varied and higher quality equivalents."
 author = "RK4000, speed2, Sheeo, Domino"
 url = "http://forums.faforever.com/viewtopic.php?f=41&t=6813"
