@@ -471,14 +471,6 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 }
 
-AircraftCarrier = Class(SeaUnit, BaseTransport) {
-    OnKilled = function(self, instigator, type, overkillRatio)
-        self:SaveCargoMass()
-        SeaUnit.OnKilled(self, instigator, type, overkillRatio)
-        self:DetachCargo()
-    end,
-}
-
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
     TempestModifier = function(self) --Adjusts oil slick for Tempest
@@ -805,7 +797,9 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 }
 
 local oldFactoryUnit = FactoryUnit
-FactoryUnit = Class(StructureUnit, oldFactoryUnit) {}
+FactoryUnit = Class(StructureUnit, oldFactoryUnit) {
+    IdleState = oldFactoryUnit.oldFactoryUnit,
+}
 
 -- AIR FACTORY UNITS
 AirFactoryUnit = Class(FactoryUnit) {}
