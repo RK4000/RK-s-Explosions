@@ -471,6 +471,57 @@ SeaUnit = Class(oldSeaUnit) {
     end,
 }
 
+AircraftCarrier = Class(SeaUnit, BaseTransport) {
+
+    DisableIntelOfCargo = true,
+
+    ---@param self AircraftCarrier
+    ---@param attachBone Bone
+    ---@param unit Unit
+    OnTransportAttach = function(self, attachBone, unit)
+        SeaUnit.OnTransportAttach(self, attachBone, unit)
+        BaseTransport.OnTransportAttach(self, attachBone, unit)
+    end,
+
+    ---@param self AircraftCarrier
+    ---@param attachBone Bone
+    ---@param unit Unit
+    OnTransportDetach = function(self, attachBone, unit)
+        SeaUnit.OnTransportDetach(self, attachBone, unit)
+        BaseTransport.OnTransportDetach(self, attachBone, unit)
+    end,
+
+    OnAttachedKilled = function(self, attached)
+        SeaUnit.OnAttachedKilled(self, attached)
+        BaseTransport.OnAttachedKilled(self, attached)
+    end,
+
+    ---@param self AircraftCarrier
+    OnStartTransportLoading = function(self)
+        SeaUnit.OnStartTransportLoading(self)
+        BaseTransport.OnStartTransportLoading(self)
+    end,
+
+    ---@param self AircraftCarrier
+    OnStopTransportLoading = function(self)
+        SeaUnit.OnStopTransportLoading(self)
+        BaseTransport.OnStopTransportLoading(self)
+    end,
+
+    ---@param self AircraftCarrier
+    DestroyedOnTransport = function(self)
+        -- SeaUnit.DestroyedOnTransport(self)
+        BaseTransport.DestroyedOnTransport(self)
+    end,
+
+
+    OnKilled = function(self, instigator, type, overkillRatio)
+        self:SaveCargoMass()
+        SeaUnit.OnKilled(self, instigator, type, overkillRatio)
+        self:DetachCargo()
+    end,
+}
+
 local oldSubUnit = SubUnit
 SubUnit = Class(oldSubUnit) {
     TempestModifier = function(self) --Adjusts oil slick for Tempest
@@ -797,9 +848,7 @@ StructureUnit = Class(StructureHelperfunctions, oldStructureUnit) {
 }
 
 local oldFactoryUnit = FactoryUnit
-FactoryUnit = Class(StructureUnit, oldFactoryUnit) {
-    IdleState = oldFactoryUnit.oldFactoryUnit,
-}
+FactoryUnit = Class(StructureUnit, oldFactoryUnit) {}
 
 -- AIR FACTORY UNITS
 AirFactoryUnit = Class(FactoryUnit) {}
